@@ -20,7 +20,6 @@ export class TextElementComponent implements OnInit {
         'bold',
         'italic',
         'underline',
-        'strikethrough',
         'justifyLeft',
         'justifyCenter',
         'justifyRight',
@@ -29,10 +28,21 @@ export class TextElementComponent implements OnInit {
         'insertOrderedList',
         'indent',
         'outdent',
-        'createLink',
-        'unlink',
         'insertImage',
-        'insertFile'
+        'subscript',
+        'superscript',
+        'tableWizard',
+        'createTable',
+        'addRowAbove',
+        'addRowBelow',
+        'addColumnLeft',
+        'addColumnRight',
+        'deleteRow',
+        'deleteColumn',
+        'viewHtml',
+        'cleanFormatting',
+        'foreColor',
+        'backColor'
       ]
 
     });

@@ -1,3 +1,69 @@
-<p>
-  properties works!
-</p>
+<div class="properties" [@fadeInAnimation]>
+  <div class="header">
+    <div class="row">
+      <div class="title col">
+        Settings
+      </div>
+      <div class="actions col flex-end">
+        <button (click)="close()">
+          <fa-icon [icon]="faArrowDown"></fa-icon>
+        </button>
+      </div>
+    </div>
+  </div>
+
+
+
+  <div class="property">
+    <div class="property-title">Padding</div>
+    <div class="property-content">
+      <div class="row">
+        <div class="col title">
+          Left
+        </div>
+        <div class="col flex-end">
+          <input>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col title">
+          Top
+        </div>
+        <div class="col flex-end">
+          <input>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col title">
+          Right
+        </div>
+        <div class="col flex-end">
+          <input>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col title">
+          Bottom
+        </div>
+        <div class="col flex-end">
+          <input>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="property">
+    <div class="property-title">HTML</div>
+    <ngx-monaco-editor [options]="htmlOptions" [(ngModel)]="htmlCode"></ngx-monaco-editor>
+    
+
+    <div class="property-title">Javascript</div>
+    <ngx-monaco-editor [options]="javascriptOptions" [(ngModel)]="javascriptCode"></ngx-monaco-editor>
+   
+
+    <div class="property-title">CSS</div>
+    <ngx-monaco-editor [options]="cssOptions" [(ngModel)]="cssCode"></ngx-monaco-editor>
+   
+  </div>
+</div>

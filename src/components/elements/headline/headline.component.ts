@@ -23,14 +23,7 @@ export class HeadlineElementComponent implements OnInit {
         'justifyCenter',
         'justifyRight',
         'justifyFull',
-        'insertUnorderedList',
-        'insertOrderedList',
-        'indent',
-        'outdent',
-        'createLink',
-        'unlink',
-        'insertImage',
-        'insertFile'
+        'foreColor'
       ]
 
     });

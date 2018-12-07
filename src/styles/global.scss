@@ -1,5 +1,13 @@
+@import '~bootstrap/scss/bootstrap-reboot';
+@import '~bootstrap/scss/bootstrap-grid';
+
 body {
   font-family: "Open Sans", "Helvetica Neue", Arial, sans-serif;
+}
+
+.flex-end {
+  display: flex;
+  justify-content: flex-end;
 }
 
 
@@ -13,8 +21,8 @@ color-picker {
 
   .color-picker {
     border-radius: 4px;
-    border: 1px solid #e0e0e0;
-    box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+    border: 1px solid #d1d1d1;
+    box-shadow: 0 14px 28px rgba(0, 0, 0, 0.1), 0 10px 10px rgba(0, 0, 0, 0.1);
   }
 
   .arrow {

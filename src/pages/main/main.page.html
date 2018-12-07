@@ -1,26 +1,40 @@
-<div class="section-preview">
+<div class="section-preview" >
 
 
   <div class="passage-wrapper">
     <div class="passage-header"></div>
     <div class="passage-container">
-      <div class="passage-content" cdkDropList #activeElementsList="cdkDropList" [cdkDropListData]="editorOptions.elements"
-        [cdkDropListConnectedTo]="[elementsList]" (cdkDropListDropped)="drop($event)" [style.background]="editorOptions.bodyStyleOptions.backgroundColor">
+      <div 
+        class="passage-content" 
+        cdkDropList 
+        #activeElementsList="cdkDropList" 
+        [cdkDropListData]="editorOptions.elements"
+        [cdkDropListConnectedTo]="[elementsList]" 
+        (cdkDropListDropped)="drop($event)" 
+        [style.backgroundColor]="editorOptions.bodyStyleOptions.backgroundColor"
+        [style.backgroundImage]="'url('+editorOptions.bodyStyleOptions.backgroundImage+')'" 
+        [style.backgroundRepeat]="editorOptions.bodyStyleOptions.backgroundRepeat"
+        [style.backgroundSize]="editorOptions.bodyStyleOptions.backgroundSize"
+        [style.paddingLeft]="editorOptions.bodyStyleOptions.paddingLeft" 
+        [style.paddingTop]="editorOptions.bodyStyleOptions.paddingTop"
+        [style.paddingRight]="editorOptions.bodyStyleOptions.paddingRight" 
+        [style.paddingBottom]="editorOptions.bodyStyleOptions.paddingBottom"
+        [dir]="editorOptions.bodyStyleOptions.directionLtr ? 'ltr' : 'rtl'">
 
         <div class="drag-element" *ngFor="let element of editorOptions.elements" cdkDrag>
-          <app-element-text *ngIf="element.component == 'text'"></app-element-text>
+          <app-element-text *ngIf="element.component == 'text'" ></app-element-text>
           <app-element-headline *ngIf="element.component == 'headline'"></app-element-headline>
           <app-element-video *ngIf="element.component == 'video'"></app-element-video>
 
           <div class="drag-element-toolbar">
             <div class="drag-element-check item" cdkDragHandle (click)="openProperties(element)">
-              <fa-icon [icon]="faHandPointer"></fa-icon>
+              <fa-icon [icon]="faCogs"></fa-icon>
             </div>
             <div class="drag-element-trash item" cdkDragHandle (click)="delete(element)">
               <fa-icon [icon]="faTrash"></fa-icon>
             </div>
             <div class="drag-element-handle item" cdkDragHandle>
-                <fa-icon [icon]="faArrowsAlt"></fa-icon>
+              <fa-icon [icon]="faArrowsAlt"></fa-icon>
             </div>
           </div>
 
@@ -35,6 +49,9 @@
 </div>
 
 <div class="section-settings">
+  
+  <app-properties *ngIf="propertiesActive" (onClose)="propertiesActive = false"></app-properties>
+
   <div class="tabs">
     <div class="tab" [class.active]="tab == 'elements'" (click)="tab = 'elements'">
       <span>Elements</span>
@@ -58,11 +75,109 @@
     </div>
 
     <div *ngIf="tab == 'body'" class="body-settings">
-      
+
       <div class="property">
-        <div class="property-title">Background Color</div>
+        <div class="property-title">Background</div>
         <div class="property-content">
-            <input [(colorPicker)]="editorOptions.backgroundColor"  cpPosition="left" [style.background]="editorOptions.bodyStyleOptions.backgroundColor"/>
+          <div class="row">
+            <div class="col title">
+              Color
+            </div>
+            <div class="col flex-end">
+              <input [(colorPicker)]="editorOptions.bodyStyleOptions.backgroundColor" cpPosition="left" cpOutputFormat="hex"
+                cpAlphaChannel="disabled" [style.background]="editorOptions.bodyStyleOptions.backgroundColor" />
+            </div>
+          </div>
+          <div class="row">
+            <div class="col title">
+              Image (URL)
+            </div>
+            <div class="col flex-end">
+              <input [(ngModel)]="editorOptions.bodyStyleOptions.backgroundImage" />
+            </div>
+          </div>
+          <div class="row">
+            <div class="col title">
+              - Repeat
+            </div>
+            <div class="col flex-end">
+              <select  [(ngModel)]="editorOptions.bodyStyleOptions.backgroundRepeat">
+                <option value='no-repeat'>No-repeat</option>
+                <option value='repeat'>Repeat</option>
+              </select>
+
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col title">
+              - Size
+            </div>
+            <div class="col flex-end">
+              <select [(ngModel)]="editorOptions.bodyStyleOptions.backgroundSize" >
+                <option [ngValue]="'unset'" >Unset</option>
+                <option [ngValue]="'auto'" >Auto</option>
+                <option [ngValue]="'cover'" >Cover</option>
+                <option [ngValue]="'contain'" >Contain</option>
+              </select>
+
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <div class="property">
+        <div class="property-title">Padding</div>
+        <div class="property-content">
+          <div class="row">
+            <div class="col title">
+              Left
+            </div>
+            <div class="col flex-end">
+              <input [(ngModel)]="editorOptions.bodyStyleOptions.paddingLeft" />
+            </div>
+          </div>
+          <div class="row">
+            <div class="col title">
+              Top
+            </div>
+            <div class="col flex-end">
+              <input [(ngModel)]="editorOptions.bodyStyleOptions.paddingTop" />
+            </div>
+          </div>
+          <div class="row">
+            <div class="col title">
+              Right
+            </div>
+            <div class="col flex-end">
+              <input [(ngModel)]="editorOptions.bodyStyleOptions.paddingRight" />
+            </div>
+          </div>
+          <div class="row">
+            <div class="col title">
+              Bottom
+            </div>
+            <div class="col flex-end">
+              <input [(ngModel)]="editorOptions.bodyStyleOptions.paddingBottom" />
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="property">
+        <div class="property-title">Direction</div>
+        <div class="property-content">
+
+          <div class="row">
+            <div class="col title">
+              LTR
+            </div>
+            <div class="col flex-end">
+              <ion-toggle [(ngModel)]="editorOptions.bodyStyleOptions.directionLtr"></ion-toggle>
+            </div>
+          </div>
+
         </div>
       </div>
 
@@ -70,7 +185,8 @@
 
 
     <div class="section-settings-footer">
-      <button  (click)="save()">Save</button>
+      <button (click)="save()">Save</button>
     </div>
   </div>
 </div>
+

@@ -1,6 +1,6 @@
 import { CdkDragDrop, copyArrayItem, moveItemInArray } from '@angular/cdk/drag-drop';
 import { Component, OnInit } from '@angular/core';
-import { faAlignCenter, faArrowsAlt, faCode, faFont, faHandPointer, faImage, faImages, faTh, faTrash, faVideo } from '@fortawesome/free-solid-svg-icons';
+import { faAlignCenter, faArrowsAlt, faCode, faFont, faHandPointer, faImage, faImages, faTh, faTrash, faVideo, faCogs } from '@fortawesome/free-solid-svg-icons';
 
 
 
@@ -16,19 +16,21 @@ export class MainPage implements OnInit {
     id: 1,
     name: 'Layout 1',
     bodyStyleOptions: {
-      paddingTop: '10px',
-      paddingRight: '10px',
+      paddingTop: '30px',
+      paddingRight: '30px',
       paddingBottom: '30px',
-      paddingLeft: '10px',
-      backgroundColor: '#273142',
+      paddingLeft: '30px',
+      backgroundColor: '#fff',
+      backgroundImage: '',
+      backgroundRepeat: 'no-repeat',
+      backgroundSize: 'cover',
       font: {
         family: 'Tahoma, Geneva, sans-serif',
         size: 16,
         weight: 'normal',
         color: '#4d4d4d'
       },
-      direction: 'ltr',
-      width: 600
+      directionLtr: true
     },
     elements: []
   };
@@ -36,8 +38,10 @@ export class MainPage implements OnInit {
   faTrash = faTrash;
   faHandPointer = faHandPointer;
   faArrowsAlt = faArrowsAlt;
+  faCogs = faCogs;
 
 
+  propertiesActive: boolean = false;
   tab: string = 'elements';
 
 
@@ -83,6 +87,10 @@ export class MainPage implements OnInit {
   constructor() { }
 
   ngOnInit() {
+    const storageOptions = localStorage.getItem('editorOptions');
+    if (storageOptions) {
+      this.editorOptions = JSON.parse(storageOptions);
+    }
   }
 
   drop(event: CdkDragDrop<string[]>) {
@@ -97,8 +105,9 @@ export class MainPage implements OnInit {
   }
 
 
-  openProperties() {
-    console.log('open properties');
+
+  openProperties(element) {
+    this.propertiesActive = true;
   }
 
   delete(element) {
@@ -107,6 +116,9 @@ export class MainPage implements OnInit {
     this.editorOptions.elements = this.editorOptions.elements.filter((el) => el.component  ==  element.title);
   }
 
+  save() {
+    localStorage.setItem('editorOptions', JSON.stringify(this.editorOptions));
+  }
 
 
 }

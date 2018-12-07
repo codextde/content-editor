@@ -9,6 +9,7 @@ import { MainPage } from './main.page';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { ElementsModule } from 'src/components/elements/elements.module';
 import { ColorPickerModule } from 'ngx-color-picker';
+import { PropertiesComponentModule } from 'src/components/properties/properties.module';
 
 
 const routes: Routes = [
@@ -28,6 +29,7 @@ const routes: Routes = [
     FontAwesomeModule,
     RouterModule.forChild(routes),
     ElementsModule,
+    PropertiesComponentModule,
     ColorPickerModule
   ],
   declarations: [MainPage]

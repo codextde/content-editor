@@ -6,6 +6,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import '@progress/kendo-ui';
+import { MonacoEditorModule } from 'ngx-monaco-editor';
 
 
 @NgModule({
@@ -16,8 +17,8 @@ import '@progress/kendo-ui';
     BrowserModule,
     AppRoutingModule,
     IonicModule.forRoot(),
-    BrowserAnimationsModule
-    
+    BrowserAnimationsModule,
+    MonacoEditorModule.forRoot()
   ],
   providers: [
    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
