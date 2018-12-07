@@ -69,9 +69,9 @@
     position: absolute;
     bottom: 0;
     left: 0;
-    width: calc(100% - 10px);
+    width: calc(100% - 30px);
     background: #d6d9dc;
-    padding: 15px 5px;
+    padding: 15px;
 
     button {
 
@@ -89,6 +89,7 @@
       color: #fff;
       background-color: #6c757d;
       border-color: #6c757d;
+      width: 100%;
     }
   }
 

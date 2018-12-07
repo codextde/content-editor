@@ -3,7 +3,6 @@ import { NgModule } from '@angular/core';
 import { VideoElementComponent } from './video/video.component';
 import { TextElementComponent } from './text/text.component';
 import { HeadlineElementComponent } from './headline/headline.component';
-import { EditorModule } from '@tinymce/tinymce-angular';
 
 
 @NgModule({
@@ -23,8 +22,7 @@ import { EditorModule } from '@tinymce/tinymce-angular';
     HeadlineElementComponent
   ],
   imports: [
-    CommonModule,
-    EditorModule 
+    CommonModule
   ]
 })
 export class ElementsModule { }

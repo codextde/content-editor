@@ -4,10 +4,10 @@
   <div class="passage-wrapper">
     <div class="passage-header"></div>
     <div class="passage-container">
-      <div class="passage-content" cdkDropList #activeElementsList="cdkDropList" [cdkDropListData]="active"
-        [cdkDropListConnectedTo]="[elementsList]" (cdkDropListDropped)="drop($event)">
+      <div class="passage-content" cdkDropList #activeElementsList="cdkDropList" [cdkDropListData]="editorOptions.elements"
+        [cdkDropListConnectedTo]="[elementsList]" (cdkDropListDropped)="drop($event)" [style.background]="editorOptions.bodyStyleOptions.backgroundColor">
 
-        <div class="drag-element" *ngFor="let element of active" cdkDrag>
+        <div class="drag-element" *ngFor="let element of editorOptions.elements" cdkDrag>
           <app-element-text *ngIf="element.component == 'text'"></app-element-text>
           <app-element-headline *ngIf="element.component == 'headline'"></app-element-headline>
           <app-element-video *ngIf="element.component == 'video'"></app-element-video>
@@ -58,7 +58,13 @@
     </div>
 
     <div *ngIf="tab == 'body'" class="body-settings">
-      Body
+      
+      <div class="property">
+        <div class="property-title">Background Color</div>
+        <div class="property-content">
+            <input [(colorPicker)]="editorOptions.backgroundColor"  cpPosition="left" [style.background]="editorOptions.bodyStyleOptions.backgroundColor"/>
+        </div>
+      </div>
 
     </div>
 

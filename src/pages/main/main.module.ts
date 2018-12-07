@@ -8,6 +8,7 @@ import { IonicModule } from '@ionic/angular';
 import { MainPage } from './main.page';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { ElementsModule } from 'src/components/elements/elements.module';
+import { ColorPickerModule } from 'ngx-color-picker';
 
 
 const routes: Routes = [
@@ -26,7 +27,8 @@ const routes: Routes = [
     MatCardModule,
     FontAwesomeModule,
     RouterModule.forChild(routes),
-    ElementsModule
+    ElementsModule,
+    ColorPickerModule
   ],
   declarations: [MainPage]
 })

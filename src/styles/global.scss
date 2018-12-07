@@ -1,12 +1,24 @@
 body {
-    font-family: "Open Sans", "Helvetica Neue", Arial, sans-serif;
+  font-family: "Open Sans", "Helvetica Neue", Arial, sans-serif;
 }
 
 
 .cdk-drag-placeholder {
-    background: #c4c9cc;
-    padding: 20px;
-    text-indent: -9999px;
+  background: #c4c9cc;
+  padding: 20px;
+  text-indent: -9999px;
+}
+
+color-picker {
+
+  .color-picker {
+    border-radius: 4px;
+    border: 1px solid #e0e0e0;
+    box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
   }
 
-  
+  .arrow {
+    display: none;
+
+  }
+}

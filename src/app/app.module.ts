@@ -10,7 +10,7 @@ import '@progress/kendo-ui';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
   ],
   imports: [
     BrowserModule,
