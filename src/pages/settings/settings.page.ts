@@ -1,6 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { Api } from '../../services/api.service';
-import { NavController } from '@ionic/angular';
 
 @Component({
   selector: 'app-settings',
@@ -9,20 +7,10 @@ import { NavController } from '@ionic/angular';
 })
 export class SettingsPage implements OnInit {
 
-  constructor(
-    public api: Api,
-    public navCtrl: NavController
-  ) { }
+  constructor() { }
 
   ngOnInit() {
   }
 
-  goBack() {
-    this.navCtrl.goBack();
-  }
-
-  logout() {
-    this.navCtrl.navigateRoot('login');
-  }
 
 }

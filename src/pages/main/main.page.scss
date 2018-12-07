@@ -1,0 +1,18 @@
+.section-preview {
+  height: 100%;
+  position: absolute;
+  left: 0;
+  top: 0;
+  right: 410px;
+  bottom: 0;
+  overflow: auto;
+}
+.section-settings {
+  position: fixed;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  width: 410px;
+  background-color: #F9F9F9;
+  border-left: 1px solid #c7c7c7;
+}
