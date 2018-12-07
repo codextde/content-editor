@@ -1,0 +1,43 @@
+<ion-header translucent="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button color="dark" (click)="goBack()">
+        <ion-icon name="arrow-back"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>Einstellungen</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content fullscreen="true">
+
+  <ion-list margin-top lines="inset">
+    <ion-list-header>
+      Rechtlich
+    </ion-list-header>
+    <ion-item detail>
+      Datenschutz-Bestimmungen
+    </ion-item>
+    <ion-item detail>
+      Nutzungsbedingungen
+
+    </ion-item>
+    <ion-item detail>
+      Lizenzen
+    </ion-item>
+  </ion-list>
+
+  <ion-list margin-top lines="inset">
+    <ion-list-header>
+      Sonstiges
+    </ion-list-header>
+    <ion-item detail (click)="logout()">
+      Ausloggen
+    </ion-item>
+  </ion-list>
+
+  <p text-center margin-top>
+    <small>Version 8.4.0</small>
+  </p>
+
+</ion-content>
