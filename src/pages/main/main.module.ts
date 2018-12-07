@@ -6,6 +6,8 @@ import { MatCardModule } from '@angular/material';
 import { RouterModule, Routes } from '@angular/router';
 import { IonicModule } from '@ionic/angular';
 import { MainPage } from './main.page';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { ElementsModule } from 'src/components/elements/elements.module';
 
 
 const routes: Routes = [
@@ -22,8 +24,9 @@ const routes: Routes = [
     IonicModule,
     DragDropModule,
     MatCardModule,
-   
-    RouterModule.forChild(routes)
+    FontAwesomeModule,
+    RouterModule.forChild(routes),
+    ElementsModule
   ],
   declarations: [MainPage]
 })

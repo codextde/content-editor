@@ -5,7 +5,7 @@ import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-
+import '@progress/kendo-ui';
 
 
 @NgModule({
@@ -16,8 +16,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     BrowserModule,
     AppRoutingModule,
     IonicModule.forRoot(),
-    BrowserAnimationsModule,
-
+    BrowserAnimationsModule
+    
   ],
   providers: [
    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }

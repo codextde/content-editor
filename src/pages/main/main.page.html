@@ -1,47 +1,70 @@
-<!--<div class="example-container">
-  <h2>Available numbers</h2>
-
-  <div
-    id="all"
-    cdkDropList
-    [cdkDropListData]="all"
-    cdkDropListConnectedTo="even"
-    class="example-list"
-    (cdkDropListDropped)="drop($event)"
-    [cdkDropListEnterPredicate]="noReturnPredicate">
-    <div
-      class="example-box"
-      *ngFor="let number of all"
-      [cdkDragData]="number"
-      cdkDrag>{{number}}</div>
-  </div>
-</div>
-
-<div class="example-container">
-  <h2>Even numbers</h2>
-
-  <div
-    id="even"
-    cdkDropList
-    [cdkDropListData]="even"
-    cdkDropListConnectedTo="all"
-    class="example-list"
-    (cdkDropListDropped)="drop($event)"
-    [cdkDropListEnterPredicate]="evenPredicate">
-    <div
-      class="example-box"
-      *ngFor="let number of even"
-      cdkDrag
-      [cdkDragData]="number">{{number}}</div>
-  </div>
-</div>
-
--->
-
 <div class="section-preview">
+
+
+  <div class="passage-wrapper">
+    <div class="passage-header"></div>
+    <div class="passage-container">
+      <div class="passage-content" cdkDropList #activeElementsList="cdkDropList" [cdkDropListData]="active"
+        [cdkDropListConnectedTo]="[elementsList]" (cdkDropListDropped)="drop($event)">
+
+        <div class="drag-element" *ngFor="let element of active" cdkDrag>
+          <app-element-text *ngIf="element.component == 'text'"></app-element-text>
+          <app-element-headline *ngIf="element.component == 'headline'"></app-element-headline>
+          <app-element-video *ngIf="element.component == 'video'"></app-element-video>
+
+          <div class="drag-element-toolbar">
+            <div class="drag-element-check item" cdkDragHandle (click)="openProperties(element)">
+              <fa-icon [icon]="faHandPointer"></fa-icon>
+            </div>
+            <div class="drag-element-trash item" cdkDragHandle (click)="delete(element)">
+              <fa-icon [icon]="faTrash"></fa-icon>
+            </div>
+            <div class="drag-element-handle item" cdkDragHandle>
+                <fa-icon [icon]="faArrowsAlt"></fa-icon>
+            </div>
+          </div>
+
+        </div>
+      </div>
+      <div class="passage-sidebar"></div>
+    </div>
+  </div>
+
+
 
 </div>
 
 <div class="section-settings">
-    
+  <div class="tabs">
+    <div class="tab" [class.active]="tab == 'elements'" (click)="tab = 'elements'">
+      <span>Elements</span>
+    </div>
+    <div class="tab" [class.active]="tab == 'body'" (click)="tab = 'body'">
+      <span>Body</span>
+    </div>
+  </div>
+
+
+  <div class="section-settings--content">
+    <div *ngIf="tab == 'elements'" class="element-list" cdkDropList #elementsList="cdkDropList" [cdkDropListData]="elements"
+      [cdkDropListConnectedTo]="[activeElementsList]" (cdkDropListDropped)="drop($event)">
+      <div class="element-item" *ngFor="let element of elements" cdkDrag>
+
+        <div class="element-item-placeholder" *cdkDragPlaceholder></div>
+
+        <fa-icon [icon]="element.icon"></fa-icon>
+        <span class="title">{{element.title}}</span>
+      </div>
+    </div>
+
+    <div *ngIf="tab == 'body'" class="body-settings">
+      Body
+
+    </div>
+
+
+    <div class="section-settings-footer">
+      <button  (click)="save()">Save</button>
+    </div>
+  </div>
 </div>

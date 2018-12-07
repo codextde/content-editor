@@ -1,5 +1,9 @@
+import { CdkDragDrop, copyArrayItem, moveItemInArray } from '@angular/cdk/drag-drop';
 import { Component, OnInit } from '@angular/core';
-import { CdkDragDrop, moveItemInArray, transferArrayItem, CdkDrag } from '@angular/cdk/drag-drop';
+import { faAlignCenter, faArrowsAlt, faCode, faFont, faHandPointer, faImage, faImages, faTh, faTrash, faVideo } from '@fortawesome/free-solid-svg-icons';
+
+
+
 
 @Component({
   selector: 'app-main',
@@ -7,8 +11,52 @@ import { CdkDragDrop, moveItemInArray, transferArrayItem, CdkDrag } from '@angul
   styleUrls: ['./main.page.scss']
 })
 export class MainPage implements OnInit {
-  all = [1, 2, 3, 4, 5, 6, 7, 8, 9];
-  even = [10];
+  faTrash = faTrash;
+  faHandPointer = faHandPointer;
+  faArrowsAlt = faArrowsAlt;
+
+
+  tab: string = 'elements';
+
+  active = [];
+
+  elements = [
+    {
+      component: 'text',
+      icon: faAlignCenter,
+      title: 'Text'
+    },
+    {
+      component: 'headline',
+      icon: faFont,
+      title: 'Headline'
+    },
+    {
+      component: 'html',
+      icon: faCode,
+      title: 'HTML'
+    },
+    {
+      component: 'svg',
+      icon: faImage,
+      title: 'SVG'
+    },
+    {
+      component: 'video',
+      icon: faVideo,
+      title: 'Video'
+    },
+    {
+      component: 'image',
+      icon: faImages,
+      title: 'Image'
+    },
+    {
+      component: 'grid',
+      icon: faTh,
+      title: 'Grid'
+    }
+  ];
 
 
   constructor() { }
@@ -16,25 +64,28 @@ export class MainPage implements OnInit {
   ngOnInit() {
   }
 
-
   drop(event: CdkDragDrop<string[]>) {
     if (event.previousContainer === event.container) {
       moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
     } else {
-      transferArrayItem(event.previousContainer.data,
-                        event.container.data,
-                        event.previousIndex,
-                        event.currentIndex);
+      copyArrayItem(event.previousContainer.data,
+        event.container.data,
+        event.previousIndex,
+        event.currentIndex);
     }
   }
 
-  /** Predicate function that only allows even numbers to be dropped into a list. */
-  evenPredicate(item: CdkDrag<number>) {
-    return item.data % 2 === 0;
+
+  openProperties() {
+    console.log('open properties');
   }
 
-  /** Predicate function that doesn't allow items to be dropped into a list. */
-  noReturnPredicate() {
-    return false;
+  delete(element) {
+    console.log(element);
+    // tslint:disable-next-line:triple-equals
+    this.active = this.active.filter((el) => el.component  ==  element.title);
   }
+
+
+
 }
