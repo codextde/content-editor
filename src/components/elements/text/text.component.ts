@@ -17,7 +17,10 @@ export class TextElementComponent implements OnInit, ControlValueAccessor {
   @ViewChild('editor') editorEl: ElementRef;
   editor;
   textElement;
+  
   padding;
+  general;
+  text;
 
 
   /** NgModel Start */
@@ -30,6 +33,20 @@ export class TextElementComponent implements OnInit, ControlValueAccessor {
           return property.name == 'padding';
         });
       }
+
+      if (!this.general) {
+        this.general = this.textElement.properties.find((property) => {
+          return property.name == 'general';
+        });
+      }
+
+      if (!this.text) {
+        this.text = this.textElement.properties.find((property) => {
+          return property.name == 'text';
+        });
+      }
+
+
 
       if (this.editor) {
         this.editor.value(this.textElement.value);

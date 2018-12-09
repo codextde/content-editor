@@ -6,8 +6,6 @@ import { ElementsService } from 'src/services/elements.service';
 import { HelperService } from 'src/services/helper.service';
 
 
-
-
 @Component({
   selector: 'app-main',
   templateUrl: './main.page.html',

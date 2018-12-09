@@ -2,7 +2,7 @@ export class ITextProperty {
     name?: string;
     color?: string;
     align?: string;
-    height?: string;
-    familie?: string;
+    lineHeight?: string;
+    fontFamily?: string;
     size?: string;
 }

@@ -36,17 +36,7 @@ export class PropertiesComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-    console.log(this.element);
   }
-
-  /*
-  isIn(property) {
-    if (!this.properties) {
-      return false;
-    }
-    return this.properties.some(item => item == property);
-  }
-  */
 
   close() {
     this.onClose.emit();

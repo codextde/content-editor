@@ -1,3 +1,101 @@
-<p>
-  text works!
-</p>
+<div class="property">
+  <div class="property-title">Text</div>
+  <div class="property-content">
+    <div class="row">
+      <div class="col title">
+        Color
+      </div>
+      <div class="col flex-end">
+        <input [(colorPicker)]="text.color" cpPosition="left" cpOutputFormat="hex" cpAlphaChannel="disabled"
+          [style.background]="text.color" />
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col title">
+        Text Align
+      </div>
+      <div class="col flex-end">
+        <div class="btn-group" role="group">
+          <button type="button" class="btn btn-sm btn-secondary" (click)="textAlign('left')" [class.active]="text.align == 'left'">
+            <fa-icon [icon]="faAlignLeft"></fa-icon>
+          </button>
+          <button type="button" class="btn btn-sm btn-secondary" (click)="textAlign('center')" [class.active]="text.align == 'center'">
+            <fa-icon [icon]="faAlignCenter"></fa-icon>
+          </button>
+          <button type="button" class="btn btn-sm btn-secondary" (click)="textAlign('right')" [class.active]="text.align == 'right'">
+            <fa-icon [icon]="faAlignRight"></fa-icon>
+          </button>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col title">
+        Font Family
+      </div>
+      <div class="col flex-end">
+        <select [(ngModel)]="text.fontFamily">
+          <option value=''></option>
+          <option value='arial'>Arial</option>
+          <option value='monospace'>Monospace</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col title">
+        Size
+      </div>
+      <div class="col flex-end">
+        <input [(ngModel)]="text.size" />
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col title">
+        Line Height
+      </div>
+      <div class="col flex-end">
+        <input [(ngModel)]="text.lineHeight" />
+      </div>
+    </div>
+    <!--<div class="row">
+        <div class="col title">
+          Image (URL)
+        </div>
+        <div class="col flex-end">
+          <input [(ngModel)]="background.image" />
+        </div>
+      </div>
+      <div class="row">
+        <div class="col title">
+          - Repeat
+        </div>
+        <div class="col flex-end">
+          <select  [(ngModel)]="background.repeat">
+            <option value='no-repeat'>No-repeat</option>
+            <option value='repeat'>Repeat</option>
+          </select>
+
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col title">
+          - Size
+        </div>
+        <div class="col flex-end">
+          <select [(ngModel)]="background.size" >
+            <option [ngValue]="'unset'" >Unset</option>
+            <option [ngValue]="'auto'" >Auto</option>
+            <option [ngValue]="'cover'" >Cover</option>
+            <option [ngValue]="'contain'" >Contain</option>
+          </select>
+
+        </div>
+      </div>-->
+
+  </div>
+</div>

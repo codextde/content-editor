@@ -17,8 +17,10 @@ export class HeadlineElementComponent implements OnInit, ControlValueAccessor {
   @ViewChild('editor') editorEl: ElementRef;
   editor;
   headlineElement;
-  padding;
 
+  padding;
+  general;
+  text;
 
   /** NgModel Start */
   writeValue(value: any): void {
@@ -28,6 +30,18 @@ export class HeadlineElementComponent implements OnInit, ControlValueAccessor {
       if (!this.padding) {
         this.padding = this.headlineElement.properties.find((property) => {
           return property.name == 'padding';
+        });
+      }
+
+      if (!this.general) {
+        this.general = this.headlineElement.properties.find((property) => {
+          return property.name == 'general';
+        });
+      }
+
+      if (!this.text) {
+        this.text = this.headlineElement.properties.find((property) => {
+          return property.name == 'text';
         });
       }
 

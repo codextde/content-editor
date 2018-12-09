@@ -7,18 +7,11 @@ export class HeadlineElementConfig {
     icon: faFont,
     title: 'Headline',
     properties: [{
-      name: 'text',
-      color: '#000',
-      align: 'left',
-      height: '100%',
-      familie: 'Arial',
-      size: '12px'
+      name: 'general'
     }, {
-      name: 'padding',
-      top: '0px',
-      right: '0px',
-      bottom: '0px',
-      left: '0px'
+      name: 'text'
+    }, {
+      name: 'padding'
     }],
     value: '<h1>Hallo</h1>'
   };
