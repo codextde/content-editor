@@ -15,6 +15,8 @@ import { BorderPropertyComponent } from './properties/border/border.component';
 import { CssPropertyComponent } from './properties/css/css.component';
 import { JavascriptPropertyComponent } from './properties/javascript/javascript.component';
 import { ColorPickerModule } from 'ngx-color-picker';
+import { SwitchPropertyComponent } from './properties/switch/switch.component';
+import { IonicModule } from '@ionic/angular';
 
 @NgModule({
   declarations: [
@@ -27,7 +29,8 @@ import { ColorPickerModule } from 'ngx-color-picker';
     TextPropertyComponent,
     ImagePropertyComponent,
     GeneralPropertyComponent,
-    BorderPropertyComponent
+    BorderPropertyComponent,
+    SwitchPropertyComponent
   ],
   exports: [
     PropertiesComponent,
@@ -39,10 +42,11 @@ import { ColorPickerModule } from 'ngx-color-picker';
     TextPropertyComponent,
     ImagePropertyComponent,
     GeneralPropertyComponent,
-    BorderPropertyComponent
+    BorderPropertyComponent,
+    SwitchPropertyComponent
   ],
   imports: [
-    
+    IonicModule,
     ColorPickerModule,
     CommonModule,
     FontAwesomeModule,

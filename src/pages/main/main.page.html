@@ -79,31 +79,13 @@
     <div *ngIf="tab == 'body'" class="body-settings">
 
       <app-property-background [(ngModel)]="data.editorOptions.bodyStyleOptions.background"></app-property-background>
-
       <app-property-padding [(ngModel)]="data.editorOptions.bodyStyleOptions.padding"></app-property-padding>
-
-      
-      <div class="property">
-        <div class="property-title">Direction</div>
-        <div class="property-content">
-
-          <div class="row">
-            <div class="col title">
-              LTR
-            </div>
-            <div class="col flex-end">
-              <ion-toggle [(ngModel)]="data.editorOptions.bodyStyleOptions.directionLtr"></ion-toggle>
-            </div>
-          </div>
-
-        </div>
-
-
-      </div>
-
-      
       <app-property-css [(ngModel)]="data.editorOptions.bodyStyleOptions.css"  (ngModelChange)="cssCodeChange(ev)"></app-property-css>
-
+      <app-property-switch [title]="'Direction'" [switchTitle]="'LTR'"  [(ngModel)]="data.editorOptions.bodyStyleOptions.directionLtr"></app-property-switch>
+      
+      
+    </div>
+      
 
 
 
