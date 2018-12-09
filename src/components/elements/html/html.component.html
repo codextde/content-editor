@@ -1,0 +1,8 @@
+<div
+    [style.paddingLeft]="padding?.left" 
+    [style.paddingTop]="padding?.top"
+    [style.paddingRight]="padding?.right" 
+    [style.paddingBottom]="padding?.bottom"
+>
+    <div [innerHtml]="html?.value | sanitizeHtml"></div>
+</div>

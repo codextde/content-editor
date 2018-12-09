@@ -13,7 +13,9 @@ import { NG_VALUE_ACCESSOR, ControlValueAccessor } from '@angular/forms';
 })
 export class HtmlPropertyComponent implements ControlValueAccessor {
 
-  html: string = '<div></div>';
+  html: any = {
+    value: '<div></div>'
+  };
   htmlOptions = {theme: 'vs-dark', language: 'html'};
 
 

@@ -67,7 +67,7 @@ export class MainPage implements OnInit {
   }
 
   delete(element) {
-    this.data.editorOptions.elements = this.data.editorOptions.elements.filter((el) => el.component  ==  element.title);
+    this.data.editorOptions.elements = this.data.editorOptions.elements.filter((el) => el  !==  element);
   }
 
   save() {

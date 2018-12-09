@@ -22,7 +22,6 @@ export class TextElementComponent implements OnInit, ControlValueAccessor {
 
   /** NgModel Start */
   writeValue(value: any): void {
-    console.log('writeValue', value)
     if (value) {
       this.textElement = value;
 

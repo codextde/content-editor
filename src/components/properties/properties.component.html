@@ -15,6 +15,10 @@
 
   <div *ngFor="let property of element.properties">
       <app-property-padding *ngIf="property.name == 'padding'" [(ngModel)]="property"></app-property-padding>
+      <app-property-html *ngIf="property.name == 'html'" [(ngModel)]="property"></app-property-html>
+
+
+
       <!--<app-property-text *ngIf="isIn('text')"></app-property-text>
       <app-property-html *ngIf="isIn('html')"></app-property-html>
       <app-property-image *ngIf="isIn('image')"></app-property-image>

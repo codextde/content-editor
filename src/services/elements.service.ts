@@ -9,7 +9,7 @@ export class IElement {
   icon: any;
   title: string;
   properties: any[];
-  value: string;
+  value?: any;
 }
 
 
@@ -41,16 +41,34 @@ export class ElementsService {
     value: 'Hallo'
   };
 
+  htmlElement: IElement = {
+    component: 'html',
+    icon: faCode,
+    title: 'HTML',
+    properties: [{
+        name: 'padding',
+        top: '0px',
+        right: '0px',
+        bottom: '0px',
+        left: '0px'
+      },
+      {
+        name: 'html',
+        value: '<div></div>'
+      }
+    ],
+    value: ''
+  };
+
   elements = [
+  ];
+
+  /**
+   *
     {
       component: 'headline',
       icon: faFont,
       title: 'Headline'
-    },
-    {
-      component: 'html',
-      icon: faCode,
-      title: 'HTML'
     },
     {
       component: 'svg',
@@ -72,10 +90,11 @@ export class ElementsService {
       icon: faTh,
       title: 'Grid'
     }
-  ];
+   */
 
 
   constructor() {
     this.elements.push(this.textElement);
+    this.elements.push(this.htmlElement);
   }
 }
