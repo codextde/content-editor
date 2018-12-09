@@ -52,7 +52,10 @@ export class MainPage implements OnInit {
         event.container.data,
         event.previousIndex,
         event.currentIndex);
-      Object.assign(this.data.editorOptions.elements[event.currentIndex], {id: this.helper.uuidv4()});
+
+      const currentObject = this.data.editorOptions.elements[event.currentIndex];
+      currentObject.id = this.helper.uuidv4();
+      this.data.editorOptions.elements[event.currentIndex] = JSON.parse(JSON.stringify(currentObject));
     }
   }
 

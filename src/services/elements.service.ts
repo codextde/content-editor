@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { TextElementConfig } from 'src/components/elements/text/text.config';
 import { HtmlElementConfig } from 'src/components/elements/html/html.config';
 import { HeadlineElementConfig } from 'src/components/elements/headline/headline.config';
+import { VideoElementConfig } from 'src/components/elements/video/video.config';
 
 
 
@@ -20,11 +21,6 @@ export class ElementsService {
       title: 'SVG'
     },
     {
-      component: 'video',
-      icon: faVideo,
-      title: 'Video'
-    },
-    {
       component: 'image',
       icon: faImages,
       title: 'Image'
@@ -41,5 +37,6 @@ export class ElementsService {
     this.elements.push(HeadlineElementConfig.config);
     this.elements.push(TextElementConfig.config);
     this.elements.push(HtmlElementConfig.config);
+    this.elements.push(VideoElementConfig.config);
   }
 }
