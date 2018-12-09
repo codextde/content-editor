@@ -17,7 +17,9 @@ export class GeneralPropertyComponent implements ControlValueAccessor {
 
   general: IGeneralProperty = {
     cssClass: '',
-    zIndex: 0
+    zIndex: 0,
+    float: false,
+    width: ''
   };
 
 
@@ -47,4 +49,12 @@ export class GeneralPropertyComponent implements ControlValueAccessor {
 
   onTouched = () => {};
 
+  change() {
+    this.onChange(this.general);
+  }
+
+  float(float) {
+    this.general.float = float;
+    this.change();
+  }
 }

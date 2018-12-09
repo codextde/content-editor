@@ -52,6 +52,7 @@ export class MainPage implements OnInit {
         event.container.data,
         event.previousIndex,
         event.currentIndex);
+      Object.assign(this.data.editorOptions.elements[event.currentIndex], {id: this.helper.uuidv4()});
     }
   }
 

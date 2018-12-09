@@ -1,22 +1,44 @@
 <div class="property">
-    <div class="property-title">General</div>
-    <div class="property-content">
-      <div class="row">
+  <div class="property-title">General</div>
+  <div class="property-content">
+    <div class="row">
+      <div class="col title">
+        Float
+      </div>
+      <div class="col flex-end">
+          <div class="btn-group" role="group">
+              <button type="button" class="btn btn-sm btn-secondary" (click)="float('left')" [class.active]="general.float == 'left'">
+                Left
+              </button>
+              <button type="button" class="btn btn-sm btn-secondary" (click)="float('right')" [class.active]="general.float == 'right'">
+                Right
+              </button>
+            </div>
+      </div>
+    </div>
+    <div class="row">
         <div class="col title">
-          CSS Class
+          Width (30%)
         </div>
         <div class="col flex-end">
-          <input [(ngModel)]="general.cssClass">
+          <input [(ngModel)]="general.width">
         </div>
       </div>
-      <div class="row">
-          <div class="col title">
-            z-index
-          </div>
-          <div class="col flex-end">
-            <input [(ngModel)]="general.zIndex">
-          </div>
-        </div>
+    <div class="row">
+      <div class="col title">
+        CSS Class
+      </div>
+      <div class="col flex-end">
+        <input [(ngModel)]="general.cssClass">
+      </div>
+    </div>
+    <div class="row">
+      <div class="col title">
+        z-index
+      </div>
+      <div class="col flex-end">
+        <input [(ngModel)]="general.zIndex">
+      </div>
     </div>
   </div>
-  
+</div>
