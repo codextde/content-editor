@@ -10,6 +10,9 @@
               <button type="button" class="btn btn-sm btn-secondary" (click)="float('left')" [class.active]="general.float == 'left'">
                 Left
               </button>
+              <button type="button" class="btn btn-sm btn-secondary" (click)="float('none')" [class.active]="general.float == 'none'">
+                  None
+              </button>
               <button type="button" class="btn btn-sm btn-secondary" (click)="float('right')" [class.active]="general.float == 'right'">
                 Right
               </button>
@@ -18,7 +21,7 @@
     </div>
     <div class="row">
         <div class="col title">
-          Width (30%)
+          Width
         </div>
         <div class="col flex-end">
           <input [(ngModel)]="general.width">
