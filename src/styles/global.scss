@@ -37,6 +37,10 @@ color-picker {
 
 
 .drag-element {
+  &:hover {
+    
+    box-shadow: 0 0 0 1px rgba(0,0,0,.1);
+  }
   .drag-element-toolbar {
 
     .tooltip {
