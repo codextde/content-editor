@@ -1,3 +1,50 @@
-<p>
-  background works!
-</p>
+<div class="property">
+    <div class="property-title">Background</div>
+    <div class="property-content">
+      <div class="row">
+        <div class="col title">
+          Color
+        </div>
+        <div class="col flex-end">
+          <input [(colorPicker)]="background.color" cpPosition="left" cpOutputFormat="hex"
+            cpAlphaChannel="disabled" [style.background]="background.color" />
+        </div>
+      </div>
+      <div class="row">
+        <div class="col title">
+          Image (URL)
+        </div>
+        <div class="col flex-end">
+          <input [(ngModel)]="background.image" />
+        </div>
+      </div>
+      <div class="row">
+        <div class="col title">
+          - Repeat
+        </div>
+        <div class="col flex-end">
+          <select  [(ngModel)]="background.repeat">
+            <option value='no-repeat'>No-repeat</option>
+            <option value='repeat'>Repeat</option>
+          </select>
+
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col title">
+          - Size
+        </div>
+        <div class="col flex-end">
+          <select [(ngModel)]="background.size" >
+            <option [ngValue]="'unset'" >Unset</option>
+            <option [ngValue]="'auto'" >Auto</option>
+            <option [ngValue]="'cover'" >Cover</option>
+            <option [ngValue]="'contain'" >Contain</option>
+          </select>
+
+        </div>
+      </div>
+
+    </div>
+  </div>

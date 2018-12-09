@@ -24,9 +24,6 @@ export class MainPage implements OnInit {
   propertiesActive: boolean = false;
   tab: string = 'elements';
 
-
-
-
   constructor(
     public helper: HelperService,
     public data: DataService,
@@ -38,7 +35,6 @@ export class MainPage implements OnInit {
     if (storageOptions) {
       this.data.editorOptions = JSON.parse(storageOptions);
     }
-
 
     if (this.data.editorOptions.bodyStyleOptions.css) {
       this.helper.applyStyle(this.data.editorOptions.bodyStyleOptions.css);

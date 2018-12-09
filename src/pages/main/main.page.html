@@ -9,20 +9,20 @@
         class="passage-content" 
         cdkDropList 
         #activeElementsList="cdkDropList" 
-        [cdkDropListData]="editorOptions.elements"
+        [cdkDropListData]="data.editorOptions.elements"
         [cdkDropListConnectedTo]="[elementsList]" 
         (cdkDropListDropped)="drop($event)" 
-        [style.backgroundColor]="editorOptions.bodyStyleOptions.backgroundColor"
-        [style.backgroundImage]="'url('+editorOptions.bodyStyleOptions.backgroundImage+')'" 
-        [style.backgroundRepeat]="editorOptions.bodyStyleOptions.backgroundRepeat"
-        [style.backgroundSize]="editorOptions.bodyStyleOptions.backgroundSize"
-        [style.paddingLeft]="editorOptions.bodyStyleOptions.padding.left" 
-        [style.paddingTop]="editorOptions.bodyStyleOptions.padding.top"
-        [style.paddingRight]="editorOptions.bodyStyleOptions.padding.right" 
-        [style.paddingBottom]="editorOptions.bodyStyleOptions.padding.bottom"
-        [dir]="editorOptions.bodyStyleOptions.directionLtr ? 'ltr' : 'rtl'">
+        [style.backgroundColor]="data.editorOptions.bodyStyleOptions.background.color"
+        [style.backgroundImage]="'url('+data.editorOptions.bodyStyleOptions.background.image+')'" 
+        [style.backgroundRepeat]="data.editorOptions.bodyStyleOptions.background.repeat"
+        [style.backgroundSize]="data.editorOptions.bodyStyleOptions.background.size"
+        [style.paddingLeft]="data.editorOptions.bodyStyleOptions.padding.left" 
+        [style.paddingTop]="data.editorOptions.bodyStyleOptions.padding.top"
+        [style.paddingRight]="data.editorOptions.bodyStyleOptions.padding.right" 
+        [style.paddingBottom]="data.editorOptions.bodyStyleOptions.padding.bottom"
+        [dir]="data.editorOptions.bodyStyleOptions.directionLtr ? 'ltr' : 'rtl'">
 
-        <div class="drag-element" *ngFor="let element of editorOptions.elements" cdkDrag>
+        <div class="drag-element" *ngFor="let element of data.editorOptions.elements" cdkDrag>
           <app-element-text *ngIf="element.component == 'text'" ></app-element-text>
           <app-element-headline *ngIf="element.component == 'headline'"></app-element-headline>
           <app-element-video *ngIf="element.component == 'video'"></app-element-video>
@@ -63,73 +63,24 @@
   </div>
 
 
-  <div class="section-settings--content">
+  <div class="section-settings-content">
+
+    
     <div *ngIf="tab == 'elements'" class="element-list" cdkDropList #elementsList="cdkDropList" [cdkDropListData]="elements.elements"
       [cdkDropListConnectedTo]="[activeElementsList]" (cdkDropListDropped)="drop($event)">
       <div class="element-item" *ngFor="let element of elements.elements" cdkDrag>
-
         <div class="element-item-placeholder" *cdkDragPlaceholder></div>
-
         <fa-icon [icon]="element.icon"></fa-icon>
         <span class="title">{{element.title}}</span>
       </div>
     </div>
 
+
     <div *ngIf="tab == 'body'" class="body-settings">
 
-      <div class="property">
-        <div class="property-title">Background</div>
-        <div class="property-content">
-          <div class="row">
-            <div class="col title">
-              Color
-            </div>
-            <div class="col flex-end">
-              <input [(colorPicker)]="editorOptions.bodyStyleOptions.backgroundColor" cpPosition="left" cpOutputFormat="hex"
-                cpAlphaChannel="disabled" [style.background]="editorOptions.bodyStyleOptions.backgroundColor" />
-            </div>
-          </div>
-          <div class="row">
-            <div class="col title">
-              Image (URL)
-            </div>
-            <div class="col flex-end">
-              <input [(ngModel)]="editorOptions.bodyStyleOptions.backgroundImage" />
-            </div>
-          </div>
-          <div class="row">
-            <div class="col title">
-              - Repeat
-            </div>
-            <div class="col flex-end">
-              <select  [(ngModel)]="editorOptions.bodyStyleOptions.backgroundRepeat">
-                <option value='no-repeat'>No-repeat</option>
-                <option value='repeat'>Repeat</option>
-              </select>
+      <app-property-background [(ngModel)]="data.editorOptions.bodyStyleOptions.background"></app-property-background>
 
-            </div>
-          </div>
-
-          <div class="row">
-            <div class="col title">
-              - Size
-            </div>
-            <div class="col flex-end">
-              <select [(ngModel)]="editorOptions.bodyStyleOptions.backgroundSize" >
-                <option [ngValue]="'unset'" >Unset</option>
-                <option [ngValue]="'auto'" >Auto</option>
-                <option [ngValue]="'cover'" >Cover</option>
-                <option [ngValue]="'contain'" >Contain</option>
-              </select>
-
-            </div>
-          </div>
-
-        </div>
-      </div>
-
-
-      <app-property-padding [(ngModel)]="editorOptions.bodyStyleOptions.padding"></app-property-padding>
+      <app-property-padding [(ngModel)]="data.editorOptions.bodyStyleOptions.padding"></app-property-padding>
 
       
       <div class="property">
@@ -141,7 +92,7 @@
               LTR
             </div>
             <div class="col flex-end">
-              <ion-toggle [(ngModel)]="editorOptions.bodyStyleOptions.directionLtr"></ion-toggle>
+              <ion-toggle [(ngModel)]="data.editorOptions.bodyStyleOptions.directionLtr"></ion-toggle>
             </div>
           </div>
 
@@ -151,7 +102,7 @@
       </div>
 
       
-      <app-property-css [(ngModel)]="editorOptions.bodyStyleOptions.css"  (ngModelChange)="cssCodeChange(ev)"></app-property-css>
+      <app-property-css [(ngModel)]="data.editorOptions.bodyStyleOptions.css"  (ngModelChange)="cssCodeChange(ev)"></app-property-css>
 
 
 

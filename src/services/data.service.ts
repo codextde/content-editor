@@ -9,17 +9,19 @@ export class DataService {
     id: 1,
     name: 'Layout 1',
     bodyStyleOptions: {
-      css: '.test {\ndisplay: none\n}',
+      css: '.test {\n  display: none\n}',
       padding: {
         top: '30px',
         right: '30px',
         bottom: '30px',
         left: '30px'
       },
-      backgroundColor: '#fff',
-      backgroundImage: '',
-      backgroundRepeat: 'no-repeat',
-      backgroundSize: 'cover',
+      background: {
+        color: '#fff',
+        image: '',
+        repeat: 'no-repeat',
+        size: 'cover',
+      } ,
       font: {
         family: 'Tahoma, Geneva, sans-serif',
         size: 16,

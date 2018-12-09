@@ -14,6 +14,7 @@ import { GeneralPropertyComponent } from './properties/general/general.component
 import { BorderPropertyComponent } from './properties/border/border.component';
 import { CssPropertyComponent } from './properties/css/css.component';
 import { JavascriptPropertyComponent } from './properties/javascript/javascript.component';
+import { ColorPickerModule } from 'ngx-color-picker';
 
 @NgModule({
   declarations: [
@@ -31,10 +32,18 @@ import { JavascriptPropertyComponent } from './properties/javascript/javascript.
   exports: [
     PropertiesComponent,
     PaddingPropertyComponent,
+    HtmlPropertyComponent,
     CssPropertyComponent,
-    JavascriptPropertyComponent
+    JavascriptPropertyComponent,
+    BackgroundPropertyComponent,
+    TextPropertyComponent,
+    ImagePropertyComponent,
+    GeneralPropertyComponent,
+    BorderPropertyComponent
   ],
   imports: [
+    
+    ColorPickerModule,
     CommonModule,
     FontAwesomeModule,
     ReactiveFormsModule,
