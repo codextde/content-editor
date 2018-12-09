@@ -23,7 +23,7 @@
         <div class="drag-element" *ngFor="let element of data.editorOptions.elements" cdkDrag>
           <app-element-text *ngIf="element.component == 'text'" [(ngModel)]="element"></app-element-text>
           <app-element-html *ngIf="element.component == 'html'" [(ngModel)]="element"></app-element-html>
-          <app-element-headline *ngIf="element.component == 'headline'"></app-element-headline>
+          <app-element-headline *ngIf="element.component == 'headline'" [(ngModel)]="element"></app-element-headline>
           <app-element-video *ngIf="element.component == 'video'"></app-element-video>
 
           <div class="drag-element-toolbar">

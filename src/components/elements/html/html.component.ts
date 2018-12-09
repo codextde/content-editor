@@ -15,6 +15,7 @@ declare var kendo: any;
 export class HtmlElementComponent implements OnInit, ControlValueAccessor {
 
   htmlElement;
+  
   padding;
   html;
 
