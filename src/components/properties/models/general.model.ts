@@ -3,4 +3,5 @@ export class IGeneralProperty {
     zIndex?: number;
     float?: boolean;
     width?: string;
+    boxShadow?: string;
 }

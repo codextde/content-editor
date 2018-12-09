@@ -6,27 +6,27 @@
         Float
       </div>
       <div class="col flex-end">
-          <div class="btn-group" role="group">
-              <button type="button" class="btn btn-sm btn-secondary" (click)="float('left')" [class.active]="general.float == 'left'">
-                Left
-              </button>
-              <button type="button" class="btn btn-sm btn-secondary" (click)="float('none')" [class.active]="general.float == 'none'">
-                  None
-              </button>
-              <button type="button" class="btn btn-sm btn-secondary" (click)="float('right')" [class.active]="general.float == 'right'">
-                Right
-              </button>
-            </div>
+        <div class="btn-group" role="group">
+          <button type="button" class="btn btn-sm btn-secondary" (click)="float('left')" [class.active]="general.float == 'left'">
+            Left
+          </button>
+          <button type="button" class="btn btn-sm btn-secondary" (click)="float('none')" [class.active]="general.float == 'none'">
+            None
+          </button>
+          <button type="button" class="btn btn-sm btn-secondary" (click)="float('right')" [class.active]="general.float == 'right'">
+            Right
+          </button>
+        </div>
       </div>
     </div>
     <div class="row">
-        <div class="col title">
-          Width
-        </div>
-        <div class="col flex-end">
-          <input [(ngModel)]="general.width">
-        </div>
+      <div class="col title">
+        Width
       </div>
+      <div class="col flex-end">
+        <input [(ngModel)]="general.width">
+      </div>
+    </div>
     <div class="row">
       <div class="col title">
         CSS Class
@@ -41,6 +41,14 @@
       </div>
       <div class="col flex-end">
         <input [(ngModel)]="general.zIndex">
+      </div>
+    </div>
+    <div class="row">
+      <div class="col title">
+        Box Shadow
+      </div>
+      <div class="col flex-end">
+        <input [(ngModel)]="general.boxShadow">
       </div>
     </div>
   </div>
