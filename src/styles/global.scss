@@ -76,3 +76,13 @@ color-picker {
 
 
 }
+
+
+.k-editor-inline, .k-widget, .k-editor-inline:hover, .k-editor-inline.k-state-active {
+  border: none;
+  padding: 0;
+  margin: 0;
+  transition: none;
+  border-radius: 0;
+  line-height: 1;
+}
