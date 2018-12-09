@@ -1,0 +1,9 @@
+<div class="tooltip {{ placement }}"
+     [style.top]="top + 'px'"
+     [style.left]="left + 'px'"
+     [class.in]="isIn"
+     [class.fade]="isFade"
+    role="tooltip">
+    <ng-content></ng-content>
+    {{ content }}
+</div>

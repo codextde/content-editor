@@ -10,7 +10,6 @@ import { ElementsService } from 'src/services/elements.service';
 import { HelperService } from 'src/services/helper.service';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { PipesModule } from 'src/pipes/pipes.module';
 
 @NgModule({
   declarations: [

@@ -146,46 +146,6 @@ z-index: 1000;
   }
 }
 
-.drag-element {
-  position: relative;  
-
-  &:hover {
-    .drag-element-toolbar {
-      display: block;
-    }
-  }
-
-  .drag-element-toolbar {
-    position: absolute;
-    display: none;
-    top: 0;
-    right: -40px;
-    width: 40px;
-    background: rgba(0, 0, 0, 0.2);
-    border-top-right-radius: 5px;
-    border-bottom-left-radius: 5px;
-    border-bottom-right-radius: 5px;
-    padding: 5px 0;
-    color: #fff;
-    text-align: center;
-    z-index: 10;
-    font-size: 17px;
-
-    transition: opacity .5s ease-out;
-
-    cursor: pointer;
-
-    .item {
-      padding: 10px 0;
-    }
-
-    .drag-element-handle {
-      cursor: move;
-    }
-  }
-
-
-}
 
 .element-item {
   background: white;

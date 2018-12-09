@@ -20,13 +20,27 @@
         [style.paddingBottom]="data.editorOptions.bodyStyleOptions.padding.bottom"
         [dir]="data.editorOptions.bodyStyleOptions.directionLtr ? 'ltr' : 'rtl'">
 
-        <div class="drag-element" *ngFor="let element of data.editorOptions.elements" cdkDrag>
+        <div class="drag-element" [tooltip]="myTooltip" *ngFor="let element of data.editorOptions.elements" cdkDrag>
           <app-element-text *ngIf="element.component == 'text'" [(ngModel)]="element"></app-element-text>
           <app-element-html *ngIf="element.component == 'html'" [(ngModel)]="element"></app-element-html>
           <app-element-headline *ngIf="element.component == 'headline'" [(ngModel)]="element"></app-element-headline>
-          <app-element-video *ngIf="element.component == 'video'"></app-element-video>
+          <app-element-video *ngIf="element.component == 'video'" [(ngModel)]="element"></app-element-video>
 
-          <div class="drag-element-toolbar">
+
+          <app-tooltip class="drag-element-toolbar" #myTooltip [placement]="top">
+              <div class="drag-element-check item" (click)="openProperties(element)">
+                  <fa-icon [icon]="faCogs"></fa-icon>
+                </div>
+                <div class="drag-element-trash item" (click)="delete(element)">
+                  <fa-icon [icon]="faTrash"></fa-icon>
+                </div>
+                <div class="drag-element-handle item" cdkDragHandle>
+                  <fa-icon [icon]="faArrowsAlt"></fa-icon>
+                </div>
+          </app-tooltip>
+
+
+         <!-- <div class="drag-element-toolbar">
             <div class="drag-element-check item" cdkDragHandle (click)="openProperties(element)">
               <fa-icon [icon]="faCogs"></fa-icon>
             </div>
@@ -36,7 +50,7 @@
             <div class="drag-element-handle item" cdkDragHandle>
               <fa-icon [icon]="faArrowsAlt"></fa-icon>
             </div>
-          </div>
+          </div>-->
 
         </div>
       </div>

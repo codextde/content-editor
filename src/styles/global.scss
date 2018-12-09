@@ -34,3 +34,41 @@ color-picker {
   }
 }
 
+
+
+.drag-element {
+  .drag-element-toolbar {
+
+    .tooltip {
+      width: 40px;
+      background: rgba(0, 0, 0, 0.2);
+      border-top-right-radius: 5px;
+      border-bottom-left-radius: 5px;
+      border-bottom-right-radius: 5px;
+      padding: 5px 0;
+      color: #fff;
+      text-align: center;
+      z-index: 10;
+      font-size: 17px;
+      transition: opacity .5s ease-out;
+      cursor: pointer;
+    }
+
+
+    .item {
+      padding: 10px 0;
+      &:hover {
+        background: rgba(0, 0, 0, 0.2);
+      }
+      &:focus {
+        background: rgba(0, 0, 0, 0.3);
+      }
+    }
+
+    .drag-element-handle {
+      cursor: move;
+    }
+  }
+
+
+}
