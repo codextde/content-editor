@@ -1,6 +1,7 @@
 import { animate, state, style, transition, trigger } from '@angular/animations';
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { faArrowDown } from '@fortawesome/free-solid-svg-icons';
+import { IPaddingProperty } from './models/padding.model';
 
 @Component({
   selector: 'app-properties',
@@ -26,18 +27,10 @@ import { faArrowDown } from '@fortawesome/free-solid-svg-icons';
   ]
 })
 export class PropertiesComponent implements OnInit {
-  faArrowDown = faArrowDown;
 
+  faArrowDown = faArrowDown;
   @Output() onClose = new EventEmitter();
 
-  htmlOptions = {theme: 'vs-dark', language: 'html'};
-  htmlCode: string = '<div></div>';
-
-  javascriptOptions = {theme: 'vs-dark', language: 'javascript'};
-  javascriptCode: string = 'function x() {\nconsole.log("Hello world!");\n}';
-  
-  cssOptions = {theme: 'vs-dark', language: 'css'};
-  cssCode: string = '.test {\ndisplay: block\n}';
 
   constructor() { }
 

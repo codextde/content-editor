@@ -1,6 +1,9 @@
 import { CdkDragDrop, copyArrayItem, moveItemInArray } from '@angular/cdk/drag-drop';
 import { Component, OnInit } from '@angular/core';
-import { faAlignCenter, faArrowsAlt, faCode, faFont, faHandPointer, faImage, faImages, faTh, faTrash, faVideo, faCogs } from '@fortawesome/free-solid-svg-icons';
+import { faArrowsAlt, faCogs, faHandPointer, faTrash } from '@fortawesome/free-solid-svg-icons';
+import { DataService } from 'src/services/data.service';
+import { ElementsService } from 'src/services/elements.service';
+import { HelperService } from 'src/services/helper.service';
 
 
 
@@ -11,30 +14,7 @@ import { faAlignCenter, faArrowsAlt, faCode, faFont, faHandPointer, faImage, faI
   styleUrls: ['./main.page.scss']
 })
 export class MainPage implements OnInit {
-
-  editorOptions: any = {
-    id: 1,
-    name: 'Layout 1',
-    bodyStyleOptions: {
-      paddingTop: '30px',
-      paddingRight: '30px',
-      paddingBottom: '30px',
-      paddingLeft: '30px',
-      backgroundColor: '#fff',
-      backgroundImage: '',
-      backgroundRepeat: 'no-repeat',
-      backgroundSize: 'cover',
-      font: {
-        family: 'Tahoma, Geneva, sans-serif',
-        size: 16,
-        weight: 'normal',
-        color: '#4d4d4d'
-      },
-      directionLtr: true
-    },
-    elements: []
-  };
-
+  // Icons
   faTrash = faTrash;
   faHandPointer = faHandPointer;
   faArrowsAlt = faArrowsAlt;
@@ -45,52 +25,25 @@ export class MainPage implements OnInit {
   tab: string = 'elements';
 
 
-  elements = [
-    {
-      component: 'text',
-      icon: faAlignCenter,
-      title: 'Text'
-    },
-    {
-      component: 'headline',
-      icon: faFont,
-      title: 'Headline'
-    },
-    {
-      component: 'html',
-      icon: faCode,
-      title: 'HTML'
-    },
-    {
-      component: 'svg',
-      icon: faImage,
-      title: 'SVG'
-    },
-    {
-      component: 'video',
-      icon: faVideo,
-      title: 'Video'
-    },
-    {
-      component: 'image',
-      icon: faImages,
-      title: 'Image'
-    },
-    {
-      component: 'grid',
-      icon: faTh,
-      title: 'Grid'
-    }
-  ];
 
 
-  constructor() { }
+  constructor(
+    public helper: HelperService,
+    public data: DataService,
+    public elements: ElementsService
+  ) {}
 
   ngOnInit() {
     const storageOptions = localStorage.getItem('editorOptions');
     if (storageOptions) {
-      this.editorOptions = JSON.parse(storageOptions);
+      this.data.editorOptions = JSON.parse(storageOptions);
     }
+
+
+    if (this.data.editorOptions.bodyStyleOptions.css) {
+      this.helper.applyStyle(this.data.editorOptions.bodyStyleOptions.css);
+    }
+
   }
 
   drop(event: CdkDragDrop<string[]>) {
@@ -104,20 +57,21 @@ export class MainPage implements OnInit {
     }
   }
 
-
+  cssCodeChange() {
+    this.helper.applyStyle(this.data.editorOptions.bodyStyleOptions.css);
+  }
 
   openProperties(element) {
     this.propertiesActive = true;
   }
 
   delete(element) {
-    console.log(element);
     // tslint:disable-next-line:triple-equals
-    this.editorOptions.elements = this.editorOptions.elements.filter((el) => el.component  ==  element.title);
+    this.data.editorOptions.elements = this.data.editorOptions.elements.filter((el) => el.component  ==  element.title);
   }
 
   save() {
-    localStorage.setItem('editorOptions', JSON.stringify(this.editorOptions));
+    localStorage.setItem('editorOptions', JSON.stringify(this.data.editorOptions));
   }
 
 

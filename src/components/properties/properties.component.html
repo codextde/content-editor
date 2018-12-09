@@ -13,57 +13,17 @@
   </div>
 
 
+  <!--
+  <app-property-padding></app-property-padding>
+  <app-property-html></app-property-html>
+  -->
 
-  <div class="property">
-    <div class="property-title">Padding</div>
-    <div class="property-content">
-      <div class="row">
-        <div class="col title">
-          Left
-        </div>
-        <div class="col flex-end">
-          <input>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col title">
-          Top
-        </div>
-        <div class="col flex-end">
-          <input>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col title">
-          Right
-        </div>
-        <div class="col flex-end">
-          <input>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col title">
-          Bottom
-        </div>
-        <div class="col flex-end">
-          <input>
-        </div>
-      </div>
-    </div>
-  </div>
-
-
-  <div class="property">
-    <div class="property-title">HTML</div>
-    <ngx-monaco-editor [options]="htmlOptions" [(ngModel)]="htmlCode"></ngx-monaco-editor>
-    
-
-    <div class="property-title">Javascript</div>
-    <ngx-monaco-editor [options]="javascriptOptions" [(ngModel)]="javascriptCode"></ngx-monaco-editor>
-   
-
-    <div class="property-title">CSS</div>
-    <ngx-monaco-editor [options]="cssOptions" [(ngModel)]="cssCode"></ngx-monaco-editor>
-   
-  </div>
+  <app-property-image></app-property-image>
+  
+  <app-property-text></app-property-text>
+  <app-property-general></app-property-general>
+  <app-property-border></app-property-border>
+  <app-property-background></app-property-background>
+  
+  
 </div>
