@@ -51,7 +51,7 @@
 
 <div class="section-settings">
   
-  <app-properties *ngIf="propertiesActive" (onClose)="propertiesActive = false"></app-properties>
+  <app-properties *ngIf="propertiesActive" [properties]="properties" (onClose)="propertiesActive = false"></app-properties>
 
   <div class="tabs">
     <div class="tab" [class.active]="tab == 'elements'" (click)="tab = 'elements'">

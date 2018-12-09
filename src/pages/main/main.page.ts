@@ -21,6 +21,7 @@ export class MainPage implements OnInit {
   faCogs = faCogs;
 
 
+  properties: any = [];
   propertiesActive: boolean = false;
   tab: string = 'elements';
 
@@ -58,11 +59,11 @@ export class MainPage implements OnInit {
   }
 
   openProperties(element) {
+    this.properties = element.properties;
     this.propertiesActive = true;
   }
 
   delete(element) {
-    // tslint:disable-next-line:triple-equals
     this.data.editorOptions.elements = this.data.editorOptions.elements.filter((el) => el.component  ==  element.title);
   }
 

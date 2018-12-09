@@ -13,16 +13,12 @@
   </div>
 
 
-  <!--
-  <app-property-padding></app-property-padding>
-  <app-property-html></app-property-html>
-  -->
-
-  <app-property-image></app-property-image>
-  
-  <app-property-text></app-property-text>
-  <app-property-general></app-property-general>
-  <app-property-border></app-property-border>
+  <app-property-padding *ngIf="isIn('padding')"></app-property-padding>
+  <app-property-text *ngIf="isIn('text')"></app-property-text>
+  <app-property-html *ngIf="isIn('html')"></app-property-html>
+  <app-property-image *ngIf="isIn('image')"></app-property-image>
+  <app-property-general *ngIf="isIn('general')"></app-property-general>
+  <app-property-border *ngIf="isIn('border')"></app-property-border>
   
   
 </div>

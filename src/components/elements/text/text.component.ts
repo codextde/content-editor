@@ -8,8 +8,8 @@ declare var kendo: any;
 })
 export class TextElementComponent implements OnInit {
 
-
   @ViewChild('editor') editorEl: ElementRef;
+  
   constructor(
   ) { }
 

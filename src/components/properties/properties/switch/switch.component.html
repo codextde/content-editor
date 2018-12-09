@@ -7,7 +7,7 @@
             {{ switchTitle }}
         </div>
         <div class="col flex-end">
-          <ion-toggle [(ngModel)]="switch"></ion-toggle>
+          <ion-toggle [(ngModel)]="switch" (ngModelChange)="change()"></ion-toggle>
         </div>
       </div>
 

@@ -1,17 +1,51 @@
 import { Injectable } from '@angular/core';
 import { faAlignCenter, faFont, faCode, faImage, faVideo, faImages, faTh } from '@fortawesome/free-solid-svg-icons';
+import { IPaddingProperty } from 'src/components/properties/models/padding.model';
+import { ITextProperty } from 'src/components/properties/models/text.model';
+
+
+export class IElement {
+  component: string;
+  icon: any;
+  title: string;
+  properties?: any[];
+  propertyData: {
+    text?: ITextProperty;
+    padding?: IPaddingProperty;
+  };
+}
+
+
 
 @Injectable({
   providedIn: 'root'
 })
 export class ElementsService {
 
+  textElement: IElement = {
+    component: 'text',
+    icon: faAlignCenter,
+    title: 'Text',
+    properties: ['text', 'padding'],
+    propertyData: {
+      text: {
+        color: '#000',
+        align: 'left',
+        height: '100%',
+        familie: 'Arial',
+        size: '12px'
+      },
+      padding: {
+        top: '0',
+        right: '0',
+        bottom: '0',
+        left: '0'
+      }
+
+    }
+  };
+
   elements = [
-    {
-      component: 'text',
-      icon: faAlignCenter,
-      title: 'Text'
-    },
     {
       component: 'headline',
       icon: faFont,
@@ -45,5 +79,7 @@ export class ElementsService {
   ];
 
 
-  constructor() { }
+  constructor() {
+    this.elements.push(this.textElement);
+  }
 }

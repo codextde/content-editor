@@ -1,7 +1,6 @@
-import { animate, state, style, transition, trigger } from '@angular/animations';
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { animate, style, transition, trigger } from '@angular/animations';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { faArrowDown } from '@fortawesome/free-solid-svg-icons';
-import { IPaddingProperty } from './models/padding.model';
 
 @Component({
   selector: 'app-properties',
@@ -27,14 +26,23 @@ import { IPaddingProperty } from './models/padding.model';
   ]
 })
 export class PropertiesComponent implements OnInit {
-
+  // Icons
   faArrowDown = faArrowDown;
+
+  @Input() properties: any;
   @Output() onClose = new EventEmitter();
 
 
   constructor() { }
 
   ngOnInit() {
+  }
+
+  isIn(property) {
+    if (!this.properties) {
+      return false;
+    }
+    return this.properties.some(item => item == property);
   }
 
   close() {
