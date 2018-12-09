@@ -8,11 +8,8 @@ export class IElement {
   component: string;
   icon: any;
   title: string;
-  properties?: any[];
-  propertyData: {
-    text?: ITextProperty;
-    padding?: IPaddingProperty;
-  };
+  properties: any[];
+  value: string;
 }
 
 
@@ -26,23 +23,22 @@ export class ElementsService {
     component: 'text',
     icon: faAlignCenter,
     title: 'Text',
-    properties: ['text', 'padding'],
-    propertyData: {
-      text: {
+    properties: [{
+        name: 'text',
         color: '#000',
         align: 'left',
         height: '100%',
         familie: 'Arial',
         size: '12px'
-      },
-      padding: {
-        top: '0',
-        right: '0',
-        bottom: '0',
-        left: '0'
+      }, {
+        name: 'padding',
+        top: '0px',
+        right: '0px',
+        bottom: '0px',
+        left: '0px'
       }
-
-    }
+    ],
+    value: 'Hallo'
   };
 
   elements = [

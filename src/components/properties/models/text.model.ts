@@ -1,4 +1,5 @@
 export class ITextProperty {
+    name?: string;
     color?: string;
     align?: string;
     height?: string;

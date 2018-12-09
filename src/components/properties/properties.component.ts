@@ -29,21 +29,24 @@ export class PropertiesComponent implements OnInit {
   // Icons
   faArrowDown = faArrowDown;
 
-  @Input() properties: any;
+  @Input() element: any;
   @Output() onClose = new EventEmitter();
 
 
   constructor() { }
 
   ngOnInit() {
+    console.log(this.element);
   }
 
+  /*
   isIn(property) {
     if (!this.properties) {
       return false;
     }
     return this.properties.some(item => item == property);
   }
+  */
 
   close() {
     this.onClose.emit();

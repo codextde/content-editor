@@ -21,9 +21,11 @@ export class MainPage implements OnInit {
   faCogs = faCogs;
 
 
-  properties: any = [];
+  activeElement: any;
   propertiesActive: boolean = false;
   tab: string = 'elements';
+
+  test;
 
   constructor(
     public helper: HelperService,
@@ -35,6 +37,7 @@ export class MainPage implements OnInit {
     const storageOptions = localStorage.getItem('editorOptions');
     if (storageOptions) {
       this.data.editorOptions = JSON.parse(storageOptions);
+      console.log(this.data.editorOptions);
     }
 
     if (this.data.editorOptions.bodyStyleOptions.css) {
@@ -59,7 +62,7 @@ export class MainPage implements OnInit {
   }
 
   openProperties(element) {
-    this.properties = element.properties;
+    this.activeElement = element;
     this.propertiesActive = true;
   }
 
@@ -68,6 +71,7 @@ export class MainPage implements OnInit {
   }
 
   save() {
+    console.log(this.data.editorOptions);
     localStorage.setItem('editorOptions', JSON.stringify(this.data.editorOptions));
   }
 
