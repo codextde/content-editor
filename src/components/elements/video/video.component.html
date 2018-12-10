@@ -1,5 +1,6 @@
 
 <div
+
 [style.paddingLeft]="padding?.left" 
 [style.paddingTop]="padding?.top"
 [style.paddingRight]="padding?.right" 
@@ -7,6 +8,7 @@
 [style.zIndex]="general?.zIndex"
 [style.float]="general?.float"
 [style.width]="general?.width"
+[style.boxShadow]="general?.boxShadow"
 [ngClass]="general?.cssClass">
   <video [controls]="video?.controls" [autoplay]="video?.autoplay" [loop]="video?.loop" [muted]="video?.muted">
     <source [src]="video?.src" type="video/mp4">
