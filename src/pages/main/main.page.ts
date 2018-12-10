@@ -97,6 +97,7 @@ export class MainPage implements OnInit {
 
   clear() {
     this.data.editorOptions = this.data.editorDefaultOptions;
+    this.save();
   }
 
   async import() {
