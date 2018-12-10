@@ -75,8 +75,8 @@ color-picker {
         background: rgba(0, 0, 0, 0.2);
       }
 
-      &:focus {
-        background: rgba(0, 0, 0, 0.3);
+      &:focus, &:active {
+        background: rgba(0, 0, 0, 0.5);
       }
     }
 

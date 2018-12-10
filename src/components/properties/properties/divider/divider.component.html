@@ -1,0 +1,26 @@
+<div class="property">
+  <div class="property-title">Divider</div>
+  <div class="property-content">
+
+
+
+    <div class="row">
+      <div class="col title">
+        Color
+      </div>
+      <div class="col flex-end">
+        <input [(colorPicker)]="divider.color" cpPosition="left" cpOutputFormat="hex" cpAlphaChannel="disabled"
+          [style.background]="divider.color" />
+      </div>
+    </div>
+
+    <div class="row size">
+      <div class="col title">
+        Size
+      </div>
+      <div class="col flex-end">
+        <input [(ngModel)]="divider.size" />
+      </div>
+    </div>
+  </div>
+</div>

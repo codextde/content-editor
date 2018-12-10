@@ -11,6 +11,7 @@ import { PropertiesComponent } from './properties.component';
 import { BackgroundPropertyComponent } from './properties/background/background.component';
 import { BorderPropertyComponent } from './properties/border/border.component';
 import { CssPropertyComponent } from './properties/css/css.component';
+import { DividerPropertyComponent } from './properties/divider/divider.component';
 import { GeneralPropertyComponent } from './properties/general/general.component';
 import { HtmlPropertyComponent } from './properties/html/html.component';
 import { ImagePropertyComponent } from './properties/image/image.component';
@@ -35,7 +36,8 @@ import { VideoPropertyComponent } from './properties/video/video.component';
     GeneralPropertyComponent,
     BorderPropertyComponent,
     SwitchPropertyComponent,
-    VideoPropertyComponent
+    VideoPropertyComponent,
+    DividerPropertyComponent
   ],
   exports: [
     PropertiesComponent,
@@ -49,7 +51,8 @@ import { VideoPropertyComponent } from './properties/video/video.component';
     GeneralPropertyComponent,
     BorderPropertyComponent,
     SwitchPropertyComponent,
-    VideoPropertyComponent
+    VideoPropertyComponent,
+    DividerPropertyComponent
   ],
   imports: [
     DropdownModule,

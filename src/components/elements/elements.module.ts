@@ -8,6 +8,7 @@ import { PipesModule } from 'src/pipes/pipes.module';
 import { ImageElementComponent } from './image/image.component';
 import { ClearfixElementComponent } from './clearfix/clearfix.component';
 import { DirectivesModule } from 'src/directives/directives.module';
+import { DividerElementComponent } from './divider/divider.component';
 
 
 @NgModule({
@@ -17,7 +18,8 @@ import { DirectivesModule } from 'src/directives/directives.module';
     HeadlineElementComponent,
     HtmlElementComponent,
     ImageElementComponent,
-    ClearfixElementComponent
+    ClearfixElementComponent,
+    DividerElementComponent
   ],
   entryComponents: [
     VideoElementComponent,
@@ -25,7 +27,8 @@ import { DirectivesModule } from 'src/directives/directives.module';
     HeadlineElementComponent,
     HtmlElementComponent,
     ImageElementComponent,
-    ClearfixElementComponent
+    ClearfixElementComponent,
+    DividerElementComponent
   ],
   exports: [
     VideoElementComponent,
@@ -33,7 +36,8 @@ import { DirectivesModule } from 'src/directives/directives.module';
     HeadlineElementComponent,
     HtmlElementComponent,
     ImageElementComponent,
-    ClearfixElementComponent
+    ClearfixElementComponent,
+    DividerElementComponent
   ],
   imports: [
     PipesModule,

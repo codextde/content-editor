@@ -27,6 +27,7 @@
           <app-element-video *ngIf="element.component == 'video'" [(ngModel)]="element"></app-element-video>
           <app-element-image *ngIf="element.component == 'image'" [(ngModel)]="element"></app-element-image>
           <app-element-clearfix *ngIf="element.component == 'clearfix'"></app-element-clearfix>
+          <app-element-divider *ngIf="element.component == 'divider'" [(ngModel)]="element"></app-element-divider>
 
           <app-tooltip class="drag-element-toolbar" #myTooltip>
               <div class="drag-element-component item">
@@ -42,19 +43,6 @@
                   <fa-icon [icon]="faArrowsAlt"></fa-icon>
                 </div>
           </app-tooltip>
-
-
-         <!-- <div class="drag-element-toolbar">
-            <div class="drag-element-check item" cdkDragHandle (click)="openProperties(element)">
-              <fa-icon [icon]="faCogs"></fa-icon>
-            </div>
-            <div class="drag-element-trash item" cdkDragHandle (click)="delete(element)">
-              <fa-icon [icon]="faTrash"></fa-icon>
-            </div>
-            <div class="drag-element-handle item" cdkDragHandle>
-              <fa-icon [icon]="faArrowsAlt"></fa-icon>
-            </div>
-          </div>-->
 
         </div>
       </div>
