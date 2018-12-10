@@ -7,9 +7,6 @@ export class ITextProperty {
         displayName: string;
         fontFamily: string;
     };
-    size?: {
-        value: number;
-        format: string;
-    };
+    size?: string;
     weight?: string;
 }

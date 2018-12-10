@@ -108,6 +108,9 @@ export class TextElementComponent implements OnInit, ControlValueAccessor {
         'foreColor',
         'backColor'
       ],
+      pasteCleanup: {
+        all: true
+      },
       keyup: (a) => this.change(this),
       change: (a) => this.change(this)
     });

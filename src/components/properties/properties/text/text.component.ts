@@ -28,10 +28,7 @@ export class TextPropertyComponent implements ControlValueAccessor {
       fontFamily: ''
     },
     weight: '',
-    size: {
-      value: 0,
-      format: 'px'
-    }
+    size: ''
   };
 
   // Fonts
@@ -55,7 +52,7 @@ export class TextPropertyComponent implements ControlValueAccessor {
   /** NgModel Start */
   writeValue(value: any): void {
     if (value) {
-      this.text = Object.assign(value, {size: {value: 0}});
+      this.text = value;
     }
   }
 

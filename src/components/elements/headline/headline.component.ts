@@ -87,6 +87,9 @@ export class HeadlineElementComponent implements OnInit, ControlValueAccessor {
         'justifyFull',
         'foreColor'
       ],
+      pasteCleanup: {
+          all: true
+      },
       keyup: (a) => this.change(this),
       change: (a) => this.change(this)
     });
