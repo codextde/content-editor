@@ -7,6 +7,7 @@ import { HtmlElementComponent } from './html/html.component';
 import { PipesModule } from 'src/pipes/pipes.module';
 import { ImageElementComponent } from './image/image.component';
 import { ClearfixElementComponent } from './clearfix/clearfix.component';
+import { DirectivesModule } from 'src/directives/directives.module';
 
 
 @NgModule({
@@ -36,7 +37,8 @@ import { ClearfixElementComponent } from './clearfix/clearfix.component';
   ],
   imports: [
     PipesModule,
-    CommonModule
+    CommonModule,
+    DirectivesModule
   ]
 })
 export class ElementsModule { }

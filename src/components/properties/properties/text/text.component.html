@@ -1,13 +1,21 @@
 <div class="property">
   <div class="property-title">Text</div>
   <div class="property-content">
+
+
     <div class="row">
       <div class="col title">
-        Color
+        Weight
       </div>
       <div class="col flex-end">
-        <input [(colorPicker)]="text.color" cpPosition="left" cpOutputFormat="hex" cpAlphaChannel="disabled"
-          [style.background]="text.color" />
+        <div class="btn-group" role="group">
+          <button type="button" class="btn btn-sm btn-secondary" (click)="textWeight('bold')" [class.active]="text.weight == 'bold'">
+            <fa-icon [icon]="faBold"></fa-icon>
+          </button>
+          <button type="button" class="btn btn-sm btn-secondary" (click)="textWeight('normal')" [class.active]="text.weight == 'normal'">
+            Normal
+          </button>
+        </div>
       </div>
     </div>
 
@@ -43,25 +51,39 @@
         </select>-->
 
         <div class="dropdown" dropdown>
-            <button class="btn btn-secondary btn-sm" dropdown-open>
-              <span [style.fontFamily]="text?.fontFamily?.fontFamily">{{ text?.fontFamily?.displayName || 'Select' }}</span>
-            </button>
-            <div class="dropdown-menu">
-                <a class="dropdown-item" (click)="selectFont({displayName: '', fontFamily: ''})">Select</a>
-                <a *ngFor="let font of fonts" class="dropdown-item" (click)="selectFont(font)" [style.fontFamily]="font.fontFamily">{{font.displayName}}</a>
-              </div>
+          <button class="btn btn-secondary btn-sm" dropdown-open>
+            <span [style.fontFamily]="text?.fontFamily?.fontFamily">{{ text?.fontFamily?.displayName || 'Select' }}</span>
+          </button>
+          <div class="dropdown-menu">
+            <a class="dropdown-item" (click)="selectFont({displayName: '', fontFamily: ''})">Select</a>
+            <a *ngFor="let font of fonts" class="dropdown-item" (click)="selectFont(font)" [style.fontFamily]="font.fontFamily">{{font.displayName}}</a>
+          </div>
         </div>
       </div>
     </div>
 
     <div class="row">
       <div class="col title">
+        Color
+      </div>
+      <div class="col flex-end">
+        <input [(colorPicker)]="text.color" cpPosition="left" cpOutputFormat="hex" cpAlphaChannel="disabled"
+          [style.background]="text.color" />
+      </div>
+    </div>
+
+    <div class="row size">
+      <div class="col title">
         Size
       </div>
       <div class="col flex-end">
-        <input [(ngModel)]="text.size" />
+        <input [(ngModel)]="text.size.value" />
+        <!--<input type="range" [(ngModel)]="text.size.value" step="1" min="1" max="100">
+        <span>{{text.size.value}}</span>-->
       </div>
     </div>
+
+
 
     <div class="row">
       <div class="col title">
@@ -71,41 +93,5 @@
         <input [(ngModel)]="text.lineHeight" />
       </div>
     </div>
-    <!--<div class="row">
-        <div class="col title">
-          Image (URL)
-        </div>
-        <div class="col flex-end">
-          <input [(ngModel)]="background.image" />
-        </div>
-      </div>
-      <div class="row">
-        <div class="col title">
-          - Repeat
-        </div>
-        <div class="col flex-end">
-          <select  [(ngModel)]="background.repeat">
-            <option value='no-repeat'>No-repeat</option>
-            <option value='repeat'>Repeat</option>
-          </select>
-
-        </div>
-      </div>
-
-      <div class="row">
-        <div class="col title">
-          - Size
-        </div>
-        <div class="col flex-end">
-          <select [(ngModel)]="background.size" >
-            <option [ngValue]="'unset'" >Unset</option>
-            <option [ngValue]="'auto'" >Auto</option>
-            <option [ngValue]="'cover'" >Cover</option>
-            <option [ngValue]="'contain'" >Contain</option>
-          </select>
-
-        </div>
-      </div>-->
-
   </div>
 </div>

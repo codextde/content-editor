@@ -9,10 +9,9 @@
 [style.boxShadow]="general?.boxShadow"
 [style.color]="text?.color"
 [style.fontFamily]="text?.fontFamily?.fontFamily"
+[style.fontWeight]="text?.weight"
 [style.lineHeight]="text?.lineHeight"
-[style.fontSize]="text?.size"
+[style.fontSize]="text?.size?.value"
 [style.textAlign]="text?.align"
 [ngClass]="general?.cssClass"
 ></div>
-
-<!--<div *ngIf="general?.float == 'left' || general?.float == 'right'" class="clearfix"></div>-->

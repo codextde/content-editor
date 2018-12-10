@@ -1,14 +1,17 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { TooltipDirective } from './tooltip.directive';
+import { ReplaceTagDirective } from './replace-tag.directive';
 
 
 @NgModule({
   declarations: [
-    TooltipDirective
+    TooltipDirective,
+    ReplaceTagDirective
   ],
   exports: [
-    TooltipDirective
+    TooltipDirective,
+    ReplaceTagDirective
   ],
   imports: [
     CommonModule

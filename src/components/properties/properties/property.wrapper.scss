@@ -18,8 +18,12 @@
     padding: 10px 15px;
 
     .row {
+      padding: 5px 10px;
+      // border-bottom: 1px solid #eee;
 
-      margin-bottom: 10px;
+      &:first-of-type {
+        // border-top: 1px solid #eee;
+      }
     }
 
     ion-toggle {

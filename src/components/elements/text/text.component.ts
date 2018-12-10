@@ -17,6 +17,8 @@ export class TextElementComponent implements OnInit, ControlValueAccessor {
   @ViewChild('editor') editorEl: ElementRef;
   editor;
   textElement;
+
+  styles;
   
   padding;
   general;
@@ -45,6 +47,7 @@ export class TextElementComponent implements OnInit, ControlValueAccessor {
           return property.name == 'text';
         });
       }
+
 
 
 
@@ -110,5 +113,6 @@ export class TextElementComponent implements OnInit, ControlValueAccessor {
     });
     this.editor = kendo.jQuery(this.editorEl.nativeElement).data('kendoEditor');
   }
+
 
 }

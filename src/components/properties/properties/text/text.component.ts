@@ -1,6 +1,6 @@
 import { Component, forwardRef } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
-import { faAlignCenter, faAlignLeft, faAlignRight } from '@fortawesome/free-solid-svg-icons';
+import { faAlignCenter, faAlignLeft, faAlignRight, faBold } from '@fortawesome/free-solid-svg-icons';
 import { ITextProperty } from '../../models/text.model';
 
 @Component({
@@ -17,6 +17,7 @@ export class TextPropertyComponent implements ControlValueAccessor {
   faAlignLeft = faAlignLeft;
   faAlignCenter = faAlignCenter;
   faAlignRight = faAlignRight;
+  faBold = faBold;
 
   text: ITextProperty = {
     color: '',
@@ -26,7 +27,11 @@ export class TextPropertyComponent implements ControlValueAccessor {
       displayName: '',
       fontFamily: ''
     },
-    size: ''
+    weight: '',
+    size: {
+      value: 0,
+      format: 'px'
+    }
   };
 
   // Fonts
@@ -50,7 +55,7 @@ export class TextPropertyComponent implements ControlValueAccessor {
   /** NgModel Start */
   writeValue(value: any): void {
     if (value) {
-      this.text = value;
+      this.text = Object.assign(value, {size: {value: 0}});
     }
   }
 
@@ -84,6 +89,11 @@ export class TextPropertyComponent implements ControlValueAccessor {
 
   selectFont(font) {
     this.text.fontFamily = font;
+    this.change();
+  }
+
+  textWeight(weight) {
+    this.text.weight = weight;
     this.change();
   }
 
