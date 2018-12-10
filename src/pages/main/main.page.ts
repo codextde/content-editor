@@ -1,9 +1,10 @@
 import { CdkDragDrop, copyArrayItem, moveItemInArray } from '@angular/cdk/drag-drop';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, HostListener } from '@angular/core';
 import { faArrowsAlt, faCogs, faHandPointer, faTrash } from '@fortawesome/free-solid-svg-icons';
 import { DataService } from 'src/services/data.service';
 import { ElementsService } from 'src/services/elements.service';
 import { HelperService } from 'src/services/helper.service';
+import { ToastController } from '@ionic/angular';
 
 
 @Component({
@@ -25,10 +26,21 @@ export class MainPage implements OnInit {
 
   test;
 
+  @HostListener('window:keydown', ['$event'])
+  keyEvent(event: KeyboardEvent) {
+    event.preventDefault();
+
+    if (event.ctrlKey && event.key == 's') {
+      this.save();
+    }
+
+  }
+
   constructor(
     public helper: HelperService,
     public data: DataService,
-    public elements: ElementsService
+    public elements: ElementsService,
+    public toast: ToastController
   ) {}
 
   ngOnInit() {
@@ -72,9 +84,11 @@ export class MainPage implements OnInit {
     this.data.editorOptions.elements = this.data.editorOptions.elements.filter((el) => el  !==  element);
   }
 
-  save() {
+  async save() {
     console.log(this.data.editorOptions);
     localStorage.setItem('editorOptions', JSON.stringify(this.data.editorOptions));
+    const toast = await this.toast.create({message: 'Saved', duration: 2000});
+    toast.present();
   }
 
 
