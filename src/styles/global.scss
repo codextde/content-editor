@@ -41,11 +41,12 @@ color-picker {
 .drag-element {
   div:first-of-type {
     &:hover {
-    
-      box-shadow: 0 0 0 1px rgba(0,0,0,.1);
+
+      box-shadow: 0 0 0 1px rgba(0, 0, 0, .1);
     }
-      
+
   }
+
   .drag-element-toolbar {
 
     .tooltip {
@@ -60,17 +61,20 @@ color-picker {
       z-index: 10;
       font-size: 17px;
       transition: opacity .5s ease-out;
+      overflow: hidden;
       cursor: pointer;
-      
+
       display: flex;
     }
 
 
     .item {
       padding: 10px;
+
       &:hover {
         background: rgba(0, 0, 0, 0.2);
       }
+
       &:focus {
         background: rgba(0, 0, 0, 0.3);
       }
@@ -79,13 +83,20 @@ color-picker {
     .drag-element-handle {
       cursor: move;
     }
+
+    .drag-element-component {
+      background: rgba(0, 0, 0, 0.2);
+    }
   }
 
 
 }
 
 
-.k-editor-inline, .k-widget, .k-editor-inline:hover, .k-editor-inline.k-state-active {
+.k-editor-inline,
+.k-widget,
+.k-editor-inline:hover,
+.k-editor-inline.k-state-active {
   border: none;
   padding: 0;
   margin: 0;

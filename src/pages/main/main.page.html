@@ -29,6 +29,9 @@
           <app-element-clearfix *ngIf="element.component == 'clearfix'"></app-element-clearfix>
 
           <app-tooltip class="drag-element-toolbar" #myTooltip>
+              <div class="drag-element-component item">
+                  <fa-icon [icon]="element.icon"></fa-icon>
+                </div>
               <div class="drag-element-check item" (click)="openProperties(element)">
                   <fa-icon [icon]="faCogs"></fa-icon>
                 </div>
