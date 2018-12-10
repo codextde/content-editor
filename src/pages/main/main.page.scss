@@ -76,6 +76,9 @@ z-index: 1000;
     width: 100%;
     background: #d6d9dc;
     padding: 15px;
+    .btn-block + .btn-block {
+      margin-top: 0;
+    }
   }
 
   .tabs {

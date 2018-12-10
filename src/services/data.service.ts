@@ -5,7 +5,8 @@ import { Injectable } from '@angular/core';
 })
 export class DataService {
 
-  editorOptions: any = {
+  editorOptions: any = {};
+  editorDefaultOptions: any = {
     id: 1,
     name: 'Layout 1',
     bodyStyleOptions: {

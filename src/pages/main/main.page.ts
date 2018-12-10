@@ -4,7 +4,7 @@ import { faArrowsAlt, faCogs, faHandPointer, faTrash } from '@fortawesome/free-s
 import { DataService } from 'src/services/data.service';
 import { ElementsService } from 'src/services/elements.service';
 import { HelperService } from 'src/services/helper.service';
-import { ToastController } from '@ionic/angular';
+import { ToastController, AlertController } from '@ionic/angular';
 
 
 @Component({
@@ -39,7 +39,8 @@ export class MainPage implements OnInit {
     public helper: HelperService,
     public data: DataService,
     public elements: ElementsService,
-    public toast: ToastController
+    public toastCtrl: ToastController,
+    public alertCtrl: AlertController
   ) {}
 
   ngOnInit() {
@@ -47,6 +48,8 @@ export class MainPage implements OnInit {
     if (storageOptions) {
       this.data.editorOptions = JSON.parse(storageOptions);
       console.log(this.data.editorOptions);
+    } else {
+      this.clear();
     }
 
     if (this.data.editorOptions.bodyStyleOptions.css) {
@@ -88,8 +91,67 @@ export class MainPage implements OnInit {
   async save() {
     console.log(this.data.editorOptions);
     localStorage.setItem('editorOptions', JSON.stringify(this.data.editorOptions));
-    const toast = await this.toast.create({message: 'Saved', duration: 2000});
+    const toast = await this.toastCtrl.create({message: 'Saved', duration: 2000});
     toast.present();
+  }
+
+  clear() {
+    this.data.editorOptions = this.data.editorDefaultOptions;
+  }
+
+  async import() {
+    const alert = await this.alertCtrl.create({
+      header: 'Import',
+      subHeader: 'Paste the Json String',
+      inputs: [
+        {
+          name: 'value',
+          type: 'text',
+          placeholder: '{}'
+        }
+      ],
+      buttons: [
+        {
+          text: 'Cancel',
+          role: 'cancel',
+          cssClass: 'secondary'
+        }, {
+          text: 'Import',
+          handler: (data) => {
+            if (data && data.value) {
+              this.data.editorOptions = JSON.parse(data.value);
+            }
+          }
+        }
+      ]
+    });
+
+    await alert.present();
+  }
+
+  async export() {
+    const config = JSON.stringify(this.data.editorOptions);
+    const alert = await this.alertCtrl.create({
+      header: 'Export',
+      subHeader: 'Copy the Json String',
+      inputs: [
+        {
+          name: 'value',
+          type: 'text',
+          placeholder: '{}',
+          value: config
+        }
+      ],
+      buttons: [
+        {
+          text: 'Ok',
+          handler: () => {
+          }
+        }
+      ]
+    });
+
+    await alert.present();
   }
 
 
