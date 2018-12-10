@@ -1,6 +1,6 @@
-import { Component, OnInit, forwardRef } from '@angular/core';
+import { Component, forwardRef } from '@angular/core';
+import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { IVideoProperty } from '../../models/video.model';
-import { NG_VALUE_ACCESSOR, ControlValueAccessor } from '@angular/forms';
 
 @Component({
   selector: 'app-property-video',

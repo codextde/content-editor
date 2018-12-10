@@ -17,6 +17,7 @@ export class ImageElementComponent implements OnInit, ControlValueAccessor {
   
   padding;
   general;
+  image;
 
 
   /** NgModel Start */
@@ -33,6 +34,12 @@ export class ImageElementComponent implements OnInit, ControlValueAccessor {
       if (!this.general) {
         this.general = this.imageElement.properties.find((property) => {
           return property.name == 'general';
+        });
+      }
+
+      if (!this.image) {
+        this.image = this.imageElement.properties.find((property) => {
+          return property.name == 'image';
         });
       }
 
