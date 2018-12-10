@@ -8,7 +8,7 @@ export class ImageElementConfig {
     title: 'Image',
     properties: [{
       name: 'image',
-      src: 'https://images.pexels.com/photos/1660603/pexels-photo-1660603.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260'
+      src: 'https://images.pexels.com/photos/1285625/pexels-photo-1285625.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500'
     }, {
       name: 'general'
     }, {

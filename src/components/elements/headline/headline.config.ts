@@ -13,6 +13,6 @@ export class HeadlineElementConfig {
     }, {
       name: 'padding'
     }],
-    value: '<h1>Example Title</h1>'
+    value: 'Example Title'
   };
 }
