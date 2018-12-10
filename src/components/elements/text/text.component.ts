@@ -23,6 +23,7 @@ export class TextElementComponent implements OnInit, ControlValueAccessor {
   padding;
   general;
   text;
+  background;
 
 
   /** NgModel Start */
@@ -48,9 +49,11 @@ export class TextElementComponent implements OnInit, ControlValueAccessor {
         });
       }
 
-
-
-
+      if (!this.background) {
+        this.background = this.textElement.properties.find((property) => {
+          return property.name == 'background';
+        });
+      }
       if (this.editor) {
         this.editor.value(this.textElement.value);
       }
