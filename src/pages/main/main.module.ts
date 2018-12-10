@@ -4,12 +4,12 @@ import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule, Routes } from '@angular/router';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { TooltipModule } from "ngx-tooltip";
 import { ElementsModule } from 'src/components/elements/elements.module';
-import { PropertiesComponentModule } from 'src/components/properties/properties.module';
-import { MainPage } from './main.page';
 import { GeneralModule } from 'src/components/general/general.module';
+import { PropertiesComponentModule } from 'src/components/properties/properties.module';
 import { DirectivesModule } from 'src/directives/directives.module';
+import { MainPage } from './main.page';
+import { DropdownModule } from 'ngx-dropdown';
 
 
 const routes: Routes = [
@@ -21,6 +21,8 @@ const routes: Routes = [
 
 @NgModule({
   imports: [
+    
+    DropdownModule,
     CommonModule,
     FormsModule,
     DragDropModule,

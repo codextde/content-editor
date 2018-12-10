@@ -3,6 +3,9 @@ export class ITextProperty {
     color?: string;
     align?: string;
     lineHeight?: string;
-    fontFamily?: string;
+    fontFamily?: {
+        displayName: string;
+        fontFamily: string;
+    };
     size?: string;
 }

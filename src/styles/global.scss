@@ -2,10 +2,12 @@
 @import '~bootstrap/scss/bootstrap-grid';
 @import '~bootstrap/scss/button-group';
 @import '~bootstrap/scss/buttons';
+@import '~bootstrap/scss/dropdown';
 
 body {
   font-family: "Open Sans", "Helvetica Neue", Arial, sans-serif;
   line-height: 1;
+  color: #000;
 }
 
 .flex-end {
@@ -16,7 +18,7 @@ body {
 
 .cdk-drag-placeholder {
   background: #c4c9cc;
-  padding: 20px;
+  padding: 10px 15px;
   text-indent: -9999px;
 }
 

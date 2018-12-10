@@ -1,1 +1,17 @@
 @import '../property.wrapper.scss';
+
+.dropdown {
+    .dropdown-menu {
+       right: 0;
+       left: unset;
+       a {
+           cursor: pointer;
+           padding: 10px 15px;
+       }
+    }
+    &.open {
+        .dropdown-menu {
+            display: block;
+        }
+    }
+}

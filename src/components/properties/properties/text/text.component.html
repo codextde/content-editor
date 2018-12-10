@@ -36,11 +36,21 @@
         Font Family
       </div>
       <div class="col flex-end">
-        <select [(ngModel)]="text.fontFamily">
+        <!--<select [(ngModel)]="text.fontFamily">
           <option value=''></option>
           <option value='arial'>Arial</option>
           <option value='monospace'>Monospace</option>
-        </select>
+        </select>-->
+
+        <div class="dropdown" dropdown>
+            <button class="btn btn-secondary btn-sm" dropdown-open>
+              <span [style.fontFamily]="text?.fontFamily?.fontFamily">{{ text?.fontFamily?.displayName || 'Select' }}</span>
+            </button>
+            <div class="dropdown-menu">
+                <a class="dropdown-item" (click)="selectFont({displayName: '', fontFamily: ''})">Select</a>
+                <a *ngFor="let font of fonts" class="dropdown-item" (click)="selectFont(font)" [style.fontFamily]="font.fontFamily">{{font.displayName}}</a>
+              </div>
+        </div>
       </div>
     </div>
 

@@ -2,18 +2,18 @@ import { Component, forwardRef, OnInit } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 
 @Component({
-  selector: 'app-element-video',
-  templateUrl: './video.component.html',
-  styleUrls: ['./video.component.scss'],
+  selector: 'app-element-image',
+  templateUrl: './image.component.html',
+  styleUrls: ['./image.component.scss'],
   providers: [{
        provide: NG_VALUE_ACCESSOR,
-       useExisting: forwardRef(() => VideoElementComponent),
+       useExisting: forwardRef(() => ImageElementComponent),
        multi: true
   }]
 })
-export class VideoElementComponent implements OnInit, ControlValueAccessor {
+export class ImageElementComponent implements OnInit, ControlValueAccessor {
 
-  videoElement;
+  imageElement;
   
   padding;
   general;
@@ -22,16 +22,16 @@ export class VideoElementComponent implements OnInit, ControlValueAccessor {
   /** NgModel Start */
   writeValue(value: any): void {
     if (value) {
-      this.videoElement = value;
+      this.imageElement = value;
 
       if (!this.padding) {
-        this.padding = this.videoElement.properties.find((property) => {
+        this.padding = this.imageElement.properties.find((property) => {
           return property.name == 'padding';
         });
       }
 
       if (!this.general) {
-        this.general = this.videoElement.properties.find((property) => {
+        this.general = this.imageElement.properties.find((property) => {
           return property.name == 'general';
         });
       }

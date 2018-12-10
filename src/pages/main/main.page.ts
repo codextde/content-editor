@@ -28,9 +28,8 @@ export class MainPage implements OnInit {
 
   @HostListener('window:keydown', ['$event'])
   keyEvent(event: KeyboardEvent) {
-    event.preventDefault();
-
     if (event.ctrlKey && event.key == 's') {
+      event.preventDefault();
       this.save();
     }
 
