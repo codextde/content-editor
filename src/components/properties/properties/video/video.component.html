@@ -1,0 +1,23 @@
+<div class="property">
+  <div class="property-title">Video</div>
+  <div class="property-content">
+    <div class="row">
+      <div class="col title">
+        Source (URL)
+      </div>
+      <div class="col flex-end">
+        <input [(ngModel)]="video.src" />
+      </div>
+    </div>
+
+    <div class="row" *ngFor="let videoOption of videoOptions">
+      <div class="col title">
+        {{videoOption.title}}
+      </div>
+      <div class="col flex-end">
+        <ion-toggle [(ngModel)]="video[videoOption.option]"></ion-toggle>
+      </div>
+    </div>
+
+  </div>
+</div>

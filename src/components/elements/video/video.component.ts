@@ -17,6 +17,7 @@ export class VideoElementComponent implements OnInit, ControlValueAccessor {
   
   padding;
   general;
+  video;
 
 
   /** NgModel Start */
@@ -33,6 +34,12 @@ export class VideoElementComponent implements OnInit, ControlValueAccessor {
       if (!this.general) {
         this.general = this.videoElement.properties.find((property) => {
           return property.name == 'general';
+        });
+      }
+
+      if (!this.video) {
+        this.video = this.videoElement.properties.find((property) => {
+          return property.name == 'video';
         });
       }
 

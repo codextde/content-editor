@@ -18,6 +18,7 @@ import { JavascriptPropertyComponent } from './properties/javascript/javascript.
 import { PaddingPropertyComponent } from './properties/padding/padding.component';
 import { SwitchPropertyComponent } from './properties/switch/switch.component';
 import { TextPropertyComponent } from './properties/text/text.component';
+import { VideoPropertyComponent } from './properties/video/video.component';
 
 
 
@@ -33,7 +34,8 @@ import { TextPropertyComponent } from './properties/text/text.component';
     ImagePropertyComponent,
     GeneralPropertyComponent,
     BorderPropertyComponent,
-    SwitchPropertyComponent
+    SwitchPropertyComponent,
+    VideoPropertyComponent
   ],
   exports: [
     PropertiesComponent,
@@ -46,7 +48,8 @@ import { TextPropertyComponent } from './properties/text/text.component';
     ImagePropertyComponent,
     GeneralPropertyComponent,
     BorderPropertyComponent,
-    SwitchPropertyComponent
+    SwitchPropertyComponent,
+    VideoPropertyComponent
   ],
   imports: [
     DropdownModule,

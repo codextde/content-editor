@@ -80,6 +80,8 @@ export class MainPage implements OnInit {
   }
 
   delete(element) {
+    this.propertiesActive = false;
+    this.activeElement = {};
     this.data.editorOptions.elements = this.data.editorOptions.elements.filter((el) => el  !==  element);
   }
 
