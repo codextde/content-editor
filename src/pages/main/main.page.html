@@ -25,9 +25,10 @@
           <app-element-html *ngIf="element.component == 'html'" [(ngModel)]="element"></app-element-html>
           <app-element-headline *ngIf="element.component == 'headline'" [(ngModel)]="element"></app-element-headline>
           <app-element-video *ngIf="element.component == 'video'" [(ngModel)]="element"></app-element-video>
+          <app-element-image *ngIf="element.component == 'image'" [(ngModel)]="element"></app-element-image>
+          <app-element-clearfix *ngIf="element.component == 'clearfix'"></app-element-clearfix>
 
-
-          <app-tooltip class="drag-element-toolbar" #myTooltip [placement]="top">
+          <app-tooltip class="drag-element-toolbar" #myTooltip>
               <div class="drag-element-check item" (click)="openProperties(element)">
                   <fa-icon [icon]="faCogs"></fa-icon>
                 </div>

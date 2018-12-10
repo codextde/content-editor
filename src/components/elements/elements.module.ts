@@ -6,6 +6,7 @@ import { HeadlineElementComponent } from './headline/headline.component';
 import { HtmlElementComponent } from './html/html.component';
 import { PipesModule } from 'src/pipes/pipes.module';
 import { ImageElementComponent } from './image/image.component';
+import { ClearfixElementComponent } from './clearfix/clearfix.component';
 
 
 @NgModule({
@@ -14,21 +15,24 @@ import { ImageElementComponent } from './image/image.component';
     TextElementComponent,
     HeadlineElementComponent,
     HtmlElementComponent,
-    ImageElementComponent
+    ImageElementComponent,
+    ClearfixElementComponent
   ],
   entryComponents: [
     VideoElementComponent,
     TextElementComponent,
     HeadlineElementComponent,
     HtmlElementComponent,
-    ImageElementComponent
+    ImageElementComponent,
+    ClearfixElementComponent
   ],
   exports: [
     VideoElementComponent,
     TextElementComponent,
     HeadlineElementComponent,
     HtmlElementComponent,
-    ImageElementComponent
+    ImageElementComponent,
+    ClearfixElementComponent
   ],
   imports: [
     PipesModule,

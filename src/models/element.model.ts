@@ -2,6 +2,6 @@ export class IElement {
     component: string;
     icon: any;
     title: string;
-    properties: any[];
+    properties?: any[];
     value?: any;
 }

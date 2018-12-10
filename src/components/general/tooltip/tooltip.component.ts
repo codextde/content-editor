@@ -58,10 +58,11 @@ export class TooltipComponent  implements AfterViewInit {
         if (!this.hostElement) {
             return;
         }
-        const rect = this.hostElement.getBoundingClientRect();
+        // const rect = this.hostElement.getBoundingClientRect();
+        const rect = this.hostElement.querySelectorAll('div')[0].getBoundingClientRect();
         // const p = this.positionElements(this.hostElement, this.element.nativeElement.children[0], this.placement);
-        this.top = rect.top;
-        this.left =  rect.right;
+        this.top = rect.bottom;
+        this.left =  rect.left;
         this.isIn = true;
         if (this.animation) {
             this.isFade = true;

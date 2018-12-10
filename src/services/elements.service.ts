@@ -4,6 +4,7 @@ import { HtmlElementConfig } from 'src/components/elements/html/html.config';
 import { TextElementConfig } from 'src/components/elements/text/text.config';
 import { VideoElementConfig } from 'src/components/elements/video/video.config';
 import { ImageElementConfig } from 'src/components/elements/image/image.config';
+import { ClearfixElementConfig } from 'src/components/elements/clearfix/clearfix.config';
 
 
 
@@ -20,5 +21,6 @@ export class ElementsService {
     this.elements.push(HtmlElementConfig.config);
     this.elements.push(VideoElementConfig.config);
     this.elements.push(ImageElementConfig.config);
+    this.elements.push(ClearfixElementConfig.config);
   }
 }
