@@ -14,8 +14,6 @@ declare var kendo: any;
 })
 export class HeadlineElementComponent implements OnInit, ControlValueAccessor {
 
-  tag = 'h2';
-
   @ViewChild('editor') editorEl: ElementRef;
   editor;
   headlineElement;

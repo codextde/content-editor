@@ -15,10 +15,10 @@ import { IPaddingProperty } from '../../models/padding.model';
 export class PaddingPropertyComponent implements ControlValueAccessor {
 
   padding: IPaddingProperty = {
-    left: '0px',
-    top: '0px',
-    right: '0px',
-    bottom: '0px'
+    left: 0,
+    top: 0,
+    right: 0,
+    bottom: 0
   };
 
 

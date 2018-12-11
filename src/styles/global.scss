@@ -37,14 +37,36 @@ color-picker {
 }
 
 
+// Drag Elements are in the Global Styles because of cdk
+.cdk-drop-list-dragging {
+  .drag-element-toolbar {
+    display: none;
+  }
+
+  .drag-element {
+    div:first-of-type {
+      &:hover {
+        box-shadow: none;
+      }
+    }
+  }
+
+}
 
 .drag-element {
-  div:first-of-type {
-    &:hover {
 
-      box-shadow: 0 0 0 1px rgba(0, 0, 0, .1);
+  &.cdk-drag-preview,
+  &.cdk-drag-placeholder {
+    .drag-element-toolbar {
+      display: none;
     }
 
+  }
+
+  div:first-of-type {
+    &:hover {
+      box-shadow: 0 0 0 1px rgba(0, 0, 0, .1);
+    }
   }
 
   .drag-element-toolbar {
@@ -75,7 +97,8 @@ color-picker {
         background: rgba(0, 0, 0, 0.2);
       }
 
-      &:focus, &:active {
+      &:focus,
+      &:active {
         background: rgba(0, 0, 0, 0.5);
       }
     }
@@ -92,17 +115,14 @@ color-picker {
 
 }
 
-/*
-.k-editor-inline,
-.k-widget,
-.k-editor-inline:hover,
-.k-editor-inline.k-state-active {
-  border: none;
-  padding: 0;
-  margin: 0;
-  transition: none;
-  border-radius: 0;
-  line-height: 1;
-  overflow: hidden;
+
+input[type=range] {
+  &::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 25px;
+    height: 25px;
+    background: #4CAF50;
+    cursor: pointer;
+  }
 }
-*/

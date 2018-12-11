@@ -61,7 +61,7 @@ export class TooltipComponent  implements AfterViewInit {
         // const rect = this.hostElement.getBoundingClientRect();
         const rect = this.hostElement.querySelectorAll('div')[0].getBoundingClientRect();
         // const p = this.positionElements(this.hostElement, this.element.nativeElement.children[0], this.placement);
-        this.top = rect.bottom;
+        this.top = rect.bottom - 1;
         this.left =  rect.left;
         this.isIn = true;
         if (this.animation) {

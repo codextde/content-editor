@@ -6,12 +6,8 @@
   right: 410px;
   bottom: 0;
   overflow: auto;
-
   background: #fbe8d8;
-
-
-
-
+  
   .passage-wrapper {
     border: 0px solid black;
     border-radius: 6px;
@@ -56,6 +52,8 @@
   }
 }
 
+
+
 .section-settings {
   position: fixed;
   right: 0;
@@ -64,7 +62,7 @@
   width: 410px;
   background-color: #F9F9F9;
   border-left: 1px solid #c7c7c7;
-z-index: 1000;
+  z-index: 1000;
 
   .section-settings-footer {
     display: flex;

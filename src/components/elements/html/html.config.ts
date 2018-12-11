@@ -7,11 +7,7 @@ export class HtmlElementConfig {
     icon: faCode,
     title: 'HTML',
     properties: [{
-        name: 'padding',
-        top: '0px',
-        right: '0px',
-        bottom: '0px',
-        left: '0px'
+        name: 'padding'
       },
       {
         name: 'html',

@@ -8,7 +8,6 @@
         cdkDropList 
         #activeElementsList="cdkDropList" 
         [cdkDropListData]="data.editorOptions.elements"
-        [cdkDropListConnectedTo]="[elementsList]" 
         (cdkDropListDropped)="drop($event)" 
         [style.backgroundColor]="data.editorOptions.bodyStyleOptions.background.color"
         [style.backgroundImage]="'url('+data.editorOptions.bodyStyleOptions.background.image+')'" 

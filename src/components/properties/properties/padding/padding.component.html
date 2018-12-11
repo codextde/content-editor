@@ -6,7 +6,8 @@
         Left
       </div>
       <div class="col flex-end">
-        <input [(ngModel)]="padding.left">
+        {{padding?.left}}
+        <input type="range" min="0" max="500" step="1" [(ngModel)]="padding.left">
       </div>
     </div>
     <div class="row">
@@ -14,7 +15,7 @@
         Top
       </div>
       <div class="col flex-end">
-        <input [(ngModel)]="padding.top">
+          <input type="range" min="0" max="500" step="1" [(ngModel)]="padding.top">
       </div>
     </div>
     <div class="row">
@@ -22,7 +23,8 @@
         Right
       </div>
       <div class="col flex-end">
-        <input [(ngModel)]="padding.right">
+        
+          <input type="range" min="0" max="500" step="1" [(ngModel)]="padding.right">
       </div>
     </div>
     <div class="row">
@@ -30,7 +32,8 @@
         Bottom
       </div>
       <div class="col flex-end">
-        <input [(ngModel)]="padding.bottom">
+        
+          <input type="range" min="0" max="500" step="1" [(ngModel)]="padding.bottom">
       </div>
     </div>
   </div>

@@ -1,7 +1,7 @@
 export class IGeneralProperty {
     cssClass?: string;
     zIndex?: number;
-    float?: boolean;
+    float?: string;
     width?: string;
     boxShadow?: string;
 }

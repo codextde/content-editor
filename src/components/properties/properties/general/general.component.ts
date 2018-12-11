@@ -18,7 +18,7 @@ export class GeneralPropertyComponent implements ControlValueAccessor {
   general: IGeneralProperty = {
     cssClass: '',
     zIndex: 0,
-    float: false,
+    float: 'none',
     width: '',
     boxShadow: ''
   };
