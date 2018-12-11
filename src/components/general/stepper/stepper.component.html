@@ -1,0 +1,9 @@
+<div class="stepper">
+    <a (click)="step('down')">
+        <fa-icon [icon]="faMinus"></fa-icon>
+    </a>
+    <input class="stepper-input" [(ngModel)]="value" (ngModelChange)="modelChange($event)">
+    <a (click)="step('up')">
+        <fa-icon [icon]="faPlus"></fa-icon>
+    </a>
+  </div>

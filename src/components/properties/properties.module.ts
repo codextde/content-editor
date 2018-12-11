@@ -20,6 +20,7 @@ import { PaddingPropertyComponent } from './properties/padding/padding.component
 import { SwitchPropertyComponent } from './properties/switch/switch.component';
 import { TextPropertyComponent } from './properties/text/text.component';
 import { VideoPropertyComponent } from './properties/video/video.component';
+import { GeneralModule } from '../general/general.module';
 
 
 
@@ -63,7 +64,8 @@ import { VideoPropertyComponent } from './properties/video/video.component';
     ReactiveFormsModule,
     FormsModule,
     MonacoEditorModule,
-    MatSliderModule
+    MatSliderModule,
+    GeneralModule
   ]
 })
 export class PropertiesComponentModule { }

@@ -26,6 +26,19 @@
       }
     }
 
+    .slider {
+
+      align-items: center;
+
+      span {
+        padding-right: 7px;
+        font-size: 14px;
+        font-weight: bold;
+        color: #516167;
+
+      }
+    }
+
     ion-toggle {
       padding: 10px;
     }
@@ -54,6 +67,10 @@
       vertical-align: middle;
       font-size: 14px;
     }
+
+
+    
+
 
   }
 

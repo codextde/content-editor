@@ -21,10 +21,18 @@
     </div>
     <div class="row">
       <div class="col title">
-        Width
+        Width (px)
       </div>
       <div class="col flex-end">
-        <input [(ngModel)]="general.width">
+        <app-stepper [(ngModel)]="general.width"></app-stepper>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col title">
+        zIndex
+      </div>
+      <div class="col flex-end">
+        <app-stepper [(ngModel)]="general.zIndex"></app-stepper>
       </div>
     </div>
     <div class="row">
@@ -35,14 +43,7 @@
         <input [(ngModel)]="general.cssClass">
       </div>
     </div>
-    <div class="row">
-      <div class="col title">
-        z-index
-      </div>
-      <div class="col flex-end">
-        <input [(ngModel)]="general.zIndex">
-      </div>
-    </div>
+
     <div class="row">
       <div class="col title">
         Box Shadow

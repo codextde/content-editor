@@ -1,39 +1,36 @@
 <div class="property">
-  <div class="property-title">Padding</div>
+  <div class="property-title">Padding (px)</div>
   <div class="property-content">
     <div class="row">
       <div class="col title">
         Left
       </div>
-      <div class="col flex-end">
-        {{padding?.left}}
-        <input type="range" min="0" max="500" step="1" [(ngModel)]="padding.left">
+      <div class="col flex-end slider">
+        <app-stepper [(ngModel)]="padding.left"></app-stepper>
       </div>
     </div>
     <div class="row">
       <div class="col title">
         Top
       </div>
-      <div class="col flex-end">
-          <input type="range" min="0" max="500" step="1" [(ngModel)]="padding.top">
+      <div class="col flex-end slider">
+          <app-stepper [(ngModel)]="padding.top"></app-stepper>
       </div>
     </div>
     <div class="row">
       <div class="col title">
         Right
       </div>
-      <div class="col flex-end">
-        
-          <input type="range" min="0" max="500" step="1" [(ngModel)]="padding.right">
+      <div class="col flex-end slider">
+        <app-stepper [(ngModel)]="padding.right"></app-stepper>
       </div>
     </div>
     <div class="row">
       <div class="col title">
         Bottom
       </div>
-      <div class="col flex-end">
-        
-          <input type="range" min="0" max="500" step="1" [(ngModel)]="padding.bottom">
+      <div class="col flex-end slider">
+          <app-stepper [(ngModel)]="padding.bottom"></app-stepper>
       </div>
     </div>
   </div>

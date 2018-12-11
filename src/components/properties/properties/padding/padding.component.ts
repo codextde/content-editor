@@ -1,6 +1,7 @@
 import { Component, OnInit, forwardRef, Input, HostBinding } from '@angular/core';
 import { NG_VALUE_ACCESSOR, ControlValueAccessor } from '@angular/forms';
 import { IPaddingProperty } from '../../models/padding.model';
+import { faMinus, faPlus } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-property-padding',
@@ -13,6 +14,9 @@ import { IPaddingProperty } from '../../models/padding.model';
   }]
 })
 export class PaddingPropertyComponent implements ControlValueAccessor {
+
+
+
 
   padding: IPaddingProperty = {
     left: 0,
@@ -47,5 +51,7 @@ export class PaddingPropertyComponent implements ControlValueAccessor {
 
 
   onTouched = () => {};
+
+
 
 }

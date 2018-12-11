@@ -7,7 +7,7 @@
   bottom: 0;
   overflow: auto;
   background: #fbe8d8;
-  
+
   .passage-wrapper {
     border: 0px solid black;
     border-radius: 6px;
@@ -74,7 +74,8 @@
     width: 100%;
     background: #d6d9dc;
     padding: 15px;
-    .btn-block + .btn-block {
+
+    .btn-block+.btn-block {
       margin-top: 0;
     }
   }
@@ -113,7 +114,7 @@
   }
 
   .section-settings-content {
-    
+
     height: calc(100% - 117px);
     //overflow-y: auto;
 

@@ -1,0 +1,41 @@
+.stepper {
+
+    background-color: #FFF;
+    border: 1px solid #DEE1E2;
+    border-radius: 4px;
+    display: flex;
+    line-height: 0;
+    font-size: 11px;
+    font-weight: 700;
+    margin-top: 3px;
+    user-select: none;
+
+    a {
+      cursor: pointer;
+      display: inline-block;
+      height: 30px;
+      width: 30px;
+      text-align: center;
+      line-height: 30px;
+      vertical-align: middle;
+      color: #6b757d;
+      &:focus, &.active {
+        background: rgba(0, 0, 0, 0.1);
+      }
+    }
+
+    input.stepper-input {
+      background-color: #F9F9F9;
+      color: #7F7F7F;
+      border: 0px;
+      border-left: 1px solid #DEE1E2;
+      border-right: 1px solid #DEE1E2;
+      display: inline-block;
+      height: 30px;
+      width: 40px;
+      text-align: center;
+      line-height: 30px;
+      padding: 0px;
+      vertical-align: middle;
+    }
+  }

@@ -27,8 +27,7 @@ export class TextPropertyComponent implements ControlValueAccessor {
       displayName: '',
       fontFamily: ''
     },
-    weight: '',
-    size: ''
+    weight: ''
   };
 
   // Fonts

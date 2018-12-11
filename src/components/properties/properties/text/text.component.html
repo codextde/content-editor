@@ -1,8 +1,6 @@
 <div class="property">
   <div class="property-title">Text</div>
   <div class="property-content">
-
-
     <div class="row">
       <div class="col title">
         Weight
@@ -44,12 +42,6 @@
         Font Family
       </div>
       <div class="col flex-end">
-        <!--<select [(ngModel)]="text.fontFamily">
-          <option value=''></option>
-          <option value='arial'>Arial</option>
-          <option value='monospace'>Monospace</option>
-        </select>-->
-
         <div class="dropdown" dropdown>
           <button class="btn btn-secondary btn-sm" dropdown-open>
             <span [style.fontFamily]="text?.fontFamily?.fontFamily">{{ text?.fontFamily?.displayName || 'Select' }}</span>
@@ -77,9 +69,7 @@
         Size
       </div>
       <div class="col flex-end">
-        <input [(ngModel)]="text.size" />
-        <!--<input type="range" [(ngModel)]="text.size.value" step="1" min="1" max="100">
-        <span>{{text.size.value}}</span>-->
+          <app-stepper [(ngModel)]="text.size"></app-stepper>
       </div>
     </div>
 
@@ -90,7 +80,7 @@
         Line Height
       </div>
       <div class="col flex-end">
-        <input [(ngModel)]="text.lineHeight" />
+          <app-stepper [(ngModel)]="text.lineHeight"></app-stepper>
       </div>
     </div>
   </div>
