@@ -5,7 +5,6 @@
   top: 0;
   right: 410px;
   bottom: 0;
-  overflow: auto;
   background: #fbe8d8;
 
   .passage-wrapper {
@@ -64,6 +63,8 @@
   border-left: 1px solid #c7c7c7;
   z-index: 1000;
 
+  overflow: auto;
+
   .section-settings-footer {
     display: flex;
     align-items: center;
@@ -115,8 +116,9 @@
 
   .section-settings-content {
 
-    height: calc(100% - 117px);
-    //overflow-y: auto;
+    height: calc(100% - 104px);
+    overflow-y: auto;
+    overflow-x: hidden;
 
     .element-list {
       display: grid;

@@ -12,22 +12,16 @@ export class DataService {
     bodyStyleOptions: {
       css: '.test {\n  display: none\n}',
       padding: {
-        top: '30px',
-        right: '30px',
-        bottom: '30px',
-        left: '30px'
+        top: 30,
+        right: 30,
+        bottom: 30,
+        left: 30
       },
       background: {
         color: '#fff',
         image: '',
         repeat: 'no-repeat',
         size: 'cover',
-      } ,
-      font: {
-        family: 'Tahoma, Geneva, sans-serif',
-        size: 16,
-        weight: 'normal',
-        color: '#4d4d4d'
       },
       directionLtr: true
     },

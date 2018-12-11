@@ -13,10 +13,10 @@
         [style.backgroundImage]="'url('+data.editorOptions.bodyStyleOptions.background.image+')'" 
         [style.backgroundRepeat]="data.editorOptions.bodyStyleOptions.background.repeat"
         [style.backgroundSize]="data.editorOptions.bodyStyleOptions.background.size"
-        [style.paddingLeft]="data.editorOptions.bodyStyleOptions.padding.left" 
-        [style.paddingTop]="data.editorOptions.bodyStyleOptions.padding.top"
-        [style.paddingRight]="data.editorOptions.bodyStyleOptions.padding.right" 
-        [style.paddingBottom]="data.editorOptions.bodyStyleOptions.padding.bottom"
+        [style.paddingLeft.px]="data.editorOptions.bodyStyleOptions.padding.left" 
+        [style.paddingTop.px]="data.editorOptions.bodyStyleOptions.padding.top"
+        [style.paddingRight.px]="data.editorOptions.bodyStyleOptions.padding.right" 
+        [style.paddingBottom.px]="data.editorOptions.bodyStyleOptions.padding.bottom"
         [dir]="data.editorOptions.bodyStyleOptions.directionLtr ? 'ltr' : 'rtl'">
 
         <div class="drag-element" [tooltip]="myTooltip" *ngFor="let element of data.editorOptions.elements" cdkDrag>
