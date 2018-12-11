@@ -4,6 +4,7 @@
 @import '~bootstrap/scss/buttons';
 @import '~bootstrap/scss/dropdown';
 
+
 body {
   font-family: "Open Sans", "Helvetica Neue", Arial, sans-serif;
   line-height: 1;
@@ -22,6 +23,8 @@ body {
   text-indent: -9999px;
 }
 
+
+
 color-picker {
 
   .color-picker {
@@ -36,6 +39,18 @@ color-picker {
   }
 }
 
+.tooltip {
+  background: rgba(0, 0, 0, 0.7);
+  border-radius: 5px;
+  padding: 5px 10px;
+  color: #fff;
+  z-index: 10;
+  font-size: 14px;
+  overflow: hidden;
+  display: flex;
+  max-width: 300px;
+  line-height: 1.5;
+}
 
 // Drag Elements are in the Global Styles because of cdk
 .cdk-drop-list-dragging {
@@ -72,11 +87,8 @@ color-picker {
   .drag-element-toolbar {
 
     .tooltip {
-      height: 40px;
       background: rgba(0, 0, 0, 0.2);
-      border-top-right-radius: 5px;
-      border-bottom-left-radius: 5px;
-      border-bottom-right-radius: 5px;
+      border-top-left-radius: 0;
       padding: 0;
       color: #fff;
       text-align: center;
@@ -85,13 +97,12 @@ color-picker {
       transition: opacity .5s ease-out;
       overflow: hidden;
       cursor: pointer;
-
       display: flex;
     }
 
 
     .item {
-      padding: 10px;
+      padding: 5px 10px;
 
       &:hover {
         background: rgba(0, 0, 0, 0.2);

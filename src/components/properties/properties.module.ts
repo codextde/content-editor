@@ -2,11 +2,13 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatSliderModule } from '@angular/material/slider';
+import { MatTooltipModule } from '@angular/material/tooltip';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { IonicModule } from '@ionic/angular';
 import { ColorPickerModule } from 'ngx-color-picker';
 import { DropdownModule } from 'ngx-dropdown';
 import { MonacoEditorModule } from 'ngx-monaco-editor';
+import { GeneralModule } from '../general/general.module';
 import { PropertiesComponent } from './properties.component';
 import { BackgroundPropertyComponent } from './properties/background/background.component';
 import { BorderPropertyComponent } from './properties/border/border.component';
@@ -20,8 +22,7 @@ import { PaddingPropertyComponent } from './properties/padding/padding.component
 import { SwitchPropertyComponent } from './properties/switch/switch.component';
 import { TextPropertyComponent } from './properties/text/text.component';
 import { VideoPropertyComponent } from './properties/video/video.component';
-import { GeneralModule } from '../general/general.module';
-
+import { DirectivesModule } from 'src/directives/directives.module';
 
 
 @NgModule({
@@ -56,6 +57,7 @@ import { GeneralModule } from '../general/general.module';
     DividerPropertyComponent
   ],
   imports: [
+
     DropdownModule,
     IonicModule,
     ColorPickerModule,
@@ -64,8 +66,8 @@ import { GeneralModule } from '../general/general.module';
     ReactiveFormsModule,
     FormsModule,
     MonacoEditorModule,
-    MatSliderModule,
-    GeneralModule
+    GeneralModule,
+    DirectivesModule
   ]
 })
 export class PropertiesComponentModule { }

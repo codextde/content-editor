@@ -1,6 +1,6 @@
-import { Component, OnInit, forwardRef, Input, HostBinding } from '@angular/core';
-import { NG_VALUE_ACCESSOR, ControlValueAccessor } from '@angular/forms';
-import { IPaddingProperty } from '../../models/padding.model';
+import { Component, forwardRef } from '@angular/core';
+import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
+import { faInfoCircle } from '@fortawesome/free-solid-svg-icons';
 import { IGeneralProperty } from '../../models/general.model';
 
 @Component({
@@ -14,6 +14,8 @@ import { IGeneralProperty } from '../../models/general.model';
   }]
 })
 export class GeneralPropertyComponent implements ControlValueAccessor {
+
+  faInfoCircle = faInfoCircle;
 
   general: IGeneralProperty = {
     cssClass: '',

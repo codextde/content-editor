@@ -11,6 +11,8 @@ export class HeadlineElementConfig {
     }, {
       name: 'text'
     }, {
+      name: 'background'
+    }, {
       name: 'padding'
     }],
     value: 'Example Title'

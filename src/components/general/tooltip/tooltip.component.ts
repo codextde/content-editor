@@ -58,8 +58,12 @@ export class TooltipComponent  implements AfterViewInit {
         if (!this.hostElement) {
             return;
         }
-        // const rect = this.hostElement.getBoundingClientRect();
-        const rect = this.hostElement.querySelectorAll('div')[0].getBoundingClientRect();
+        let rect: any = this.hostElement.querySelectorAll('div')[0];
+        if (rect) {
+            rect = rect.getBoundingClientRect();
+        } else {
+            rect = this.hostElement.getBoundingClientRect();
+        }
         // const p = this.positionElements(this.hostElement, this.element.nativeElement.children[0], this.placement);
         this.top = rect.bottom - 1;
         this.left =  rect.left;

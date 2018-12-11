@@ -1,5 +1,4 @@
 <div
-  
   [style.paddingLeft.px]="padding?.left" 
   [style.paddingTop.px]="padding?.top"
   [style.paddingRight.px]="padding?.right" 
@@ -8,12 +7,16 @@
   [style.float]="general?.float"
   [style.width.px]="general?.width"
   [style.boxShadow]="general?.boxShadow"
-  [ngClass]="general?.cssClass"
   [style.color]="text?.color"
   [style.fontFamily]="text?.fontFamily?.fontFamily"
   [style.lineHeight]="text?.lineHeight"
   [style.fontSize.px]="text?.size"
   [style.textAlign]="text?.align"
+  [style.backgroundColor]="background?.color"
+  [style.backgroundImage]="'url('+background?.image+')'" 
+  [style.backgroundRepeat]="background?.repeat"
+  [style.backgroundSize]="background?.size"
+  [ngClass]="general?.cssClass"
 >
   <h1 #editor [style.fontWeight]="text?.weight"
   [class.k-widget]="false"
