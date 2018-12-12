@@ -125,3 +125,12 @@ color-picker {
 
 
 }
+
+
+.k-state-active{
+  &:focus {
+    box-shadow: 0 0 0 1px #ddd;
+    outline: none;
+  }
+  
+}
