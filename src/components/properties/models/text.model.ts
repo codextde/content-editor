@@ -9,4 +9,5 @@ export class ITextProperty {
     };
     size?: number;
     weight?: string;
+    textIndent?: number;
 }

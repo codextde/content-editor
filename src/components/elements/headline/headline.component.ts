@@ -21,6 +21,8 @@ export class HeadlineElementComponent implements OnInit, ControlValueAccessor {
   padding;
   general;
   text;
+  background;
+  headline;
 
   /** NgModel Start */
   writeValue(value: any): void {
@@ -42,6 +44,18 @@ export class HeadlineElementComponent implements OnInit, ControlValueAccessor {
       if (!this.text) {
         this.text = this.headlineElement.properties.find((property) => {
           return property.name == 'text';
+        });
+      }
+
+      if (!this.background) {
+        this.background = this.headlineElement.properties.find((property) => {
+          return property.name == 'background';
+        });
+      }
+
+      if (!this.headline) {
+        this.headline = this.headlineElement.properties.find((property) => {
+          return property.name == 'headline';
         });
       }
 
@@ -73,6 +87,8 @@ export class HeadlineElementComponent implements OnInit, ControlValueAccessor {
   }
 
   ngOnInit() {
+    // Removed Kendo from the Heading Element
+    /*
     kendo.jQuery(this.editorEl.nativeElement).kendoEditor({
       tools: [
         'bold',
@@ -91,7 +107,7 @@ export class HeadlineElementComponent implements OnInit, ControlValueAccessor {
       keyup: (a) => this.change(this),
       change: (a) => this.change(this)
     });
-    this.editor = kendo.jQuery(this.editorEl.nativeElement).data('kendoEditor');
+    this.editor = kendo.jQuery(this.editorEl.nativeElement).data('kendoEditor');*/
   }
 
 }

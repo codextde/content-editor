@@ -10,6 +10,7 @@ import { ElementsService } from 'src/services/elements.service';
 import { HelperService } from 'src/services/helper.service';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { ResizeService } from 'src/services/resize.service';
 
 @NgModule({
   declarations: [

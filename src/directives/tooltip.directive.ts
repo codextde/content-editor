@@ -1,6 +1,5 @@
-import { ComponentFactoryResolver, ComponentRef, Directive, HostListener, Input, ViewContainerRef, NgZone } from '@angular/core';
+import { ComponentFactoryResolver, ComponentRef, Directive, HostListener, Input, ViewContainerRef } from '@angular/core';
 import { TooltipComponent } from 'src/components/general/tooltip/tooltip.component';
-import { Subscription, fromEvent } from 'rxjs';
 
 @Directive({
   selector: '[tooltip]'
@@ -13,8 +12,6 @@ export class TooltipDirective {
 
     private tooltip: ComponentRef<TooltipComponent>;
     private visible: boolean;
-    private eventSubscription: Subscription;
-    private passageContent: HTMLElement;
 
     // -------------------------------------------------------------------------
     // Constructor
@@ -23,8 +20,6 @@ export class TooltipDirective {
     constructor(private viewContainerRef: ViewContainerRef,
                 private resolver: ComponentFactoryResolver) {
     }
-
-    
 
     // -------------------------------------------------------------------------
     // Inputs / Outputs
@@ -47,29 +42,9 @@ export class TooltipDirective {
     // Public Methods
     // -------------------------------------------------------------------------
 
-    subscribeScroll() {
-        if (!this.passageContent) {
-            this.passageContent = document.querySelector('.passage-content');
-        }
-        if (!this.eventSubscription && this.passageContent) {
-            this.eventSubscription = fromEvent(this.passageContent, 'scroll')
-            .subscribe(() => {
-                this.updatePosition();
-            });
-        }
-    }
-
-    updatePosition() {
-        if (this.content instanceof TooltipComponent) {
-            (this.content as TooltipComponent).show();
-        }
-    }
-
     @HostListener('focusin')
     @HostListener('mouseenter')
     show(): void {
-        this.subscribeScroll();
-
         if (this.tooltipDisabled || this.visible) {
             return;
         }
@@ -98,11 +73,6 @@ export class TooltipDirective {
     @HostListener('focusout')
     @HostListener('mouseleave')
     hide(): void {
-        if (this.eventSubscription) {
-            this.eventSubscription.unsubscribe();
-            this.eventSubscription = null;
-        }
-
         if (!this.visible) {
             return;
         }

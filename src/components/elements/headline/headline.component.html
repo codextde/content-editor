@@ -17,10 +17,12 @@
   [style.backgroundRepeat]="background?.repeat"
   [style.backgroundSize]="background?.size"
   [ngClass]="general?.cssClass"
->
-  <h1 #editor [style.fontWeight]="text?.weight"
+  [style.fontWeight]="text?.weight"
   [class.k-widget]="false"
   [class.k-editor]="false"
   [class.k-editor-inline]="false"
-  [class.k-state-active]="false"></h1>
+  [class.k-state-active]="false"
+>
+<!--*replaceTag="headline?.tag"-->
+<h1 >{{headline?.text}}</h1>
 </div>

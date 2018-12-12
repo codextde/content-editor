@@ -1,14 +1,12 @@
-import {Component, Input, AfterViewInit, ElementRef, ChangeDetectorRef, OnInit, OnDestroy, HostListener} from '@angular/core';
-import { fromEvent } from 'rxjs';
-import { Observable, of, Subject, Subscription } from 'rxjs';
-import { map, filter, debounceTime, distinctUntilChanged } from 'rxjs/operators';
+import { AfterViewInit, ChangeDetectorRef, Component, DoCheck, ElementRef, Input } from '@angular/core';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-tooltip',
   templateUrl: './tooltip.component.html',
   styleUrls: ['./tooltip.component.scss']
 })
-export class TooltipComponent  implements AfterViewInit {
+export class TooltipComponent  implements AfterViewInit, DoCheck {
 
 
     // -------------------------------------------------------------------------
@@ -32,10 +30,12 @@ export class TooltipComponent  implements AfterViewInit {
     // Properties
     // -------------------------------------------------------------------------
 
+    display: string = 'none';
     top: number = -100000;
     left: number = -100000;
     isIn: boolean = false;
     isFade: boolean = false;
+    sizeSubscription: Subscription;
 
 
     // -------------------------------------------------------------------------
@@ -56,7 +56,10 @@ export class TooltipComponent  implements AfterViewInit {
     ngAfterViewInit(): void {
         this.show();
         this.cdr.detectChanges();
+    }
 
+    ngDoCheck(): void {
+        this.updatePosition();
     }
 
     // -------------------------------------------------------------------------
@@ -64,6 +67,10 @@ export class TooltipComponent  implements AfterViewInit {
     // -------------------------------------------------------------------------
 
     show(): void {
+        this.display = 'flex';
+    }
+
+    updatePosition() {
         if (!this.hostElement) {
             return;
         }
@@ -80,15 +87,11 @@ export class TooltipComponent  implements AfterViewInit {
         if (this.animation) {
             this.isFade = true;
         }
+
     }
 
     hide(): void {
-        this.top = -100000;
-        this.left = -100000;
-        this.isIn = true;
-        if (this.animation) {
-            this.isFade = false;
-        }
+        this.display = 'none';
     }
 
     // -------------------------------------------------------------------------

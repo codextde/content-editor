@@ -51,13 +51,15 @@
       font-size: 14px;
       line-height: 12px;
       color: #8F9699;
-      fa-icon{
+
+      fa-icon {
         padding: 0 5px;
       }
     }
 
     input,
-    select {
+    select,
+    textarea {
       background-color: #fff;
       color: #7F7F7F;
       border: 1px solid #DEE1E2;
@@ -71,8 +73,15 @@
       font-size: 14px;
     }
 
+    textarea {
+      text-align: left;
+      line-height: 1.3;
+      padding: 5px;
+      width: 150px;
+    }
 
-    
+
+
 
 
   }
