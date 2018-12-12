@@ -4,4 +4,5 @@ export class IGeneralProperty {
     float?: string;
     width?: number;
     boxShadow?: string;
+    center?: boolean;
 }

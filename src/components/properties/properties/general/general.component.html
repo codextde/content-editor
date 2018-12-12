@@ -29,6 +29,15 @@
       </div>
     </div>
     <div class="row">
+        <div class="col title" [tooltip]="'Add a Width to Center'">
+          Center
+          <fa-icon [icon]="faInfoCircle"></fa-icon>
+        </div>
+        <div class="col flex-end">
+          <ion-toggle [(ngModel)]="general.center" (ngModelChange)="change()"></ion-toggle>
+        </div>
+      </div>
+    <div class="row">
       <div class="col title">
         zIndex
       </div>
