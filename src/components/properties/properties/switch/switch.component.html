@@ -1,17 +1,16 @@
-<div class="property">
-    <div class="property-title">{{ title }}</div>
-    <div class="property-content">
+<app-card class="property" [title]="title">
+  <div class="property-content">
 
-      <div class="row">
-        <div class="col title">
-            {{ switchTitle }}
-        </div>
-        <div class="col flex-end">
-          <ion-toggle [(ngModel)]="switch" (ngModelChange)="change()"></ion-toggle>
-        </div>
+    <div class="row">
+      <div class="col title">
+        {{ switchTitle }}
       </div>
-
+      <div class="col flex-end">
+        <ion-toggle [(ngModel)]="switch" (ngModelChange)="change()"></ion-toggle>
+      </div>
     </div>
 
-
   </div>
+
+
+</app-card>

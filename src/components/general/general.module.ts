@@ -4,20 +4,24 @@ import { TooltipComponent } from './tooltip/tooltip.component';
 import { StepperComponent } from './stepper/stepper.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { FormsModule } from '@angular/forms';
+import { CardComponent } from './card/card.component';
 
 
 @NgModule({
   declarations: [
     TooltipComponent,
-    StepperComponent
+    StepperComponent,
+    CardComponent
   ],
   entryComponents: [
     TooltipComponent,
-    StepperComponent
+    StepperComponent,
+    CardComponent
   ],
   exports: [
     TooltipComponent,
-    StepperComponent
+    StepperComponent,
+    CardComponent
   ],
   imports: [
     CommonModule,
