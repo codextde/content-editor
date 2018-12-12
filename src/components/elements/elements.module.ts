@@ -9,6 +9,7 @@ import { ImageElementComponent } from './image/image.component';
 import { ClearfixElementComponent } from './clearfix/clearfix.component';
 import { DirectivesModule } from 'src/directives/directives.module';
 import { DividerElementComponent } from './divider/divider.component';
+import { AngularDraggableModule } from 'angular2-draggable';
 
 
 @NgModule({
@@ -42,7 +43,8 @@ import { DividerElementComponent } from './divider/divider.component';
   imports: [
     PipesModule,
     CommonModule,
-    DirectivesModule
+    DirectivesModule,
+    AngularDraggableModule
   ]
 })
 export class ElementsModule { }

@@ -13,6 +13,7 @@ declare var kendo: any;
   }]
 })
 export class TextElementComponent implements OnInit, ControlValueAccessor {
+  movingOffset;
 
   @ViewChild('editor') editorEl: ElementRef;
   editor;
@@ -25,6 +26,7 @@ export class TextElementComponent implements OnInit, ControlValueAccessor {
   text;
   background;
   initialLetter;
+  position;
 
 
   /** NgModel Start */
@@ -60,6 +62,13 @@ export class TextElementComponent implements OnInit, ControlValueAccessor {
         this.initialLetter = this.textElement.properties.find((property) => {
           return property.name == 'initialLetter';
         });
+      }
+
+      if (!this.position) {
+        this.position = this.textElement.properties.find((property) => {
+          return property.name == 'position';
+        });
+        this.movingOffset = { x: (this.position.left || 0), y: (this.position.top || 0) };
       }
 
 
@@ -129,5 +138,12 @@ export class TextElementComponent implements OnInit, ControlValueAccessor {
     this.editor = kendo.jQuery(this.editorEl.nativeElement).data('kendoEditor');
   }
 
+
+  onMoveEnd(ev) {
+    console.log('ev', ev);
+    this.position.top = ev.y;
+    this.position.left = ev.x;
+    this.onChange(this.textElement);
+  }
 
 }

@@ -24,6 +24,7 @@ import { TextPropertyComponent } from './properties/text/text.component';
 import { VideoPropertyComponent } from './properties/video/video.component';
 import { TextareaAutosizeModule } from 'ngx-textarea-autosize';
 import { InitialLetterPropertyComponent } from './properties/initial-letter/initial-letter.component';
+import { PositionPropertyComponent } from './properties/position/position.component';
 
 @NgModule({
   declarations: [
@@ -41,7 +42,8 @@ import { InitialLetterPropertyComponent } from './properties/initial-letter/init
     VideoPropertyComponent,
     DividerPropertyComponent,
     HeadlinePropertyComponent,
-    InitialLetterPropertyComponent
+    InitialLetterPropertyComponent,
+    PositionPropertyComponent
   ],
   exports: [
     PropertiesComponent,
@@ -58,7 +60,8 @@ import { InitialLetterPropertyComponent } from './properties/initial-letter/init
     VideoPropertyComponent,
     DividerPropertyComponent,
     HeadlinePropertyComponent,
-    InitialLetterPropertyComponent
+    InitialLetterPropertyComponent,
+    PositionPropertyComponent
   ],
   imports: [
     TextareaAutosizeModule,

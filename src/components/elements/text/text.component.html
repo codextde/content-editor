@@ -2,7 +2,11 @@
 [style.fontSize.px]="initialLetter?.size"
 [style.lineHeight.px]="initialLetter?.size - 5"
 [style.color]="initialLetter?.color">{{initialLetter.letter}}</span>
-<div #editor 
+<div #editor spellcheck="false" autocorrect="off" autocapitalize="off"
+[ngDraggable]="position?.position == 'absolute'"
+[position]="movingOffset"
+(endOffset)="onMoveEnd($event)"
+[style.transform]="position?.position == 'unset' ? 'none' : ''"
 [style.paddingLeft.px]="padding?.left" 
 [style.paddingTop.px]="padding?.top"
 [style.paddingRight.px]="padding?.right" 
@@ -21,6 +25,7 @@
 [style.backgroundImage]="'url('+background?.image+')'" 
 [style.backgroundRepeat]="background?.repeat"
 [style.backgroundSize]="background?.size"
+[style.position]="position?.position"
 [ngClass]="general?.cssClass"
 [class.k-widget]="false"
 [class.k-editor]="false"
@@ -28,3 +33,9 @@
 [class.k-state-active]="false"
 ></div>
 
+
+<!--
+    
+[style.top.px]="position?.top ? position?.top : 0"
+[style.left.px]="position?.left ? position?.left : 0"
+-->

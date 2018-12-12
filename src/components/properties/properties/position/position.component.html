@@ -1,0 +1,39 @@
+<app-card class="property" cardTitle="Position">
+
+  <div class="property-content">
+    <div class="row">
+      <div class="col title" [tooltip]="'Add a Clearfix after this Element, if you want to stop floating in the Layout.'">
+          Position
+        <fa-icon [icon]="faInfoCircle"></fa-icon>
+      </div>
+      <div class="col flex-end">
+        <div class="btn-group" role="group">
+          <button type="button" class="btn btn-sm btn-secondary" (click)="position.position = 'unset'"
+            [class.active]="position.position == 'unset'">
+            Unset
+          </button>
+          <button type="button" class="btn btn-sm btn-secondary" (click)="position.position = 'absolute'"
+            [class.active]="position.position == 'absolute'">
+            Absolute
+          </button>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col title">
+        Top (px)
+      </div>
+      <div class="col flex-end">
+        <app-stepper [(ngModel)]="position.top"></app-stepper>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col title">
+        Left (px)
+      </div>
+      <div class="col flex-end">
+        <app-stepper [(ngModel)]="position.left"></app-stepper>
+      </div>
+    </div>
+  </div>
+</app-card>
