@@ -48,6 +48,8 @@ export class TextPropertyComponent implements ControlValueAccessor {
     fontFamily: '"times new roman", times'
   }];
 
+  lineHeights = ['1', '1.15', '1.5', '2', '2,5', '3'];
+
   /** NgModel Start */
   writeValue(value: any): void {
     if (value) {
@@ -90,6 +92,11 @@ export class TextPropertyComponent implements ControlValueAccessor {
 
   textWeight(weight) {
     this.text.weight = weight;
+    this.change();
+  }
+
+  selectLineHeight(lineHeight) {
+    this.text.lineHeight = lineHeight;
     this.change();
   }
 
