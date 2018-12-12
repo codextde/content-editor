@@ -1,4 +1,7 @@
-import {Component, Input, AfterViewInit, ElementRef, ChangeDetectorRef} from '@angular/core';
+import {Component, Input, AfterViewInit, ElementRef, ChangeDetectorRef, OnInit, OnDestroy, HostListener} from '@angular/core';
+import { fromEvent } from 'rxjs';
+import { Observable, of, Subject, Subscription } from 'rxjs';
+import { map, filter, debounceTime, distinctUntilChanged } from 'rxjs/operators';
 
 @Component({
   selector: 'app-tooltip',
@@ -24,6 +27,7 @@ export class TooltipComponent  implements AfterViewInit {
     @Input()
     animation: boolean = true;
 
+
     // -------------------------------------------------------------------------
     // Properties
     // -------------------------------------------------------------------------
@@ -33,13 +37,17 @@ export class TooltipComponent  implements AfterViewInit {
     isIn: boolean = false;
     isFade: boolean = false;
 
+
     // -------------------------------------------------------------------------
     // Constructor
     // -------------------------------------------------------------------------
 
+
     constructor(private element: ElementRef,
                 private cdr: ChangeDetectorRef) {
     }
+
+
 
     // -------------------------------------------------------------------------
     // Lifecycle callbacks
@@ -48,6 +56,7 @@ export class TooltipComponent  implements AfterViewInit {
     ngAfterViewInit(): void {
         this.show();
         this.cdr.detectChanges();
+
     }
 
     // -------------------------------------------------------------------------
