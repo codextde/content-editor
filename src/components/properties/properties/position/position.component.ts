@@ -1,4 +1,4 @@
-import { Component, forwardRef } from '@angular/core';
+import { Component, forwardRef, ChangeDetectorRef } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { faInfoCircle } from '@fortawesome/free-solid-svg-icons';
 import { IPositionProperty } from '../../models/position.model';
@@ -14,6 +14,12 @@ import { IPositionProperty } from '../../models/position.model';
   }]
 })
 export class PositionPropertyComponent implements ControlValueAccessor {
+
+  constructor(
+    public cdr: ChangeDetectorRef
+  ) {
+
+  }
 
   faInfoCircle = faInfoCircle;
 
@@ -49,6 +55,15 @@ export class PositionPropertyComponent implements ControlValueAccessor {
 
   change() {
     this.onChange(this.position);
+  }
+
+  changePosition(value) {
+    if (value == 'unset') {
+      this.position.top = null;
+      this.position.left = null;
+    }
+    this.position.position = value;
+    this.change();
   }
 
 }

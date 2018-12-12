@@ -138,6 +138,12 @@ color-picker {
   }
   
 }
+
+/*
 .k-editor-widget{
   min-width: 100%!important;
+}*/
+
+.k-window.k-editor-widget {
+  min-width: 500px!important;
 }

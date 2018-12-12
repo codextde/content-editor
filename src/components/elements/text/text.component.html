@@ -5,8 +5,10 @@
 <div #editor spellcheck="false" autocorrect="off" autocapitalize="off"
 [ngDraggable]="position?.position == 'absolute'"
 [position]="movingOffset"
-(endOffset)="onMoveEnd($event)"
-[style.transform]="position?.position == 'unset' ? 'none' : ''"
+(started)="onStart($event)"
+(movingOffset)="onMoving($event)"
+[style.top.px]="position?.top"
+[style.left.px]="position?.left"
 [style.zIndex]="position?.position == 'absolute' ? 1000 : ''"
 [style.paddingLeft.px]="padding?.left" 
 [style.paddingTop.px]="padding?.top"
@@ -33,9 +35,3 @@
 [class.k-state-active]="false"
 ></div>
 
-
-<!--
-    
-[style.top.px]="position?.top ? position?.top : 0"
-[style.left.px]="position?.left ? position?.left : 0"
--->

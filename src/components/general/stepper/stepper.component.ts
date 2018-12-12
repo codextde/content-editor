@@ -21,9 +21,7 @@ export class StepperComponent implements  ControlValueAccessor {
 
   /** NgModel Start */
   writeValue(value: any): void {
-    if (value) {
-      this.value = value;
-    }
+    this.value = value;
   }
 
   registerOnChange(fn: (value: any) => void): void {

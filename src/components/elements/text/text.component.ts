@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, ElementRef, forwardRef } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, forwardRef, DoCheck } from '@angular/core';
 import { NG_VALUE_ACCESSOR, ControlValueAccessor } from '@angular/forms';
 declare var kendo: any;
 
@@ -78,6 +78,7 @@ export class TextElementComponent implements OnInit, ControlValueAccessor {
     }
   }
 
+
   registerOnChange(fn: (value: any) => void): void {
     this.onChange = fn;
   }
@@ -137,11 +138,15 @@ export class TextElementComponent implements OnInit, ControlValueAccessor {
     this.editor = kendo.jQuery(this.editorEl.nativeElement).data('kendoEditor');
   }
 
+  onStart(ev) {
+    this.movingOffset = { x: (this.position.left || 0), y: (this.position.top || 0) };
+  }
 
-  onMoveEnd(ev) {
-    console.log('ev', ev);
-    this.position.top = ev.y;
-    this.position.left = ev.x;
+  onMoving(ev) {
+    if (this.position && this.position.position != 'unset') {
+      this.position.top = +ev.y;
+      this.position.left = +ev.x;
+    }
     this.onChange(this.textElement);
   }
 
