@@ -113,7 +113,6 @@ export class TextElementComponent implements OnInit, ControlValueAccessor {
         'insertOrderedList',
         'indent',
         'outdent',
-        'insertImage',
         'subscript',
         'superscript',
         'tableWizard',
