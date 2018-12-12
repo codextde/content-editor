@@ -11,6 +11,10 @@ body {
   color: #000;
 }
 
+p {
+  margin-bottom: 0;
+}
+
 .flex-end {
   display: flex;
   justify-content: flex-end;

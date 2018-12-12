@@ -19,7 +19,8 @@
         [style.paddingBottom.px]="data.editorOptions.bodyStyleOptions.padding.bottom"
         [dir]="data.editorOptions.bodyStyleOptions.directionLtr ? 'ltr' : 'rtl'">
 
-        <div class="drag-element" [tooltip]="myTooltip" *ngFor="let element of data.editorOptions.elements" cdkDrag>
+        <div class="drag-element" [tooltip]="myTooltip" [tooltipClick]="true" *ngFor="let element of data.editorOptions.elements" cdkDrag>
+
           <app-element-text *ngIf="element.component == 'text'" [(ngModel)]="element"></app-element-text>
           <app-element-html *ngIf="element.component == 'html'" [(ngModel)]="element"></app-element-html>
           <app-element-headline *ngIf="element.component == 'headline'" [(ngModel)]="element"></app-element-headline>

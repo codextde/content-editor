@@ -1,4 +1,4 @@
-import { ComponentFactoryResolver, ComponentRef, Directive, HostListener, Input, ViewContainerRef } from '@angular/core';
+import { ComponentFactoryResolver, ComponentRef, Directive, HostListener, Input, ViewContainerRef, ElementRef } from '@angular/core';
 import { TooltipComponent } from 'src/components/general/tooltip/tooltip.component';
 
 @Directive({
@@ -18,7 +18,8 @@ export class TooltipDirective {
     // -------------------------------------------------------------------------
 
     constructor(private viewContainerRef: ViewContainerRef,
-                private resolver: ComponentFactoryResolver) {
+                private resolver: ComponentFactoryResolver,
+                private elementRef: ElementRef) {
     }
 
     // -------------------------------------------------------------------------
@@ -37,14 +38,56 @@ export class TooltipDirective {
     @Input()
     tooltipPlacement: 'top'|'bottom'|'left'|'right' = 'bottom';
 
+    @Input()
+    tooltipClick: boolean = false;
+
 
     // -------------------------------------------------------------------------
     // Public Methods
     // -------------------------------------------------------------------------
 
+    @HostListener('document:click', ['$event'])
+    clickout(event) {
+        if (this.elementRef.nativeElement.contains(event.target)) {
+            this.show();
+        } else {
+            this.hide();
+        }
+    }
+
     @HostListener('focusin')
     @HostListener('mouseenter')
-    show(): void {
+    focusin(): void {
+        if (!this.tooltipClick) {
+            this.show();
+        }
+    }
+
+    @HostListener('focusout')
+    @HostListener('mouseleave')
+    focusout(): void {
+        if (!this.tooltipClick) {
+            this.hide();
+        }
+    }
+
+    hide() {
+        if (!this.visible) {
+            return;
+        }
+
+        this.visible = false;
+        if (this.tooltip) {
+            this.tooltip.destroy();
+        }
+
+        if (this.content instanceof TooltipComponent) {
+            (this.content as TooltipComponent).hide();
+        }
+    }
+
+
+    show() {
         if (this.tooltipDisabled || this.visible) {
             return;
         }
@@ -67,23 +110,6 @@ export class TooltipDirective {
             tooltip.placement = this.tooltipPlacement;
             tooltip.animation = this.tooltipAnimation;
             tooltip.show();
-        }
-    }
-
-    @HostListener('focusout')
-    @HostListener('mouseleave')
-    hide(): void {
-        if (!this.visible) {
-            return;
-        }
-
-        this.visible = false;
-        if (this.tooltip) {
-            this.tooltip.destroy();
-        }
-
-        if (this.content instanceof TooltipComponent) {
-            (this.content as TooltipComponent).hide();
         }
     }
 }
