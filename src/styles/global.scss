@@ -54,7 +54,6 @@ color-picker {
   display: flex;
   max-width: 300px;
   line-height: 1.5;
-  z-index: 2000;
 }
 
 // Drag Elements are in the Global Styles because of cdk
@@ -97,7 +96,7 @@ color-picker {
       padding: 0;
       color: #fff;
       text-align: center;
-      z-index: 10;
+      z-index: 2000;
       font-size: 17px;
       transition: opacity .5s ease-out;
       overflow: hidden;
