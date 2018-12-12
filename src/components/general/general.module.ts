@@ -5,23 +5,27 @@ import { StepperComponent } from './stepper/stepper.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { FormsModule } from '@angular/forms';
 import { CardComponent } from './card/card.component';
+import { ToggleComponent } from './toggle/toggle.component';
 
 
 @NgModule({
   declarations: [
     TooltipComponent,
     StepperComponent,
-    CardComponent
+    CardComponent,
+    ToggleComponent
   ],
   entryComponents: [
     TooltipComponent,
     StepperComponent,
-    CardComponent
+    CardComponent,
+    ToggleComponent
   ],
   exports: [
     TooltipComponent,
     StepperComponent,
-    CardComponent
+    CardComponent,
+    ToggleComponent
   ],
   imports: [
     CommonModule,

@@ -2,10 +2,10 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { IonicModule } from '@ionic/angular';
 import { ColorPickerModule } from 'ngx-color-picker';
 import { DropdownModule } from 'ngx-dropdown';
 import { MonacoEditorModule } from 'ngx-monaco-editor';
+import { TextareaAutosizeModule } from 'ngx-textarea-autosize';
 import { DirectivesModule } from 'src/directives/directives.module';
 import { GeneralModule } from '../general/general.module';
 import { PropertiesComponent } from './properties.component';
@@ -17,14 +17,13 @@ import { GeneralPropertyComponent } from './properties/general/general.component
 import { HeadlinePropertyComponent } from './properties/headline/headline.component';
 import { HtmlPropertyComponent } from './properties/html/html.component';
 import { ImagePropertyComponent } from './properties/image/image.component';
+import { InitialLetterPropertyComponent } from './properties/initial-letter/initial-letter.component';
 import { JavascriptPropertyComponent } from './properties/javascript/javascript.component';
 import { PaddingPropertyComponent } from './properties/padding/padding.component';
+import { PositionPropertyComponent } from './properties/position/position.component';
 import { SwitchPropertyComponent } from './properties/switch/switch.component';
 import { TextPropertyComponent } from './properties/text/text.component';
 import { VideoPropertyComponent } from './properties/video/video.component';
-import { TextareaAutosizeModule } from 'ngx-textarea-autosize';
-import { InitialLetterPropertyComponent } from './properties/initial-letter/initial-letter.component';
-import { PositionPropertyComponent } from './properties/position/position.component';
 
 @NgModule({
   declarations: [
@@ -66,7 +65,6 @@ import { PositionPropertyComponent } from './properties/position/position.compon
   imports: [
     TextareaAutosizeModule,
     DropdownModule,
-    IonicModule,
     ColorPickerModule,
     CommonModule,
     FontAwesomeModule,

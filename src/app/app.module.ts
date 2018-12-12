@@ -10,13 +10,10 @@ import { ElementsService } from 'src/services/elements.service';
 import { HelperService } from 'src/services/helper.service';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { ResizeService } from 'src/services/resize.service';
-import { PropertyComponent } from './property/property.component';
 
 @NgModule({
   declarations: [
-    AppComponent,
-    PropertyComponent
+    AppComponent
   ],
   imports: [
     BrowserModule,
