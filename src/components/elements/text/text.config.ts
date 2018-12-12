@@ -7,6 +7,8 @@ export class TextElementConfig {
     icon: faAlignCenter,
     title: 'Text',
     properties: [{
+      name: 'initialLetter'
+    }, {
       name: 'general'
     }, {
       name: 'text'

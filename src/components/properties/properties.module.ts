@@ -23,6 +23,7 @@ import { SwitchPropertyComponent } from './properties/switch/switch.component';
 import { TextPropertyComponent } from './properties/text/text.component';
 import { VideoPropertyComponent } from './properties/video/video.component';
 import { TextareaAutosizeModule } from 'ngx-textarea-autosize';
+import { InitialLetterPropertyComponent } from './properties/initial-letter/initial-letter.component';
 
 @NgModule({
   declarations: [
@@ -39,7 +40,8 @@ import { TextareaAutosizeModule } from 'ngx-textarea-autosize';
     SwitchPropertyComponent,
     VideoPropertyComponent,
     DividerPropertyComponent,
-    HeadlinePropertyComponent
+    HeadlinePropertyComponent,
+    InitialLetterPropertyComponent
   ],
   exports: [
     PropertiesComponent,
@@ -55,7 +57,8 @@ import { TextareaAutosizeModule } from 'ngx-textarea-autosize';
     SwitchPropertyComponent,
     VideoPropertyComponent,
     DividerPropertyComponent,
-    HeadlinePropertyComponent
+    HeadlinePropertyComponent,
+    InitialLetterPropertyComponent
   ],
   imports: [
     TextareaAutosizeModule,

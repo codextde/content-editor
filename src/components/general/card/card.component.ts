@@ -12,7 +12,7 @@ export class CardComponent {
     faAngleUp = faAngleUp;
 
     @Input() isCollapsed = true;
-    @Input() title: string;
+    @Input() cardTitle: string;
 
     constructor(
     ) {

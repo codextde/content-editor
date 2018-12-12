@@ -1,3 +1,7 @@
+<span class="initial-letter" *ngIf="initialLetter"
+[style.fontSize.px]="initialLetter?.size"
+[style.lineHeight.px]="initialLetter?.size - 5"
+[style.color]="initialLetter?.color">{{initialLetter.letter}}</span>
 <div #editor 
 [style.paddingLeft.px]="padding?.left" 
 [style.paddingTop.px]="padding?.top"
@@ -23,3 +27,4 @@
 [class.k-editor-inline]="false"
 [class.k-state-active]="false"
 ></div>
+
