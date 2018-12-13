@@ -28,4 +28,8 @@ export class HelperService {
       return v.toString(16);
     });
   }
+
+  clearObject(object) {
+    return JSON.parse(JSON.stringify(object));
+  }
 }

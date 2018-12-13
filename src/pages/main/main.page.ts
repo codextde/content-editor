@@ -1,5 +1,5 @@
 import { CdkDragDrop, copyArrayItem, moveItemInArray } from '@angular/cdk/drag-drop';
-import { Component, OnInit, HostListener } from '@angular/core';
+import { Component, OnInit, HostListener, ChangeDetectorRef } from '@angular/core';
 import { faArrowsAlt, faCogs, faHandPointer, faTrash } from '@fortawesome/free-solid-svg-icons';
 import { DataService } from 'src/services/data.service';
 import { ElementsService } from 'src/services/elements.service';
@@ -40,7 +40,8 @@ export class MainPage implements OnInit {
     public data: DataService,
     public elements: ElementsService,
     public toastCtrl: ToastController,
-    public alertCtrl: AlertController
+    public alertCtrl: AlertController,
+    private cdr: ChangeDetectorRef
   ) {}
 
   ngOnInit() {
@@ -69,7 +70,7 @@ export class MainPage implements OnInit {
 
       const currentObject = this.data.editorOptions.elements[event.currentIndex];
       currentObject.id = this.helper.uuidv4();
-      this.data.editorOptions.elements[event.currentIndex] = JSON.parse(JSON.stringify(currentObject));
+      this.data.editorOptions.elements[event.currentIndex] = this.helper.clearObject(currentObject);
     }
   }
 
@@ -96,7 +97,8 @@ export class MainPage implements OnInit {
   }
 
   clear() {
-    this.data.editorOptions = this.data.editorDefaultOptions;
+    this.data.editorOptions = this.helper.clearObject(this.data.editorDefaultOptions);
+    this.cdr.detectChanges();
     this.save();
   }
 
