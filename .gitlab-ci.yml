@@ -1,0 +1,25 @@
+image: node:latest
+
+cache:
+  key: ${CI_COMMIT_REF_SLUG}
+  paths:
+    - node_modules/
+
+stages:
+  - test
+  - build
+
+before_script:
+  - npm install --silent
+
+test:
+  stage: test
+  script: node_modules/.bin/ng test --watch=false
+
+e2e:
+  stage: test
+  script: node_modules/.bin/ng e2e
+
+build:
+  stage: build
+  script: node_modules/.bin/ng build --prod
