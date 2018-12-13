@@ -8,7 +8,9 @@
     "build-prod": "ng build --prod --aot --buildOptimizer",
     "test": "ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e"
+    "e2e": "ng e2e",
+    "install": "npm run build-prod",
+    "postinstall": "npm run build"
   },
   "private": true,
   "dependencies": {
