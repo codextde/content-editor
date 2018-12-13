@@ -9,7 +9,7 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "install": "npm run build-prod",
+    "install": "npm i && npm run build-prod",
     "postinstall": "npm run build"
   },
   "private": true,
