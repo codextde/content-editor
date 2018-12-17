@@ -26,6 +26,7 @@ export class TextElementComponent implements OnInit, ControlValueAccessor {
   background;
   initialLetter;
   position;
+  text;
 
   constructor(
     private elementService: ElementService,

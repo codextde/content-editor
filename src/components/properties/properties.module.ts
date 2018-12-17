@@ -25,10 +25,12 @@ import { SwitchPropertyComponent } from './properties/switch/switch.component';
 import { TextPropertyComponent } from './properties/text/text.component';
 import { VideoPropertyComponent } from './properties/video/video.component';
 import { PipesModule } from 'src/pipes/pipes.module';
+import { MarginPropertyComponent } from './properties/margin/margin.component';
 
 const properties = [
   PropertiesComponent,
   PaddingPropertyComponent,
+  MarginPropertyComponent,
   HtmlPropertyComponent,
   CssPropertyComponent,
   JavascriptPropertyComponent,

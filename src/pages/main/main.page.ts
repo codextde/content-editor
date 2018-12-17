@@ -36,7 +36,7 @@ export class MainPage implements OnInit {
 
   constructor(
     private helper: HelperService,
-    private data: DataService,
+    public data: DataService,
     private elements: ElementsService,
     private toastCtrl: ToastController,
     private alertCtrl: AlertController,

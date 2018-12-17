@@ -20,7 +20,7 @@ export class TextPropertyComponent implements ControlValueAccessor {
   faAlignRight = faAlignRight;
   faBold = faBold;
 
-  text: ITextProperty = {};
+  text: any = {};
 
   // Fonts
   fonts = [{

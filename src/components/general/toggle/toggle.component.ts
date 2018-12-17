@@ -14,6 +14,7 @@ import { NG_VALUE_ACCESSOR } from '@angular/forms';
 export class ToggleComponent {
 
   value;
+  className;
 
   /** NgModel Start */
   writeValue(value: any): void {

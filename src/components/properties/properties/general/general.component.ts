@@ -20,7 +20,7 @@ export class GeneralPropertyComponent implements ControlValueAccessor {
 
   faInfoCircle = faInfoCircle;
 
-  general: IGeneralProperty = {};
+  general: any = {};
   center: boolean;
 
   constructor(private eventsService: EventsService) {}
@@ -54,7 +54,7 @@ export class GeneralPropertyComponent implements ControlValueAccessor {
     this.change();
   }
 
-  float(float: Float) {
+  float(float: any) {
     this.general.float = float;
     this.onChange(this.general);
     this.change();
