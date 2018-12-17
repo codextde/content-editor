@@ -2,6 +2,7 @@ import { Component, OnInit, forwardRef, Input, HostBinding } from '@angular/core
 import { NG_VALUE_ACCESSOR, ControlValueAccessor } from '@angular/forms';
 import { IPaddingProperty } from '../../models/padding.model';
 import { faMinus, faPlus } from '@fortawesome/free-solid-svg-icons';
+import { EventsService } from 'src/services/event.service';
 
 @Component({
   selector: 'app-property-padding',
@@ -14,17 +15,11 @@ import { faMinus, faPlus } from '@fortawesome/free-solid-svg-icons';
   }]
 })
 export class PaddingPropertyComponent implements ControlValueAccessor {
+  padding: IPaddingProperty = {};
 
-
-
-
-  padding: IPaddingProperty = {
-    left: 0,
-    top: 0,
-    right: 0,
-    bottom: 0
-  };
-
+  constructor(
+    private eventsService: EventsService
+  ) {}
 
   /** NgModel Start */
   writeValue(value: any): void {
@@ -34,24 +29,13 @@ export class PaddingPropertyComponent implements ControlValueAccessor {
   }
 
   registerOnChange(fn: (value: any) => void): void {
-    this.onChange = fn;
   }
-
   registerOnTouched(fn: () => void): void {
-    this.onTouched = fn;
-  }
-
-  setDisabledState(isDisabled: boolean): void {
-
   }
   /** NgModel End */
 
-
-  onChange: any = () => {};
-
-
-  onTouched = () => {};
-
-
+  change() {
+    this.eventsService.publish('property-change');
+  }
 
 }

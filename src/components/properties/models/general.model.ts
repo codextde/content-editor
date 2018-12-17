@@ -1,8 +1,12 @@
+import { Float } from '../enums/float.enum';
+
 export class IGeneralProperty {
-    cssClass?: string;
-    zIndex?: number;
-    float?: string;
-    width?: number;
-    boxShadow?: string;
-    center?: boolean;
+    name?: string;
+    'cssClasses'?: string;
+    'zIndex'?: number;
+    'float'?: Float;
+    'width.px'?: number;
+    'boxShadow'?: string;
+    'margin'?: string;
 }
+

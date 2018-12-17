@@ -18,7 +18,7 @@ export class MarginPropertyComponent implements ControlValueAccessor {
 
 
 
-  padding: IPaddingProperty = {
+  padding: any = {
     left: 0,
     top: 0,
     right: 0,

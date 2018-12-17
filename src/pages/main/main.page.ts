@@ -24,7 +24,6 @@ export class MainPage implements OnInit {
   propertiesActive: boolean = false;
   tab: string = 'elements';
 
-  test;
 
   @HostListener('window:keydown', ['$event'])
   keyEvent(event: KeyboardEvent) {
@@ -36,11 +35,11 @@ export class MainPage implements OnInit {
   }
 
   constructor(
-    public helper: HelperService,
-    public data: DataService,
-    public elements: ElementsService,
-    public toastCtrl: ToastController,
-    public alertCtrl: AlertController,
+    private helper: HelperService,
+    private data: DataService,
+    private elements: ElementsService,
+    private toastCtrl: ToastController,
+    private alertCtrl: AlertController,
     private cdr: ChangeDetectorRef
   ) {}
 

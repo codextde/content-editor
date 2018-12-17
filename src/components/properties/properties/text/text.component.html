@@ -68,7 +68,7 @@
         Size (px)
       </div>
       <div class="col flex-end">
-          <app-stepper [(ngModel)]="text.size"></app-stepper>
+          <app-stepper [(ngModel)]="text.size" (ngModelChange)="change()"></app-stepper>
       </div>
     </div>
 
@@ -92,7 +92,7 @@
           Text Indent
         </div>
         <div class="col flex-end">
-            <app-stepper [(ngModel)]="text.textIndent"></app-stepper>
+            <app-stepper [(ngModel)]="text.textIndent" (ngModelChange)="change()"></app-stepper>
         </div>
       </div>
   </div>

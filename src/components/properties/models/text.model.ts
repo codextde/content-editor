@@ -1,13 +1,13 @@
 export class ITextProperty {
     name?: string;
     color?: string;
-    align?: string;
-    lineHeight?: string;
+    textAlign?: string;
+    'lineHeight.px'?: string;
     fontFamily?: {
         displayName: string;
         fontFamily: string;
     };
-    size?: number;
+    'size.px'?: number;
     weight?: string;
-    textIndent?: number;
+    'textIndent.px'?: number;
 }

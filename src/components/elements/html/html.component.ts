@@ -1,5 +1,8 @@
-import { Component, OnInit, ViewChild, ElementRef, forwardRef } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, forwardRef, AfterViewInit } from '@angular/core';
 import { NG_VALUE_ACCESSOR, ControlValueAccessor } from '@angular/forms';
+import { ElementsService } from 'src/services/elements.service';
+import { ElementService } from 'src/services/element.service';
+import { EventsService } from 'src/services/event.service';
 declare var kendo: any;
 
 @Component({
@@ -12,24 +15,29 @@ declare var kendo: any;
        multi: true
   }]
 })
-export class HtmlElementComponent implements OnInit, ControlValueAccessor {
+export class HtmlElementComponent implements ControlValueAccessor {
 
   htmlElement;
 
-  padding;
+  styles = {};
   html;
+
+  constructor(
+    private elementService: ElementService,
+    private eventsService: EventsService
+    ) {
+    this.eventsService.subscribe('property-change', () => {
+      this.styles = this.elementService.loadStyleProperties(this.htmlElement);
+    });
+  }
 
 
   /** NgModel Start */
   writeValue(value: any): void {
     if (value) {
       this.htmlElement = value;
+      this.styles = this.elementService.loadStyleProperties(this.htmlElement);
 
-      if (!this.padding) {
-        this.padding = this.htmlElement.properties.find((property) => {
-          return property.name == 'padding';
-        });
-      }
       if (!this.html) {
         this.html = this.htmlElement.properties.find((property) => {
           return property.name == 'html';
@@ -42,25 +50,11 @@ export class HtmlElementComponent implements OnInit, ControlValueAccessor {
   registerOnChange(fn: (value: any) => void): void {
     this.onChange = fn;
   }
-
-  registerOnTouched(fn: () => void): void {
-    this.onTouched = fn;
-  }
-
-  setDisabledState(isDisabled: boolean): void {
-
-  }
+  registerOnTouched(fn: () => void): void {}
   /** NgModel End */
-
   onChange: any = () => {};
-  onTouched = () => {};
 
   change(ev) {
     this.onChange(this.htmlElement);
   }
-
-  ngOnInit() {
-
-  }
-
 }

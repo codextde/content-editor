@@ -2,6 +2,9 @@ import { Component, forwardRef } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { faInfoCircle } from '@fortawesome/free-solid-svg-icons';
 import { IGeneralProperty } from '../../models/general.model';
+import { EventsService } from 'src/services/event.service';
+import { Float } from '../../enums/float.enum';
+
 
 @Component({
   selector: 'app-property-general',
@@ -17,13 +20,10 @@ export class GeneralPropertyComponent implements ControlValueAccessor {
 
   faInfoCircle = faInfoCircle;
 
-  general: IGeneralProperty = {
-    cssClass: '',
-    zIndex: 0,
-    float: 'none',
-    boxShadow: '',
-    center: false
-  };
+  general: IGeneralProperty = {};
+  center: boolean;
+
+  constructor(private eventsService: EventsService) {}
 
 
   /** NgModel Start */
@@ -32,32 +32,31 @@ export class GeneralPropertyComponent implements ControlValueAccessor {
       this.general = value;
     }
   }
-
   registerOnChange(fn: (value: any) => void): void {
     this.onChange = fn;
   }
-
-  registerOnTouched(fn: () => void): void {
-    this.onTouched = fn;
-  }
-
-  setDisabledState(isDisabled: boolean): void {
-
-  }
+  registerOnTouched(fn: () => void): void {}
   /** NgModel End */
 
 
   onChange: any = () => {};
 
-
-  onTouched = () => {};
-
   change() {
-    this.onChange(this.general);
+    this.eventsService.publish('property-change');
   }
 
-  float(float) {
+  changeCenter() {
+    if (this.center) {
+      this.general.margin = '0 auto';
+    } else {
+      this.general.margin = null;
+    }
+    this.change();
+  }
+
+  float(float: Float) {
     this.general.float = float;
+    this.onChange(this.general);
     this.change();
   }
 }

@@ -25,7 +25,7 @@
         Width (px)
       </div>
       <div class="col flex-end">
-        <app-stepper [(ngModel)]="general.width"></app-stepper>
+        <app-stepper [(ngModel)]="general['width.px']" (ngModelChange)="change()"></app-stepper>
       </div>
     </div>
     <div class="row">
@@ -34,7 +34,7 @@
         <fa-icon [icon]="faInfoCircle"></fa-icon>
       </div>
       <div class="col flex-end">
-          <app-toggle [(ngModel)]="general.center" ></app-toggle>
+          <app-toggle [(ngModel)]="center" (ngModelChange)="changeCenter()"></app-toggle>
       </div>
     </div>
     <!--<div class="row">
@@ -51,7 +51,7 @@
         <fa-icon [icon]="faInfoCircle"></fa-icon>
       </div>
       <div class="col flex-end">
-        <input [(ngModel)]="general.cssClass">
+        <input [(ngModel)]="general['cssClasses']" (ngModelChange)="change()">
       </div>
     </div>
 
@@ -61,7 +61,7 @@
         <fa-icon [icon]="faInfoCircle"></fa-icon>
       </div>
       <div class="col flex-end">
-        <input [(ngModel)]="general.boxShadow">
+        <input [(ngModel)]="general['boxShadow']" (ngModelChange)="change()">
       </div>
     </div>
   </div>

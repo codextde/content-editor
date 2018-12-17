@@ -1,5 +1,7 @@
 import { Component, forwardRef, OnInit } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
+import { ElementService } from 'src/services/element.service';
+import { EventsService } from 'src/services/event.service';
 
 @Component({
   selector: 'app-element-image',
@@ -11,62 +13,41 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
        multi: true
   }]
 })
-export class ImageElementComponent implements OnInit, ControlValueAccessor {
+export class ImageElementComponent implements ControlValueAccessor {
 
   imageElement;
-  
-  padding;
-  general;
   image;
 
+  styles;
+
+
+  constructor(
+    private elementService: ElementService,
+    private eventsService: EventsService
+    ) {
+      this.eventsService.subscribe('property-change', () => {
+        this.styles = this.elementService.loadStyleProperties(this.imageElement);
+      });
+  }
 
   /** NgModel Start */
   writeValue(value: any): void {
     if (value) {
       this.imageElement = value;
-
-      if (!this.padding) {
-        this.padding = this.imageElement.properties.find((property) => {
-          return property.name == 'padding';
-        });
-      }
-
-      if (!this.general) {
-        this.general = this.imageElement.properties.find((property) => {
-          return property.name == 'general';
-        });
-      }
+      this.styles = this.elementService.loadStyleProperties(this.imageElement);
 
       if (!this.image) {
         this.image = this.imageElement.properties.find((property) => {
           return property.name == 'image';
         });
       }
-
     }
   }
 
-  registerOnChange(fn: (value: any) => void): void {
-    this.onChange = fn;
-  }
-
-  registerOnTouched(fn: () => void): void {
-    this.onTouched = fn;
-  }
-
-  setDisabledState(isDisabled: boolean): void {
-
-  }
+  registerOnChange(fn: (value: any) => void): void {}
+  registerOnTouched(fn: () => void): void {}
   /** NgModel End */
 
-  onChange: any = () => {};
-  onTouched = () => {};
 
-  change(ev) {
-    // this.textElement.value =  this.editor.value();
-    // this.onChange(this.textElement);
-  }
-
-  ngOnInit() {}
 
 }

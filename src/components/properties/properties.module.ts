@@ -24,43 +24,33 @@ import { PositionPropertyComponent } from './properties/position/position.compon
 import { SwitchPropertyComponent } from './properties/switch/switch.component';
 import { TextPropertyComponent } from './properties/text/text.component';
 import { VideoPropertyComponent } from './properties/video/video.component';
+import { PipesModule } from 'src/pipes/pipes.module';
+
+const properties = [
+  PropertiesComponent,
+  PaddingPropertyComponent,
+  HtmlPropertyComponent,
+  CssPropertyComponent,
+  JavascriptPropertyComponent,
+  BackgroundPropertyComponent,
+  TextPropertyComponent,
+  ImagePropertyComponent,
+  GeneralPropertyComponent,
+  BorderPropertyComponent,
+  SwitchPropertyComponent,
+  VideoPropertyComponent,
+  DividerPropertyComponent,
+  HeadlinePropertyComponent,
+  InitialLetterPropertyComponent,
+  PositionPropertyComponent
+];
 
 @NgModule({
   declarations: [
-    PropertiesComponent,
-    PaddingPropertyComponent,
-    HtmlPropertyComponent,
-    CssPropertyComponent,
-    JavascriptPropertyComponent,
-    BackgroundPropertyComponent,
-    TextPropertyComponent,
-    ImagePropertyComponent,
-    GeneralPropertyComponent,
-    BorderPropertyComponent,
-    SwitchPropertyComponent,
-    VideoPropertyComponent,
-    DividerPropertyComponent,
-    HeadlinePropertyComponent,
-    InitialLetterPropertyComponent,
-    PositionPropertyComponent
+    ...properties
   ],
   exports: [
-    PropertiesComponent,
-    PaddingPropertyComponent,
-    HtmlPropertyComponent,
-    CssPropertyComponent,
-    JavascriptPropertyComponent,
-    BackgroundPropertyComponent,
-    TextPropertyComponent,
-    ImagePropertyComponent,
-    GeneralPropertyComponent,
-    BorderPropertyComponent,
-    SwitchPropertyComponent,
-    VideoPropertyComponent,
-    DividerPropertyComponent,
-    HeadlinePropertyComponent,
-    InitialLetterPropertyComponent,
-    PositionPropertyComponent
+    ...properties
   ],
   imports: [
     TextareaAutosizeModule,
@@ -72,7 +62,8 @@ import { VideoPropertyComponent } from './properties/video/video.component';
     FormsModule,
     MonacoEditorModule,
     GeneralModule,
-    DirectivesModule
+    DirectivesModule,
+    PipesModule
   ]
 })
 export class PropertiesComponentModule { }

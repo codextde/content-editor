@@ -2,6 +2,7 @@ import { Component, forwardRef } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { faAlignCenter, faAlignLeft, faAlignRight, faBold } from '@fortawesome/free-solid-svg-icons';
 import { ITextProperty } from '../../models/text.model';
+import { EventsService } from 'src/services/event.service';
 
 @Component({
   selector: 'app-property-text',
@@ -19,16 +20,7 @@ export class TextPropertyComponent implements ControlValueAccessor {
   faAlignRight = faAlignRight;
   faBold = faBold;
 
-  text: ITextProperty = {
-    color: '',
-    align: '',
-    lineHeight: '',
-    fontFamily: {
-      displayName: '',
-      fontFamily: ''
-    },
-    weight: ''
-  };
+  text: ITextProperty = {};
 
   // Fonts
   fonts = [{
@@ -49,6 +41,12 @@ export class TextPropertyComponent implements ControlValueAccessor {
   }];
 
   lineHeights = ['1', '1.15', '1.5', '2', '2,5', '3'];
+
+  constructor(
+    private eventsService: EventsService
+  ) {
+
+  }
 
   /** NgModel Start */
   writeValue(value: any): void {
@@ -78,10 +76,11 @@ export class TextPropertyComponent implements ControlValueAccessor {
 
   change() {
     this.onChange(this.text);
+    this.eventsService.publish('property-change');
   }
 
   textAlign(align) {
-    this.text.align = align;
+    this.text.textAlign = align;
     this.change();
   }
 
@@ -96,7 +95,7 @@ export class TextPropertyComponent implements ControlValueAccessor {
   }
 
   selectLineHeight(lineHeight) {
-    this.text.lineHeight = lineHeight;
+    this.text['lineHeight.px'] = lineHeight;
     this.change();
   }
 

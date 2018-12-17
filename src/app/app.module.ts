@@ -10,7 +10,7 @@ import { ElementsService } from 'src/services/elements.service';
 import { HelperService } from 'src/services/helper.service';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-
+import { EventsService } from 'src/services/event.service';
 @NgModule({
   declarations: [
     AppComponent
@@ -23,6 +23,7 @@ import { AppComponent } from './app.component';
     MonacoEditorModule.forRoot()
   ],
   providers: [
+    EventsService,
     HelperService,
     DataService,
     ElementsService,

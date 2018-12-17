@@ -1,7 +1,6 @@
 export class IPaddingProperty {
-    name?: string;
-    left?: number;
-    top?: number;
-    right?: number;
-    bottom?: number;
+    'paddingLeft.px'?: number;
+    'paddingTop.px'?: number;
+    'paddingBottom.px'?: number;
+    'paddingRight.px'?: number;
 }

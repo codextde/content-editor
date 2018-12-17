@@ -1,5 +1,7 @@
 import { Component, OnInit, ViewChild, ElementRef, forwardRef, DoCheck } from '@angular/core';
 import { NG_VALUE_ACCESSOR, ControlValueAccessor } from '@angular/forms';
+import { ElementService } from 'src/services/element.service';
+import { EventsService } from 'src/services/event.service';
 declare var kendo: any;
 
 @Component({
@@ -20,37 +22,26 @@ export class TextElementComponent implements OnInit, ControlValueAccessor {
   textElement;
 
   styles;
-  
-  padding;
-  general;
-  text;
+
   background;
   initialLetter;
   position;
 
+  constructor(
+    private elementService: ElementService,
+    private eventsService: EventsService
+    ) {
+    this.eventsService.subscribe('property-change', () => {
+      this.styles = this.elementService.loadStyleProperties(this.textElement);
+    });
+  }
 
   /** NgModel Start */
   writeValue(value: any): void {
     if (value) {
       this.textElement = value;
+      this.styles = this.elementService.loadStyleProperties(value);
 
-      if (!this.padding) {
-        this.padding = this.textElement.properties.find((property) => {
-          return property.name == 'padding';
-        });
-      }
-
-      if (!this.general) {
-        this.general = this.textElement.properties.find((property) => {
-          return property.name == 'general';
-        });
-      }
-
-      if (!this.text) {
-        this.text = this.textElement.properties.find((property) => {
-          return property.name == 'text';
-        });
-      }
 
       if (!this.background) {
         this.background = this.textElement.properties.find((property) => {

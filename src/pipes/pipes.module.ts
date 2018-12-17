@@ -1,13 +1,16 @@
 import { NgModule } from '@angular/core';
 import { SanitizeHtmlPipe } from './sanitize-html.pipe';
+import { FilterPipe } from './filter-data.pipe';
 
 
 @NgModule({
   declarations: [
-    SanitizeHtmlPipe
+    SanitizeHtmlPipe,
+    FilterPipe
   ],
   exports: [
-    SanitizeHtmlPipe
+    SanitizeHtmlPipe,
+    FilterPipe
   ],
   imports: [
   ]

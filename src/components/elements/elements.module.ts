@@ -11,34 +11,26 @@ import { DirectivesModule } from 'src/directives/directives.module';
 import { DividerElementComponent } from './divider/divider.component';
 import { AngularDraggableModule } from 'angular2-draggable';
 
+const elements = [
+    VideoElementComponent,
+    TextElementComponent,
+    HeadlineElementComponent,
+    HtmlElementComponent,
+    ImageElementComponent,
+    ClearfixElementComponent,
+    DividerElementComponent
+];
+
 
 @NgModule({
   declarations: [
-    VideoElementComponent,
-    TextElementComponent,
-    HeadlineElementComponent,
-    HtmlElementComponent,
-    ImageElementComponent,
-    ClearfixElementComponent,
-    DividerElementComponent
+    ...elements
   ],
   entryComponents: [
-    VideoElementComponent,
-    TextElementComponent,
-    HeadlineElementComponent,
-    HtmlElementComponent,
-    ImageElementComponent,
-    ClearfixElementComponent,
-    DividerElementComponent
+    ...elements
   ],
   exports: [
-    VideoElementComponent,
-    TextElementComponent,
-    HeadlineElementComponent,
-    HtmlElementComponent,
-    ImageElementComponent,
-    ClearfixElementComponent,
-    DividerElementComponent
+    ...elements
   ],
   imports: [
     PipesModule,
