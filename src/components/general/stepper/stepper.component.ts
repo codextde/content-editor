@@ -28,20 +28,10 @@ export class StepperComponent implements  ControlValueAccessor {
     this.onChange = fn;
   }
 
-  registerOnTouched(fn: () => void): void {
-    this.onTouched = fn;
-  }
+  registerOnTouched(fn: () => void): void {}
 
-  setDisabledState(isDisabled: boolean): void {
-
-  }
   /** NgModel End */
-
-
   onChange: any = () => {};
-
-
-  onTouched = () => {};
 
   change() {
     this.onChange(this.value);
@@ -61,7 +51,7 @@ export class StepperComponent implements  ControlValueAccessor {
     if (method == 'up') {
       this.value++;
     }
-    if (method == 'down') {
+    if (method == 'down' && this.value > 0) {
       this.value--;
     }
 
