@@ -1,8 +1,5 @@
 
-<div
-[ngClass]="styles?.cssClasses"
-[ngStyle]="styles"
->
+<div [ngClass]="styles?.cssClasses" [ngStyle]="styles">
   <video [controls]="video?.controls" [autoplay]="video?.autoplay" [loop]="video?.loop" [muted]="video?.muted">
     <source [src]="video?.src" type="video/mp4">
   </video>

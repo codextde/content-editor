@@ -1,5 +1,7 @@
 import { Component, forwardRef } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
+import { ElementService } from 'src/services/element.service';
+import { EventsService } from 'src/services/event.service';
 
 @Component({
   selector: 'app-element-divider',
@@ -14,28 +16,25 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 export class DividerElementComponent implements ControlValueAccessor {
 
   dividerElement;
-  
-  padding;
-  general;
-  divider;
 
+  divider;
+  styles;
+
+
+  constructor(
+    private elementService: ElementService,
+    private eventsService: EventsService
+    ) {
+      this.eventsService.subscribe('property-change', () => {
+        this.styles = this.elementService.loadStyleProperties(this.dividerElement);
+      });
+  }
 
   /** NgModel Start */
   writeValue(value: any): void {
     if (value) {
       this.dividerElement = value;
-
-      if (!this.padding) {
-        this.padding = this.dividerElement.properties.find((property) => {
-          return property.name == 'padding';
-        });
-      }
-
-      if (!this.general) {
-        this.general = this.dividerElement.properties.find((property) => {
-          return property.name == 'general';
-        });
-      }
+      this.styles = this.elementService.loadStyleProperties(this.dividerElement);
 
       if (!this.divider) {
         this.divider = this.dividerElement.properties.find((property) => {
@@ -45,22 +44,12 @@ export class DividerElementComponent implements ControlValueAccessor {
 
     }
   }
-
   registerOnChange(fn: (value: any) => void): void {
     this.onChange = fn;
   }
-
-  registerOnTouched(fn: () => void): void {
-    this.onTouched = fn;
-  }
-
-  setDisabledState(isDisabled: boolean): void {
-
-  }
+  registerOnTouched(fn: () => void): void {}
   /** NgModel End */
-
   onChange: any = () => {};
-  onTouched = () => {};
 
 
 }

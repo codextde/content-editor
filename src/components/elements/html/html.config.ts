@@ -6,12 +6,12 @@ export class HtmlElementConfig {
     component: 'html',
     icon: faCode,
     title: 'HTML',
-    properties: [{
-        name: 'padding'
-      },
+    properties: [
       {
         name: 'html',
         value: '<div>Example DIV</div>'
+      }, {
+        name: 'padding'
       }
     ],
     value: ''

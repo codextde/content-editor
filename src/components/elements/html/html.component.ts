@@ -19,7 +19,7 @@ export class HtmlElementComponent implements ControlValueAccessor {
 
   htmlElement;
 
-  styles = {};
+  styles;
   html;
 
   constructor(

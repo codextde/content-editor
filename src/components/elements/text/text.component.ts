@@ -43,7 +43,6 @@ export class TextElementComponent implements OnInit, ControlValueAccessor {
   writeValue(value: any): void {
     if (value) {
       this.textElement = value;
-      console.log(this.textElement);
       this.styles = this.elementService.loadStyleProperties(value);
 
       if (!this.initialLetter) {
