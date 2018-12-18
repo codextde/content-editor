@@ -19,7 +19,10 @@ export class ElementService {
     const text = element.properties.find((property) => {
       return property.name == 'text';
     });
-    return {...general, ...padding, ...text};
+    const background = element.properties.find((property) => {
+      return property.name == 'background';
+    });
+    return {...general, ...padding, ...text, ...background};
   }
 
 }

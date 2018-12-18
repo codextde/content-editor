@@ -1,5 +1,7 @@
 import { Component, OnInit, ViewChild, ElementRef, forwardRef } from '@angular/core';
 import { NG_VALUE_ACCESSOR, ControlValueAccessor } from '@angular/forms';
+import { ElementService } from 'src/services/element.service';
+import { EventsService } from 'src/services/event.service';
 declare var kendo: any;
 
 @Component({
@@ -18,40 +20,24 @@ export class HeadlineElementComponent implements OnInit, ControlValueAccessor {
   editor;
   headlineElement;
 
-  padding;
-  general;
-  text;
-  background;
   headline;
+  styles;
+
+  constructor(
+    private elementService: ElementService,
+    private eventsService: EventsService
+    ) {
+    this.eventsService.subscribe('property-change', () => {
+      this.styles = this.elementService.loadStyleProperties(this.headlineElement);
+    });
+  }
 
   /** NgModel Start */
   writeValue(value: any): void {
     if (value) {
       this.headlineElement = value;
+      this.styles = this.elementService.loadStyleProperties(value);
 
-      if (!this.padding) {
-        this.padding = this.headlineElement.properties.find((property) => {
-          return property.name == 'padding';
-        });
-      }
-
-      if (!this.general) {
-        this.general = this.headlineElement.properties.find((property) => {
-          return property.name == 'general';
-        });
-      }
-
-      if (!this.text) {
-        this.text = this.headlineElement.properties.find((property) => {
-          return property.name == 'text';
-        });
-      }
-
-      if (!this.background) {
-        this.background = this.headlineElement.properties.find((property) => {
-          return property.name == 'background';
-        });
-      }
 
       if (!this.headline) {
         this.headline = this.headlineElement.properties.find((property) => {
@@ -64,22 +50,12 @@ export class HeadlineElementComponent implements OnInit, ControlValueAccessor {
       }
     }
   }
-
   registerOnChange(fn: (value: any) => void): void {
     this.onChange = fn;
   }
-
-  registerOnTouched(fn: () => void): void {
-    this.onTouched = fn;
-  }
-
-  setDisabledState(isDisabled: boolean): void {
-
-  }
+  registerOnTouched(fn: () => void): void {}
   /** NgModel End */
-
   onChange: any = () => {};
-  onTouched = () => {};
 
   change(ev) {
     this.headlineElement.value =  this.editor.value();

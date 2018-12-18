@@ -6,10 +6,10 @@
       </div>
       <div class="col flex-end">
         <div class="btn-group" role="group">
-          <button type="button" class="btn btn-sm btn-secondary" (click)="textWeight('bold')" [class.active]="text.weight == 'bold'">
+          <button type="button" class="btn btn-sm btn-secondary" (click)="textWeight('bold')" [class.active]="text.fontWeight == 'bold'">
             <fa-icon [icon]="faBold"></fa-icon>
           </button>
-          <button type="button" class="btn btn-sm btn-secondary" (click)="textWeight('normal')" [class.active]="text.weight == 'normal'">
+          <button type="button" class="btn btn-sm btn-secondary" (click)="textWeight('normal')" [class.active]="text.fontWeight == 'normal'">
             Normal
           </button>
         </div>
@@ -22,13 +22,13 @@
       </div>
       <div class="col flex-end">
         <div class="btn-group" role="group">
-          <button type="button" class="btn btn-sm btn-secondary" (click)="textAlign('left')" [class.active]="text.align == 'left'">
+          <button type="button" class="btn btn-sm btn-secondary" (click)="textAlign('left')" [class.active]="text.textAlign == 'left'">
             <fa-icon [icon]="faAlignLeft"></fa-icon>
           </button>
-          <button type="button" class="btn btn-sm btn-secondary" (click)="textAlign('center')" [class.active]="text.align == 'center'">
+          <button type="button" class="btn btn-sm btn-secondary" (click)="textAlign('center')" [class.active]="text.textAlign == 'center'">
             <fa-icon [icon]="faAlignCenter"></fa-icon>
           </button>
-          <button type="button" class="btn btn-sm btn-secondary" (click)="textAlign('right')" [class.active]="text.align == 'right'">
+          <button type="button" class="btn btn-sm btn-secondary" (click)="textAlign('right')" [class.active]="text.textAlign == 'right'">
             <fa-icon [icon]="faAlignRight"></fa-icon>
           </button>
         </div>
@@ -43,7 +43,7 @@
       <div class="col flex-end">
         <div class="dropdown" dropdown>
           <button class="btn btn-secondary btn-sm" dropdown-open>
-            <span [style.fontFamily]="text?.fontFamily?.fontFamily">{{ text?.fontFamily?.displayName || 'Select' }}</span>
+            <span [style.fontFamily]="fontFamily?.fontFamily">{{ fontFamily?.displayName || 'Select' }}</span>
           </button>
           <div class="dropdown-menu">
             <a class="dropdown-item" (click)="selectFont({displayName: '', fontFamily: ''})">Select</a>
@@ -58,8 +58,8 @@
         Color
       </div>
       <div class="col flex-end">
-        <input [(colorPicker)]="text.color" cpPosition="left" cpOutputFormat="hex" cpAlphaChannel="disabled"
-          [style.background]="text.color" />
+        <input [(colorPicker)]="text.color" cpPosition="left" cpOutputFormat="auto" cpAlphaChannel="enabled"
+              [style.background]="text.color" (colorPickerChange)="change()" />
       </div>
     </div>
 
@@ -68,7 +68,7 @@
         Size (px)
       </div>
       <div class="col flex-end">
-          <app-stepper [(ngModel)]="text.size" (ngModelChange)="change()"></app-stepper>
+          <app-stepper [(ngModel)]="text['fontSize.px']" (ngModelChange)="change()"></app-stepper>
       </div>
     </div>
 
@@ -80,7 +80,7 @@
           <!--<app-stepper [(ngModel)]="text.lineHeight"></app-stepper>-->
 
           <div class="dropdown" dropdown>
-              <input class="btn btn-secondary btn-sm" [(ngModel)]="text.lineHeight" dropdown-open>
+              <input class="btn btn-secondary btn-sm" [(ngModel)]="text['lineHeight']" dropdown-open (ngModelChange)="change()">
               <div class="dropdown-menu">
                 <a *ngFor="let lineHeight of lineHeights" class="dropdown-item" (click)="selectLineHeight(lineHeight)">{{lineHeight}}</a>
               </div>
@@ -92,7 +92,7 @@
           Text Indent
         </div>
         <div class="col flex-end">
-            <app-stepper [(ngModel)]="text.textIndent" (ngModelChange)="change()"></app-stepper>
+            <app-stepper [(ngModel)]="text['textIndent.px']" (ngModelChange)="change()"></app-stepper>
         </div>
       </div>
   </div>

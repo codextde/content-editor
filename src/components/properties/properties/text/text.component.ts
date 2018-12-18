@@ -20,7 +20,7 @@ export class TextPropertyComponent implements ControlValueAccessor {
   faAlignRight = faAlignRight;
   faBold = faBold;
 
-  text: any = {};
+  text: ITextProperty = {};
 
   // Fonts
   fonts = [{
@@ -39,6 +39,7 @@ export class TextPropertyComponent implements ControlValueAccessor {
     displayName: 'Times New Roman',
     fontFamily: '"times new roman", times'
   }];
+  fontFamily;
 
   lineHeights = ['1', '1.15', '1.5', '2', '2,5', '3'];
 
@@ -46,12 +47,19 @@ export class TextPropertyComponent implements ControlValueAccessor {
     private eventsService: EventsService
   ) {
 
+
+
   }
 
   /** NgModel Start */
   writeValue(value: any): void {
     if (value) {
       this.text = value;
+      if (this.text.fontFamily) {
+        this.fontFamily = this.fonts.find((font) => {
+          return font.fontFamily == this.text.fontFamily;
+        });
+      }
     }
   }
 
@@ -59,20 +67,10 @@ export class TextPropertyComponent implements ControlValueAccessor {
     this.onChange = fn;
   }
 
-  registerOnTouched(fn: () => void): void {
-    this.onTouched = fn;
-  }
-
-  setDisabledState(isDisabled: boolean): void {
-
-  }
+  registerOnTouched(fn: () => void): void {}
   /** NgModel End */
-
-
   onChange: any = () => {};
 
-
-  onTouched = () => {};
 
   change() {
     this.onChange(this.text);
@@ -85,17 +83,18 @@ export class TextPropertyComponent implements ControlValueAccessor {
   }
 
   selectFont(font) {
-    this.text.fontFamily = font;
+    this.text.fontFamily = font.fontFamily;
+    this.fontFamily = font;
     this.change();
   }
 
   textWeight(weight) {
-    this.text.weight = weight;
+    this.text.fontWeight = weight;
     this.change();
   }
 
   selectLineHeight(lineHeight) {
-    this.text['lineHeight.px'] = lineHeight;
+    this.text['lineHeight'] = lineHeight;
     this.change();
   }
 

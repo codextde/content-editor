@@ -6,8 +6,8 @@
         Color
       </div>
       <div class="col flex-end">
-        <input [(colorPicker)]="background.color" cpPosition="left" cpOutputFormat="hex" cpAlphaChannel="disabled"
-          [style.background]="background.color" />
+        <input [(colorPicker)]="background['background-color']" cpPosition="left" cpOutputFormat="auto" cpAlphaChannel="enabled"
+          [style.background]="background['background-color']" (colorPickerChange)="change()"/>
       </div>
     </div>
     <div class="row">
@@ -15,7 +15,7 @@
         Image (URL)
       </div>
       <div class="col flex-end">
-        <input [(ngModel)]="background.image" />
+        <input [(ngModel)]="backgroundImageUrl" (ngModelChange)="changeBackground()" />
       </div>
     </div>
     <div class="row">
@@ -23,7 +23,7 @@
         - Repeat
       </div>
       <div class="col flex-end">
-        <select [(ngModel)]="background.repeat">
+        <select [(ngModel)]="background['background-repeat']"  (ngModelChange)="change()">
           <option value='no-repeat'>No-repeat</option>
           <option value='repeat'>Repeat</option>
         </select>
@@ -36,7 +36,7 @@
         - Size
       </div>
       <div class="col flex-end">
-        <select [(ngModel)]="background.size">
+        <select [(ngModel)]="background['background-size']"  (ngModelChange)="change()"> 
           <option [ngValue]="'unset'">Unset</option>
           <option [ngValue]="'auto'">Auto</option>
           <option [ngValue]="'cover'">Cover</option>

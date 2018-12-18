@@ -1,6 +1,8 @@
 import { Component, OnInit, forwardRef } from '@angular/core';
 import { IBackgroundProperty } from '../../models/background.model';
 import { NG_VALUE_ACCESSOR, ControlValueAccessor } from '@angular/forms';
+import { EventsService } from 'src/services/event.service';
+import { HelperService } from 'src/services/helper.service';
 
 @Component({
   selector: 'app-property-background',
@@ -14,12 +16,14 @@ import { NG_VALUE_ACCESSOR, ControlValueAccessor } from '@angular/forms';
 })
 export class BackgroundPropertyComponent implements ControlValueAccessor {
 
-  background: IBackgroundProperty = {
-    color: '#fff',
-    image: '',
-    repeat: 'no-repeat',
-    size: 'cover'
-  };
+  background: IBackgroundProperty = {};
+  backgroundImageUrl: string;
+
+  constructor(
+    private eventsService: EventsService,
+    private helperService: HelperService
+  ) {
+  }
 
   /** NgModel Start */
   writeValue(value: any): void {
@@ -31,24 +35,23 @@ export class BackgroundPropertyComponent implements ControlValueAccessor {
   registerOnChange(fn: (value: any) => void): void {
     this.onChange = fn;
   }
-
-  registerOnTouched(fn: () => void): void {
-    this.onTouched = fn;
-  }
-
-  setDisabledState(isDisabled: boolean): void {
-
-  }
+  registerOnTouched(fn: () => void): void {}
   /** NgModel End */
-
-
   onChange: any = () => {};
-
-
-  onTouched = () => {};
 
   change() {
     this.onChange(this.background);
+    this.eventsService.publish('property-change');
+  }
+
+
+  changeBackground() {
+    if (this.helperService.validURL(this.backgroundImageUrl)) {
+      this.background['background-image'] = `url(${this.backgroundImageUrl})`;
+    } else {
+      this.background['background-image'] = null;
+    }
+    this.change();
   }
 
 }

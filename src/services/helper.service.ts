@@ -49,6 +49,15 @@ export class HelperService {
     });
   }
 
+  validURL(str) {
+    const regex = /(http|https):\/\/(\w+:{0,1}\w*)?(\S+)(:[0-9]+)?(\/|\/([\w#!:.?+=&%!\-\/]))?/;
+    if (!regex .test(str)) {
+      return false;
+    } else {
+      return true;
+    }
+  }
+
   clearObject(object) {
     return JSON.parse(JSON.stringify(object));
   }

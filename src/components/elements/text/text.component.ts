@@ -2,6 +2,8 @@ import { Component, OnInit, ViewChild, ElementRef, forwardRef, DoCheck } from '@
 import { NG_VALUE_ACCESSOR, ControlValueAccessor } from '@angular/forms';
 import { ElementService } from 'src/services/element.service';
 import { EventsService } from 'src/services/event.service';
+import '@progress/kendo-ui';
+
 declare var kendo: any;
 
 @Component({
@@ -41,14 +43,8 @@ export class TextElementComponent implements OnInit, ControlValueAccessor {
   writeValue(value: any): void {
     if (value) {
       this.textElement = value;
+      console.log(this.textElement);
       this.styles = this.elementService.loadStyleProperties(value);
-
-
-      if (!this.background) {
-        this.background = this.textElement.properties.find((property) => {
-          return property.name == 'background';
-        });
-      }
 
       if (!this.initialLetter) {
         this.initialLetter = this.textElement.properties.find((property) => {
@@ -75,17 +71,10 @@ export class TextElementComponent implements OnInit, ControlValueAccessor {
     this.onChange = fn;
   }
 
-  registerOnTouched(fn: () => void): void {
-    this.onTouched = fn;
-  }
+  registerOnTouched(fn: () => void): void {}
 
-  setDisabledState(isDisabled: boolean): void {
-
-  }
   /** NgModel End */
-
   onChange: any = () => {};
-  onTouched = () => {};
 
   change(ev) {
     this.textElement.value =  this.editor.value();

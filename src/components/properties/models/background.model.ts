@@ -1,7 +1,6 @@
 export class IBackgroundProperty {
-    name?: string;
-    color?: string;
-    image?: string;
-    repeat?: string;
-    size?: string;
+    'background-color'?: string;
+    'background-image'?: string;
+    'background-repeat'?: string;
+    'background-size'?: string;
 }

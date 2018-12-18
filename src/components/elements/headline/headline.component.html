@@ -1,29 +1,11 @@
 <div
-  [style.paddingLeft.px]="padding?.left" 
-  [style.paddingTop.px]="padding?.top"
-  [style.paddingRight.px]="padding?.right" 
-  [style.paddingBottom.px]="padding?.bottom"
-  [style.zIndex]="general?.zIndex"
-  [style.float]="general?.float"
-  [style.width.px]="general?.width"
-  [style.boxShadow]="general?.boxShadow"
-  [style.margin]="general?.center ? '0 auto' : ''"
-  [style.color]="text?.color"
-  [style.fontFamily]="text?.fontFamily?.fontFamily"
-  [style.lineHeight]="text?.lineHeight"
-  [style.fontSize.px]="text?.size"
-  [style.textAlign]="text?.align"
-  [style.backgroundColor]="background?.color"
-  [style.backgroundImage]="'url('+background?.image+')'" 
-  [style.backgroundRepeat]="background?.repeat"
-  [style.backgroundSize]="background?.size"
-  [ngClass]="general?.cssClass"
-  [style.fontWeight]="text?.weight"
+  [ngClass]="styles?.cssClasses"
+  [ngStyle]="styles"
   [class.k-widget]="false"
   [class.k-editor]="false"
   [class.k-editor-inline]="false"
   [class.k-state-active]="false"
 >
 <!--*replaceTag="headline?.tag"-->
-<h1 >{{headline?.text}}</h1>
+<h1 [style.fontWeight]="styles?.fontWeight">{{headline?.text}}</h1>
 </div>
