@@ -45,11 +45,7 @@ export class TextPropertyComponent implements ControlValueAccessor {
 
   constructor(
     private eventsService: EventsService
-  ) {
-
-
-
-  }
+  ) {}
 
   /** NgModel Start */
   writeValue(value: any): void {

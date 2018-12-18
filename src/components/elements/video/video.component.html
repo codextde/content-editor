@@ -1,15 +1,8 @@
 
 <div
-[style.paddingLeft.px]="padding?.left" 
-[style.paddingTop.px]="padding?.top"
-[style.paddingRight.px]="padding?.right" 
-[style.paddingBottom.px]="padding?.bottom"
-[style.zIndex]="general?.zIndex"
-[style.float]="general?.float"
-[style.width.px]="general?.width"
-[style.boxShadow]="general?.boxShadow"
-[style.margin]="general?.center ? '0 auto' : ''"
-[ngClass]="general?.cssClass">
+[ngClass]="styles?.cssClasses"
+[ngStyle]="styles"
+>
   <video [controls]="video?.controls" [autoplay]="video?.autoplay" [loop]="video?.loop" [muted]="video?.muted">
     <source [src]="video?.src" type="video/mp4">
   </video>
