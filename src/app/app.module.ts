@@ -12,7 +12,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
 const monacoConfig: NgxMonacoEditorConfig = {
-  baseUrl: `${window['_app_base']}assets` || '/assets',
+  baseUrl: window['_app_base'] + 'assets' || '/assets',
   defaultOptions: { scrollBeyondLastLine: false }
 };
 
