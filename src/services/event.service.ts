@@ -1,9 +1,11 @@
 import { Injectable } from '@angular/core';
 import { Subject, Observable, Subscription } from 'rxjs';
 
-const ServiceName: string = "Events Service";
+const ServiceName: string = 'Events Service';
 
-@Injectable()
+@Injectable({
+    providedIn: 'root'
+  })
 export class EventsService implements IEventsService {
     private events = {};
 
@@ -24,8 +26,7 @@ export class EventsService implements IEventsService {
 
         if (typeof callback !== 'function') {
             return this.events[event].asObservable();
-        }
-        else {
+        } else {
             return this.events[event].asObservable().subscribe(callback, error, complete);
         }
     }
@@ -33,8 +34,7 @@ export class EventsService implements IEventsService {
     public publish(event: string, eventObject?: any): void {
         if (!event) {
             throw new Error(`[${ServiceName}] => Publish method must get event name.`);
-        }
-        else if (!this.events[event]) {
+        } else if (!this.events[event]) {
             return;
         }
 

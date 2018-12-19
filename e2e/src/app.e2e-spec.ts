@@ -7,8 +7,7 @@ describe('workspace-project App', () => {
     page = new AppPage();
   });
 
-  it('should display welcome message', () => {
+  it('should go to the main page', () => {
     page.navigateTo();
-    expect(page.getTitleText()).toEqual('Welcome to eAssessment-LayoutEditor!');
   });
 });

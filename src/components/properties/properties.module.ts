@@ -8,24 +8,25 @@ import { MonacoEditorModule } from 'ngx-monaco-editor';
 import { TextareaAutosizeModule } from 'ngx-textarea-autosize';
 import { DirectivesModule } from 'src/directives/directives.module';
 import { GeneralModule } from '../general/general.module';
-import { PropertiesComponent } from './properties.component';
-import { BackgroundPropertyComponent } from './properties/background/background.component';
-import { BorderPropertyComponent } from './properties/border/border.component';
-import { CssPropertyComponent } from './properties/css/css.component';
-import { DividerPropertyComponent } from './properties/divider/divider.component';
-import { GeneralPropertyComponent } from './properties/general/general.component';
-import { HeadlinePropertyComponent } from './properties/headline/headline.component';
-import { HtmlPropertyComponent } from './properties/html/html.component';
-import { ImagePropertyComponent } from './properties/image/image.component';
-import { InitialLetterPropertyComponent } from './properties/initial-letter/initial-letter.component';
-import { JavascriptPropertyComponent } from './properties/javascript/javascript.component';
-import { PaddingPropertyComponent } from './properties/padding/padding.component';
-import { PositionPropertyComponent } from './properties/position/position.component';
-import { SwitchPropertyComponent } from './properties/switch/switch.component';
-import { TextPropertyComponent } from './properties/text/text.component';
-import { VideoPropertyComponent } from './properties/video/video.component';
 import { PipesModule } from 'src/pipes/pipes.module';
-import { MarginPropertyComponent } from './properties/margin/margin.component';
+import { PropertiesComponent } from './properties.component';
+
+import {   PaddingPropertyComponent,
+          MarginPropertyComponent,
+          HtmlPropertyComponent,
+          CssPropertyComponent,
+          JavascriptPropertyComponent,
+          BackgroundPropertyComponent,
+          TextPropertyComponent,
+          ImagePropertyComponent,
+          GeneralPropertyComponent,
+          BorderPropertyComponent,
+          SwitchPropertyComponent,
+          VideoPropertyComponent,
+          DividerPropertyComponent,
+          HeadlinePropertyComponent,
+          InitialLetterPropertyComponent,
+          PositionPropertyComponent } from './properties';
 
 const properties = [
   PropertiesComponent,
