@@ -12,7 +12,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
 const monacoConfig: NgxMonacoEditorConfig = {
-  baseUrl: window['_app_base'] + 'assets' || '/assets',
+  baseUrl: window.location.pathname + 'assets',
   defaultOptions: { scrollBeyondLastLine: false }
 };
 
@@ -35,7 +35,7 @@ const monacoConfig: NgxMonacoEditorConfig = {
     ElementsService,
     {
       provide: APP_BASE_HREF,
-      useValue: window['_app_base'] || '/'
+      useValue: window.location.pathname || '/'
     }
   ],
   bootstrap: [
