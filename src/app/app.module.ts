@@ -4,13 +4,17 @@ import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { IonicModule } from '@ionic/angular';
 
-import { MonacoEditorModule } from 'ngx-monaco-editor';
+import { MonacoEditorModule, NgxMonacoEditorConfig } from 'ngx-monaco-editor';
 import { DataService } from 'src/services/data.service';
 import { ElementsService } from 'src/services/elements.service';
 import { EventsService } from 'src/services/event.service';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
+const monacoConfig: NgxMonacoEditorConfig = {
+  baseUrl: `${window['_app_base']}assets` || '/assets',
+  defaultOptions: { scrollBeyondLastLine: false }
+};
 
 
 
@@ -23,7 +27,7 @@ import { AppComponent } from './app.component';
     AppRoutingModule,
     IonicModule.forRoot(),
     BrowserAnimationsModule,
-    MonacoEditorModule.forRoot()
+    MonacoEditorModule.forRoot(monacoConfig)
   ],
   providers: [
     EventsService,
