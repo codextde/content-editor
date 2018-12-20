@@ -29,6 +29,10 @@ export class BackgroundPropertyComponent implements ControlValueAccessor {
   writeValue(value: any): void {
     if (value) {
       this.background = value;
+      if (this.background['background-image']) {
+        this.backgroundImageUrl = this.background['background-image'].replace('url(', '').slice(0, -1);
+        this.changeBackground();
+      }
     }
   }
 

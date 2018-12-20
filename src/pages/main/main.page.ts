@@ -24,7 +24,6 @@ export class MainPage implements OnInit {
   propertiesActive: boolean = false;
   tab: string = 'elements';
 
-
   @HostListener('window:keydown', ['$event'])
   keyEvent(event: KeyboardEvent) {
     if (event.ctrlKey && event.key == 's') {
@@ -47,7 +46,6 @@ export class MainPage implements OnInit {
     const storageOptions = localStorage.getItem('editorOptions');
     if (storageOptions) {
       this.data.editorOptions = JSON.parse(storageOptions);
-      console.log(this.data.editorOptions);
     } else {
       this.clear();
     }
@@ -86,6 +84,7 @@ export class MainPage implements OnInit {
     this.propertiesActive = false;
     this.activeElement = {};
     this.data.editorOptions.elements = this.data.editorOptions.elements.filter((el) => el  !==  element);
+    this.save();
   }
 
   async save() {

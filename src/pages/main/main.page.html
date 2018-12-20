@@ -8,15 +8,7 @@
         cdkDropList 
         #activeElementsList="cdkDropList" 
         [cdkDropListData]="data.editorOptions.elements"
-        (cdkDropListDropped)="drop($event)" 
-        [style.backgroundColor]="data.editorOptions.bodyStyleOptions.background.color"
-        [style.backgroundImage]="'url('+data.editorOptions.bodyStyleOptions.background.image+')'" 
-        [style.backgroundRepeat]="data.editorOptions.bodyStyleOptions.background.repeat"
-        [style.backgroundSize]="data.editorOptions.bodyStyleOptions.background.size"
-        [style.paddingLeft.px]="data.editorOptions.bodyStyleOptions.padding.left" 
-        [style.paddingTop.px]="data.editorOptions.bodyStyleOptions.padding.top"
-        [style.paddingRight.px]="data.editorOptions.bodyStyleOptions.padding.right" 
-        [style.paddingBottom.px]="data.editorOptions.bodyStyleOptions.padding.bottom"
+        (cdkDropListDropped)="drop($event)" [ngStyle]="data.editorOptions.bodyStyleOptions.styles"
         [dir]="data.editorOptions.bodyStyleOptions.directionLtr ? 'ltr' : 'rtl'">
 
         <div class="drag-element" [tooltip]="myTooltip" [tooltipClick]="true" *ngFor="let element of data.editorOptions.elements" cdkDrag>
@@ -82,8 +74,8 @@
 
 
     <div *ngIf="tab == 'body'" class="body-settings">
-      <app-property-background [(ngModel)]="data.editorOptions.bodyStyleOptions.background"></app-property-background>
-      <app-property-padding [(ngModel)]="data.editorOptions.bodyStyleOptions.padding"></app-property-padding>
+      <app-property-background [(ngModel)]="data.editorOptions.bodyStyleOptions.styles"></app-property-background>
+      <app-property-padding [(ngModel)]="data.editorOptions.bodyStyleOptions.styles"></app-property-padding>
       <app-property-switch [title]="'Direction'" [switchTitle]="'LTR'"  [(ngModel)]="data.editorOptions.bodyStyleOptions.directionLtr"></app-property-switch>
       <app-property-css [(ngModel)]="data.editorOptions.bodyStyleOptions.css"  (ngModelChange)="cssCodeChange(ev)"></app-property-css>
     </div>

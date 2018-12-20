@@ -3,4 +3,5 @@ export class IBackgroundProperty {
     'background-image'?: string;
     'background-repeat'?: string;
     'background-size'?: string;
+    'background-position'?: string;
 }

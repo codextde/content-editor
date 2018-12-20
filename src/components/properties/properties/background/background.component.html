@@ -46,5 +46,20 @@
       </div>
     </div>
 
+    <div class="row">
+        <div class="col title">
+          - Position
+        </div>
+        <div class="col flex-end">
+          <select [(ngModel)]="background['background-position']"  (ngModelChange)="change()"> 
+            <option [ngValue]="'unset'">Unset</option>
+            <option [ngValue]="'top'">Top</option>
+            <option [ngValue]="'center'">Center</option>
+            <option [ngValue]="'bottom'">Bottom</option>
+          </select>
+  
+        </div>
+      </div>
+
   </div>
 </app-card>

@@ -11,17 +11,9 @@ export class DataService {
     name: 'Layout 1',
     bodyStyleOptions: {
       css: '.test {\n  display: none\n}',
-      padding: {
-        top: 30,
-        right: 30,
-        bottom: 30,
-        left: 30
-      },
-      background: {
-        color: '#fff',
-        image: '',
-        repeat: 'no-repeat',
-        size: 'cover',
+      styles: {
+        'paddingLeft.px': 30,
+        'paddingTop.px': 30
       },
       directionLtr: true
     },
