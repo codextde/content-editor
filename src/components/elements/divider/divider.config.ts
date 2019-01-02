@@ -9,7 +9,7 @@ export class DividerElementConfig {
     properties: [{
       name: 'divider',
       color: '#000',
-      size: '5px'
+      size: 5
     }, {
       name: 'general'
     }, {

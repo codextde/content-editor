@@ -17,7 +17,6 @@ export class DividerPropertyComponent implements ControlValueAccessor {
   divider: IDividerProperty = {
     color: '',
     style: '',
-    size: '',
     align: '',
     width: ''
   };

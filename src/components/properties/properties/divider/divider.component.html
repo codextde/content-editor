@@ -18,7 +18,7 @@
         Size
       </div>
       <div class="col flex-end">
-        <input [(ngModel)]="divider.size" />
+          <app-stepper [(ngModel)]="divider.size" (ngModelChange)="change()"></app-stepper>
       </div>
     </div>
   </div>

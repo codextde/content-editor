@@ -13,7 +13,7 @@ import { NG_VALUE_ACCESSOR, ControlValueAccessor } from '@angular/forms';
 })
 export class CssPropertyComponent implements ControlValueAccessor {
 
-  css: string =  '.test {\n  display: block\n}';
+  css: string =  '.test {\n display: block\n}';
   cssOptions = {theme: 'vs-dark', language: 'css'};
 
   /** NgModel Start */
