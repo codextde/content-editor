@@ -1,9 +1,13 @@
-.initial-letter{
-    float: left;
-    font-size: 40px;
-    margin: 0 5px 0 0;
+.initial-letter {
+  float: left;
+  font-size: 40px;
+  margin: 0 5px 0 0;
+}
+
+.text-content {
+  float: none !important;
 }
 
 div {
-    transform: none!important;
+  transform: none !important;
 }

@@ -147,3 +147,12 @@ color-picker {
 .k-window.k-editor-widget {
   min-width: 500px!important;
 }
+
+
+.clearfix {
+  &::after {
+    content: "";
+    clear: both;
+    display: table;
+  }
+}
