@@ -15,6 +15,7 @@ import { MonacoService } from 'src/services/monaco.service';
 export class HtmlPropertyComponent implements OnInit, ControlValueAccessor {
 
   @ViewChild('editorElm') editorElm: ElementRef;
+  htmlValue;
   htmlOptions = {theme: 'vs-dark', language: 'html', value: '<div></div>' };
 
 
@@ -22,7 +23,8 @@ export class HtmlPropertyComponent implements OnInit, ControlValueAccessor {
   /** NgModel Start */
   writeValue(value: any): void {
     if (value) {
-      this.htmlOptions.value = value.value;
+      this.htmlValue = value;
+      this.htmlOptions.value = this.htmlValue.value;
     }
   }
 
@@ -44,7 +46,8 @@ export class HtmlPropertyComponent implements OnInit, ControlValueAccessor {
     this.monacoService.loadMonaco().then((monaco: any) => {
       const editor = monaco.editor.create(this.editorElm.nativeElement, this.htmlOptions);
       editor.onDidChangeModelContent((e) => {
-        this.onChange(editor.getValue());
+        this.htmlValue.value = editor.getValue();
+        this.onChange(this.htmlValue);
       });
     });
   }
