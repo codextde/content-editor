@@ -1,5 +1,6 @@
-import { Component, forwardRef } from '@angular/core';
+import { Component, forwardRef, ViewChild, ElementRef, OnInit } from '@angular/core';
 import { NG_VALUE_ACCESSOR, ControlValueAccessor } from '@angular/forms';
+import { MonacoService } from 'src/services/monaco.service';
 
 @Component({
   selector: 'app-property-javascript',
@@ -11,17 +12,14 @@ import { NG_VALUE_ACCESSOR, ControlValueAccessor } from '@angular/forms';
        multi: true
   }]
 })
-export class JavascriptPropertyComponent  implements ControlValueAccessor {
-
-  javascript: string = 'function x() {\n  console.log("Hello world!");\n}';
-  javascriptOptions = {theme: 'vs-dark', language: 'javascript'};
-
-
+export class JavascriptPropertyComponent  implements OnInit, ControlValueAccessor {
+  @ViewChild('editorElm') editorElm: ElementRef;
+  javascriptOptions = {theme: 'vs-dark', language: 'javascript', value: 'function x() {\n  console.log("Hello world!");\n}'};
 
   /** NgModel Start */
   writeValue(value: any): void {
     if (value) {
-      this.javascript = value;
+      this.javascriptOptions.value = value.value;
     }
   }
 
@@ -38,10 +36,22 @@ export class JavascriptPropertyComponent  implements ControlValueAccessor {
   }
   /** NgModel End */
 
+  constructor(
+    private monacoService: MonacoService
+  ) {}
+
+
+  ngOnInit() {
+    this.monacoService.loadMonaco().then((monaco: any) => {
+      const editor = monaco.editor.create(this.editorElm.nativeElement, this.javascriptOptions);
+      editor.onDidChangeModelContent((e) => {
+        this.onChange(editor.getValue());
+      });
+    });
+  }
 
   onChange: any = () => {};
-
-
   onTouched = () => {};
+
 
 }

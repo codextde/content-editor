@@ -1,5 +1,7 @@
-import { Component, forwardRef } from '@angular/core';
+import { Component, forwardRef, ViewChild, ElementRef, OnInit } from '@angular/core';
 import { NG_VALUE_ACCESSOR, ControlValueAccessor } from '@angular/forms';
+import { MonacoService } from 'src/services/monaco.service';
+
 
 @Component({
   selector: 'app-property-css',
@@ -11,15 +13,16 @@ import { NG_VALUE_ACCESSOR, ControlValueAccessor } from '@angular/forms';
        multi: true
   }]
 })
-export class CssPropertyComponent implements ControlValueAccessor {
+export class CssPropertyComponent implements OnInit, ControlValueAccessor {
 
-  css: string =  '.test {\n display: block\n}';
-  cssOptions = {theme: 'vs-dark', language: 'css'};
+  @ViewChild('editorElm') editorElm: ElementRef;
+
+  cssOptions = {theme: 'vs-dark', language: 'css', value: '.test {\n display: block\n}'};
 
   /** NgModel Start */
   writeValue(value: any): void {
     if (value) {
-      this.css = value;
+      this.cssOptions.value = value;
     }
   }
 
@@ -36,14 +39,23 @@ export class CssPropertyComponent implements ControlValueAccessor {
   }
   /** NgModel End */
 
+  constructor(
+    private monacoService: MonacoService
+  ) {}
+
+
+  ngOnInit() {
+    this.monacoService.loadMonaco().then((monaco: any) => {
+      const editor = monaco.editor.create(this.editorElm.nativeElement, this.cssOptions);
+      editor.onDidChangeModelContent((e) => {
+        this.onChange(editor.getValue());
+      });
+    });
+  }
+
 
   onChange: any = () => {};
-
-
   onTouched = () => {};
 
-  change() {
-    this.onChange(this.css);
-  }
 
 }

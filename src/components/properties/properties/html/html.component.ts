@@ -1,5 +1,6 @@
-import { Component, forwardRef } from '@angular/core';
+import { Component, forwardRef, ViewChild, ElementRef, OnInit } from '@angular/core';
 import { NG_VALUE_ACCESSOR, ControlValueAccessor } from '@angular/forms';
+import { MonacoService } from 'src/services/monaco.service';
 
 @Component({
   selector: 'app-property-html',
@@ -11,19 +12,17 @@ import { NG_VALUE_ACCESSOR, ControlValueAccessor } from '@angular/forms';
        multi: true
   }]
 })
-export class HtmlPropertyComponent implements ControlValueAccessor {
+export class HtmlPropertyComponent implements OnInit, ControlValueAccessor {
 
-  html: any = {
-    value: '<div></div>'
-  };
-  htmlOptions = {theme: 'vs-dark', language: 'html'};
+  @ViewChild('editorElm') editorElm: ElementRef;
+  htmlOptions = {theme: 'vs-dark', language: 'html', value: '<div></div>' };
 
 
 
   /** NgModel Start */
   writeValue(value: any): void {
     if (value) {
-      this.html = value;
+      this.htmlOptions.value = value.value;
     }
   }
 
@@ -34,16 +33,23 @@ export class HtmlPropertyComponent implements ControlValueAccessor {
   registerOnTouched(fn: () => void): void {
     this.onTouched = fn;
   }
-
-  setDisabledState(isDisabled: boolean): void {
-
-  }
   /** NgModel End */
 
+  constructor(
+    private monacoService: MonacoService
+  ) {}
+
+
+  ngOnInit() {
+    this.monacoService.loadMonaco().then((monaco: any) => {
+      const editor = monaco.editor.create(this.editorElm.nativeElement, this.htmlOptions);
+      editor.onDidChangeModelContent((e) => {
+        this.onChange(editor.getValue());
+      });
+    });
+  }
 
   onChange: any = () => {};
-
-
   onTouched = () => {};
 
 }
