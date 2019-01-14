@@ -23,10 +23,7 @@ export class TextElementComponent implements OnInit, ControlValueAccessor {
 
   @ViewChild('editor') editorEl: ElementRef;
   editor;
-
-
   textElement: IElement;
-  textProperty: ITextProperty;
 
   styles;
 
