@@ -5,7 +5,7 @@
         Source (URL)
       </div>
       <div class="col flex-end">
-        <input [(ngModel)]="video.src" />
+        <input [(ngModel)]="video.src" (ngModelChange)="change()" />
       </div>
     </div>
 

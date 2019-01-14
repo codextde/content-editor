@@ -16,8 +16,8 @@ import { EventsService } from 'src/services/event.service';
 export class DividerElementComponent implements ControlValueAccessor {
 
   dividerElement;
+  dividerProperty;
 
-  divider;
   styles;
 
 
@@ -36,8 +36,8 @@ export class DividerElementComponent implements ControlValueAccessor {
       this.dividerElement = value;
       this.styles = this.elementService.loadStyleProperties(this.dividerElement);
 
-      if (!this.divider) {
-        this.divider = this.dividerElement.properties.find((property) => {
+      if (!this.dividerProperty) {
+        this.dividerProperty = this.dividerElement.properties.find((property) => {
           return property.name == 'divider';
         });
       }

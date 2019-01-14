@@ -18,9 +18,9 @@ declare var kendo: any;
 export class HtmlElementComponent implements ControlValueAccessor {
 
   htmlElement;
+  htmlProperty;
 
   styles;
-  html;
 
   constructor(
     private elementService: ElementService,
@@ -28,6 +28,7 @@ export class HtmlElementComponent implements ControlValueAccessor {
     ) {
     this.eventsService.subscribe('property-change', () => {
       this.styles = this.elementService.loadStyleProperties(this.htmlElement);
+      this.htmlElement.value = this.htmlProperty.value;
     });
   }
 
@@ -38,11 +39,13 @@ export class HtmlElementComponent implements ControlValueAccessor {
       this.htmlElement = value;
       this.styles = this.elementService.loadStyleProperties(this.htmlElement);
 
-      if (!this.html) {
-        this.html = this.htmlElement.properties.find((property) => {
+      if (!this.htmlProperty) {
+        this.htmlProperty = this.htmlElement.properties.find((property) => {
           return property.name == 'html';
         });
       }
+
+      this.htmlElement.value = this.htmlProperty.value;
 
     }
   }

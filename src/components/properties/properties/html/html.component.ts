@@ -1,6 +1,7 @@
 import { Component, forwardRef, ViewChild, ElementRef, OnInit } from '@angular/core';
 import { NG_VALUE_ACCESSOR, ControlValueAccessor } from '@angular/forms';
 import { MonacoService } from 'src/services/monaco.service';
+import { EventsService } from 'src/services/event.service';
 
 @Component({
   selector: 'app-property-html',
@@ -38,7 +39,8 @@ export class HtmlPropertyComponent implements OnInit, ControlValueAccessor {
   /** NgModel End */
 
   constructor(
-    private monacoService: MonacoService
+    private monacoService: MonacoService,
+    private eventsService: EventsService
   ) {}
 
 
@@ -48,6 +50,7 @@ export class HtmlPropertyComponent implements OnInit, ControlValueAccessor {
       editor.onDidChangeModelContent((e) => {
         this.htmlValue.value = editor.getValue();
         this.onChange(this.htmlValue);
+        this.eventsService.publish('property-change');
       });
     });
   }

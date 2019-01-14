@@ -1,5 +1,6 @@
 import { Component, forwardRef } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
+import { EventsService } from 'src/services/event.service';
 import { IVideoProperty } from '../../models/video.model';
 
 @Component({
@@ -31,6 +32,12 @@ export class VideoPropertyComponent implements ControlValueAccessor {
     title: 'Muted',
     option: 'muted'
   }];
+
+  constructor(
+    private eventsService: EventsService
+  ) {
+
+  }
   
   /** NgModel Start */
   writeValue(value: any): void {
@@ -43,20 +50,14 @@ export class VideoPropertyComponent implements ControlValueAccessor {
     this.onChange = fn;
   }
 
-  registerOnTouched(fn: () => void): void {
-    this.onTouched = fn;
-  }
+  registerOnTouched(fn: () => void): void {}
 
-  setDisabledState(isDisabled: boolean): void {
-
-  }
   /** NgModel End */
-
-
   onChange: any = () => {};
 
 
-  onTouched = () => {};
-
+  change() {
+    this.eventsService.publish('property-change');
+  }
 
 }

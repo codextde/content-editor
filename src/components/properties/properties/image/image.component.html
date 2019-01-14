@@ -5,7 +5,7 @@
         Source (URL)
       </div>
       <div class="col flex-end">
-        <input [(ngModel)]="img.src" />
+        <input [(ngModel)]="img.src" (ngModelChange)="change()" />
       </div>
     </div>
 

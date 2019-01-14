@@ -2,6 +2,8 @@ import { Component, forwardRef, OnInit } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { ElementService } from 'src/services/element.service';
 import { EventsService } from 'src/services/event.service';
+import { IImageProperty } from 'src/components/properties/models/image.model';
+import { IElement } from 'src/models/element.model';
 
 @Component({
   selector: 'app-element-image',
@@ -15,8 +17,8 @@ import { EventsService } from 'src/services/event.service';
 })
 export class ImageElementComponent implements ControlValueAccessor {
 
-  imageElement;
-  image;
+  imageElement: IElement;
+  imageProperty: IImageProperty;
 
   styles;
 
@@ -27,6 +29,7 @@ export class ImageElementComponent implements ControlValueAccessor {
     ) {
       this.eventsService.subscribe('property-change', () => {
         this.styles = this.elementService.loadStyleProperties(this.imageElement);
+        this.imageElement.value = this.imageProperty.src;
       });
   }
 
@@ -36,11 +39,12 @@ export class ImageElementComponent implements ControlValueAccessor {
       this.imageElement = value;
       this.styles = this.elementService.loadStyleProperties(this.imageElement);
 
-      if (!this.image) {
-        this.image = this.imageElement.properties.find((property) => {
+      if (!this.imageProperty) {
+        this.imageProperty = this.imageElement.properties.find((property) => {
           return property.name == 'image';
         });
       }
+      this.imageElement.value = this.imageProperty.src;
     }
   }
 

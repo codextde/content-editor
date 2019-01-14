@@ -22,13 +22,13 @@ export class TextElementComponent implements OnInit, ControlValueAccessor {
   @ViewChild('editor') editorEl: ElementRef;
   editor;
   textElement;
+  textProperty;
 
   styles;
 
   background;
   initialLetter;
   position;
-  text;
 
   constructor(
     private elementService: ElementService,

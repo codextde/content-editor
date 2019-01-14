@@ -1,6 +1,7 @@
 import { Component, forwardRef } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { IImageProperty } from '../../models/image.model';
+import { EventsService } from 'src/services/event.service';
 
 @Component({
   selector: 'app-property-image',
@@ -18,6 +19,10 @@ export class ImagePropertyComponent implements ControlValueAccessor {
     src: ''
   };
 
+  constructor(
+    private eventsService: EventsService
+  ) {}
+
 
   /** NgModel Start */
   writeValue(value: any): void {
@@ -30,20 +35,14 @@ export class ImagePropertyComponent implements ControlValueAccessor {
     this.onChange = fn;
   }
 
-  registerOnTouched(fn: () => void): void {
-    this.onTouched = fn;
-  }
-
-  setDisabledState(isDisabled: boolean): void {
-
-  }
+  registerOnTouched(fn: () => void): void {}
   /** NgModel End */
-
 
   onChange: any = () => {};
 
-
-  onTouched = () => {};
+  change() {
+    this.eventsService.publish('property-change');
+  }
 
 
 }

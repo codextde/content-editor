@@ -18,9 +18,10 @@ export class HeadlineElementComponent implements OnInit, ControlValueAccessor {
 
   @ViewChild('editor') editorEl: ElementRef;
   editor;
-  headlineElement;
 
-  headline;
+  headlineElement;
+  headlineProperty;
+
   styles;
 
   constructor(
@@ -28,6 +29,7 @@ export class HeadlineElementComponent implements OnInit, ControlValueAccessor {
     private eventsService: EventsService
     ) {
     this.eventsService.subscribe('property-change', () => {
+      this.headlineElement.value = this.headlineProperty.text;
       this.styles = this.elementService.loadStyleProperties(this.headlineElement);
     });
   }
@@ -39,8 +41,8 @@ export class HeadlineElementComponent implements OnInit, ControlValueAccessor {
       this.styles = this.elementService.loadStyleProperties(value);
 
 
-      if (!this.headline) {
-        this.headline = this.headlineElement.properties.find((property) => {
+      if (!this.headlineProperty) {
+        this.headlineProperty = this.headlineElement.properties.find((property) => {
           return property.name == 'headline';
         });
       }
@@ -48,6 +50,8 @@ export class HeadlineElementComponent implements OnInit, ControlValueAccessor {
       if (this.editor) {
         this.editor.value(this.headlineElement.value);
       }
+
+      this.headlineElement.value = this.headlineProperty.text;
     }
   }
   registerOnChange(fn: (value: any) => void): void {
@@ -85,5 +89,6 @@ export class HeadlineElementComponent implements OnInit, ControlValueAccessor {
     });
     this.editor = kendo.jQuery(this.editorEl.nativeElement).data('kendoEditor');*/
   }
+
 
 }

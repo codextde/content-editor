@@ -17,7 +17,7 @@ export class VideoElementComponent implements ControlValueAccessor {
 
   videoElement;
 
-  video;
+  videoProperty;
   styles;
 
   constructor(
@@ -26,6 +26,7 @@ export class VideoElementComponent implements ControlValueAccessor {
     ) {
     this.eventsService.subscribe('property-change', () => {
       this.styles = this.elementService.loadStyleProperties(this.videoElement);
+      this.videoElement.value = this.videoProperty.src;
     });
   }
 
@@ -35,12 +36,13 @@ export class VideoElementComponent implements ControlValueAccessor {
       this.videoElement = value;
       this.styles = this.elementService.loadStyleProperties(this.videoElement);
 
-      if (!this.video) {
-        this.video = this.videoElement.properties.find((property) => {
+      if (!this.videoProperty) {
+        this.videoProperty = this.videoElement.properties.find((property) => {
           return property.name == 'video';
         });
       }
 
+      this.videoElement.value = this.videoProperty.value;
     }
   }
 

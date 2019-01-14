@@ -5,7 +5,7 @@
         Text
       </div>
       <div class="col flex-end">
-        <textarea [(ngModel)]="headline.text" autosize></textarea>
+        <textarea [(ngModel)]="headline.text" (ngModelChange)="change()" autosize></textarea>
       </div>
     </div>
 

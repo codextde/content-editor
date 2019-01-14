@@ -1,6 +1,7 @@
 import { Component, forwardRef } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { IHeadlineProperty } from '../../models/headline.model';
+import { EventsService } from 'src/services/event.service';
 
 @Component({
   selector: 'app-property-headline',
@@ -13,6 +14,10 @@ import { IHeadlineProperty } from '../../models/headline.model';
   }]
 })
 export class HeadlinePropertyComponent implements ControlValueAccessor {
+
+  constructor(
+    private eventsService: EventsService
+  ) {}
 
   headline: IHeadlineProperty = {
     text: 'Sample Heading',
@@ -39,12 +44,14 @@ export class HeadlinePropertyComponent implements ControlValueAccessor {
 
   }
   /** NgModel End */
-
-
   onChange: any = () => {};
-
-
   onTouched = () => {};
+
+
+  change() {
+    this.eventsService.publish('property-change');
+  }
+
 
 
 }
