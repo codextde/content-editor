@@ -2,6 +2,8 @@ import { Component, forwardRef, OnInit } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { ElementService } from 'src/services/element.service';
 import { EventsService } from 'src/services/event.service';
+import { IElement } from 'src/models/element.model';
+import { IVideoProperty } from 'src/components/properties/models/video.model';
 
 @Component({
   selector: 'app-element-video',
@@ -15,9 +17,9 @@ import { EventsService } from 'src/services/event.service';
 })
 export class VideoElementComponent implements ControlValueAccessor {
 
-  videoElement;
+  videoElement: IElement;
+  videoProperty: IVideoProperty;
 
-  videoProperty;
   styles;
 
   constructor(
@@ -42,7 +44,7 @@ export class VideoElementComponent implements ControlValueAccessor {
         });
       }
 
-      this.videoElement.value = this.videoProperty.value;
+      this.videoElement.value = this.videoProperty.src;
     }
   }
 

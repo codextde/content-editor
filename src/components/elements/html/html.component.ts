@@ -3,6 +3,7 @@ import { NG_VALUE_ACCESSOR, ControlValueAccessor } from '@angular/forms';
 import { ElementsService } from 'src/services/elements.service';
 import { ElementService } from 'src/services/element.service';
 import { EventsService } from 'src/services/event.service';
+import { IElement } from 'src/models/element.model';
 declare var kendo: any;
 
 @Component({
@@ -17,7 +18,7 @@ declare var kendo: any;
 })
 export class HtmlElementComponent implements ControlValueAccessor {
 
-  htmlElement;
+  htmlElement: IElement;
   htmlProperty;
 
   styles;

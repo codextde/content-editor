@@ -2,6 +2,8 @@ import { Component, OnInit, ViewChild, ElementRef, forwardRef } from '@angular/c
 import { NG_VALUE_ACCESSOR, ControlValueAccessor } from '@angular/forms';
 import { ElementService } from 'src/services/element.service';
 import { EventsService } from 'src/services/event.service';
+import { IElement } from 'src/models/element.model';
+import { IHeadlineProperty } from 'src/components/properties/models/headline.model';
 declare var kendo: any;
 
 @Component({
@@ -19,8 +21,8 @@ export class HeadlineElementComponent implements OnInit, ControlValueAccessor {
   @ViewChild('editor') editorEl: ElementRef;
   editor;
 
-  headlineElement;
-  headlineProperty;
+  headlineElement: IElement;
+  headlineProperty: IHeadlineProperty;
 
   styles;
 

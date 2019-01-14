@@ -3,6 +3,8 @@ import { NG_VALUE_ACCESSOR, ControlValueAccessor } from '@angular/forms';
 import { ElementService } from 'src/services/element.service';
 import { EventsService } from 'src/services/event.service';
 import '@progress/kendo-ui';
+import { IElement } from 'src/models/element.model';
+import { ITextProperty } from 'src/components/properties/models/text.model';
 
 declare var kendo: any;
 
@@ -21,8 +23,10 @@ export class TextElementComponent implements OnInit, ControlValueAccessor {
 
   @ViewChild('editor') editorEl: ElementRef;
   editor;
-  textElement;
-  textProperty;
+
+
+  textElement: IElement;
+  textProperty: ITextProperty;
 
   styles;
 

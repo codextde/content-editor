@@ -2,6 +2,8 @@ import { Component, forwardRef } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { ElementService } from 'src/services/element.service';
 import { EventsService } from 'src/services/event.service';
+import { IDividerProperty } from 'src/components/properties/models/divider.model';
+import { IElement } from 'src/models/element.model';
 
 @Component({
   selector: 'app-element-divider',
@@ -15,8 +17,8 @@ import { EventsService } from 'src/services/event.service';
 })
 export class DividerElementComponent implements ControlValueAccessor {
 
-  dividerElement;
-  dividerProperty;
+  dividerElement: IElement;
+  dividerProperty: IDividerProperty;
 
   styles;
 
