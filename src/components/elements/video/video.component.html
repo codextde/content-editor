@@ -1,6 +1,6 @@
 
 <div [ngClass]="styles?.cssClasses" [ngStyle]="styles">
-  <video [controls]="video?.controls" [autoplay]="video?.autoplay" [loop]="video?.loop" [muted]="video?.muted">
+  <video [controls]="videoProperty?.controls" [autoplay]="videoProperty?.autoplay" [loop]="videoProperty?.loop" [muted]="videoProperty?.muted">
     <source [src]="videoElement?.value" type="video/mp4">
   </video>
 
