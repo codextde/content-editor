@@ -1,4 +1,4 @@
-import { Directive, Input, TemplateRef, ViewContainerRef, ElementRef, AfterViewChecked } from '@angular/core';
+import { AfterViewChecked, Directive, Input, TemplateRef, ViewContainerRef } from '@angular/core';
 
 @Directive({
   selector: '[replaceTag]'

@@ -1,5 +1,5 @@
-import { AfterViewInit, Component, Input, OnInit } from '@angular/core';
-import { faAngleUp, faAngleDown } from '@fortawesome/free-solid-svg-icons';
+import { Component, Input } from '@angular/core';
+import { faAngleDown, faAngleUp } from '@fortawesome/free-solid-svg-icons';
 
 
 @Component({

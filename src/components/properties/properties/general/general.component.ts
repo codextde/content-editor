@@ -1,9 +1,7 @@
 import { Component, forwardRef } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { faInfoCircle } from '@fortawesome/free-solid-svg-icons';
-import { IGeneralProperty } from '../../models/general.model';
 import { EventsService } from 'src/services/event.service';
-import { Float } from '../../enums/float.enum';
 
 
 @Component({

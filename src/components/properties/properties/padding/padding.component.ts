@@ -1,8 +1,7 @@
-import { Component, OnInit, forwardRef, Input, HostBinding } from '@angular/core';
-import { NG_VALUE_ACCESSOR, ControlValueAccessor } from '@angular/forms';
-import { IPaddingProperty } from '../../models/padding.model';
-import { faMinus, faPlus } from '@fortawesome/free-solid-svg-icons';
+import { Component, forwardRef } from '@angular/core';
+import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { EventsService } from 'src/services/event.service';
+import { IPaddingProperty } from '../../models/padding.model';
 
 @Component({
   selector: 'app-property-padding',

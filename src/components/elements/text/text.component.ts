@@ -1,10 +1,9 @@
-import { Component, OnInit, ViewChild, ElementRef, forwardRef, DoCheck } from '@angular/core';
-import { NG_VALUE_ACCESSOR, ControlValueAccessor } from '@angular/forms';
-import { ElementService } from 'src/services/element.service';
-import { EventsService } from 'src/services/event.service';
+import { Component, ElementRef, forwardRef, OnInit, ViewChild } from '@angular/core';
+import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import '@progress/kendo-ui';
 import { IElement } from 'src/models/element.model';
-import { ITextProperty } from 'src/components/properties/models/text.model';
+import { ElementService } from 'src/services/element.service';
+import { EventsService } from 'src/services/event.service';
 
 declare var kendo: any;
 

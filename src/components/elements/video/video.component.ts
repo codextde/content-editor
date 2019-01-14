@@ -1,9 +1,9 @@
-import { Component, forwardRef, OnInit } from '@angular/core';
+import { Component, forwardRef } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
+import { IVideoProperty } from 'src/components/properties/models/video.model';
+import { IElement } from 'src/models/element.model';
 import { ElementService } from 'src/services/element.service';
 import { EventsService } from 'src/services/event.service';
-import { IElement } from 'src/models/element.model';
-import { IVideoProperty } from 'src/components/properties/models/video.model';
 
 @Component({
   selector: 'app-element-video',
