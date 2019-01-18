@@ -18,14 +18,15 @@ export class HtmlPropertyComponent implements OnInit, ControlValueAccessor {
   @ViewChild('editorElm') editorElm: ElementRef;
   htmlValue;
   htmlOptions = {theme: 'vs-dark', language: 'html', value: '<div></div>' };
-
+  editor;
 
 
   /** NgModel Start */
   writeValue(value: any): void {
     if (value) {
       this.htmlValue = value;
-      this.htmlOptions.value = this.htmlValue.value;
+      this.htmlOptions.value = value.value;
+      
     }
   }
 
@@ -46,9 +47,9 @@ export class HtmlPropertyComponent implements OnInit, ControlValueAccessor {
 
   ngOnInit() {
     this.monacoService.loadMonaco().then((monaco: any) => {
-      const editor = monaco.editor.create(this.editorElm.nativeElement, this.htmlOptions);
-      editor.onDidChangeModelContent((e) => {
-        this.htmlValue.value = editor.getValue();
+      this.editor = monaco.editor.create(this.editorElm.nativeElement, this.htmlOptions);
+      this.editor.onDidChangeModelContent((e) => {
+        this.htmlValue.value = this.editor.getValue();
         this.onChange(this.htmlValue);
         this.eventsService.publish('property-change');
       });
@@ -57,5 +58,6 @@ export class HtmlPropertyComponent implements OnInit, ControlValueAccessor {
 
   onChange: any = () => {};
   onTouched = () => {};
+
 
 }
