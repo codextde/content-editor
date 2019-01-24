@@ -1,10 +1,10 @@
 import { CdkDragDrop, copyArrayItem, moveItemInArray } from '@angular/cdk/drag-drop';
-import { Component, OnInit, HostListener, ChangeDetectorRef } from '@angular/core';
+import { ChangeDetectorRef, Component, HostListener, OnInit } from '@angular/core';
 import { faArrowsAlt, faCogs, faHandPointer, faTrash } from '@fortawesome/free-solid-svg-icons';
+import { AlertController, ToastController } from '@ionic/angular';
 import { DataService } from 'src/services/data.service';
-import { ElementsService } from 'src/services/elements.service';
 import { HelperService } from 'src/services/helper.service';
-import { ToastController, AlertController } from '@ionic/angular';
+import { ElementsService } from 'src/services/elements.service';
 
 
 @Component({
@@ -36,13 +36,14 @@ export class MainPage implements OnInit {
   constructor(
     private helper: HelperService,
     public data: DataService,
-    private elements: ElementsService,
+    public elements: ElementsService,
     private toastCtrl: ToastController,
     private alertCtrl: AlertController,
     private cdr: ChangeDetectorRef
   ) {}
 
   ngOnInit() {
+    
     const storageOptions = localStorage.getItem('editorOptions');
     if (storageOptions) {
       this.data.editorOptions = JSON.parse(storageOptions);
@@ -53,6 +54,9 @@ export class MainPage implements OnInit {
     if (this.data.editorOptions.bodyStyleOptions.css) {
       this.helper.applyStyle(this.data.editorOptions.bodyStyleOptions.css);
     }
+
+
+    console.log(this.data.designerData);
 
   }
 
