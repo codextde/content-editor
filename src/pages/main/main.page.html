@@ -2,12 +2,6 @@
   <div class="passage-wrapper">
     <div class="passage-header"></div>
     <div class="passage-container">
-    
-      <!--
-
-        
-        
-      -->
       <div 
         class="passage-content" 
         cdkDropList 
@@ -70,8 +64,14 @@
   <div class="section-settings-content">
 
     
-    <div *ngIf="tab == 'elements'" class="element-list" cdkDropList #elementsList="cdkDropList" [cdkDropListData]="elements.elements"
-      [cdkDropListConnectedTo]="[activeElementsList]" (cdkDropListDropped)="drop($event)">
+    <div 
+      *ngIf="tab == 'elements'" 
+      class="element-list" 
+      cdkDropList 
+      #elementsList="cdkDropList" 
+      [cdkDropListData]="elements.elements"
+      [cdkDropListConnectedTo]="[activeElementsList]" 
+      (cdkDropListDropped)="drop($event)">
       <div class="element-item" *ngFor="let element of elements.elements" cdkDrag>
         <div class="element-item-placeholder" *cdkDragPlaceholder></div>
         <fa-icon [icon]="element.icon"></fa-icon>

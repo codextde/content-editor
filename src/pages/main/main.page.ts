@@ -3,9 +3,9 @@ import { ChangeDetectorRef, Component, HostListener, OnInit } from '@angular/cor
 import { faArrowsAlt, faCogs, faHandPointer, faTrash } from '@fortawesome/free-solid-svg-icons';
 import { AlertController, ToastController } from '@ionic/angular';
 import { DataService } from 'src/services/data.service';
-import { HelperService } from 'src/services/helper.service';
-import { ElementsService } from 'src/services/elements.service';
 import { ElementService } from 'src/services/element.service';
+import { ElementsService } from 'src/services/elements.service';
+import { HelperService } from 'src/services/helper.service';
 
 
 @Component({
@@ -63,7 +63,7 @@ export class MainPage implements OnInit {
 
   }
 
-  drop(event: CdkDragDrop<string[]>, prevent?) {
+  drop(event: CdkDragDrop < string[] > , prevent ? ) {
     if (event.previousContainer === event.container) {
       moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
     } else {
@@ -98,7 +98,7 @@ export class MainPage implements OnInit {
   delete(element) {
     this.propertiesActive = false;
     this.activeElement = {};
-    this.dataService.layoutEditorElements = this.dataService.layoutEditorElements.filter((el) => el  !==  element);
+    this.dataService.layoutEditorElements = this.dataService.layoutEditorElements.filter((el) => el !== element);
     this.save();
   }
 
@@ -122,53 +122,44 @@ export class MainPage implements OnInit {
     const alert = await this.alertCtrl.create({
       header: 'Import',
       subHeader: 'Paste the Json String',
-      inputs: [
-        {
-          name: 'value',
-          type: 'text',
-          placeholder: '{}'
-        }
-      ],
-      buttons: [
-        {
-          text: 'Cancel',
-          role: 'cancel',
-          cssClass: 'secondary'
-        }, {
-          text: 'Import',
-          handler: (data) => {
-            if (data && data.value) {
-              // this.dataService.editorOptions = JSON.parse(data.value);
-            }
+      inputs: [{
+        name: 'value',
+        type: 'text',
+        placeholder: '{}'
+      }],
+      buttons: [{
+        text: 'Cancel',
+        role: 'cancel',
+        cssClass: 'secondary'
+      }, {
+        text: 'Import',
+        handler: (data) => {
+          if (data && data.value) {
+            // this.dataService.editorOptions = JSON.parse(data.value);
           }
         }
-      ]
+      }]
     });
 
     await alert.present();
   }
 
-  async export() {
+  async export () {
     // TODO Add Export Feature
     const config = ''; // JSON.stringify(this.dataService.editorOptions);
     const alert = await this.alertCtrl.create({
       header: 'Export',
       subHeader: 'Copy the Json String',
-      inputs: [
-        {
-          name: 'value',
-          type: 'text',
-          placeholder: '{}',
-          value: config
-        }
-      ],
-      buttons: [
-        {
-          text: 'Ok',
-          handler: () => {
-          }
-        }
-      ]
+      inputs: [{
+        name: 'value',
+        type: 'text',
+        placeholder: '{}',
+        value: config
+      }],
+      buttons: [{
+        text: 'Ok',
+        handler: () => {}
+      }]
     });
 
     await alert.present();
