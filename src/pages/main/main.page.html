@@ -5,17 +5,17 @@
     
       <!--
 
-        [ngStyle]="data.editorOptions.bodyStyleOptions.styles"
-        [dir]="data.editorOptions.bodyStyleOptions.directionLtr ? 'ltr' : 'rtl'"
+        [ngStyle]="dataService.editorOptions.bodyStyleOptions.styles"
+        [dir]="dataService.editorOptions.bodyStyleOptions.directionLtr ? 'ltr' : 'rtl'"
       -->
       <div 
         class="passage-content" 
         cdkDropList 
         #activeElementsList="cdkDropList" 
-        [cdkDropListData]="data.layoutEditorElements"
+        [cdkDropListData]="dataService.layoutEditorElements"
         (cdkDropListDropped)="drop($event)" >
 
-        <div class="drag-element" [tooltip]="myTooltip" [tooltipClick]="true" *ngFor="let element of data.layoutEditorElements" cdkDrag>
+        <div class="drag-element" [tooltip]="myTooltip" [tooltipClick]="true" *ngFor="let element of dataService.layoutEditorElements" cdkDrag>
 
           <app-element-text *ngIf="element.component == 'text'" [(ngModel)]="element"></app-element-text>
           <app-element-html *ngIf="element.component == 'html'" [(ngModel)]="element"></app-element-html>
@@ -79,10 +79,10 @@
 
     <div *ngIf="tab == 'body'" class="body-settings">
       <!--TODO Fix Body Styles-->
-      <!--<app-property-background [(ngModel)]="data.editorOptions.bodyStyleOptions.styles"></app-property-background>
-      <app-property-padding [(ngModel)]="data.editorOptions.bodyStyleOptions.styles"></app-property-padding>
-      <app-property-switch [title]="'Direction'" [switchTitle]="'LTR'"  [(ngModel)]="data.editorOptions.bodyStyleOptions.directionLtr"></app-property-switch>
-      <app-property-css [(ngModel)]="data.editorOptions.bodyStyleOptions.css"  (ngModelChange)="cssCodeChange(ev)"></app-property-css>-->
+      <!--<app-property-background [(ngModel)]="dataService.editorOptions.bodyStyleOptions.styles"></app-property-background>
+      <app-property-padding [(ngModel)]="dataService.editorOptions.bodyStyleOptions.styles"></app-property-padding>
+      <app-property-switch [title]="'Direction'" [switchTitle]="'LTR'"  [(ngModel)]="dataService.editorOptions.bodyStyleOptions.directionLtr"></app-property-switch>
+      <app-property-css [(ngModel)]="dataService.editorOptions.bodyStyleOptions.css"  (ngModelChange)="cssCodeChange(ev)"></app-property-css>-->
     </div>
       
     <div class="section-settings-footer btn-group">

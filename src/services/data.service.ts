@@ -44,6 +44,14 @@ export class DataService {
         {
           "Value": "{\"name\":\"padding\",\"paddingLeft.px\":4,\"paddingTop.px\":5,\"paddingRight.px\":2,\"paddingBottom.px\":5}",
           "ContentItemPropertyType": "padding"
+        },
+        {
+          "Value": ".test {\n display: none;\n}",
+          "ContentItemPropertyType": "css"
+        },
+        {
+          "Value": "rtl",
+          "ContentItemPropertyType": "direction"
         }
       ]
     },
@@ -88,7 +96,7 @@ export class DataService {
       return item.Type == contentItemName;
     });
     if (layoutEditorContentItem) {
-      this.layoutEditorProperties = layoutEditorContentItem;
+      this.layoutEditorProperties = layoutEditorContentItem.ContentItemProperties;
     } else {
       this.layoutEditorProperties = this.defaultLayoutEditorProperties;
     }
@@ -147,10 +155,11 @@ export class DataService {
 
     }
 
-    return;
   }
 
   convertToDesigner() {
+    console.log(this.layoutEditorProperties);
+    console.log(this.layoutEditorElements);
     return;
   }
 }

@@ -36,7 +36,7 @@ export class MainPage implements OnInit {
 
   constructor(
     private helper: HelperService,
-    public data: DataService,
+    public dataService: DataService,
     public elements: ElementsService,
     private toastCtrl: ToastController,
     private alertCtrl: AlertController,
@@ -69,14 +69,14 @@ export class MainPage implements OnInit {
         event.previousIndex,
         event.currentIndex);
 
-      const currentObject = this.data.editorOptions.elements[event.currentIndex];
+      const currentObject = this.dataService.editorOptions.elements[event.currentIndex];
       currentObject.id = this.helper.uuidv4();
-      this.data.editorOptions.elements[event.currentIndex] = this.helper.clearObject(currentObject);
+      this.dataService.editorOptions.elements[event.currentIndex] = this.helper.clearObject(currentObject);
     }
   }
 
   cssCodeChange() {
-    this.helper.applyStyle(this.data.editorOptions.bodyStyleOptions.css);
+    this.helper.applyStyle(this.dataService.editorOptions.bodyStyleOptions.css);
   }
 
   openProperties(element) {
@@ -87,19 +87,20 @@ export class MainPage implements OnInit {
   delete(element) {
     this.propertiesActive = false;
     this.activeElement = {};
-    this.data.editorOptions.elements = this.data.editorOptions.elements.filter((el) => el  !==  element);
+    this.dataService.editorOptions.elements = this.dataService.editorOptions.elements.filter((el) => el  !==  element);
     this.save();
   }
 
   async save() {
-    console.log(this.data.editorOptions);
-    localStorage.setItem('editorOptions', JSON.stringify(this.data.editorOptions));
-    const toast = await this.toastCtrl.create({message: 'Saved', duration: 2000});
-    toast.present();
+    this.dataService.convertToDesigner();
+    // console.log(this.data.editorOptions);
+    // localStorage.setItem('editorOptions', JSON.stringify(this.data.editorOptions));
+    // const toast = await this.toastCtrl.create({message: 'Saved', duration: 2000});
+    // toast.present();
   }
 
   clear() {
-    this.data.editorOptions = this.helper.clearObject(this.data.editorDefaultOptions);
+    this.dataService.editorOptions = this.helper.clearObject(this.dataService.editorDefaultOptions);
     this.cdr.detectChanges();
     this.save();
   }
@@ -124,7 +125,7 @@ export class MainPage implements OnInit {
           text: 'Import',
           handler: (data) => {
             if (data && data.value) {
-              this.data.editorOptions = JSON.parse(data.value);
+              this.dataService.editorOptions = JSON.parse(data.value);
             }
           }
         }
@@ -135,7 +136,7 @@ export class MainPage implements OnInit {
   }
 
   async export() {
-    const config = JSON.stringify(this.data.editorOptions);
+    const config = JSON.stringify(this.dataService.editorOptions);
     const alert = await this.alertCtrl.create({
       header: 'Export',
       subHeader: 'Copy the Json String',
