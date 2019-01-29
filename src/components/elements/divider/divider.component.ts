@@ -28,7 +28,7 @@ export class DividerElementComponent implements ControlValueAccessor {
     private eventsService: EventsService
     ) {
       this.eventsService.subscribe('property-change', () => {
-        this.styles = this.elementService.loadStyleProperties(this.dividerElement);
+        this.styles = this.elementService.loadStyleProperties(this.dividerElement.properties);
       });
   }
 
@@ -36,7 +36,7 @@ export class DividerElementComponent implements ControlValueAccessor {
   writeValue(value: any): void {
     if (value) {
       this.dividerElement = value;
-      this.styles = this.elementService.loadStyleProperties(this.dividerElement);
+      this.styles = this.elementService.loadStyleProperties(this.dividerElement.properties);
 
       if (!this.dividerProperty) {
         this.dividerProperty = this.dividerElement.properties.find((property) => {

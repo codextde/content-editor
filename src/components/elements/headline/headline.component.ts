@@ -32,7 +32,7 @@ export class HeadlineElementComponent implements OnInit, ControlValueAccessor {
     ) {
     this.eventsService.subscribe('property-change', () => {
       this.headlineElement.value = this.headlineProperty.text;
-      this.styles = this.elementService.loadStyleProperties(this.headlineElement);
+      this.styles = this.elementService.loadStyleProperties(this.headlineElement.properties);
     });
   }
 
@@ -40,7 +40,7 @@ export class HeadlineElementComponent implements OnInit, ControlValueAccessor {
   writeValue(value: any): void {
     if (value) {
       this.headlineElement = value;
-      this.styles = this.elementService.loadStyleProperties(value);
+      this.styles = this.elementService.loadStyleProperties(value.properties);
 
 
       if (!this.headlineProperty) {

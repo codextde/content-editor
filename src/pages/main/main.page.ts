@@ -5,6 +5,7 @@ import { AlertController, ToastController } from '@ionic/angular';
 import { DataService } from 'src/services/data.service';
 import { HelperService } from 'src/services/helper.service';
 import { ElementsService } from 'src/services/elements.service';
+import { ElementService } from 'src/services/element.service';
 
 
 @Component({
@@ -24,6 +25,7 @@ export class MainPage implements OnInit {
   propertiesActive: boolean = false;
   tab: string = 'elements';
 
+  directionLtr: boolean = true;
 
   @HostListener('window:keydown', ['$event'])
   keyEvent(event: KeyboardEvent) {
@@ -38,12 +40,15 @@ export class MainPage implements OnInit {
     private helper: HelperService,
     public dataService: DataService,
     public elements: ElementsService,
+    private elementService: ElementService,
     private toastCtrl: ToastController,
     private alertCtrl: AlertController,
     private cdr: ChangeDetectorRef
   ) {}
 
   ngOnInit() {
+
+    
 
     /*
     const storageOptions = localStorage.getItem('editorOptions');
@@ -64,7 +69,7 @@ export class MainPage implements OnInit {
     if (event.previousContainer === event.container) {
       moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
     } else {
-      copyArrayItem(event.previousContainer.data, 
+      copyArrayItem(event.previousContainer.data,
         event.container.data,
         event.previousIndex,
         event.currentIndex);
@@ -76,7 +81,15 @@ export class MainPage implements OnInit {
   }
 
   cssCodeChange() {
-    this.helper.applyStyle(this.dataService.editorOptions.bodyStyleOptions.css);
+    this.helper.applyStyle(this.dataService.bodyProperties.css.Value);
+  }
+
+  directionChange(ev) {
+    if (ev) {
+      this.dataService.bodyProperties.direction.Value = 'ltr';
+    } else {
+      this.dataService.bodyProperties.direction.Value = 'rtl';
+    }
   }
 
   openProperties(element) {

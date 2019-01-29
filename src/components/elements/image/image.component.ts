@@ -28,7 +28,7 @@ export class ImageElementComponent implements ControlValueAccessor {
     private eventsService: EventsService
     ) {
       this.eventsService.subscribe('property-change', () => {
-        this.styles = this.elementService.loadStyleProperties(this.imageElement);
+        this.styles = this.elementService.loadStyleProperties(this.imageElement.properties);
         this.imageElement.value = this.imageProperty.src;
       });
   }
@@ -37,7 +37,7 @@ export class ImageElementComponent implements ControlValueAccessor {
   writeValue(value: any): void {
     if (value) {
       this.imageElement = value;
-      this.styles = this.elementService.loadStyleProperties(this.imageElement);
+      this.styles = this.elementService.loadStyleProperties(this.imageElement.properties);
 
       if (!this.imageProperty) {
         this.imageProperty = this.imageElement.properties.find((property) => {

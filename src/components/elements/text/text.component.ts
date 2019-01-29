@@ -35,7 +35,7 @@ export class TextElementComponent implements OnInit, ControlValueAccessor {
     private eventsService: EventsService
     ) {
     this.eventsService.subscribe('property-change', () => {
-      this.styles = this.elementService.loadStyleProperties(this.textElement);
+      this.styles = this.elementService.loadStyleProperties(this.textElement.properties);
     });
   }
 
@@ -43,7 +43,7 @@ export class TextElementComponent implements OnInit, ControlValueAccessor {
   writeValue(value: any): void {
     if (value) {
       this.textElement = value;
-      this.styles = this.elementService.loadStyleProperties(value);
+      this.styles = this.elementService.loadStyleProperties(value.properties);
 
       if (!this.initialLetter) {
         this.initialLetter = this.textElement.properties.find((property) => {

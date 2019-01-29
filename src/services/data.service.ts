@@ -8,14 +8,28 @@ import { HtmlElementConfig } from 'src/components/elements/html/html.config';
 import { HeadlineElementConfig } from 'src/components/elements/headline/headline.config';
 import { DividerElementConfig } from 'src/components/elements/divider/divider.config';
 import { ClearfixElementConfig } from 'src/components/elements/clearfix/clearfix.config';
+import { ElementService } from './element.service';
+
+export class IBodyProperties {
+  styles?: any;
+  css?: any;
+  direction?: any;
+}
+
 
 @Injectable({
   providedIn: 'root'
 })
 export class DataService {
 
-  layoutEditorProperties: any;
+  layoutEditorProperties: any = [];
   layoutEditorElements: any = [];
+
+  bodyProperties: IBodyProperties = {
+    styles: {},
+    css: {},
+    direction: {}
+  };
 
   editorOptions: any = {
     elements: []
@@ -35,39 +49,46 @@ export class DataService {
   };
 
   // tslint:disable:quotemark
-  designerData: any =  [
-    {
-      "Id": 125,
-      "Type": "layout-editor",
-      "DisplayOrder": 1,
-      "ContentItemProperties": [
-        {
-          "Value": "{\"name\":\"padding\",\"paddingLeft.px\":4,\"paddingTop.px\":5,\"paddingRight.px\":2,\"paddingBottom.px\":5}",
-          "ContentItemPropertyType": "padding"
-        },
-        {
-          "Value": ".test {\n display: none;\n}",
-          "ContentItemPropertyType": "css"
-        },
-        {
-          "Value": "rtl",
-          "ContentItemPropertyType": "direction"
-        }
-      ]
-    },
-    {
-      "Id": 126,
-      "Type": "text",
-      "Content": "Blaaaa",
-      "DisplayOrder": 1,
-      "ContentItemProperties": [
-        {
-          "Value": "{\"name\":\"padding\",\"paddingLeft.px\":4,\"paddingTop.px\":5,\"paddingRight.px\":2,\"paddingBottom.px\":5}",
-          "ContentItemPropertyType": "padding"
-        }
-      ]
-    }
-  ];
+  designerData: any = {
+    "Items": [
+      {
+        "Id": 137,
+        "Type": "text",
+        "Content": "blablieblug",
+        "DisplayOrder": 0,
+        "ContentItemProperties": [
+          {
+            "Value": "{\"name\":\"padding\",\"paddingLeft.px\":4,\"paddingTop.px\":5,\"paddingRight.px\":2,\"paddingBottom.px\":5}",
+            "ContentItemPropertyType": "padding"
+          }
+        ]
+      }
+    ],
+    "Id": 135,
+    "Type": "layout-editor",
+    "Content": "",
+    "DisplayOrder": 3,
+    "_cid": 0,
+    "ContentItemProperties": [
+      {
+        "Value": "{\"name\":\"padding\",\"paddingLeft.px\":4,\"paddingTop.px\":5,\"paddingRight.px\":2,\"paddingBottom.px\":5}",
+        "ContentItemPropertyType": "padding"
+      },
+      {
+        "Value": "{\"name\":\"background\", \"background-color\": \"#6b4e4e\"}",
+        "ContentItemPropertyType": "background"
+      },
+      {
+        "Value": "{\"name\":\"css\", \"value\": \".test{}\"}",
+        "ContentItemPropertyType": "css"
+      },
+      {
+        "Value": "{\"name\":\"direction\", \"value\": \"ltr\"}",
+        "ContentItemPropertyType": "direction"
+      }
+
+    ]
+  };
 
 
   defaultLayoutEditorProperties = {
@@ -81,29 +102,29 @@ export class DataService {
     directionLtr: true
   };
 
-  constructor() {
+  constructor(
+    private elementService: ElementService
+  ) {
     // @Todo Remove and load from the Designer. The Designer need to Inject the Data to the iFrame
     window['layoutEditorData'] = this.designerData;
     this.convertToLayouteditor();
   }
 
   convertToLayouteditor() {
-    let designerData = window['layoutEditorData'];
+    const designerData = window['layoutEditorData'];
+
 
     // Load Layout Editor Body Styles
-    const contentItemName = 'layout-editor';
-    const layoutEditorContentItem = designerData.find((item) => {
-      return item.Type == contentItemName;
-    });
-    if (layoutEditorContentItem) {
-      this.layoutEditorProperties = layoutEditorContentItem.ContentItemProperties;
-    } else {
-      this.layoutEditorProperties = this.defaultLayoutEditorProperties;
+    for (const property of designerData.ContentItemProperties) {
+      this.layoutEditorProperties.push(JSON.parse(property.Value));
     }
-    designerData = designerData.filter(item => item.Type !== contentItemName);
+    this.bodyProperties.styles = this.elementService.loadStyleProperties(this.layoutEditorProperties);
+    this.bodyProperties.css = this.layoutEditorProperties.find((data) => data.name == 'css');
+    this.bodyProperties.direction = this.layoutEditorProperties.find((data) => data.name == 'direction');
+
 
     // Load Elements
-    for (const element of designerData) {
+    for (const element of designerData.Items) {
       let convertedElement: IElement;
 
       if (element.Type == 'text') {
@@ -152,6 +173,8 @@ export class DataService {
       }
 
       this.layoutEditorElements.push(convertedElement);
+
+      console.log(this.layoutEditorElements, this.layoutEditorProperties, this.bodyProperties);
 
     }
 

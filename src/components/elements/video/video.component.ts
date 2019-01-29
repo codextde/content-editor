@@ -27,7 +27,7 @@ export class VideoElementComponent implements ControlValueAccessor {
     private eventsService: EventsService
     ) {
     this.eventsService.subscribe('property-change', () => {
-      this.styles = this.elementService.loadStyleProperties(this.videoElement);
+      this.styles = this.elementService.loadStyleProperties(this.videoElement.properties);
       this.videoElement.value = this.videoProperty.src;
     });
   }
@@ -36,7 +36,7 @@ export class VideoElementComponent implements ControlValueAccessor {
   writeValue(value: any): void {
     if (value) {
       this.videoElement = value;
-      this.styles = this.elementService.loadStyleProperties(this.videoElement);
+      this.styles = this.elementService.loadStyleProperties(this.videoElement.properties);
 
       if (!this.videoProperty) {
         this.videoProperty = this.videoElement.properties.find((property) => {

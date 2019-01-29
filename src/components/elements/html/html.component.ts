@@ -27,7 +27,7 @@ export class HtmlElementComponent implements ControlValueAccessor {
     private eventsService: EventsService
     ) {
     this.eventsService.subscribe('property-change', () => {
-      this.styles = this.elementService.loadStyleProperties(this.htmlElement);
+      this.styles = this.elementService.loadStyleProperties(this.htmlElement.properties);
       this.htmlElement.value = this.htmlProperty.value;
     });
   }
@@ -37,7 +37,7 @@ export class HtmlElementComponent implements ControlValueAccessor {
   writeValue(value: any): void {
     if (value) {
       this.htmlElement = value;
-      this.styles = this.elementService.loadStyleProperties(this.htmlElement);
+      this.styles = this.elementService.loadStyleProperties(this.htmlElement.properties);
 
       if (!this.htmlProperty) {
         this.htmlProperty = this.htmlElement.properties.find((property) => {

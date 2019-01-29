@@ -9,17 +9,17 @@ export class ElementService {
   constructor() {
   }
 
-  loadStyleProperties(element) {
-    const padding = element.properties.find((property) => {
+  loadStyleProperties(properties) {
+    const padding = properties.find((property) => {
       return property.name == 'padding';
     });
-    const general = element.properties.find((property) => {
+    const general = properties.find((property) => {
       return property.name == 'general';
     });
-    const text = element.properties.find((property) => {
+    const text = properties.find((property) => {
       return property.name == 'text';
     });
-    const background = element.properties.find((property) => {
+    const background = properties.find((property) => {
       return property.name == 'background';
     });
     return {...general, ...padding, ...text, ...background};
