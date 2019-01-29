@@ -64,14 +64,14 @@ export class MainPage implements OnInit {
     if (event.previousContainer === event.container) {
       moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
     } else {
-      copyArrayItem(event.previousContainer.data,
+      copyArrayItem(event.previousContainer.data, 
         event.container.data,
         event.previousIndex,
         event.currentIndex);
 
-      const currentObject = this.dataService.editorOptions.elements[event.currentIndex];
+      const currentObject = this.dataService.layoutEditorElements[event.currentIndex];
       currentObject.id = this.helper.uuidv4();
-      this.dataService.editorOptions.elements[event.currentIndex] = this.helper.clearObject(currentObject);
+      this.dataService.layoutEditorElements[event.currentIndex] = this.helper.clearObject(currentObject);
     }
   }
 
@@ -87,7 +87,7 @@ export class MainPage implements OnInit {
   delete(element) {
     this.propertiesActive = false;
     this.activeElement = {};
-    this.dataService.editorOptions.elements = this.dataService.editorOptions.elements.filter((el) => el  !==  element);
+    this.dataService.layoutEditorElements = this.dataService.layoutEditorElements.filter((el) => el  !==  element);
     this.save();
   }
 

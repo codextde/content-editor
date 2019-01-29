@@ -12,6 +12,10 @@ export class HelperService {
     this.basePath = this.getBasePath();
   }
 
+  loadPropertyValue() {
+    return {};
+  }
+
   async applyStyle(css) {
 
     if (this.styleElement) {
