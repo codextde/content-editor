@@ -1,5 +1,6 @@
 import { faCode } from '@fortawesome/free-solid-svg-icons';
 import { IElement } from 'src/models/element.model';
+import { ElementCreator } from '../element.creator';
 
 export class HtmlElementConfig {
   static config: IElement = {
@@ -16,4 +17,8 @@ export class HtmlElementConfig {
     ],
     value: ''
   };
+
+  public static newElement(): IElement {
+    return ElementCreator.create(HtmlElementConfig.config);
+  }
 }

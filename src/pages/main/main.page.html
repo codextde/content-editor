@@ -3,15 +3,19 @@
     <div class="passage-header"></div>
     <div class="passage-container">
     
+      <!--
+
+        [ngStyle]="data.editorOptions.bodyStyleOptions.styles"
+        [dir]="data.editorOptions.bodyStyleOptions.directionLtr ? 'ltr' : 'rtl'"
+      -->
       <div 
         class="passage-content" 
         cdkDropList 
         #activeElementsList="cdkDropList" 
-        [cdkDropListData]="data.editorOptions.elements"
-        (cdkDropListDropped)="drop($event)" [ngStyle]="data.editorOptions.bodyStyleOptions.styles"
-        [dir]="data.editorOptions.bodyStyleOptions.directionLtr ? 'ltr' : 'rtl'">
+        [cdkDropListData]="data.layoutEditorElements"
+        (cdkDropListDropped)="drop($event)" >
 
-        <div class="drag-element" [tooltip]="myTooltip" [tooltipClick]="true" *ngFor="let element of data.editorOptions.elements" cdkDrag>
+        <div class="drag-element" [tooltip]="myTooltip" [tooltipClick]="true" *ngFor="let element of data.layoutEditorElements" cdkDrag>
 
           <app-element-text *ngIf="element.component == 'text'" [(ngModel)]="element"></app-element-text>
           <app-element-html *ngIf="element.component == 'html'" [(ngModel)]="element"></app-element-html>
@@ -74,10 +78,11 @@
 
 
     <div *ngIf="tab == 'body'" class="body-settings">
-      <app-property-background [(ngModel)]="data.editorOptions.bodyStyleOptions.styles"></app-property-background>
+      <!--TODO Fix Body Styles-->
+      <!--<app-property-background [(ngModel)]="data.editorOptions.bodyStyleOptions.styles"></app-property-background>
       <app-property-padding [(ngModel)]="data.editorOptions.bodyStyleOptions.styles"></app-property-padding>
       <app-property-switch [title]="'Direction'" [switchTitle]="'LTR'"  [(ngModel)]="data.editorOptions.bodyStyleOptions.directionLtr"></app-property-switch>
-      <app-property-css [(ngModel)]="data.editorOptions.bodyStyleOptions.css"  (ngModelChange)="cssCodeChange(ev)"></app-property-css>
+      <app-property-css [(ngModel)]="data.editorOptions.bodyStyleOptions.css"  (ngModelChange)="cssCodeChange(ev)"></app-property-css>-->
     </div>
       
     <div class="section-settings-footer btn-group">

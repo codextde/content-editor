@@ -1,5 +1,6 @@
 import { faVideo } from '@fortawesome/free-solid-svg-icons';
 import { IElement } from 'src/models/element.model';
+import { ElementCreator } from '../element.creator';
 
 export class VideoElementConfig {
   static config: IElement = {
@@ -16,4 +17,8 @@ export class VideoElementConfig {
     }],
     value: ''
   };
+
+  public static newElement(): IElement {
+    return ElementCreator.create(VideoElementConfig.config);
+  }
 }

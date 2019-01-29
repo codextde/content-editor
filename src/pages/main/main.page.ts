@@ -24,6 +24,7 @@ export class MainPage implements OnInit {
   propertiesActive: boolean = false;
   tab: string = 'elements';
 
+
   @HostListener('window:keydown', ['$event'])
   keyEvent(event: KeyboardEvent) {
     if (event.ctrlKey && event.key == 's') {
@@ -43,20 +44,19 @@ export class MainPage implements OnInit {
   ) {}
 
   ngOnInit() {
-    
+
+    /*
     const storageOptions = localStorage.getItem('editorOptions');
     if (storageOptions) {
       this.data.editorOptions = JSON.parse(storageOptions);
     } else {
       this.clear();
     }
-
+    
     if (this.data.editorOptions.bodyStyleOptions.css) {
       this.helper.applyStyle(this.data.editorOptions.bodyStyleOptions.css);
-    }
+    }*/
 
-
-    console.log(this.data.designerData);
 
   }
 

@@ -1,5 +1,6 @@
 import { faEquals } from '@fortawesome/free-solid-svg-icons';
 import { IElement } from 'src/models/element.model';
+import { ElementCreator } from '../element.creator';
 
 export class DividerElementConfig {
   static config: IElement = {
@@ -17,4 +18,8 @@ export class DividerElementConfig {
     }],
     value: ''
   };
+
+  public static newElement(): IElement {
+    return ElementCreator.create(DividerElementConfig.config);
+  }
 }
