@@ -81,7 +81,6 @@
 
 
     <div *ngIf="tab == 'body'" class="body-settings">
-      <!--TODO Fix Body Styles-->
       <app-property-background [(ngModel)]="dataService.bodyProperties.styles"></app-property-background>
       <app-property-padding [(ngModel)]="dataService.bodyProperties.styles"></app-property-padding>
       <app-property-switch [title]="'Direction'" [switchTitle]="'LTR'"  [(ngModel)]="directionLtr" (ngModelChange)="directionChange($event)"></app-property-switch>

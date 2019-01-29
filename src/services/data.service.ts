@@ -31,6 +31,7 @@ export class DataService {
     direction: {}
   };
 
+
   // tslint:disable:quotemark
   designerData: any = {
     "Items": [
@@ -62,7 +63,7 @@ export class DataService {
         "ContentItemPropertyType": "background"
       },
       {
-        "Value": "{\"name\":\"css\", \"value\": \".test {\r\n    color: #fff;\r\n}\"}",
+        "Value": "{\"name\":\"css\", \"value\": \".test{}\"}",
         "ContentItemPropertyType": "css"
       },
       {
@@ -71,18 +72,6 @@ export class DataService {
       }
 
     ]
-  };
-
-
-  defaultLayoutEditorProperties = {
-    css: '.test {\n display: none;\n}',
-    styles: {
-      'paddingLeft.px': 30,
-      'paddingTop.px': 30,
-      'paddingRight.px': 30,
-      'paddingBottom.px': 30
-    },
-    directionLtr: true
   };
 
   constructor(
