@@ -48,7 +48,6 @@ export class MainPage implements OnInit {
 
   ngOnInit() {
 
-    
 
     /*
     const storageOptions = localStorage.getItem('editorOptions');
@@ -57,7 +56,6 @@ export class MainPage implements OnInit {
     } else {
       this.clear();
     }
-    
     if (this.data.editorOptions.bodyStyleOptions.css) {
       this.helper.applyStyle(this.data.editorOptions.bodyStyleOptions.css);
     }*/
@@ -113,12 +111,14 @@ export class MainPage implements OnInit {
   }
 
   clear() {
-    this.dataService.editorOptions = this.helper.clearObject(this.dataService.editorDefaultOptions);
+    // TODO Add Clear Function
+    // this.dataService.editorOptions = this.helper.clearObject(this.dataService.editorDefaultOptions);
     this.cdr.detectChanges();
     this.save();
   }
 
   async import() {
+    // TODO Add Import Feature
     const alert = await this.alertCtrl.create({
       header: 'Import',
       subHeader: 'Paste the Json String',
@@ -138,7 +138,7 @@ export class MainPage implements OnInit {
           text: 'Import',
           handler: (data) => {
             if (data && data.value) {
-              this.dataService.editorOptions = JSON.parse(data.value);
+              // this.dataService.editorOptions = JSON.parse(data.value);
             }
           }
         }
@@ -149,7 +149,8 @@ export class MainPage implements OnInit {
   }
 
   async export() {
-    const config = JSON.stringify(this.dataService.editorOptions);
+    // TODO Add Export Feature
+    const config = ''; // JSON.stringify(this.dataService.editorOptions);
     const alert = await this.alertCtrl.create({
       header: 'Export',
       subHeader: 'Copy the Json String',
