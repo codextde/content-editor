@@ -195,6 +195,7 @@ export class MainPage implements OnInit {
 
       this.dataService.bodyPropertiesTypes.forEach((propertyName) => {
         const index = this.dataService.layoutEditorProperties.findIndex((data) => data.name == propertyName);
+        if (index == -1) { return; }
         if (typeof properties[index].value !== 'undefined') {
           properties[index].value = this.bodyProperties[propertyName];
         } else {
