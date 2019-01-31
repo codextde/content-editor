@@ -1,36 +1,25 @@
 import { Injectable } from '@angular/core';
-import { faICursor } from '@fortawesome/free-solid-svg-icons';
-import { TextElementConfig } from 'src/components/elements/text/text.config';
-import { IElement } from 'src/models/element.model';
-import { VideoElementConfig } from 'src/components/elements/video/video.config';
-import { ImageElementConfig } from 'src/components/elements/image/image.config';
-import { HtmlElementConfig } from 'src/components/elements/html/html.config';
-import { HeadlineElementConfig } from 'src/components/elements/headline/headline.config';
-import { DividerElementConfig } from 'src/components/elements/divider/divider.config';
 import { ClearfixElementConfig } from 'src/components/elements/clearfix/clearfix.config';
+import { DividerElementConfig } from 'src/components/elements/divider/divider.config';
+import { HeadlineElementConfig } from 'src/components/elements/headline/headline.config';
+import { HtmlElementConfig } from 'src/components/elements/html/html.config';
+import { ImageElementConfig } from 'src/components/elements/image/image.config';
+import { TextElementConfig } from 'src/components/elements/text/text.config';
+import { VideoElementConfig } from 'src/components/elements/video/video.config';
+import { IElement } from 'src/models/element.model';
 import { ElementService } from './element.service';
-
-export class IBodyProperties {
-  styles?: any;
-  css?: any;
-  direction?: any;
-}
+import { IContentItem } from 'src/models/contentItem.model';
+import { IContentItemProperty } from 'src/models/contentItemProperty.model';
 
 
 @Injectable({
   providedIn: 'root'
 })
 export class DataService {
+  bodyPropertiesTypes = ['css', 'background', 'direction', 'padding'];
 
   layoutEditorProperties: any = [];
   layoutEditorElements: any = [];
-
-  bodyProperties: IBodyProperties = {
-    styles: {},
-    css: {},
-    direction: {}
-  };
-
 
   // tslint:disable:quotemark
   designerData: any = {
@@ -52,7 +41,6 @@ export class DataService {
     "Type": "layout-editor",
     "Content": "",
     "DisplayOrder": 3,
-    "_cid": 0,
     "ContentItemProperties": [
       {
         "Value": "{\"name\":\"padding\",\"paddingLeft.px\":4,\"paddingTop.px\":5,\"paddingRight.px\":2,\"paddingBottom.px\":5}",
@@ -79,21 +67,16 @@ export class DataService {
   ) {
     // @Todo Remove and load from the Designer. The Designer need to Inject the Data to the iFrame
     window['layoutEditorData'] = this.designerData;
+
     this.convertToLayouteditor();
   }
 
   convertToLayouteditor() {
     const designerData = window['layoutEditorData'];
-
-
     // Load Layout Editor Body Styles
     for (const property of designerData.ContentItemProperties) {
       this.layoutEditorProperties.push(JSON.parse(property.Value));
     }
-    this.bodyProperties.styles = this.elementService.loadStyleProperties(this.layoutEditorProperties);
-    this.bodyProperties.css = this.layoutEditorProperties.find((data) => data.name == 'css');
-    this.bodyProperties.direction = this.layoutEditorProperties.find((data) => data.name == 'direction');
-
 
     // Load Elements
     for (const element of designerData.Items) {
@@ -146,15 +129,51 @@ export class DataService {
 
       this.layoutEditorElements.push(convertedElement);
 
-      console.log(this.layoutEditorElements, this.layoutEditorProperties, this.bodyProperties);
-
     }
 
   }
 
   convertToDesigner() {
-    console.log(this.layoutEditorProperties);
-    console.log(this.layoutEditorElements);
-    return;
+    // tslint:disable-next-line:prefer-const
+    let designerData: IContentItem = {
+      Type: 'layout-editor',
+      Items: [],
+      ContentItemProperties: []
+    };
+
+    // Load Content Item Layout Editor Properties
+    this.layoutEditorProperties.forEach((property: any) => {
+      const contentItemProperty: IContentItemProperty = {
+        ContentItemPropertyType: property.name,
+        Value: JSON.stringify(property)
+      };
+      // Add Property only if values are in the Object
+      if ( Object.keys(property).length > 1) {
+        designerData.ContentItemProperties.push(contentItemProperty);
+      }
+    });
+
+    // Add Content Items to Layout Editor Element
+    this.layoutEditorElements.forEach((element: IElement) => {
+      const contentItem: IContentItem = {
+        Type: element.component,
+        Content: element.value,
+        ContentItemProperties: []
+      };
+      element.properties.forEach((property: any) => {
+        const contentItemProperty: IContentItemProperty = {
+          ContentItemPropertyType: property.name,
+          Value: JSON.stringify(property)
+        };
+        // Add Property only if values are in the Object
+        if ( Object.keys(property).length > 1) {
+          contentItem.ContentItemProperties.push(contentItemProperty);
+        }
+      });
+      designerData.Items.push(contentItem);
+    });
+
+    console.log('designerData', designerData);
+    return designerData;
   }
 }

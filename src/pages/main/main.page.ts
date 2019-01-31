@@ -6,6 +6,7 @@ import { DataService } from 'src/services/data.service';
 import { ElementService } from 'src/services/element.service';
 import { ElementsService } from 'src/services/elements.service';
 import { HelperService } from 'src/services/helper.service';
+import { IBodyProperties } from 'src/models/bodyProperties.model';
 
 
 @Component({
@@ -14,26 +15,36 @@ import { HelperService } from 'src/services/helper.service';
   styleUrls: ['./main.page.scss']
 })
 export class MainPage implements OnInit {
+
+  tab: string = 'elements';
+
   // Icons
   faTrash = faTrash;
   faHandPointer = faHandPointer;
   faArrowsAlt = faArrowsAlt;
   faCogs = faCogs;
 
-
+  // Property Panel
   activeElement: any;
   propertiesActive: boolean = false;
-  tab: string = 'elements';
 
+  // Body Properties
   directionLtr: boolean = true;
+  bodyProperties: IBodyProperties = {
+    styles: {},
+    background: {},
+    padding: {},
+    css: '',
+    direction: ''
+  };
 
+  // Keyboard Listener for Save Feature
   @HostListener('window:keydown', ['$event'])
   keyEvent(event: KeyboardEvent) {
     if (event.ctrlKey && event.key == 's') {
       event.preventDefault();
       this.save();
     }
-
   }
 
   constructor(
@@ -41,26 +52,13 @@ export class MainPage implements OnInit {
     public dataService: DataService,
     public elements: ElementsService,
     private elementService: ElementService,
-    private toastCtrl: ToastController,
     private alertCtrl: AlertController,
-    private cdr: ChangeDetectorRef
+    private cdr: ChangeDetectorRef,
+    private toastCtrl: ToastController
   ) {}
 
   ngOnInit() {
-
-
-    /*
-    const storageOptions = localStorage.getItem('editorOptions');
-    if (storageOptions) {
-      this.data.editorOptions = JSON.parse(storageOptions);
-    } else {
-      this.clear();
-    }
-    if (this.data.editorOptions.bodyStyleOptions.css) {
-      this.helper.applyStyle(this.data.editorOptions.bodyStyleOptions.css);
-    }*/
-
-
+    this.loadBodyProperties();
   }
 
   drop(event: CdkDragDrop < string[] > , prevent ? ) {
@@ -72,21 +70,22 @@ export class MainPage implements OnInit {
         event.previousIndex,
         event.currentIndex);
 
+      // currentObject.id = this.helper.uuidv4();
+
       const currentObject = this.dataService.layoutEditorElements[event.currentIndex];
-      currentObject.id = this.helper.uuidv4();
       this.dataService.layoutEditorElements[event.currentIndex] = this.helper.clearObject(currentObject);
     }
   }
 
   cssCodeChange() {
-    this.helper.applyStyle(this.dataService.bodyProperties.css.Value);
+    this.helper.applyStyle(this.bodyProperties.css);
   }
 
   directionChange(ev) {
     if (ev) {
-      this.dataService.bodyProperties.direction.Value = 'ltr';
+      this.bodyProperties.direction = 'ltr';
     } else {
-      this.dataService.bodyProperties.direction.Value = 'rtl';
+      this.bodyProperties.direction = 'rtl';
     }
   }
 
@@ -103,16 +102,21 @@ export class MainPage implements OnInit {
   }
 
   async save() {
-    this.dataService.convertToDesigner();
-    // console.log(this.data.editorOptions);
-    // localStorage.setItem('editorOptions', JSON.stringify(this.data.editorOptions));
-    // const toast = await this.toastCtrl.create({message: 'Saved', duration: 2000});
-    // toast.present();
+    await this.dataService.convertToDesigner();
+    const toast = await this.toastCtrl.create({message: 'Saved', duration: 2000});
+    toast.present();
   }
 
   clear() {
-    // TODO Add Clear Function
-    // this.dataService.editorOptions = this.helper.clearObject(this.dataService.editorDefaultOptions);
+    this.dataService.layoutEditorElements = [];
+    this.bodyProperties = {
+      styles: {},
+      background: {},
+      padding: {},
+      css: '',
+      direction: ''
+    };
+    this.setBodyProperties();
     this.cdr.detectChanges();
     this.save();
   }
@@ -164,6 +168,43 @@ export class MainPage implements OnInit {
 
     await alert.present();
   }
+
+
+    // Improve Load Body Properties Function // Move to Service
+    async loadBodyProperties() {
+      const properties = this.dataService.layoutEditorProperties;
+
+      this.dataService.bodyPropertiesTypes.forEach((propertyName) => {
+        const index = this.dataService.layoutEditorProperties.findIndex((data) => data.name == propertyName);
+        if (index == -1) { return; }
+        if (typeof properties[index].value !== 'undefined') {
+          this.bodyProperties[propertyName] = properties[index].value;
+        } else {
+          this.bodyProperties[propertyName] = properties[index];
+        }
+      });
+
+      this.bodyProperties.styles = this.elementService.loadStyleProperties(this.dataService.layoutEditorProperties);
+      this.cssCodeChange();
+
+    }
+
+    // Improve Set Body Properties Function // Move to Service
+    setBodyProperties() {
+      const properties = this.dataService.layoutEditorProperties;
+
+      this.dataService.bodyPropertiesTypes.forEach((propertyName) => {
+        const index = this.dataService.layoutEditorProperties.findIndex((data) => data.name == propertyName);
+        if (typeof properties[index].value !== 'undefined') {
+          properties[index].value = this.bodyProperties[propertyName];
+        } else {
+          properties[index] = this.bodyProperties[propertyName];
+        }
+      });
+
+      this.bodyProperties.styles = this.elementService.loadStyleProperties(this.dataService.layoutEditorProperties);
+
+    }
 
 
 }

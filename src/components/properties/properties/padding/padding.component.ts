@@ -28,12 +28,16 @@ export class PaddingPropertyComponent implements ControlValueAccessor {
   }
 
   registerOnChange(fn: (value: any) => void): void {
+    this.onChange = fn;
   }
   registerOnTouched(fn: () => void): void {
   }
   /** NgModel End */
 
+  onChange: any = () => {};
+
   change() {
+    this.onChange(this.padding);
     this.eventsService.publish('property-change');
   }
 

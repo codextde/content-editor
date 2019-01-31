@@ -26,7 +26,6 @@ export class HtmlPropertyComponent implements OnInit, ControlValueAccessor {
     if (value) {
       this.htmlValue = value;
       this.htmlOptions.value = value.value;
-      
     }
   }
 
