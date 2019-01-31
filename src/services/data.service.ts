@@ -72,7 +72,7 @@ export class DataService {
   }
 
   convertToLayouteditor() {
-    const designerData = window['layoutEditorData'];
+    const designerData = JSON.parse(localStorage.getItem('layout')) || window['layoutEditorData'];
     // Load Layout Editor Body Styles
     for (const property of designerData.ContentItemProperties) {
       this.layoutEditorProperties.push(JSON.parse(property.Value));
@@ -173,6 +173,7 @@ export class DataService {
       designerData.Items.push(contentItem);
     });
 
+    localStorage.setItem('layout', JSON.stringify(designerData));
     console.log('designerData', designerData);
     return designerData;
   }

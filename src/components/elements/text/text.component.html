@@ -1,11 +1,5 @@
-<div [style.float]="styles?.float">
-        
-    <span class="initial-letter" *ngIf="initialLetter"
-    [style.fontSize.px]="initialLetter?.size"
-    [style.lineHeight.px]="initialLetter?.size - 5"
-    [style.color]="initialLetter?.color">{{initialLetter.letter}}</span>
-    <div class="text-content" #editor spellcheck="false" autocorrect="off" autocapitalize="off"
-        [ngDraggable]="position?.position == 'absolute'"
+<div [style.float]="styles?.float"
+[ngDraggable]="position?.position == 'absolute'"
         [position]="movingOffset"
         (started)="onStart($event)"
         (movingOffset)="onMoving($event)"
@@ -13,6 +7,14 @@
         [style.left.px]="position?.left"
         [style.zIndex]="position?.position == 'absolute' ? 1000 : ''"
         [style.position]="position?.position"
+>
+        
+    <span class="initial-letter" *ngIf="initialLetter"
+    [style.fontSize.px]="initialLetter?.size"
+    [style.lineHeight.px]="initialLetter?.size - 5"
+    [style.color]="initialLetter?.color">{{initialLetter.letter}}</span>
+    <div class="text-content" #editor spellcheck="false" autocorrect="off" autocapitalize="off"
+        
 
         [ngStyle]="styles" 
         [ngClass]="styles?.cssClasses"
