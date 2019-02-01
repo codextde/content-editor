@@ -1,6 +1,7 @@
 import { Component, forwardRef, ViewChild, ElementRef, OnInit } from '@angular/core';
 import { NG_VALUE_ACCESSOR, ControlValueAccessor } from '@angular/forms';
 import { MonacoService } from 'src/services/monaco.service';
+import { EventsService } from 'src/services/event.service';
 
 
 @Component({
@@ -16,13 +17,15 @@ import { MonacoService } from 'src/services/monaco.service';
 export class CssPropertyComponent implements OnInit, ControlValueAccessor {
 
   @ViewChild('editorElm') editorElm: ElementRef;
-
-  cssOptions = {theme: 'vs-dark', language: 'css', value: '.test {\n display: block\n}'};
+  cssValue;
+  cssOptions = {theme: 'vs-dark', language: 'css', value: ''};
+  editor;
 
   /** NgModel Start */
   writeValue(value: any): void {
     if (value) {
-      this.cssOptions.value = value;
+      this.cssValue = value;
+      this.cssOptions.value = value.value;
     }
   }
 
@@ -40,15 +43,18 @@ export class CssPropertyComponent implements OnInit, ControlValueAccessor {
   /** NgModel End */
 
   constructor(
-    private monacoService: MonacoService
+    private monacoService: MonacoService,
+    private eventsService: EventsService
   ) {}
 
 
   ngOnInit() {
     this.monacoService.loadMonaco().then((monaco: any) => {
-      const editor = monaco.editor.create(this.editorElm.nativeElement, this.cssOptions);
-      editor.onDidChangeModelContent((e) => {
-        this.onChange(editor.getValue());
+      this.editor = monaco.editor.create(this.editorElm.nativeElement, this.cssOptions);
+      this.editor.onDidChangeModelContent((e) => {
+        this.cssOptions.value = this.editor.getValue();
+        this.onChange(this.cssValue);
+        this.eventsService.publish('property-change');
       });
     });
   }

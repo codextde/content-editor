@@ -116,9 +116,9 @@ export class MainPage implements OnInit {
       css: '',
       direction: ''
     };
-    this.setBodyProperties();
     this.cdr.detectChanges();
     this.save();
+    console.log(this.bodyProperties);
   }
 
   async import() {
@@ -194,16 +194,20 @@ export class MainPage implements OnInit {
       const properties = this.dataService.layoutEditorProperties;
 
       this.dataService.bodyPropertiesTypes.forEach((propertyName) => {
-        const index = this.dataService.layoutEditorProperties.findIndex((data) => data.name == propertyName);
-        if (index == -1) { return; }
+        let index = properties.findIndex((data) => data.name == propertyName);
+        if (index == -1) {
+          properties.push({name: propertyName});
+        }
+        index = properties.findIndex((data) => data.name == propertyName);
         if (typeof properties[index].value !== 'undefined') {
           properties[index].value = this.bodyProperties[propertyName];
         } else {
-          properties[index] = this.bodyProperties[propertyName];
+          properties[index] = {name: propertyName, ...this.bodyProperties[propertyName]};
         }
       });
 
       this.bodyProperties.styles = this.elementService.loadStyleProperties(this.dataService.layoutEditorProperties);
+
 
     }
 
