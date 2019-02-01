@@ -1,24 +1,29 @@
-<div [style.float]="styles?.float"
-[ngDraggable]="position?.position == 'absolute'"
-        [position]="movingOffset"
-        (started)="onStart($event)"
-        (movingOffset)="onMoving($event)"
-        [style.top.px]="position?.top"
-        [style.left.px]="position?.left"
-        [style.zIndex]="position?.position == 'absolute' ? 1000 : ''"
-        [style.position]="position?.position"
+<div 
+    [style.float]="styles?.float"
+    [ngDraggable]="position?.position == 'absolute'"
+    [position]="movingOffset"
+    (started)="onStart($event)"
+    (movingOffset)="onMoving($event)"
+    [style.top.px]="position?.top"
+    [style.left.px]="position?.left"
+    [style.zIndex]="position?.position == 'absolute' ? 1000 : ''"
+    [style.position]="position?.position"
+    [ngStyle]="styles" 
+    [ngClass]="styles?.cssClasses"
 >
         
-    <span class="initial-letter" *ngIf="initialLetter"
+    <span 
+    class="initial-letter" 
+    *ngIf="initialLetter"
     [style.fontSize.px]="initialLetter?.size"
     [style.lineHeight.px]="initialLetter?.size - 5"
     [style.color]="initialLetter?.color">{{initialLetter.letter}}</span>
-    <div class="text-content" #editor spellcheck="false" autocorrect="off" autocapitalize="off"
-        
-
-        [ngStyle]="styles" 
-        [ngClass]="styles?.cssClasses"
-
+    <div 
+        class="text-content" 
+        #editor 
+        spellcheck="false" 
+        autocorrect="off" 
+        autocapitalize="off"
         [class.k-widget]="false"
         [class.k-editor]="false"
         [class.k-editor-inline]="false"
