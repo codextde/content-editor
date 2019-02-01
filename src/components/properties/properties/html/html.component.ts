@@ -27,6 +27,9 @@ export class HtmlPropertyComponent implements OnInit, ControlValueAccessor {
       this.htmlValue = value;
       this.htmlOptions.value = value.value;
     }
+    if (value == '') {
+      this.editor.setValue('');
+    }
   }
 
   registerOnChange(fn: (value: any) => void): void {
