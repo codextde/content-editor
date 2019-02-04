@@ -72,8 +72,8 @@ export class MainPage implements OnInit {
 
       // currentObject.id = this.helper.uuidv4();
 
-      const currentObject = this.dataService.layoutEditorElements[event.currentIndex];
-      this.dataService.layoutEditorElements[event.currentIndex] = this.helper.clearObject(currentObject);
+      const currentObject = this.dataService.contentEditorElements[event.currentIndex];
+      this.dataService.contentEditorElements[event.currentIndex] = this.helper.clearObject(currentObject);
     }
   }
 
@@ -97,7 +97,7 @@ export class MainPage implements OnInit {
   delete(element) {
     this.propertiesActive = false;
     this.activeElement = {};
-    this.dataService.layoutEditorElements = this.dataService.layoutEditorElements.filter((el) => el !== element);
+    this.dataService.contentEditorElements = this.dataService.contentEditorElements.filter((el) => el !== element);
     this.save();
   }
 
@@ -108,7 +108,7 @@ export class MainPage implements OnInit {
   }
 
   clear() {
-    this.dataService.layoutEditorElements = [];
+    this.dataService.contentEditorElements = [];
     this.bodyProperties = {
       styles: {},
       background: {},
@@ -172,10 +172,10 @@ export class MainPage implements OnInit {
 
     // Improve Load Body Properties Function // Move to Service
     async loadBodyProperties() {
-      const properties = this.dataService.layoutEditorProperties;
+      const properties = this.dataService.contentEditorProperties;
 
       this.dataService.bodyPropertiesTypes.forEach((propertyName) => {
-        const index = this.dataService.layoutEditorProperties.findIndex((data) => data.name == propertyName);
+        const index = this.dataService.contentEditorProperties.findIndex((data) => data.name == propertyName);
         if (index == -1) { return; }
         if (typeof properties[index].value !== 'undefined') {
           this.bodyProperties[propertyName] = properties[index].value;
@@ -184,14 +184,14 @@ export class MainPage implements OnInit {
         }
       });
 
-      this.bodyProperties.styles = this.elementService.loadStyleProperties(this.dataService.layoutEditorProperties);
+      this.bodyProperties.styles = this.elementService.loadStyleProperties(this.dataService.contentEditorProperties);
       this.cssCodeChange();
 
     }
 
     // Improve Set Body Properties Function // Move to Service
     setBodyProperties() {
-      const properties = this.dataService.layoutEditorProperties;
+      const properties = this.dataService.contentEditorProperties;
 
       this.dataService.bodyPropertiesTypes.forEach((propertyName) => {
         let index = properties.findIndex((data) => data.name == propertyName);
@@ -206,7 +206,7 @@ export class MainPage implements OnInit {
         }
       });
 
-      this.bodyProperties.styles = this.elementService.loadStyleProperties(this.dataService.layoutEditorProperties);
+      this.bodyProperties.styles = this.elementService.loadStyleProperties(this.dataService.contentEditorProperties);
 
 
     }

@@ -18,8 +18,8 @@ import { IContentItemProperty } from 'src/models/contentItemProperty.model';
 export class DataService {
   bodyPropertiesTypes = ['css', 'background', 'direction', 'padding'];
 
-  layoutEditorProperties: any = [];
-  layoutEditorElements: any = [];
+  contentEditorProperties: any = [];
+  contentEditorElements: any = [];
 
   // tslint:disable:quotemark
   designerData: any = {
@@ -38,7 +38,7 @@ export class DataService {
       }
     ],
     "Id": 135,
-    "Type": "layout-editor",
+    "Type": "content-editor",
     "Content": "",
     "DisplayOrder": 3,
     "ContentItemProperties": [
@@ -66,16 +66,16 @@ export class DataService {
     private elementService: ElementService
   ) {
     // @Todo Remove and load from the Designer. The Designer need to Inject the Data to the iFrame
-    window['layoutEditorData'] = this.designerData;
+    window['contentEditorData'] = this.designerData;
 
-    this.convertToLayouteditor();
+    this.convertToContenteditor();
   }
 
-  convertToLayouteditor() {
-    const designerData = JSON.parse(localStorage.getItem('layout')) || window['layoutEditorData'];
-    // Load Layout Editor Body Styles
+  convertToContenteditor() {
+    const designerData = JSON.parse(localStorage.getItem('content')) || window['contentEditorData'];
+    // Load Content Editor Body Styles
     for (const property of designerData.ContentItemProperties) {
-      this.layoutEditorProperties.push(JSON.parse(property.Value));
+      this.contentEditorProperties.push(JSON.parse(property.Value));
     }
 
     // Load Elements
@@ -127,7 +127,7 @@ export class DataService {
         convertedElement.properties[propertyIndex] = foundProperty;
       }
 
-      this.layoutEditorElements.push(convertedElement);
+      this.contentEditorElements.push(convertedElement);
 
     }
 
@@ -136,13 +136,13 @@ export class DataService {
   convertToDesigner() {
     // tslint:disable-next-line:prefer-const
     let designerData: IContentItem = {
-      Type: 'layout-editor',
+      Type: 'content-editor',
       Items: [],
       ContentItemProperties: []
     };
 
-    // Load Content Item Layout Editor Properties
-    this.layoutEditorProperties.forEach((property: any) => {
+    // Load Content Item Content Editor Properties
+    this.contentEditorProperties.forEach((property: any) => {
       const contentItemProperty: IContentItemProperty = {
         ContentItemPropertyType: property.name,
         Value: JSON.stringify(property)
@@ -153,8 +153,8 @@ export class DataService {
       }
     });
 
-    // Add Content Items to Layout Editor Element
-    this.layoutEditorElements.forEach((element: IElement) => {
+    // Add Content Items to Content Editor Element
+    this.contentEditorElements.forEach((element: IElement) => {
       const contentItem: IContentItem = {
         Type: element.component,
         Content: element.value,
@@ -173,7 +173,7 @@ export class DataService {
       designerData.Items.push(contentItem);
     });
 
-    localStorage.setItem('layout', JSON.stringify(designerData));
+    localStorage.setItem('content', JSON.stringify(designerData));
     console.log('designerData', designerData);
     return designerData;
   }

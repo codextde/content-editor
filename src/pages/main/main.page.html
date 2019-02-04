@@ -6,13 +6,13 @@
         class="passage-content" 
         cdkDropList 
         #activeElementsList="cdkDropList" 
-        [cdkDropListData]="dataService.layoutEditorElements"
+        [cdkDropListData]="dataService.contentEditorElements"
         (cdkDropListDropped)="drop($event)" 
         [ngStyle]="bodyProperties.styles"
         [dir]="bodyProperties.direction"
         >
 
-        <div class="drag-element" [tooltip]="myTooltip" [tooltipClick]="true" *ngFor="let element of dataService.layoutEditorElements" cdkDrag>
+        <div class="drag-element" [tooltip]="myTooltip" [tooltipClick]="true" *ngFor="let element of dataService.contentEditorElements" cdkDrag>
 
           <app-element-text *ngIf="element.component == 'text'" [(ngModel)]="element"></app-element-text>
           <app-element-html *ngIf="element.component == 'html'" [(ngModel)]="element"></app-element-html>
