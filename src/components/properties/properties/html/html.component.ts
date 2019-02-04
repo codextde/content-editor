@@ -1,7 +1,7 @@
-import { Component, forwardRef, ViewChild, ElementRef, OnInit } from '@angular/core';
-import { NG_VALUE_ACCESSOR, ControlValueAccessor } from '@angular/forms';
-import { MonacoService } from 'src/services/monaco.service';
+import { AfterViewInit, Component, ElementRef, forwardRef, ViewChild } from '@angular/core';
+import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { EventsService } from 'src/services/event.service';
+import { MonacoService } from 'src/services/monaco.service';
 
 @Component({
   selector: 'app-property-html',
@@ -13,7 +13,7 @@ import { EventsService } from 'src/services/event.service';
        multi: true
   }]
 })
-export class HtmlPropertyComponent implements OnInit, ControlValueAccessor {
+export class HtmlPropertyComponent implements AfterViewInit, ControlValueAccessor {
 
   @ViewChild('editorElm') editorElm: ElementRef;
   htmlValue;
@@ -47,7 +47,7 @@ export class HtmlPropertyComponent implements OnInit, ControlValueAccessor {
   ) {}
 
 
-  ngOnInit() {
+  ngAfterViewInit() {
     this.monacoService.loadMonaco().then((monaco: any) => {
       this.editor = monaco.editor.create(this.editorElm.nativeElement, this.htmlOptions);
       this.editor.onDidChangeModelContent((e) => {
