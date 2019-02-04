@@ -24,6 +24,11 @@
             "tsConfig": "src/tsconfig.app.json",
             "assets": [
               "src/assets",
+              {
+                "glob": "**/*",
+                "input": "./node_modules/npm-font-open-sans/fonts",
+                "output": "assets/fonts/open-sans"
+              },
               { "glob": "**/*", "input": "./node_modules/monaco-editor/min", "output": "./assets/monaco/" }
             ],
             "styles": [
