@@ -22,7 +22,7 @@
           <app-element-clearfix *ngIf="element.component == 'clearfix'" (click)="openProperties(element)"></app-element-clearfix>
           <app-element-divider *ngIf="element.component == 'divider'" (click)="openProperties(element)" [(ngModel)]="element"></app-element-divider>
 
-          <app-tooltip class="drag-element-toolbar" #myTooltip>
+          <app-tooltip class="drag-element-toolbar" #myTooltip direction="ltr">
               <div class="drag-element-component item">
                   <fa-icon [icon]="element.icon"></fa-icon>
                 </div>

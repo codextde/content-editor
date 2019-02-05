@@ -5,6 +5,7 @@ import { IElement } from 'src/models/element.model';
 import { ElementService } from 'src/services/element.service';
 import { EventsService } from 'src/services/event.service';
 import { faArrowsAlt } from '@fortawesome/free-solid-svg-icons';
+import { HelperService } from 'src/services/helper.service';
 
 declare var kendo: any;
 
@@ -122,6 +123,7 @@ export class TextElementComponent implements OnInit, ControlValueAccessor {
   }
 
   onStart() {
+    HelperService.clearSelection();
     this.preventUserSelect = true;
     this.movingOffset = { x: (this.position.left || 0), y: (this.position.top || 0) };
   }

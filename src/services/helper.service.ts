@@ -1,17 +1,25 @@
 import { Injectable } from '@angular/core';
 
+declare var document: any;
+
 @Injectable({
   providedIn: 'root'
 })
 export class HelperService {
 
-
-
   styleElement: any;
   basePath: string;
-  
+
   public static clearObject(object) {
     return JSON.parse(JSON.stringify(object));
+  }
+
+  public static clearSelection() {
+    if (window.getSelection) {
+      window.getSelection().removeAllRanges();
+    } else if (document.selection) {
+      document.selection.empty();
+    }
   }
 
   constructor() {
