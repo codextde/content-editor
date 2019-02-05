@@ -94,7 +94,9 @@ export class MainPage implements OnInit {
     if (forceOpen) {
       this.propertiesActive = true;
     }
-    this.activeElement = element;
+    if (this.propertiesActive) {
+      this.activeElement = element;
+    }
   }
 
   delete(element) {
