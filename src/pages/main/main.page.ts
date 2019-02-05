@@ -90,9 +90,11 @@ export class MainPage implements OnInit {
     }
   }
 
-  openProperties(element) {
+  openProperties(element, forceOpen: boolean = false) {
+    if (forceOpen) {
+      this.propertiesActive = true;
+    }
     this.activeElement = element;
-    this.propertiesActive = true;
   }
 
   delete(element) {

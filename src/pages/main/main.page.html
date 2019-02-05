@@ -14,19 +14,19 @@
 
         <div class="drag-element" [tooltip]="myTooltip" [tooltipClick]="true" *ngFor="let element of dataService.contentEditorElements" cdkDrag>
 
-          <app-element-text *ngIf="element.component == 'text'" [(ngModel)]="element"></app-element-text>
-          <app-element-html *ngIf="element.component == 'html'" [(ngModel)]="element"></app-element-html>
-          <app-element-headline *ngIf="element.component == 'headline'" [(ngModel)]="element"></app-element-headline>
-          <app-element-video *ngIf="element.component == 'video'" [(ngModel)]="element"></app-element-video>
-          <app-element-image *ngIf="element.component == 'image'" [(ngModel)]="element"></app-element-image>
-          <app-element-clearfix *ngIf="element.component == 'clearfix'"></app-element-clearfix>
-          <app-element-divider *ngIf="element.component == 'divider'" [(ngModel)]="element"></app-element-divider>
+          <app-element-text *ngIf="element.component == 'text'" (click)="openProperties(element)" [(ngModel)]="element"></app-element-text>
+          <app-element-html *ngIf="element.component == 'html'"  (click)="openProperties(element)"[(ngModel)]="element"></app-element-html>
+          <app-element-headline *ngIf="element.component == 'headline'" (click)="openProperties(element)" [(ngModel)]="element"></app-element-headline>
+          <app-element-video *ngIf="element.component == 'video'" (click)="openProperties(element)" [(ngModel)]="element"></app-element-video>
+          <app-element-image *ngIf="element.component == 'image'" (click)="openProperties(element)" [(ngModel)]="element"></app-element-image>
+          <app-element-clearfix *ngIf="element.component == 'clearfix'" (click)="openProperties(element)"></app-element-clearfix>
+          <app-element-divider *ngIf="element.component == 'divider'" (click)="openProperties(element)" [(ngModel)]="element"></app-element-divider>
 
           <app-tooltip class="drag-element-toolbar" #myTooltip>
               <div class="drag-element-component item">
                   <fa-icon [icon]="element.icon"></fa-icon>
                 </div>
-              <div class="drag-element-check item" (click)="openProperties(element)">
+              <div class="drag-element-check item" (click)="openProperties(element, true)">
                   <fa-icon [icon]="faCogs"></fa-icon>
                 </div>
                 <div class="drag-element-trash item" (click)="delete(element)">
