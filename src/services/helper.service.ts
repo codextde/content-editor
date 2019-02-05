@@ -5,8 +5,14 @@ import { Injectable } from '@angular/core';
 })
 export class HelperService {
 
+
+
   styleElement: any;
   basePath: string;
+  
+  public static clearObject(object) {
+    return JSON.parse(JSON.stringify(object));
+  }
 
   constructor() {
     this.basePath = this.getBasePath();
@@ -62,9 +68,7 @@ export class HelperService {
     }
   }
 
-  clearObject(object) {
-    return JSON.parse(JSON.stringify(object));
-  }
+  
 
   getCookie = (name) => {
     const value = '; ' + document.cookie;

@@ -25,7 +25,7 @@ export class CssPropertyComponent implements AfterViewInit, ControlValueAccessor
     if (value) {
       this.cssOptions.value = value;
     }
-    if (value == '') {
+    if (value == '' && this.editor) {
       this.editor.setValue('');
     }
   }

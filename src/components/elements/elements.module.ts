@@ -10,6 +10,7 @@ import { ClearfixElementComponent } from './clearfix/clearfix.component';
 import { DirectivesModule } from 'src/directives/directives.module';
 import { DividerElementComponent } from './divider/divider.component';
 import { AngularDraggableModule } from 'angular2-draggable';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 const elements = [
     VideoElementComponent,
@@ -33,6 +34,7 @@ const elements = [
     ...elements
   ],
   imports: [
+    FontAwesomeModule,
     PipesModule,
     CommonModule,
     DirectivesModule,

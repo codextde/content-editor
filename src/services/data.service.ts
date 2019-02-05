@@ -27,11 +27,11 @@ export class DataService {
       {
         "Id": 137,
         "Type": "text",
-        "Content": "blablieblug",
+        "Content": "test",
         "DisplayOrder": 0,
         "ContentItemProperties": [
           {
-            "Value": "{\"name\":\"padding\",\"paddingLeft.px\":4,\"paddingTop.px\":5,\"paddingRight.px\":2,\"paddingBottom.px\":5}",
+            "Value": "{\"name\":\"padding\",\"paddingLeft.px\":10,\"paddingTop.px\":5,\"paddingRight.px\":2,\"paddingBottom.px\":5}",
             "ContentItemPropertyType": "padding"
           }
         ]
@@ -47,7 +47,7 @@ export class DataService {
         "ContentItemPropertyType": "padding"
       },
       {
-        "Value": "{\"name\":\"background\", \"background-color\": \"#6b4e4e\"}",
+        "Value": "{\"name\":\"background\", \"background-color\": \"#eeeeee\"}",
         "ContentItemPropertyType": "background"
       },
       {
@@ -134,6 +134,7 @@ export class DataService {
   }
 
   convertToDesigner() {
+    console.log(this.contentEditorElements, this.contentEditorProperties)
     // tslint:disable-next-line:prefer-const
     let designerData: IContentItem = {
       Type: 'content-editor',

@@ -4,6 +4,7 @@ import '@progress/kendo-ui';
 import { IElement } from 'src/models/element.model';
 import { ElementService } from 'src/services/element.service';
 import { EventsService } from 'src/services/event.service';
+import { faArrowsAlt } from '@fortawesome/free-solid-svg-icons';
 
 declare var kendo: any;
 
@@ -18,6 +19,8 @@ declare var kendo: any;
   }]
 })
 export class TextElementComponent implements OnInit, ControlValueAccessor {
+  preventUserSelect: boolean = false;
+  faArrowsAlt = faArrowsAlt;
   movingOffset;
 
   @ViewChild('editor') editorEl: ElementRef;
@@ -118,8 +121,12 @@ export class TextElementComponent implements OnInit, ControlValueAccessor {
     this.editor = kendo.jQuery(this.editorEl.nativeElement).data('kendoEditor');
   }
 
-  onStart(ev) {
+  onStart() {
+    this.preventUserSelect = true;
     this.movingOffset = { x: (this.position.left || 0), y: (this.position.top || 0) };
+  }
+  onStop() {
+    this.preventUserSelect = false;
   }
 
   onMoving(ev) {

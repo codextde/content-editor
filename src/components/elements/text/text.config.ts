@@ -2,7 +2,6 @@ import { faAlignCenter } from '@fortawesome/free-solid-svg-icons';
 import { IElement } from 'src/models/element.model';
 import { ElementCreator } from '../element.creator';
 
-
 export class TextElementConfig {
   static config: IElement = {
     component: 'text',

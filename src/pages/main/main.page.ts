@@ -73,7 +73,8 @@ export class MainPage implements OnInit {
       // currentObject.id = this.helper.uuidv4();
 
       const currentObject = this.dataService.contentEditorElements[event.currentIndex];
-      this.dataService.contentEditorElements[event.currentIndex] = this.helper.clearObject(currentObject);
+      console.log(this.dataService.contentEditorElements);
+      this.dataService.contentEditorElements[event.currentIndex] = HelperService.clearObject(currentObject);
     }
   }
 
