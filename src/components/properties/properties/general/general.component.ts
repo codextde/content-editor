@@ -2,6 +2,7 @@ import { Component, forwardRef } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { faInfoCircle } from '@fortawesome/free-solid-svg-icons';
 import { EventsService } from 'src/services/event.service';
+import { PxPercentage } from '../../enums/px-percentage.enum';
 
 
 @Component({
@@ -15,7 +16,8 @@ import { EventsService } from 'src/services/event.service';
   }]
 })
 export class GeneralPropertyComponent implements ControlValueAccessor {
-
+  width = 'width.px';
+  widthUnit: string = '%';
   faInfoCircle = faInfoCircle;
 
   general: any = {};
@@ -56,5 +58,29 @@ export class GeneralPropertyComponent implements ControlValueAccessor {
     this.general.float = float;
     this.onChange(this.general);
     this.change();
+  }
+
+  changeWidthUnit() {
+    console.log(this.general);
+
+    if (this.widthUnit == 'px') {
+      if (this.general['width.%']) {
+        this.general['width.px'] = this.general['width.%'];
+      }
+      delete this.general['width.%'];
+      this.width = 'width.px';
+
+    }
+    if (this.widthUnit == '%') {
+      if (this.general['width.px']) {
+        this.general['width.%'] = this.general['width.px'];
+      }
+      delete this.general['width.px'];
+      this.width = 'width.%';
+    }
+
+    this.change();
+
+    console.log(this.general);
   }
 }

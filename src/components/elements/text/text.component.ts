@@ -6,6 +6,7 @@ import { ElementService } from 'src/services/element.service';
 import { EventsService } from 'src/services/event.service';
 import { faArrowsAlt } from '@fortawesome/free-solid-svg-icons';
 import { HelperService } from 'src/services/helper.service';
+import { AngularDraggableDirective } from 'angular2-draggable';
 
 declare var kendo: any;
 
@@ -25,6 +26,8 @@ export class TextElementComponent implements OnInit, ControlValueAccessor {
   movingOffset;
 
   @ViewChild('editor') editorEl: ElementRef;
+  @ViewChild('draggable') draggable: AngularDraggableDirective;
+
   editor;
   textElement: IElement;
 
@@ -40,6 +43,9 @@ export class TextElementComponent implements OnInit, ControlValueAccessor {
     ) {
     this.eventsService.subscribe('property-change', () => {
       this.styles = this.elementService.loadStyleProperties(this.textElement.properties);
+      if (this.position && this.position.position == 'absolute') {
+        this.draggable.resetPosition();
+      }
     });
   }
 
@@ -121,6 +127,8 @@ export class TextElementComponent implements OnInit, ControlValueAccessor {
     });
     this.editor = kendo.jQuery(this.editorEl.nativeElement).data('kendoEditor');
   }
+
+
 
   onStart() {
     HelperService.clearSelection();

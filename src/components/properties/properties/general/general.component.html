@@ -25,7 +25,8 @@
         Width (px)
       </div>
       <div class="col flex-end">
-        <app-stepper [(ngModel)]="general['width.px']" (ngModelChange)="change()"></app-stepper>
+        <app-stepper [(ngModel)]="general[width]" (ngModelChange)="change()"></app-stepper>
+        <app-px-percentage-switch [(ngModel)]="widthUnit" (ngModelChange)="changeWidthUnit()"></app-px-percentage-switch>
       </div>
     </div>
     <div class="row">

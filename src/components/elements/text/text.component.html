@@ -1,5 +1,6 @@
 <div 
     [style.float]="styles?.float"
+    #draggable="ngDraggable"
     [ngDraggable]="position?.position == 'absolute'"
     [position]="movingOffset"
     (started)="onStart()"
@@ -12,6 +13,7 @@
     [ngStyle]="styles" 
     [ngClass]="styles?.cssClasses"
     [handle]="dragHandle"
+    [preventDefaultEvent]="true"
     [class.preventUserSelect]="preventUserSelect"
     class="wrapper"
 >     
