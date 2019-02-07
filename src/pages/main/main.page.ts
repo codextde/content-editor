@@ -103,6 +103,7 @@ export class MainPage implements OnInit {
     this.propertiesActive = false;
     this.activeElement = {};
     this.dataService.contentEditorElements = this.dataService.contentEditorElements.filter((el) => el !== element);
+
     this.save();
   }
 
@@ -122,7 +123,8 @@ export class MainPage implements OnInit {
       direction: ''
     };
     this.cdr.detectChanges();
-    this.save();
+    localStorage.removeItem('content');
+    // this.save();
     console.log(this.bodyProperties);
   }
 

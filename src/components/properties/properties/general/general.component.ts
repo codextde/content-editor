@@ -15,8 +15,8 @@ import { EventsService } from 'src/services/event.service';
   }]
 })
 export class GeneralPropertyComponent implements ControlValueAccessor {
-  width = 'width.px';
-  widthUnit: string = 'px';
+  width = 'width.%';
+  widthUnit: string = '%';
   faInfoCircle = faInfoCircle;
 
   general: any = {};

@@ -27,11 +27,11 @@ export class DataService {
       {
         "Id": 137,
         "Type": "text",
-        "Content": "test",
+        "Content": "Test",
         "DisplayOrder": 0,
         "ContentItemProperties": [
           {
-            "Value": "{\"name\":\"padding\",\"paddingLeft.px\":10,\"paddingTop.px\":5,\"paddingRight.px\":2,\"paddingBottom.px\":5}",
+            "Value": "{\"name\":\"padding\",\"paddingLeft.px\":10,\"paddingTop.px\":10,\"paddingRight.px\":10,\"paddingBottom.px\":10}",
             "ContentItemPropertyType": "padding"
           }
         ]
@@ -43,11 +43,11 @@ export class DataService {
     "DisplayOrder": 3,
     "ContentItemProperties": [
       {
-        "Value": "{\"name\":\"padding\",\"paddingLeft.px\":4,\"paddingTop.px\":5,\"paddingRight.px\":2,\"paddingBottom.px\":5}",
+        "Value": "{\"name\":\"padding\",\"paddingLeft.px\":10,\"paddingTop.px\":10,\"paddingRight.px\":10,\"paddingBottom.px\":10}",
         "ContentItemPropertyType": "padding"
       },
       {
-        "Value": "{\"name\":\"background\", \"background-color\": \"#eeeeee\"}",
+        "Value": "{\"name\":\"background\", \"background-color\": \"#fff\"}",
         "ContentItemPropertyType": "background"
       },
       {
