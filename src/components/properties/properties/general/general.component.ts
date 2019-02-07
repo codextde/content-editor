@@ -2,7 +2,6 @@ import { Component, forwardRef } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { faInfoCircle } from '@fortawesome/free-solid-svg-icons';
 import { EventsService } from 'src/services/event.service';
-import { PxPercentage } from '../../enums/px-percentage.enum';
 
 
 @Component({
@@ -10,14 +9,14 @@ import { PxPercentage } from '../../enums/px-percentage.enum';
   templateUrl: './general.component.html',
   styleUrls: ['./general.component.scss'],
   providers: [{
-       provide: NG_VALUE_ACCESSOR,
-       useExisting: forwardRef(() => GeneralPropertyComponent),
-       multi: true
+    provide: NG_VALUE_ACCESSOR,
+    useExisting: forwardRef(() => GeneralPropertyComponent),
+    multi: true
   }]
 })
 export class GeneralPropertyComponent implements ControlValueAccessor {
   width = 'width.px';
-  widthUnit: string = '%';
+  widthUnit: string = 'px';
   faInfoCircle = faInfoCircle;
 
   general: any = {};
@@ -30,6 +29,13 @@ export class GeneralPropertyComponent implements ControlValueAccessor {
   writeValue(value: any): void {
     if (value) {
       this.general = value;
+      for (const key of Object.keys(value)) {
+        if (key.startsWith('width')) {
+          this.width = key;
+          const parts = key.split('.');
+          this.widthUnit = parts[parts.length - 1];
+        }
+      }
     }
   }
   registerOnChange(fn: (value: any) => void): void {
@@ -61,8 +67,6 @@ export class GeneralPropertyComponent implements ControlValueAccessor {
   }
 
   changeWidthUnit() {
-    console.log(this.general);
-
     if (this.widthUnit == 'px') {
       if (this.general['width.%']) {
         this.general['width.px'] = this.general['width.%'];
@@ -80,7 +84,5 @@ export class GeneralPropertyComponent implements ControlValueAccessor {
     }
 
     this.change();
-
-    console.log(this.general);
   }
 }
