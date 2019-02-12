@@ -4,6 +4,7 @@ import { faAlignCenter, faAlignLeft, faAlignRight, faBold } from '@fortawesome/f
 import { ITextProperty } from '../../models/text.model';
 import { EventsService } from 'src/services/event.service';
 import * as WebFont from 'webfontloader';
+import { FontService } from 'src/services/font.service';
 
 @Component({
   selector: 'app-property-text',
@@ -23,36 +24,15 @@ export class TextPropertyComponent implements ControlValueAccessor {
 
   text: ITextProperty = {};
 
-  // Fonts
-  fonts = [{
-    displayName: 'Andale Mono',
-    fontFamily: '"andale mono", times'
-  }, {
-    displayName: 'Arial Black',
-    fontFamily: '"arial black", "avant garde", arial'
-  }, {
-    displayName: 'Comic Sans MS',
-    fontFamily: '"comic sans ms", sans-serif'
-  }, {
-    displayName: 'Impact',
-    fontFamily: 'impact, chicago'
-  }, {
-    displayName: 'Times New Roman',
-    fontFamily: '"times new roman", times'
-  }];
   fontFamily;
 
   lineHeights = ['1', '1.15', '1.5', '2', '2.5', '3'];
 
   constructor(
-    private eventsService: EventsService
+    private eventsService: EventsService,
+    public fontService: FontService
   ) {
-    // Load Fonts
-    WebFont.load({
-      custom: {
-        families: ['sample']
-      }
-    });
+    
   }
 
   /** NgModel Start */
@@ -60,7 +40,7 @@ export class TextPropertyComponent implements ControlValueAccessor {
     if (value) {
       this.text = value;
       if (this.text.fontFamily) {
-        this.fontFamily = this.fonts.find((font) => {
+        this.fontFamily = this.fontService.fonts.find((font) => {
           return font.fontFamily == this.text.fontFamily;
         });
       }

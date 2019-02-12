@@ -47,7 +47,7 @@
           </button>
           <div class="dropdown-menu">
             <a class="dropdown-item" (click)="selectFont({displayName: '', fontFamily: ''})">Select</a>
-            <a *ngFor="let font of fonts" class="dropdown-item" (click)="selectFont(font)" [style.fontFamily]="font.fontFamily">{{font.displayName}}</a>
+            <a *ngFor="let font of fontService.fonts" class="dropdown-item" (click)="selectFont(font)" [style.fontFamily]="font.fontFamily">{{font.displayName}}</a>
           </div>
         </div>
       </div>
