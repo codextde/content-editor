@@ -3,6 +3,7 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { faAlignCenter, faAlignLeft, faAlignRight, faBold } from '@fortawesome/free-solid-svg-icons';
 import { ITextProperty } from '../../models/text.model';
 import { EventsService } from 'src/services/event.service';
+import * as WebFont from 'webfontloader';
 
 @Component({
   selector: 'app-property-text',
@@ -45,7 +46,14 @@ export class TextPropertyComponent implements ControlValueAccessor {
 
   constructor(
     private eventsService: EventsService
-  ) {}
+  ) {
+    // Load Fonts
+    WebFont.load({
+      custom: {
+        families: ['sample']
+      }
+    });
+  }
 
   /** NgModel Start */
   writeValue(value: any): void {
