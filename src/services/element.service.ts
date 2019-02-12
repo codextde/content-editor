@@ -22,7 +22,10 @@ export class ElementService {
     const background = properties.find((property) => {
       return property.name == 'background';
     });
-    return {...general, ...padding, ...text, ...background};
+    const position = properties.find((property) => {
+      return property.name == 'position';
+    });
+    return {...general, ...padding, ...text, ...background, ...position};
   }
 
 }

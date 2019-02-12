@@ -21,18 +21,20 @@
     </div>
     <div class="row">
       <div class="col title">
-        Top (px)
+        Top
       </div>
       <div class="col flex-end">
-        <app-stepper [(ngModel)]="position.top"></app-stepper>
+        <app-stepper [(ngModel)]="position[positionTop]" (ngModelChange)="change()"></app-stepper>
+        <app-px-percentage-switch [(ngModel)]="positionTopUnit" (ngModelChange)="changePositionUnit('top')"></app-px-percentage-switch>
       </div>
     </div>
     <div class="row">
       <div class="col title">
-        Left (px)
+        Left
       </div>
       <div class="col flex-end">
-        <app-stepper [(ngModel)]="position.left"></app-stepper>
+        <app-stepper [(ngModel)]="position[positionLeft]" (ngModelChange)="change()"></app-stepper>
+        <app-px-percentage-switch [(ngModel)]="positionLeftUnit" (ngModelChange)="changePositionUnit('left')"></app-px-percentage-switch>
       </div>
     </div>
   </div>

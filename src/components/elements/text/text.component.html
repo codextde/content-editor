@@ -6,8 +6,6 @@
     (started)="onStart()"
     (stopped)="onStop()"
     (movingOffset)="onMoving($event)"
-    [style.top.px]="position?.top"
-    [style.left.px]="position?.left"
     [style.zIndex]="position?.position == 'absolute' ? 1000 : ''"
     [style.position]="position?.position"
     [ngStyle]="styles" 

@@ -37,6 +37,9 @@ export class TextElementComponent implements OnInit, ControlValueAccessor {
   initialLetter;
   position;
 
+  topKey;
+  leftKey;
+
   constructor(
     private elementService: ElementService,
     private eventsService: EventsService
@@ -45,6 +48,15 @@ export class TextElementComponent implements OnInit, ControlValueAccessor {
       this.styles = this.elementService.loadStyleProperties(this.textElement.properties);
       if (this.position && this.position.position == 'absolute') {
         this.draggable.resetPosition();
+        for (const key of Object.keys(this.position)) {
+          console.log(key);
+          if (key.startsWith('top')) {
+            this.topKey = key;
+          }
+          if (key.startsWith('left')) {
+            this.leftKey = key;
+          }
+        }
       }
     });
   }
@@ -60,13 +72,15 @@ export class TextElementComponent implements OnInit, ControlValueAccessor {
           return property.name == 'initialLetter';
         });
       }
-
       if (!this.position) {
         this.position = this.textElement.properties.find((property) => {
           return property.name == 'position';
         });
-        this.movingOffset = { x: (this.position.left || 0), y: (this.position.top || 0) };
+        
+        this.movingOffset = { x: (this.position[this.leftKey] || 0), y: (this.position[this.topKey] || 0) };
       }
+
+      
 
 
       if (this.editor) {
@@ -133,7 +147,7 @@ export class TextElementComponent implements OnInit, ControlValueAccessor {
   onStart() {
     HelperService.clearSelection();
     this.preventUserSelect = true;
-    this.movingOffset = { x: (this.position.left || 0), y: (this.position.top || 0) };
+    this.movingOffset = { x: (this.position[this.leftKey] || 0), y: (this.position[this.topKey] || 0) };
   }
   onStop() {
     this.preventUserSelect = false;
@@ -141,9 +155,12 @@ export class TextElementComponent implements OnInit, ControlValueAccessor {
 
   onMoving(ev) {
     if (this.position && this.position.position != 'unset') {
-      this.position.top = +ev.y;
-      this.position.left = +ev.x;
+      
+      this.position[this.topKey] = +ev.y;
+      this.position[this.leftKey] = +ev.x;
+      console.log(this.position)
     }
+    this.styles = this.elementService.loadStyleProperties(this.textElement.properties);
     this.onChange(this.textElement);
   }
 

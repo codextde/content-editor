@@ -15,6 +15,12 @@ import { EventsService } from 'src/services/event.service';
   }]
 })
 export class PositionPropertyComponent implements ControlValueAccessor {
+  positionTop = 'top.px';
+  positionTopUnit: string = 'px';
+
+  positionLeft = 'left.px';
+  positionLeftUnit: string = 'px';
+
 
   constructor(
     public cdr: ChangeDetectorRef,
@@ -33,6 +39,12 @@ export class PositionPropertyComponent implements ControlValueAccessor {
   writeValue(value: any): void {
     if (value) {
       this.position = value;
+      if (!this.position[this.positionTop]) {
+        this.position[this.positionTop] = 0
+      } 
+      if (!this.position[this.positionLeft]) {
+        this.position[this.positionLeft] = 0
+      } 
     }
   }
 
@@ -52,10 +64,41 @@ export class PositionPropertyComponent implements ControlValueAccessor {
 
   changePosition(value) {
     if (value == 'unset') {
-      this.position.top = null;
-      this.position.left = null;
+      this.position[this.positionTop] = null;
+      this.position[this.positionLeft] = null;
     }
     this.position.position = value;
+    this.change();
+  }
+
+  changePositionUnit(position) {
+    let unit = position == 'top' ? this.positionTopUnit : this.positionLeftUnit;
+    if (unit == 'px') {
+      if (this.position[`${position}.%`]) {
+        this.position[`${position}.px`] = this.position[`${position}.%`];
+      }
+      delete this.position[`${position}.%`];
+      if(position == 'top') {
+        this.positionTop = `${position}.px`;
+      }
+      if(position == 'left') {
+        this.positionLeft = `${position}.px`;
+      }
+    }
+
+    if (unit == '%') {
+      if (this.position[`${position}.px`]) {
+        this.position[`${position}.%`] = this.position[`${position}.px`];
+      }
+      delete this.position[`${position}.px`];
+      if(position == 'top') {
+        this.positionTop = `${position}.%`;
+      }
+      if(position == 'left') {
+        this.positionLeft = `${position}.%`;
+      }
+    }
+
     this.change();
   }
 
