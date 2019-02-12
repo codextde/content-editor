@@ -7,6 +7,7 @@ import { ElementService } from 'src/services/element.service';
 import { ElementsService } from 'src/services/elements.service';
 import { HelperService } from 'src/services/helper.service';
 import { IBodyProperties } from 'src/models/bodyProperties.model';
+import { FontService } from 'src/services/font.service';
 
 
 @Component({
@@ -54,7 +55,8 @@ export class MainPage implements OnInit {
     private elementService: ElementService,
     private alertCtrl: AlertController,
     private cdr: ChangeDetectorRef,
-    private toastCtrl: ToastController
+    private toastCtrl: ToastController,
+    private fontService: FontService
   ) {}
 
   ngOnInit() {
