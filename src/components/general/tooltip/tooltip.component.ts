@@ -83,8 +83,8 @@ export class TooltipComponent  implements AfterViewInit, DoCheck {
             rect = this.hostElement.getBoundingClientRect();
         }
         // const p = this.positionElements(this.hostElement, this.element.nativeElement.children[0], this.placement);
-        this.top = rect.bottom - 1;
-        this.left =  rect.left;
+        this.top = rect.top;
+        this.left =  rect.width + rect.left;
         this.isIn = true;
         if (this.animation) {
             this.isFade = true;

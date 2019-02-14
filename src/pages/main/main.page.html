@@ -12,7 +12,7 @@
         [dir]="bodyProperties.direction"
         >
 
-        <div class="drag-element" [tooltip]="myTooltip" [tooltipClick]="true" *ngFor="let element of dataService.contentEditorElements" cdkDrag>
+        <div class="drag-element" [tooltip]="elementBar" [tooltipClick]="true" *ngFor="let element of dataService.contentEditorElements" cdkDrag>
 
           <app-element-text *ngIf="element.component == 'text'" (click)="openProperties(element)" [(ngModel)]="element"></app-element-text>
           <app-element-html *ngIf="element.component == 'html'"  (click)="openProperties(element)"[(ngModel)]="element"></app-element-html>
@@ -22,7 +22,7 @@
           <app-element-clearfix *ngIf="element.component == 'clearfix'" (click)="openProperties(element)"></app-element-clearfix>
           <app-element-divider *ngIf="element.component == 'divider'" (click)="openProperties(element)" [(ngModel)]="element"></app-element-divider>
 
-          <app-tooltip class="drag-element-toolbar" #myTooltip direction="ltr">
+          <app-tooltip class="drag-element-toolbar" #elementBar direction="ltr">
               <div class="drag-element-component item">
                   <fa-icon [icon]="element.icon"></fa-icon>
                 </div>
