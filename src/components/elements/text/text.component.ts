@@ -1,4 +1,4 @@
-import { Component, ElementRef, forwardRef, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, forwardRef, OnInit, ViewChild, Renderer2 } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import '@progress/kendo-ui';
 import { IElement } from 'src/models/element.model';
@@ -7,6 +7,7 @@ import { EventsService } from 'src/services/event.service';
 import { faArrowsAlt } from '@fortawesome/free-solid-svg-icons';
 import { HelperService } from 'src/services/helper.service';
 import { AngularDraggableDirective } from 'angular2-draggable';
+import { Renderer3 } from '@angular/core/src/render3/interfaces/renderer';
 
 declare var kendo: any;
 
@@ -21,6 +22,7 @@ declare var kendo: any;
   }]
 })
 export class TextElementComponent implements OnInit, ControlValueAccessor {
+  customText: boolean = false;
   preventUserSelect: boolean = false;
   faArrowsAlt = faArrowsAlt;
   movingOffset;
@@ -43,7 +45,8 @@ export class TextElementComponent implements OnInit, ControlValueAccessor {
 
   constructor(
     private elementService: ElementService,
-    private eventsService: EventsService
+    private eventsService: EventsService,
+    private renderer: Renderer2
     ) { 
     this.eventsService.subscribe('property-change', () => {
       this.styles = this.elementService.loadStyleProperties(this.textElement.properties);
@@ -99,7 +102,13 @@ export class TextElementComponent implements OnInit, ControlValueAccessor {
 
       
       if (this.editor) {
-        this.editor.value(this.textElement.value);
+        if(this.textElement.value == '') {
+          this.editor.value('Please enter your Text here');
+        } else {
+          this.customText = true;
+          this.editor.value(this.textElement.value);
+        }
+        
       }
     }
   }
@@ -155,6 +164,14 @@ export class TextElementComponent implements OnInit, ControlValueAccessor {
       change: (a) => this.change(this)
     });
     this.editor = kendo.jQuery(this.editorEl.nativeElement).data('kendoEditor');
+
+    this.renderer.listen(this.editorEl.nativeElement, 'click', ()=> {
+      if(!this.customText) {
+        this.editor.value('');
+        this.customText = true;
+      }
+      
+    });
   }
 
 
