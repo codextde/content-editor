@@ -4,4 +4,5 @@ export class IElement {
     title: string;
     properties?: any[];
     value?: any;
+    disableDrag?: boolean;
 }

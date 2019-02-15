@@ -8,6 +8,8 @@ import { ElementsService } from 'src/services/elements.service';
 import { HelperService } from 'src/services/helper.service';
 import { IBodyProperties } from 'src/models/bodyProperties.model';
 import { FontService } from 'src/services/font.service';
+import { EventsService } from 'src/services/event.service';
+import { IElement } from 'src/models/element.model';
 
 
 @Component({
@@ -56,11 +58,29 @@ export class MainPage implements OnInit {
     private alertCtrl: AlertController,
     private cdr: ChangeDetectorRef,
     private toastCtrl: ToastController,
-    private fontService: FontService
+    private fontService: FontService,
+    private eventsService: EventsService
   ) {}
 
   ngOnInit() {
     this.loadBodyProperties();
+
+    this.checkDrag();
+    this.eventsService.subscribe('property-change', () => {
+      this.checkDrag();
+    });
+  }
+
+  checkDrag() {
+    this.dataService.contentEditorElements.forEach((element: IElement) => {
+      element.properties.forEach((property) =>  {
+        if (property.name == 'position' && property.position == 'absolute') {
+          element.disableDrag = true;
+        } else if (property.name == 'position') {
+          element.disableDrag = false;
+        }
+      });
+    })
   }
 
   drop(event: CdkDragDrop < string[] > , prevent ? ) {
@@ -108,6 +128,7 @@ export class MainPage implements OnInit {
 
     this.save();
   }
+
 
   async save() {
     await this.dataService.convertToDesigner();

@@ -25,6 +25,7 @@ export class TextElementComponent implements OnInit, ControlValueAccessor {
   faArrowsAlt = faArrowsAlt;
   movingOffset;
 
+  @ViewChild('dragElement') dragElement: ElementRef;
   @ViewChild('editor') editorEl: ElementRef;
   @ViewChild('draggable') draggable: AngularDraggableDirective;
 
@@ -43,22 +44,38 @@ export class TextElementComponent implements OnInit, ControlValueAccessor {
   constructor(
     private elementService: ElementService,
     private eventsService: EventsService
-    ) {
+    ) { 
     this.eventsService.subscribe('property-change', () => {
       this.styles = this.elementService.loadStyleProperties(this.textElement.properties);
-      if (this.position && this.position.position == 'absolute') {
+      
+      if (this.draggable) {
         this.draggable.resetPosition();
-        for (const key of Object.keys(this.position)) {
-          console.log(key);
-          if (key.startsWith('top')) {
-            this.topKey = key;
-          }
-          if (key.startsWith('left')) {
-            this.leftKey = key;
-          }
+      }
+      if (this.position && this.position.position == 'absolute') {
+        this.getPositionKeys();
+      }
+      if (this.position && this.position.position == 'unset') {
+        if (this.draggable) {
+          this.draggable.resetPosition();
+          setTimeout(() => {
+            const dragElement = this.dragElement.nativeElement;
+            this.movingOffset = {x: dragElement.offsetLeft, y: dragElement.offsetTop};
+          }, 10)
+          
         }
       }
     });
+  }
+  getPositionKeys() {
+    for (const key of Object.keys(this.position)) {
+      console.log(key);
+      if (key.startsWith('top')) {
+        this.topKey = key;
+      }
+      if (key.startsWith('left')) {
+        this.leftKey = key;
+      }
+    }
   }
 
   /** NgModel Start */
@@ -76,13 +93,11 @@ export class TextElementComponent implements OnInit, ControlValueAccessor {
         this.position = this.textElement.properties.find((property) => {
           return property.name == 'position';
         });
-        
+        this.getPositionKeys();
         this.movingOffset = { x: (this.position[this.leftKey] || 0), y: (this.position[this.topKey] || 0) };
       }
 
       
-
-
       if (this.editor) {
         this.editor.value(this.textElement.value);
       }
@@ -155,10 +170,8 @@ export class TextElementComponent implements OnInit, ControlValueAccessor {
 
   onMoving(ev) {
     if (this.position && this.position.position != 'unset') {
-      
       this.position[this.topKey] = +ev.y;
       this.position[this.leftKey] = +ev.x;
-      console.log(this.position)
     }
     this.styles = this.elementService.loadStyleProperties(this.textElement.properties);
     this.onChange(this.textElement);

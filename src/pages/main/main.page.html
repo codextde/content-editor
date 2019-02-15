@@ -32,7 +32,7 @@
                 <div class="drag-element-trash item" (click)="delete(element)">
                   <fa-icon [icon]="faTrash"></fa-icon>
                 </div>
-                <div class="drag-element-handle item" cdkDragHandle>
+                <div class="drag-element-handle item" cdkDragHandle [hidden]="element.disableDrag">
                   <fa-icon [icon]="faArrowsAlt"></fa-icon>
                 </div>
           </app-tooltip>
