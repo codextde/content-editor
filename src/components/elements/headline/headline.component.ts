@@ -1,10 +1,12 @@
-import { Component, OnInit, ViewChild, ElementRef, forwardRef } from '@angular/core';
-import { NG_VALUE_ACCESSOR, ControlValueAccessor } from '@angular/forms';
+import { Component, ElementRef, forwardRef, OnInit, Renderer2, ViewChild } from '@angular/core';
+import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
+import { IHeadlineProperty } from 'src/components/properties/models/headline.model';
+import { IElement } from 'src/models/element.model';
 import { ElementService } from 'src/services/element.service';
 import { EventsService } from 'src/services/event.service';
-import { IElement } from 'src/models/element.model';
-import { IHeadlineProperty } from 'src/components/properties/models/headline.model';
 declare var kendo: any;
+declare var document: any;
+/// <reference path="kendo.all.d.ts" />
 
 @Component({
   selector: 'app-element-headline',
@@ -17,21 +19,22 @@ declare var kendo: any;
   }]
 })
 export class HeadlineElementComponent implements OnInit, ControlValueAccessor {
-
+  customText: boolean = false;
   @ViewChild('editor') editorEl: ElementRef;
   editor;
 
   headlineElement: IElement;
-  headlineProperty: IHeadlineProperty;
+  // headlineProperty: IHeadlineProperty;
 
   styles;
 
   constructor(
     private elementService: ElementService,
-    private eventsService: EventsService
+    private eventsService: EventsService,
+    private renderer: Renderer2
     ) {
     this.eventsService.subscribe('property-change', () => {
-      this.headlineElement.value = this.headlineProperty.text;
+      // this.headlineElement.value = this.headlineProperty.text;
       this.styles = this.elementService.loadStyleProperties(this.headlineElement.properties);
     });
   }
@@ -43,17 +46,24 @@ export class HeadlineElementComponent implements OnInit, ControlValueAccessor {
       this.styles = this.elementService.loadStyleProperties(value.properties);
 
 
-      if (!this.headlineProperty) {
+      /*if (!this.headlineProperty) {
         this.headlineProperty = this.headlineElement.properties.find((property) => {
           return property.name == 'headline';
         });
-      }
+      }*/
+
 
       if (this.editor) {
-        this.editor.value(this.headlineElement.value);
+        if(this.headlineElement.value == '') {
+          this.editor.value('Headline');
+        } else {
+          this.customText = true;
+          this.editor.value(this.headlineElement.value);
+        }
+        
       }
 
-      this.headlineElement.value = this.headlineProperty.text;
+      // this.headlineElement.value = this.headlineProperty.text;
     }
   }
   registerOnChange(fn: (value: any) => void): void {
@@ -70,26 +80,34 @@ export class HeadlineElementComponent implements OnInit, ControlValueAccessor {
 
   ngOnInit() {
     // Removed Kendo from the Heading Element
-    /*
-    kendo.jQuery(this.editorEl.nativeElement).kendoEditor({
-      tools: [
-        'bold',
-        'italic',
-        'underline',
-        'strikethrough',
-        'justifyLeft',
-        'justifyCenter',
-        'justifyRight',
-        'justifyFull',
-        'foreColor'
-      ],
+    <kendo.ui.Editor>kendo.jQuery(this.editorEl.nativeElement).kendoEditor({
+      tools: [],
       pasteCleanup: {
           all: true
       },
       keyup: (a) => this.change(this),
       change: (a) => this.change(this)
     });
-    this.editor = kendo.jQuery(this.editorEl.nativeElement).data('kendoEditor');*/
+    this.editor = kendo.jQuery(this.editorEl.nativeElement).data('kendoEditor');
+
+    this.renderer.listen(this.editorEl.nativeElement, 'click', ()=> {
+      if(!this.customText) {
+        this.editor.value('');
+        this.customText = true;
+      }
+      
+    });
+
+    // Improve Logic to Remove Toolbar
+    this.renderer.listen(this.editorEl.nativeElement, 'mousedown', ()=> {
+      setTimeout(()=> {
+        let editorToolbar = document.querySelectorAll('.k-widget');
+        editorToolbar.forEach(element => {
+          element.style.display = "none";
+        });
+        
+      }, 1)
+    });
   }
 
 

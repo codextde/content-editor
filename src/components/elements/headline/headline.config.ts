@@ -8,10 +8,6 @@ export class HeadlineElementConfig {
     icon: faFont,
     title: 'Headline',
     properties: [{
-      name: 'headline',
-      text: 'Sample Headline',
-      tag: 'h1'
-    }, {
       name: 'general'
     }, {
       name: 'text'
