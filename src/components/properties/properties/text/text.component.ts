@@ -26,7 +26,7 @@ export class TextPropertyComponent implements ControlValueAccessor {
 
   fontFamily;
 
-  lineHeights = ['1', '1.15', '1.5', '2', '2.5', '3'];
+  lineHeights = ['1.5', '2', '2.5', '3'];
 
   constructor(
     private eventsService: EventsService,
