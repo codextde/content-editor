@@ -12,6 +12,10 @@ import { UploadButtonComponent } from './components/upload-button/upload-button.
   declarations: [
     UploadDataWindowComponent,
     UploadButtonComponent
+  ],
+  exports: [
+    UploadDataWindowComponent,
+    UploadButtonComponent
   ]
 })
 export class UploadModule {}
