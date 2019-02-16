@@ -10,6 +10,7 @@ import { PipesModule } from 'src/pipes/pipes.module';
 import { GeneralModule } from '../general/general.module';
 import { BackgroundPropertyComponent, BorderPropertyComponent, CssPropertyComponent, DividerPropertyComponent, GeneralPropertyComponent, HeadlinePropertyComponent, HtmlPropertyComponent, ImagePropertyComponent, InitialLetterPropertyComponent, JavascriptPropertyComponent, MarginPropertyComponent, PaddingPropertyComponent, PositionPropertyComponent, SwitchPropertyComponent, TextPropertyComponent, VideoPropertyComponent } from './properties';
 import { PropertiesComponent } from './properties.component';
+import { UploadModule } from 'src/modules/upload/upload.module';
 
 
 const properties = [
@@ -49,7 +50,8 @@ const properties = [
     FormsModule,
     GeneralModule,
     DirectivesModule,
-    PipesModule
+    PipesModule,
+    UploadModule
   ]
 })
 export class PropertiesComponentModule { }
