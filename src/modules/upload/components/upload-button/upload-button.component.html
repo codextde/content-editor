@@ -1,3 +1,13 @@
-<p>
-  upload-button works!
-</p>
+<button class="btn btn-sm btn-secondary btn-block" (click)="modalRoot.show()">Browse</button>
+
+    <app-modal #modalRoot
+               [modalTitle]="'Inset image'"
+               [width]="500"
+               [maximizable]="true">
+      <ng-container class="app-modal-body">
+        Images
+      </ng-container>
+      <ng-container class="app-modal-footer">
+        <button type="button" class="btn btn-sm btn-secondary" style="float: right;" (click)="modalRoot.hide()">Insert</button>
+      </ng-container>
+    </app-modal>

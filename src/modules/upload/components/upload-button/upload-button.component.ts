@@ -12,4 +12,8 @@ export class UploadButtonComponent implements OnInit {
   ngOnInit() {
   }
 
+  openBrowseWindow() {
+    
+  }
+
 }
