@@ -7,13 +7,16 @@ import { FormsModule } from '@angular/forms';
 import { CardComponent } from './card/card.component';
 import { ToggleComponent } from './toggle/toggle.component';
 import { PxPercentageSwitchComponent } from './px-percentage-switch/px-percentage-switch.component';
+import { ProgressBarComponent } from './progress-bar/progress-bar.component';
+
 
 const properties = [
   TooltipComponent,
   StepperComponent,
   CardComponent,
   ToggleComponent,
-  PxPercentageSwitchComponent
+  PxPercentageSwitchComponent,
+  ProgressBarComponent
 ];
 
 

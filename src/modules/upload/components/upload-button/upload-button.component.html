@@ -1,14 +1,21 @@
 <button class="btn btn-sm btn-secondary btn-block" (click)="modalRoot.show()">Browse</button>
 
-    <app-modal #modalRoot
-               [modalTitle]="'Insert Image'"
-               [width]="700"
-               [maximizable]="true">
-      <ng-container class="app-modal-body">
-        Images
-      </ng-container>
-      <ng-container class="app-modal-footer">
-          <button type="button" class="btn btn-sm btn-secondary" (click)="modalRoot.hide()">Upload</button>
-        <button type="button" class="btn btn-sm btn-secondary" style="float: right;" (click)="modalRoot.hide()">Insert</button>
-      </ng-container>
-    </app-modal>
+<app-modal #modalRoot [modalTitle]="'Insert Image'" [width]="700" [maximizable]="true">
+  <ng-container class="app-modal-body">
+
+      <div *ngFor="let file of files">
+          <h4>{{file.name}}</h4>
+          <app-progress-bar *ngIf="progress" [progress]="progress[file.name].progress | async"></app-progress-bar>
+        </div>
+
+
+    <input type="file" #file style="display: none" (change)="onFilesAdded()" multiple />
+  </ng-container>
+  <ng-container class="app-modal-footer">
+
+    <button [disabled]="uploading || uploadSuccessful" type="button" class="btn btn-sm btn-secondary" (click)="addFiles()">Add Files</button>
+    <button [disabled]="!canBeClosed" type="button" class="btn btn-sm btn-secondary" (click)="upload()">{{primaryButtonText}}</button>
+    <button class="btn btn-sm btn-secondary" *ngIf="showCancelButton">Cancel</button>
+    <button type="button" class="btn btn-sm btn-secondary" style="float: right;" (click)="modalRoot.hide()">Select</button>
+  </ng-container>
+</app-modal>

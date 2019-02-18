@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { UploadDataWindowComponent } from './upload-data-window.component';
+import { ProgressBarComponent } from './progress-bar.component';
 
-describe('UploadDataWindowComponent', () => {
-  let component: UploadDataWindowComponent;
-  let fixture: ComponentFixture<UploadDataWindowComponent>;
+describe('ProgressBarComponent', () => {
+  let component: ProgressBarComponent;
+  let fixture: ComponentFixture<ProgressBarComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ UploadDataWindowComponent ]
+      declarations: [ ProgressBarComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(UploadDataWindowComponent);
+    fixture = TestBed.createComponent(ProgressBarComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

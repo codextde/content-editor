@@ -1,23 +1,28 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { UploadDataWindowComponent } from './components/upload-data-window/upload-data-window.component';
 import { UploadButtonComponent } from './components/upload-button/upload-button.component';
 import { ModalModule } from '../modal';
+import { UploadService } from './services/upload.service';
+import { HttpClientModule } from '@angular/common/http';
+import { GeneralModule } from 'src/components/general/general.module';
 
 
 
 @NgModule({
   imports: [
     CommonModule,
-    ModalModule
+    ModalModule,
+    HttpClientModule,
+    GeneralModule
   ],
   declarations: [
-    UploadDataWindowComponent,
     UploadButtonComponent
   ],
   exports: [
-    UploadDataWindowComponent,
     UploadButtonComponent
+  ],
+  providers: [
+    UploadService
   ]
 })
 export class UploadModule {}
