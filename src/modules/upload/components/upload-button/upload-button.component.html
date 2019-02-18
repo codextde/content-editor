@@ -12,7 +12,7 @@
     <div class="no-files" *ngIf="files.size == 0">No Files selected</div>
 
 
-    <input type="file" #file style="display: none" (change)="onFilesAdded()" multiple />
+    <input type="file" #file style="display: none" (change)="onFilesAdded()" multiple accept="video/*,image/*" />
   </ng-container>
   <ng-container class="app-modal-footer">
     <div class="btn-group" role="group">
