@@ -9,7 +9,7 @@ import { UploadService } from '../../services/upload.service';
 })
 export class UploadButtonComponent implements OnInit {
   @ViewChild('file') file;
-  public files: Set < File > = new Set();
+  public files: Set<File> = new Set();
 
   progress;
   canBeClosed = true;
