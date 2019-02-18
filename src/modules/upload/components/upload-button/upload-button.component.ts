@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { forkJoin } from 'rxjs';
 import { UploadService } from '../../services/upload.service';
+import { ToastController } from '@ionic/angular';
 
 @Component({
   selector: 'upload-button',
@@ -18,7 +19,9 @@ export class UploadButtonComponent implements OnInit {
   uploading = false;
   uploadSuccessful = false;
 
-  constructor(public uploadService: UploadService) {}
+  constructor(
+    public uploadService: UploadService, 
+    private toastCtrl: ToastController) {}
 
   ngOnInit() {}
 
@@ -56,11 +59,17 @@ export class UploadButtonComponent implements OnInit {
     this.showCancelButton = false;
 
     // When all progress-observables are completed...
-    forkJoin(allProgressObservables).subscribe(end => {
+    forkJoin(allProgressObservables).subscribe(async end => {
 
       this.uploadSuccessful = true;
       this.uploading = false;
-    }, (error) => {
+      this.progress = 0;
+      const toast = await this.toastCtrl.create({message: 'Upload Successful', duration: 3000});
+      toast.present();
+    }, async (error)  => {
+      this.progress = 0;
+      const toast = await this.toastCtrl.create({message: 'Upload failed', duration: 3000});
+      toast.present();
       console.log(error);
       this.uploadSuccessful = false;
       this.uploading = false;
