@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { forkJoin } from 'rxjs';
 import { UploadService } from '../../services/upload.service';
 import { ToastController } from '@ionic/angular';
+declare var kendo: any;
 
 @Component({
   selector: 'upload-button',
@@ -10,6 +11,7 @@ import { ToastController } from '@ionic/angular';
 })
 export class UploadButtonComponent implements OnInit {
   @ViewChild('file') file;
+  @ViewChild('imageUpload') imageUpload;
   public files: Set<File> = new Set();
 
   progress;
@@ -23,7 +25,35 @@ export class UploadButtonComponent implements OnInit {
     public uploadService: UploadService, 
     private toastCtrl: ToastController) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    
+    kendo.jQuery(this.imageUpload.nativeElement).kendoImageBrowser({
+
+      //imageBrowser: {
+      messages: {
+          dropFilesHere: "Drop files here"
+      },
+      transport: {
+          read: "../ImageBrowser/Read",
+          destroy: {
+              url: "../ImageBrowser/Destroy",
+              type: "POST"
+          },
+          create: {
+              url: "../ImageBrowser/Create",
+              type: "POST"
+          },
+          thumbnailUrl: "../ImageBrowser/Thumbnail",
+          uploadUrl: "../ImageBrowser/Upload",
+          imageUrl: "~/Content/UserFiles/Upload/"
+      },
+      change: function (e) {
+          var imageUrl = this.value() + studyName + "/" + e.selected.name;
+          this.backgroundImage = imageUrl.replace("~", "../..");
+      }
+  });
+
+  }
 
   addFiles() {
     this.file.nativeElement.click();

@@ -3,6 +3,8 @@
 <app-modal #modalRoot [modalTitle]="'Insert Image'" [width]="700" [maximizable]="true">
   <ng-container class="app-modal-body">
 
+      <div #imageUpload></div>
+
     <div class="file-list">
       <div class="file-list-item" *ngFor="let file of files">
         <h4>{{file.name}}</h4>
