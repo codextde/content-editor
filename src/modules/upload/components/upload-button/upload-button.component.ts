@@ -38,24 +38,22 @@ export class UploadButtonComponent implements OnInit {
   ngOnInit() {
 
     kendo.jQuery(this.imageUpload.nativeElement).kendoImageBrowser({
-
         imageBrowser: {
-          path: 'http://10.56.7.50/e-assessment-pirls/pirls-ft/',
           messages: {
             dropFilesHere: 'Drop files here'
           },
           transport: {
-            read: 'ImageBrowser/Read',
+            read: '../ImageBrowser/Read',
             destroy: {
-              url: 'ImageBrowser/Destroy',
+              url: '../ImageBrowser/Destroy',
               type: 'POST'
             },
             create: {
-              url: 'ImageBrowser/Create',
+              url: '../ImageBrowser/Create',
               type: 'POST'
             },
-            thumbnailUrl: 'ImageBrowser/Thumbnail',
-            uploadUrl: 'ImageBrowser/Upload',
+            thumbnailUrl: '../ImageBrowser/Thumbnail',
+            uploadUrl: '../ImageBrowser/Upload',
             imageUrl: '~/Content/UserFiles/Upload/'
           },
           change: (e) => {
