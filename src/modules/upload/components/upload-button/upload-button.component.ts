@@ -23,7 +23,7 @@ export class UploadButtonComponent implements OnInit, ControlValueAccessor {
   uploading = false;
   uploadSuccessful = false;
 
-  selectedImagePath: string; 
+  selectedImagePath: string = ''; 
   
 
   constructor(
@@ -69,6 +69,7 @@ export class UploadButtonComponent implements OnInit, ControlValueAccessor {
       change: (e: any) => {
         console.log(e);
         this.selectedImagePath = '/e-assessment-pirls/pirls-ft/designer/~/Content/UserFiles/Upload/pirls-ft/' + e.selected.name;
+        console.log(this.selectedImagePath);
         this.onChange(this.selectedImagePath);
 
       }
