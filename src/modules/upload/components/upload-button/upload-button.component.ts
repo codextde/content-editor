@@ -45,7 +45,7 @@ export class UploadButtonComponent implements OnInit {
         },
         thumbnailUrl: '../../ImageBrowser/Thumbnail',
         uploadUrl: '../../ImageBrowser/Upload',
-        imageUrl: '../../Content/UserFiles/Upload/'
+        imageUrl: '~/Content/UserFiles/Upload/'
       },
       change: (e) => {
         // const imageUrl = this.value() + this.helperService.getCookie('X-IEA-Study') + '/' + e.selected.name;
