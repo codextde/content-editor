@@ -27,7 +27,7 @@ export class UploadButtonComponent implements OnInit {
 
   ngOnInit() {
 
-    kendo.jQuery(this.imageUpload.nativeElement).kendoImageBrowser({
+    const kendoImageBrowserConfig: kendo.ui.EditorImageBrowser = {
       messages: {
         dropFilesHere: 'Drop files here'
       },
@@ -52,7 +52,9 @@ export class UploadButtonComponent implements OnInit {
         console.log(e);
 
       }
-    });
+    }
+
+    kendo.jQuery(this.imageUpload.nativeElement).kendoImageBrowser(kendoImageBrowserConfig);
 
   }
 
