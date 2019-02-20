@@ -70,11 +70,11 @@ export class UploadButtonComponent implements OnInit, ControlValueAccessor {
         },
         thumbnailUrl: imageBrowserPath + 'Thumbnail',
         uploadUrl: imageBrowserPath + 'Upload',
-        imageUrl: '~/Content/UserFiles/Upload/'
+        imageUrl: '~/Content/UserFiles/Upload/{0}'
       },
       change: (e: any) => {
         console.log(e);
-        this.selectedImagePath = '/e-assessment-pirls/pirls-ft/designer/~/Content/UserFiles/Upload/pirls-ft/' + e.selected.name;
+        this.selectedImagePath = '/e-assessment-pirls/pirls-ft/designer/~/Content/UserFiles/Upload/pirls-ft/' + e.sender.path() + e.selected.name;
         console.log(this.selectedImagePath);
         this.onChange(this.selectedImagePath);
 
