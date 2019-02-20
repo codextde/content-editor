@@ -1,15 +1,21 @@
-import { Component, OnInit, ViewChild, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, ViewChild, Output, EventEmitter, forwardRef } from '@angular/core';
 import { ToastController } from '@ionic/angular';
 import { forkJoin } from 'rxjs';
 import { HelperService } from 'src/services/helper.service';
 import { UploadService } from '../../services/upload.service';
-import { ControlValueAccessor } from '@angular/forms';
+import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
+import { ImagePropertyComponent } from 'src/components/properties/properties';
 declare var kendo: any;
 
 @Component({
   selector: 'upload-button',
   templateUrl: './upload-button.component.html',
-  styleUrls: ['./upload-button.component.scss']
+  styleUrls: ['./upload-button.component.scss'],
+  providers: [{
+    provide: NG_VALUE_ACCESSOR,
+    useExisting: forwardRef(() => UploadButtonComponent),
+    multi: true
+  }]
 })
 export class UploadButtonComponent implements OnInit, ControlValueAccessor {
   @ViewChild('file') file;
