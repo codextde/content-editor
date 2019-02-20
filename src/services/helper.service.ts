@@ -9,6 +9,7 @@ export class HelperService {
 
   styleElement: any;
   basePath: string;
+  studyName: string;
 
   public static clearObject(object) {
     return JSON.parse(JSON.stringify(object));
@@ -24,6 +25,7 @@ export class HelperService {
 
   constructor() {
     this.basePath = this.getBasePath();
+    this.studyName = this.getCookie('X-IEA-Study');
   }
 
   loadPropertyValue() {

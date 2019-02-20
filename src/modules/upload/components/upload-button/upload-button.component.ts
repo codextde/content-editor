@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { ToastController } from '@ionic/angular';
 import { forkJoin } from 'rxjs';
+import { HelperService } from 'src/services/helper.service';
 import { UploadService } from '../../services/upload.service';
 declare var kendo: any;
 
@@ -23,25 +24,26 @@ export class UploadButtonComponent implements OnInit {
 
   constructor(
     public uploadService: UploadService,
-    private toastCtrl: ToastController) {}
+    private toastCtrl: ToastController,
+    private helperService: HelperService) {}
 
   ngOnInit() {
-
+    const imageBrowserPath = '../' + this.helperService.studyName + '/ImageBrowser/';
     const kendoImageBrowserConfig: kendo.ui.EditorImageBrowser | kendo.ui.EditorOptions = {
       transport: {
         read: {
-          url: '../../ImageBrowser/Read'
+          url: imageBrowserPath + 'Read'
         },
         destroy: {
-          url: '../../ImageBrowser/Destroy',
+          url: imageBrowserPath + 'Destroy',
           type: 'POST'
         },
         create: {
-          url: '../../ImageBrowser/Create',
+          url: imageBrowserPath + 'Create',
           type: 'POST'
         },
-        thumbnailUrl: '../../ImageBrowser/Thumbnail',
-        uploadUrl: '../../ImageBrowser/Upload',
+        thumbnailUrl: imageBrowserPath + 'Thumbnail',
+        uploadUrl: imageBrowserPath + 'Upload',
         imageUrl: '~/Content/UserFiles/Upload/'
       },
       change: (e) => {
