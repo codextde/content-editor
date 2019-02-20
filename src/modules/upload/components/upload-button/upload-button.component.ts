@@ -28,7 +28,7 @@ export class UploadButtonComponent implements OnInit {
     private helperService: HelperService) {}
 
   ngOnInit() {
-    const imageBrowserPath = '../' + this.helperService.studyName + '/ImageBrowser/';
+    const imageBrowserPath = '../../' + this.helperService.studyName + '/ImageBrowser/';
     const kendoImageBrowserConfig: kendo.ui.EditorImageBrowser | kendo.ui.EditorOptions = {
       transport: {
         read: {
