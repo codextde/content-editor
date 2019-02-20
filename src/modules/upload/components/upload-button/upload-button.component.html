@@ -5,7 +5,7 @@
 
       <div #imageUpload></div>
 
-    <div class="file-list">
+    <!--<div class="file-list">
       <div class="file-list-item" *ngFor="let file of files">
         <h4>{{file.name}}</h4>
         <app-progress-bar *ngIf="progress" [progress]="progress[file.name].progress | async"></app-progress-bar>
@@ -14,7 +14,7 @@
     <div class="no-files" *ngIf="files.size == 0">No Files selected</div>
 
 
-    <input type="file" #file style="display: none" (change)="onFilesAdded()" multiple accept="video/*,image/*" />
+    <input type="file" #file style="display: none" (change)="onFilesAdded()" multiple accept="video/*,image/*" />-->
   </ng-container>
   <ng-container class="app-modal-footer">
     <div class="btn-group" role="group">
