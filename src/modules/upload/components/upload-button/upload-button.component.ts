@@ -27,10 +27,7 @@ export class UploadButtonComponent implements OnInit {
 
   ngOnInit() {
 
-    const kendoImageBrowserConfig: kendo.ui.EditorImageBrowser = {
-      messages: {
-        dropFilesHere: 'Drop files here'
-      },
+    const kendoImageBrowserConfig: kendo.ui.EditorImageBrowser | kendo.ui.EditorOptions = {
       transport: {
         read: {
           url: '../../ImageBrowser/Read'
