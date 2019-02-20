@@ -1,8 +1,9 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, Output, EventEmitter } from '@angular/core';
 import { ToastController } from '@ionic/angular';
 import { forkJoin } from 'rxjs';
 import { HelperService } from 'src/services/helper.service';
 import { UploadService } from '../../services/upload.service';
+import { ControlValueAccessor } from '@angular/forms';
 declare var kendo: any;
 
 @Component({
@@ -10,7 +11,7 @@ declare var kendo: any;
   templateUrl: './upload-button.component.html',
   styleUrls: ['./upload-button.component.scss']
 })
-export class UploadButtonComponent implements OnInit {
+export class UploadButtonComponent implements OnInit, ControlValueAccessor {
   @ViewChild('file') file;
   @ViewChild('imageUpload') imageUpload;
   public files: Set < File > = new Set();
@@ -22,10 +23,29 @@ export class UploadButtonComponent implements OnInit {
   uploading = false;
   uploadSuccessful = false;
 
+  selectedImagePath: string; 
+  
+
   constructor(
     public uploadService: UploadService,
     private toastCtrl: ToastController,
     private helperService: HelperService) {}
+
+    writeValue(value: any): void {
+        if(value) {
+          this.selectedImagePath = value;
+        }
+    }
+  
+    registerOnChange(fn: (value: any) => void): void {
+      this.onChange = fn;
+    }
+  
+    registerOnTouched(fn: () => void): void {}
+    /** NgModel End */
+  
+    onChange: any = () => {};
+ 
 
   ngOnInit() {
     const imageBrowserPath = '../../' + this.helperService.studyName + '/ImageBrowser/';
@@ -46,9 +66,10 @@ export class UploadButtonComponent implements OnInit {
         uploadUrl: imageBrowserPath + 'Upload',
         imageUrl: '~/Content/UserFiles/Upload/'
       },
-      change: (e) => {
-        // const imageUrl = this.value() + this.helperService.getCookie('X-IEA-Study') + '/' + e.selected.name;
+      change: (e: any) => {
         console.log(e);
+        this.selectedImagePath = '/e-assessment-pirls/pirls-ft/designer/~/Content/UserFiles/Upload/pirls-ft/' + e.selected.name;
+        this.onChange(this.selectedImagePath);
 
       }
     }
@@ -71,6 +92,8 @@ export class UploadButtonComponent implements OnInit {
       }
     }
   }
+  
+  
 
   upload() {
     // if everything was uploaded already, just close the dialog

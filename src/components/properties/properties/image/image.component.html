@@ -1,6 +1,6 @@
 <app-card class="property" cardTitle="Image">
   <div class="property-content">
-    <upload-button></upload-button>
+    <upload-button [(ngModel)]="img.src" (ngModelChange)="change()"></upload-button>
     <!--<div class="row">
       <div class="col title">
         Source (URL)

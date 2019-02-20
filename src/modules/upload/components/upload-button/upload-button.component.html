@@ -17,12 +17,12 @@
     <input type="file" #file style="display: none" (change)="onFilesAdded()" multiple accept="video/*,image/*" />-->
   </ng-container>
   <ng-container class="app-modal-footer">
-    <div class="btn-group" role="group">
+    <!--<div class="btn-group" role="group">
       <button [disabled]="uploading || uploadSuccessful" type="button" class="btn btn-sm btn-secondary" (click)="addFiles()">Add
         Files</button>
       <button [disabled]="!canBeClosed || files.size == 0" type="button" class="btn btn-sm btn-secondary" (click)="upload()">{{primaryButtonText}}</button>
-    </div>
-    <button class="btn btn-sm btn-danger" *ngIf="showCancelButton">Cancel</button>
-    <button type="button" class="btn btn-sm btn-secondary" style="float: right;" (click)="modalRoot.hide()">Select</button>
+    </div>-->
+    <button class="btn btn-sm btn-secondary" (click)="modalRoot.hide()">Cancel</button>
+    <button type="button" class="btn btn-sm btn-secondary" style="float: right;" (click)="modalRoot.hide()">Insert</button>
   </ng-container>
 </app-modal>
