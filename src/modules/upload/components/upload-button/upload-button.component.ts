@@ -1,10 +1,9 @@
-import { Component, OnInit, ViewChild, Output, EventEmitter, forwardRef } from '@angular/core';
+import { Component, forwardRef, OnInit, ViewChild } from '@angular/core';
+import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { ToastController } from '@ionic/angular';
 import { forkJoin } from 'rxjs';
 import { HelperService } from 'src/services/helper.service';
 import { UploadService } from '../../services/upload.service';
-import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
-import { ImagePropertyComponent } from 'src/components/properties/properties';
 declare var kendo: any;
 
 @Component({
@@ -29,29 +28,29 @@ export class UploadButtonComponent implements OnInit, ControlValueAccessor {
   uploading = false;
   uploadSuccessful = false;
 
-  selectedImagePath: string = ''; 
-  
+  selectedImagePath: string = '';
+
 
   constructor(
     public uploadService: UploadService,
     private toastCtrl: ToastController,
     private helperService: HelperService) {}
 
-    writeValue(value: any): void {
-        if(value) {
-          this.selectedImagePath = value;
-        }
+  writeValue(value: any): void {
+    if (value) {
+      this.selectedImagePath = value;
     }
-  
-    registerOnChange(fn: (value: any) => void): void {
-      this.onChange = fn;
-    }
-  
-    registerOnTouched(fn: () => void): void {}
-    /** NgModel End */
-  
-    onChange: any = () => {};
- 
+  }
+
+  registerOnChange(fn: (value: any) => void): void {
+    this.onChange = fn;
+  }
+
+  registerOnTouched(fn: () => void): void {}
+  /** NgModel End */
+
+  onChange: any = () => {};
+
 
   ngOnInit() {
     const imageBrowserPath = '../../' + this.helperService.studyName + '/ImageBrowser/';
@@ -73,16 +72,17 @@ export class UploadButtonComponent implements OnInit, ControlValueAccessor {
         imageUrl: '~/Content/UserFiles/Upload/{0}'
       },
       change: (e: any) => {
-        console.log(e);
-        this.selectedImagePath = '/e-assessment-pirls/pirls-ft/designer/~/Content/UserFiles/Upload/pirls-ft/' + e.sender.path() + e.selected.name;
-        console.log(this.selectedImagePath);
-        this.onChange(this.selectedImagePath);
-
+        this.selectedImagePath = `${this.helperService.basePath}designer/~/Content/UserFiles/Upload/${this.helperService.studyName}${e.sender.path()}${e.selected.name}`;
+        
       }
     }
 
     kendo.jQuery(this.imageUpload.nativeElement).kendoImageBrowser(kendoImageBrowserConfig);
 
+  }
+
+  insert() {
+    this.onChange(this.selectedImagePath);
   }
 
   addFiles() {
@@ -99,8 +99,8 @@ export class UploadButtonComponent implements OnInit, ControlValueAccessor {
       }
     }
   }
-  
-  
+
+
 
   upload() {
     // if everything was uploaded already, just close the dialog

@@ -1,4 +1,5 @@
 <div class="ui-modal-overlay"
+      *ngIf="visible"
      (click)="hide()"
      [style.zIndex]="zIndex"
      [ngStyle]="{'display': (visible && backdrop) ? 'block' : 'none'}">
@@ -15,6 +16,7 @@
      (resize)="onResize($event)"
      appDraggable
      [dragEventTarget]="dragEventTarget"
+     *ngIf="visible"
      [ngStyle]="{'display': visible ? 'block' : 'none'}"
      [style.width.px]="width"
      [style.minWidth.px]="minWidth"

@@ -78,7 +78,6 @@ export class HelperService {
     }
   }
 
-  
 
   getCookie = (name) => {
     const value = '; ' + document.cookie;

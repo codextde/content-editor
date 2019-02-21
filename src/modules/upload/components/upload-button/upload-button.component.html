@@ -23,6 +23,6 @@
       <button [disabled]="!canBeClosed || files.size == 0" type="button" class="btn btn-sm btn-secondary" (click)="upload()">{{primaryButtonText}}</button>
     </div>-->
     <button class="btn btn-sm btn-secondary" (click)="modalRoot.hide()">Cancel</button>
-    <button type="button" class="btn btn-sm btn-secondary" style="float: right;" (click)="modalRoot.hide()">Insert</button>
+    <button type="button" class="btn btn-sm btn-secondary" style="float: right;" (click)="insert();modalRoot.hide()">Insert</button>
   </ng-container>
 </app-modal>
