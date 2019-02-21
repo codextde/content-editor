@@ -9,7 +9,7 @@ export class ImageElementConfig {
     title: 'Image',
     properties: [{
       name: 'image',
-      src: 'https://images.pexels.com/photos/1285625/pexels-photo-1285625.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500'
+      src: '/assets/img/image-placeholder.png'
     }, {
       name: 'general'
     }, {
