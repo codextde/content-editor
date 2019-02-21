@@ -81,7 +81,7 @@ export class UploadButtonComponent implements OnInit, ControlValueAccessor {
         imageUrl: '~/Content/UserFiles/Upload/{0}'
       },
       change: (e: any) => {
-        this.selectedImagePath = `${this.helperService.basePath}designer/~/Content/UserFiles/Upload/${this.helperService.studyName}${e.sender.path()}${e.selected.name}`;
+        this.selectedImagePath = `${this.helperService.basePath}designer/~/Content/UserFiles/Upload/${this.helperService.studyName}/${e.sender.path()}${e.selected.name}`;
         
       }
     }
@@ -147,7 +147,6 @@ export class UploadButtonComponent implements OnInit, ControlValueAccessor {
         duration: 3000
       });
       toast.present();
-      console.log(error);
       this.uploadSuccessful = false;
       this.uploading = false;
     });
