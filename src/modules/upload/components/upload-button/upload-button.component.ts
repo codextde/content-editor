@@ -34,7 +34,16 @@ export class UploadButtonComponent implements OnInit, ControlValueAccessor {
   constructor(
     public uploadService: UploadService,
     private toastCtrl: ToastController,
-    private helperService: HelperService) {}
+    private helperService: HelperService) {
+      
+    }
+
+  fixImageThumbs() {
+      setTimeout(()=> {
+        document.querySelector('div.imageUpload ul').scroll(100, 100)
+        document.querySelector('div.imageUpload ul').scroll(0,0)
+      }, 100)
+  }
 
   writeValue(value: any): void {
     if (value) {
