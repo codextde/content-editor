@@ -9,7 +9,7 @@ export class ImageElementConfig {
     title: 'Image',
     properties: [{
       name: 'image',
-      src: '/assets/img/image-placeholder.png'
+      src: './assets/img/image-placeholder.png'
     }, {
       name: 'general'
     }, {
