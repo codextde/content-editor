@@ -83,7 +83,7 @@
     <div *ngIf="tab == 'body'" class="body-settings">
       <app-property-background [(ngModel)]="bodyProperties.background" (ngModelChange)="setBodyProperties()"></app-property-background>
       <app-property-padding [(ngModel)]="bodyProperties.padding" (ngModelChange)="setBodyProperties()"></app-property-padding>
-      <app-property-switch [title]="'Direction'" [switchTitle]="'LTR'"  [(ngModel)]="directionLtr" (ngModelChange)="directionChange($event); setBodyProperties()"></app-property-switch>
+      <app-property-switch [title]="'Direction'" [switchTitle]="'RTL'"  [(ngModel)]="directionRtl" (ngModelChange)="directionChange($event); setBodyProperties()"></app-property-switch>
       <app-property-css [(ngModel)]="bodyProperties.css"  (ngModelChange)="cssCodeChange($event); setBodyProperties()"></app-property-css>
     </div>
       
