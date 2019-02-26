@@ -29,6 +29,7 @@ export class GeneralPropertyComponent implements ControlValueAccessor {
   writeValue(value: any): void {
     if (value) {
       this.general = value;
+      this.loadCenter();
       for (const key of Object.keys(value)) {
         if (key.startsWith('width')) {
           this.width = key;
@@ -49,6 +50,14 @@ export class GeneralPropertyComponent implements ControlValueAccessor {
 
   change() {
     this.eventsService.publish('property-change');
+  }
+
+  loadCenter() {
+    if (this.general.margin == '0 auto') {
+      this.center = true;
+    } else {
+      this.center = false;
+    }
   }
 
   changeCenter() {
