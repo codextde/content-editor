@@ -32,7 +32,7 @@ export class MainPage implements OnInit {
   propertiesActive: boolean = false;
 
   // Body Properties
-  directionLtr: boolean = true;
+  directionRtl: boolean = false;
   bodyProperties: IBodyProperties = {
     styles: {},
     background: {},
@@ -104,11 +104,19 @@ export class MainPage implements OnInit {
     this.helper.applyStyle(this.bodyProperties.css);
   }
 
+  loadDirection() {
+    const direction = this.bodyProperties.direction;
+    if (direction == 'rtl') {
+      this.directionRtl = true;
+    } else if (direction == 'ltr') {
+      this.directionRtl = false;
+    }
+  }
   directionChange(ev) {
     if (ev) {
-      this.bodyProperties.direction = 'ltr';
-    } else {
       this.bodyProperties.direction = 'rtl';
+    } else {
+      this.bodyProperties.direction = 'ltr';
     }
   }
 
@@ -216,7 +224,7 @@ export class MainPage implements OnInit {
 
       this.bodyProperties.styles = this.elementService.loadStyleProperties(this.dataService.contentEditorProperties);
       this.cssCodeChange();
-
+      this.loadDirection();
     }
 
     // Improve Set Body Properties Function // Move to Service
