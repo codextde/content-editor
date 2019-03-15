@@ -1,6 +1,6 @@
 import { CdkDragDrop, copyArrayItem, moveItemInArray } from '@angular/cdk/drag-drop';
-import { ChangeDetectorRef, Component, HostListener, OnInit } from '@angular/core';
-import { faArrowsAlt, faCogs, faHandPointer, faTrash } from '@fortawesome/free-solid-svg-icons';
+import { ChangeDetectorRef, Component, HostListener, OnInit, ViewChild } from '@angular/core';
+import { faArrowsAlt, faCogs, faHandPointer, faTrash, faDesktop, faToggleOn, faToggleOff } from '@fortawesome/free-solid-svg-icons';
 import { AlertController, ToastController } from '@ionic/angular';
 import { DataService } from 'src/services/data.service';
 import { ElementService } from 'src/services/element.service';
@@ -10,6 +10,7 @@ import { IBodyProperties } from 'src/models/bodyProperties.model';
 import { FontService } from 'src/services/font.service';
 import { EventsService } from 'src/services/event.service';
 import { IElement } from 'src/models/element.model';
+import { ModalComponent } from 'src/modules/modal/modal.component';
 
 
 @Component({
@@ -18,6 +19,7 @@ import { IElement } from 'src/models/element.model';
   styleUrls: ['./main.page.scss']
 })
 export class MainPage implements OnInit {
+  @ViewChild('modalRoot') modalRoot: ModalComponent;
 
   tab: string = 'elements';
 
@@ -26,9 +28,12 @@ export class MainPage implements OnInit {
   faHandPointer = faHandPointer;
   faArrowsAlt = faArrowsAlt;
   faCogs = faCogs;
+  faDesktop = faDesktop;
+  faToggleOn = faToggleOn;
+  faToggleOff = faToggleOff;
 
   // Property Panel
-  activeElement: any;
+  activeElement: any = {};
   propertiesActive: boolean = false;
 
   // Body Properties
@@ -40,6 +45,8 @@ export class MainPage implements OnInit {
     css: '',
     direction: ''
   };
+
+  public passagePlayerWrapper: boolean = true;
 
   // Keyboard Listener for Save Feature
   @HostListener('window:keydown', ['$event'])
@@ -80,7 +87,11 @@ export class MainPage implements OnInit {
           element.disableDrag = false;
         }
       });
-    })
+    });
+  }
+
+  bla() {
+    console.log('bla');
   }
 
   drop(event: CdkDragDrop < string[] > , prevent ? ) {
@@ -122,10 +133,12 @@ export class MainPage implements OnInit {
 
   openProperties(element, forceOpen: boolean = false) {
     if (forceOpen) {
+      this.modalRoot.show();
       this.propertiesActive = true;
     }
     if (this.propertiesActive) {
       this.activeElement = element;
+      console.log(this.activeElement);
     }
   }
 

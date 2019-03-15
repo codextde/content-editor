@@ -47,10 +47,10 @@ export class TextElementComponent implements OnInit, ControlValueAccessor {
     private elementService: ElementService,
     private eventsService: EventsService,
     private renderer: Renderer2
-    ) { 
+    ) {
     this.eventsService.subscribe('property-change', () => {
       this.styles = this.elementService.loadStyleProperties(this.textElement.properties);
-      
+
       if (this.draggable) {
         this.draggable.resetPosition();
       }
@@ -63,8 +63,7 @@ export class TextElementComponent implements OnInit, ControlValueAccessor {
           setTimeout(() => {
             const dragElement = this.dragElement.nativeElement;
             this.movingOffset = {x: dragElement.offsetLeft, y: dragElement.offsetTop};
-          }, 10)
-          
+          }, 10);
         }
       }
     });
@@ -100,15 +99,15 @@ export class TextElementComponent implements OnInit, ControlValueAccessor {
         this.movingOffset = { x: (this.position[this.leftKey] || 0), y: (this.position[this.topKey] || 0) };
       }
 
-      
+
       if (this.editor) {
-        if(this.textElement.value == '') {
+        if (this.textElement.value == '') {
           this.editor.value('Please enter your Text here');
         } else {
           this.customText = true;
           this.editor.value(this.textElement.value);
         }
-        
+
       }
     }
   }
@@ -165,12 +164,11 @@ export class TextElementComponent implements OnInit, ControlValueAccessor {
     });
     this.editor = kendo.jQuery(this.editorEl.nativeElement).data('kendoEditor');
 
-    this.renderer.listen(this.editorEl.nativeElement, 'click', ()=> {
-      if(!this.customText) {
+    this.renderer.listen(this.editorEl.nativeElement, 'click', () => {
+      if (!this.customText) {
         this.editor.value('');
         this.customText = true;
       }
-      
     });
   }
 

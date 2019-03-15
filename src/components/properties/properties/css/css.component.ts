@@ -1,4 +1,4 @@
-import { Component, forwardRef, ViewChild, ElementRef, OnInit, AfterViewInit } from '@angular/core';
+import { Component, forwardRef, ViewChild, ElementRef, OnInit, AfterViewInit, AfterContentChecked } from '@angular/core';
 import { NG_VALUE_ACCESSOR, ControlValueAccessor } from '@angular/forms';
 import { MonacoService } from 'src/services/monaco.service';
 import { EventsService } from 'src/services/event.service';
@@ -14,7 +14,7 @@ import { EventsService } from 'src/services/event.service';
        multi: true
   }]
 })
-export class CssPropertyComponent implements AfterViewInit, ControlValueAccessor {
+export class CssPropertyComponent implements AfterViewInit, ControlValueAccessor, AfterContentChecked {
 
   @ViewChild('editorElm') editorElm: ElementRef;
   cssOptions = {theme: 'vs-dark', language: 'css', value: ''};
@@ -43,18 +43,25 @@ export class CssPropertyComponent implements AfterViewInit, ControlValueAccessor
     private eventsService: EventsService
   ) {}
 
+  
+
 
   ngAfterViewInit() {
     this.monacoService.loadMonaco().then((monaco: any) => {
       this.editor = monaco.editor.create(this.editorElm.nativeElement, this.cssOptions);
-      this.editor.onDidChangeModelContent((e) => {
-        this.cssOptions.value = this.editor.getValue();
-        this.onChange(this.cssOptions.value);
-        this.eventsService.publish('property-change');
-      });
+        this.editor.onDidChangeModelContent((e) => {
+          this.cssOptions.value = this.editor.getValue();
+          this.onChange(this.cssOptions.value);
+          this.eventsService.publish('property-change');
+        });
     });
   }
 
+  ngAfterContentChecked(): void {
+    if (this.editorElm.nativeElement.offsetParent != null && this.editor) {
+        this.editor.layout();
+    }
+  }
 
   onChange: any = () => {};
 

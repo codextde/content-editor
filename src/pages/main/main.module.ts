@@ -10,6 +10,7 @@ import { PropertiesComponentModule } from 'src/components/properties/properties.
 import { DirectivesModule } from 'src/directives/directives.module';
 import { MainPage } from './main.page';
 import { DropdownModule } from 'ngx-dropdown';
+import { ModalModule } from 'src/modules/modal';
 
 
 const routes: Routes = [
@@ -21,6 +22,7 @@ const routes: Routes = [
 
 @NgModule({
   imports: [
+    ModalModule,
     DropdownModule,
     CommonModule,
     FormsModule,

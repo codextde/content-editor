@@ -1,21 +1,71 @@
-<div class="section-preview" >
-  <div class="passage-wrapper">
-    <div class="passage-header"></div>
-    <div class="passage-container">
-      <div 
-        class="passage-content" 
-        cdkDropList 
-        #activeElementsList="cdkDropList" 
-        [cdkDropListData]="dataService.contentEditorElements"
-        (cdkDropListDropped)="drop($event)" 
-        [ngStyle]="bodyProperties.styles"
-        [dir]="bodyProperties.direction"
-        >
+<div class="element-list-wrapper">
 
-        <div class="drag-element" [tooltip]="elementBar" [tooltipClick]="true" *ngFor="let element of dataService.contentEditorElements" cdkDrag>
+    <div  class="element-list" 
+          cdkDropList 
+          #elementsList="cdkDropList" 
+          [cdkDropListData]="elements.elements"
+          [cdkDropListConnectedTo]="[activeElementsList]"   
+          (cdkDropListDropped)="drop($event)">
+    <div class="element-item" *ngFor="let element of elements.elements" cdkDrag>
+      <div class="element-item-placeholder" *cdkDragPlaceholder></div>
+      <fa-icon [icon]="element.icon"></fa-icon>
+      <span class="title">{{element.title}}</span>
+    </div>
+  </div>
+
+  <div class="body-settings">
+      <div class="element-item" (click)="passagePlayerWrapper = !passagePlayerWrapper">
+          <fa-icon [icon]="passagePlayerWrapper ? faToggleOn: faToggleOff"></fa-icon>
+          <span class="title">PlayerView</span>
+        </div>
+      <div class="element-item" (click)="bodySettingsModal.show()">
+          <fa-icon [icon]="faDesktop"></fa-icon>
+          <span class="title">Body</span>
+        </div>
+  </div>
+</div>
+
+<app-modal #bodySettingsModal [modalTitle]="'Body Settings'" [width]="410" [maximizable]="false" [backdrop]="false" >
+    <ng-container class="app-modal-body">
+        <app-property-background [(ngModel)]="bodyProperties.background" (ngModelChange)="setBodyProperties()"></app-property-background>
+        <app-property-padding [(ngModel)]="bodyProperties.padding" (ngModelChange)="setBodyProperties()"></app-property-padding>
+        <app-property-switch [title]="'Direction'" [switchTitle]="'RTL'" [(ngModel)]="directionRtl" (ngModelChange)="directionChange($event); setBodyProperties()"></app-property-switch>
+        <app-property-css [(ngModel)]="bodyProperties.css" (ngModelChange)="cssCodeChange($event); setBodyProperties()"></app-property-css>
+    </ng-container>
+  </app-modal>
+
+<app-modal #modalRoot [modalTitle]="(activeElement.title || '') + ' Settings'" [width]="410" [maximizable]="false" [backdrop]="false" >
+  <ng-container class="app-modal-body">
+      <app-properties *ngIf="propertiesActive" [element]="activeElement" (onClose)="propertiesActive = false"></app-properties>
+  </ng-container>
+</app-modal>
+
+
+<div class="section-settings-content" style="display: none">
+ 
+
+  <!--<div class="section-settings-footer btn-group">
+    <button class="btn btn-sm btn-secondary btn-block" (click)="save()">Save</button>
+    <button class="btn btn-sm btn-secondary btn-block" (click)="clear()">Clear</button>
+    <button class="btn btn-sm btn-secondary btn-block" (click)="export()">Export</button>
+    <button class="btn btn-sm btn-secondary btn-block" (click)="import()">Import</button>
+  </div>-->
+</div>
+
+
+
+<div class="section-preview" [style.background]="passagePlayerWrapper ? '#fbe8d8' : '#fff'">
+  <div [class.passage-wrapper]="passagePlayerWrapper">
+    <div [class.passage-header]="passagePlayerWrapper"></div>
+    <div [class.passage-container]="passagePlayerWrapper" >
+      <div [class.passage-content]="passagePlayerWrapper" cdkDropList #activeElementsList="cdkDropList" [cdkDropListData]="dataService.contentEditorElements"
+        (cdkDropListDropped)="drop($event)" [ngStyle]="bodyProperties.styles" [dir]="bodyProperties.direction">
+
+        <div class="drag-element" [tooltip]="elementBar" [tooltipClick]="true" *ngFor="let element of dataService.contentEditorElements"
+          cdkDrag>
 
           <app-element-text *ngIf="element.component == 'text'" (click)="openProperties(element)" [(ngModel)]="element"></app-element-text>
-          <app-element-html *ngIf="element.component == 'html'"  (click)="openProperties(element)"[(ngModel)]="element"></app-element-html>
+          <app-element-html *ngIf="element.component == 'html'" (click)="openProperties(element)" [(ngModel)]="element"></app-element-html>
           <app-element-headline *ngIf="element.component == 'headline'" (click)="openProperties(element)" [(ngModel)]="element"></app-element-headline>
           <app-element-video *ngIf="element.component == 'video'" (click)="openProperties(element)" [(ngModel)]="element"></app-element-video>
           <app-element-image *ngIf="element.component == 'image'" (click)="openProperties(element)" [(ngModel)]="element"></app-element-image>
@@ -23,18 +73,18 @@
           <app-element-divider *ngIf="element.component == 'divider'" (click)="openProperties(element)" [(ngModel)]="element"></app-element-divider>
 
           <app-tooltip class="drag-element-toolbar" #elementBar direction="ltr">
-              <div class="drag-element-component item">
-                  <fa-icon [icon]="element.icon"></fa-icon>
-                </div>
-              <div class="drag-element-check item" (click)="openProperties(element, true)">
-                  <fa-icon [icon]="faCogs"></fa-icon>
-                </div>
-                <div class="drag-element-trash item" (click)="delete(element)">
-                  <fa-icon [icon]="faTrash"></fa-icon>
-                </div>
-                <div class="drag-element-handle item" cdkDragHandle [hidden]="element.disableDrag">
-                  <fa-icon [icon]="faArrowsAlt"></fa-icon>
-                </div>
+            <div class="drag-element-component item">
+              <fa-icon [icon]="element.icon"></fa-icon>
+            </div>
+            <div class="drag-element-check item" (click)="openProperties(element, true)">
+              <fa-icon [icon]="faCogs"></fa-icon>
+            </div>
+            <div class="drag-element-trash item" (click)="delete(element)">
+              <fa-icon [icon]="faTrash"></fa-icon>
+            </div>
+            <div class="drag-element-handle item" cdkDragHandle [hidden]="element.disableDrag">
+              <fa-icon [icon]="faArrowsAlt"></fa-icon>
+            </div>
           </app-tooltip>
 
         </div>
@@ -46,53 +96,3 @@
 
 
 </div>
-
-<div class="section-settings">
-  
-  <app-properties *ngIf="propertiesActive" [element]="activeElement" (onClose)="propertiesActive = false"></app-properties>
-
-  <div class="tabs">
-    <div class="tab" [class.active]="tab == 'elements'" (click)="tab = 'elements'">
-      <span>Elements</span>
-    </div>
-    <div class="tab" [class.active]="tab == 'body'" (click)="tab = 'body'">
-      <span>Body</span>
-    </div>
-  </div>
-
-
-  <div class="section-settings-content">
-
-    
-    <div 
-      *ngIf="tab == 'elements'" 
-      class="element-list" 
-      cdkDropList 
-      #elementsList="cdkDropList" 
-      [cdkDropListData]="elements.elements"
-      [cdkDropListConnectedTo]="[activeElementsList]" 
-      (cdkDropListDropped)="drop($event)">
-      <div class="element-item" *ngFor="let element of elements.elements" cdkDrag>
-        <div class="element-item-placeholder" *cdkDragPlaceholder></div>
-        <fa-icon [icon]="element.icon"></fa-icon>
-        <span class="title">{{element.title}}</span>
-      </div>
-    </div>
-
-
-    <div *ngIf="tab == 'body'" class="body-settings">
-      <app-property-background [(ngModel)]="bodyProperties.background" (ngModelChange)="setBodyProperties()"></app-property-background>
-      <app-property-padding [(ngModel)]="bodyProperties.padding" (ngModelChange)="setBodyProperties()"></app-property-padding>
-      <app-property-switch [title]="'Direction'" [switchTitle]="'RTL'"  [(ngModel)]="directionRtl" (ngModelChange)="directionChange($event); setBodyProperties()"></app-property-switch>
-      <app-property-css [(ngModel)]="bodyProperties.css"  (ngModelChange)="cssCodeChange($event); setBodyProperties()"></app-property-css>
-    </div>
-      
-    <div class="section-settings-footer btn-group">
-        <button class="btn btn-sm btn-secondary btn-block" (click)="save()">Save</button>
-        <button class="btn btn-sm btn-secondary btn-block" (click)="clear()">Clear</button>
-        <button class="btn btn-sm btn-secondary btn-block" (click)="export()">Export</button>
-        <button class="btn btn-sm btn-secondary btn-block" (click)="import()">Import</button>
-    </div>
-  </div>
-</div>
-

@@ -7,7 +7,7 @@ import { faArrowDown } from '@fortawesome/free-solid-svg-icons';
   templateUrl: './properties.component.html',
   styleUrls: ['./properties.component.scss'],
   animations: [
-    trigger(
+    /*trigger(
       'fadeInAnimation',
       [
         transition(
@@ -22,7 +22,7 @@ import { faArrowDown } from '@fortawesome/free-solid-svg-icons';
             animate('500ms  ease-in-out', style({ opacity: 0, transform: 'scale(0.6) translateY(+70px) translateX(0)'}))
           ]
         )]
-    )
+    )*/
   ]
 })
 export class PropertiesComponent implements OnInit {
