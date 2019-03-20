@@ -83,6 +83,7 @@ export class ModalComponent implements OnInit, AfterViewChecked {
 
   hide(): void {
     this.visible = false;
+    this.dragEventTarget = null; 
     this.close.emit(true);
     this.focusLastModal();
   }
@@ -152,7 +153,7 @@ export class ModalComponent implements OnInit, AfterViewChecked {
   }
 
   onCloseIcon(event: Event) {
-    event.stopPropagation();
+    // event.stopPropagation();
   }
 
   toggleMaximize(event) {
