@@ -96,7 +96,7 @@ color-picker {
   .drag-element-toolbar {
 
     .tooltip {
-      background: rgba(0, 0, 0, 0.2);
+      background: rgba(0, 0, 0, 0.4);
       border-top-left-radius: 0;
       padding: 0;
       color: #fff;
@@ -107,8 +107,8 @@ color-picker {
       overflow: hidden;
       cursor: pointer;
       display: flex;
-      justify-content: flex-start;
-      flex-direction: column;
+      // justify-content: flex-start;
+      // flex-direction: column;
     }
 
 
@@ -116,12 +116,12 @@ color-picker {
       padding: 5px 10px;
 
       &:hover {
-        background: rgba(0, 0, 0, 0.2);
+        background: rgba(0, 0, 0, 0.6);
       }
 
       &:focus,
       &:active {
-        background: rgba(0, 0, 0, 0.5);
+        background: rgba(0, 0, 0, 0.7);
       }
     }
 

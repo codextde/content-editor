@@ -76,15 +76,16 @@ export class TooltipComponent  implements AfterViewInit, DoCheck {
         if (!this.hostElement) {
             return;
         }
-        let rect: any = this.hostElement.querySelectorAll('div')[0];
+        const firstDiv: HTMLElement = this.hostElement.querySelectorAll('div')[0];
+        let rect: any = firstDiv;
         if (rect) {
             rect = rect.getBoundingClientRect();
         } else {
             rect = this.hostElement.getBoundingClientRect();
         }
-        // const p = this.positionElements(this.hostElement, this.element.nativeElement.children[0], this.placement);
-        this.top = rect.top;
-        this.left =  rect.width + rect.left;
+        this.top = rect.bottom;
+        this.left = rect.left;
+
         this.isIn = true;
         if (this.animation) {
             this.isFade = true;
