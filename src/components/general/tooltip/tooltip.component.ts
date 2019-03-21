@@ -1,4 +1,4 @@
-import { AfterViewInit, ChangeDetectorRef, Component, DoCheck, ElementRef, Input } from '@angular/core';
+import { AfterViewInit, ChangeDetectorRef, Component, DoCheck, ElementRef, Input, HostListener } from '@angular/core';
 import { Subscription } from 'rxjs';
 
 @Component({
@@ -25,8 +25,10 @@ export class TooltipComponent  implements AfterViewInit, DoCheck {
     @Input()
     animation: boolean = true;
 
-    
-
+    @HostListener('window:scroll', ['$event']) // for window scroll events
+    onScroll(event) {
+      this.updatePosition();
+    }
 
     // -------------------------------------------------------------------------
     // Properties

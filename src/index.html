@@ -52,7 +52,7 @@
       };
   
       // Set Sample Designer Data
-      el.setAttribute("designer-data", designerSampleData);
+      el.setAttribute("designer-data", JSON.stringify(designerSampleData));
       // Sample Data Change
       el.addEventListener('designerDataChange', data => {
         console.log('Designer Data', data);

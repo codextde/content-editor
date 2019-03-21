@@ -15,19 +15,18 @@
   }
 }
 .section-preview {
-    height: 100%;
+    height: calc(100% - 100px);
     position: absolute;
-    left: 0;
     top: 100px;
+    left: 0;
     right: 0;
     bottom: 0;
-    background: #fbe8d8;
     @import './passage-player-wrapper.scss';
   
   }
   
   .element-list-wrapper {
-    position: fixed;
+    position: relative;
     right: 0;
     top: 0;
     width: 100%;

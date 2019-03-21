@@ -46,6 +46,8 @@ export class TooltipDirective {
     // Public Methods
     // -------------------------------------------------------------------------
 
+    
+
     @HostListener('document:click', ['$event'])
     clickout(event) {
         if (this.elementRef.nativeElement.contains(event.target)) {
