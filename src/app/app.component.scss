@@ -1,3 +1,9 @@
+:host {
+  position: relative;
+  height: 100%;
+  width: 100%;
+}
+
 .no-data {
   display: flex;
   align-items: center;
@@ -14,13 +20,18 @@
 
   }
 }
+.data {
+  display: block; 
+  height: 100%;
+}
 .section-preview {
-    height: calc(100% - 100px);
+    /* height: calc(100% - 100px);
     position: absolute;
-    top: 100px;
-    left: 0;
-    right: 0;
-    bottom: 0;
+    top: 100px;*/
+    display: block;
+    position: relative;
+    height: 100%;
+    width: 100%;
     @import './passage-player-wrapper.scss';
   
   }
