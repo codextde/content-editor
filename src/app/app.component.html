@@ -47,20 +47,20 @@
     </app-modal>
     
     
-    <div class="section-settings-content" style="display: none">
+    <!--<div class="section-settings-content" style="display: none">
      
     
-      <!--<div class="section-settings-footer btn-group">
+      <div class="section-settings-footer btn-group">
         <button class="btn btn-sm btn-secondary btn-block" (click)="save()">Save</button>
         <button class="btn btn-sm btn-secondary btn-block" (click)="clear()">Clear</button>
         <button class="btn btn-sm btn-secondary btn-block" (click)="export()">Export</button>
         <button class="btn btn-sm btn-secondary btn-block" (click)="import()">Import</button>
-      </div>-->
-    </div>
+      </div>
+    </div>-->
     
     
     
-    <div class="section-preview" [style.background]="passagePlayerWrapper ? '#fbe8d8' : '#fff'">
+    <div class="section-preview" [style.display]="passagePlayerWrapper ? 'flex' : 'block'" [style.background]="passagePlayerWrapper ? '#fbe8d8' : '#fff'">
       <div [class.passage-wrapper]="passagePlayerWrapper">
         <div [class.passage-header]="passagePlayerWrapper"></div>
         <div [class.passage-container]="passagePlayerWrapper" >

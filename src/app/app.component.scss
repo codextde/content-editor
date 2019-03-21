@@ -28,9 +28,11 @@
     /* height: calc(100% - 100px);
     position: absolute;
     top: 100px;*/
-    display: block;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     position: relative;
-    height: 100%;
+    height: calc(100% - 100px);
     width: 100%;
     @import './passage-player-wrapper.scss';
   
