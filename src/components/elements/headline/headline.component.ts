@@ -1,4 +1,4 @@
-import { Component, ElementRef, forwardRef, OnInit, Renderer2, ViewChild } from '@angular/core';
+import { Component, ElementRef, forwardRef, OnInit, Renderer2, ViewChild, HostListener } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { IHeadlineProperty } from 'src/components/properties/models/headline.model';
 import { IElement } from 'src/models/element.model';
@@ -27,6 +27,16 @@ export class HeadlineElementComponent implements OnInit, ControlValueAccessor {
   // headlineProperty: IHeadlineProperty;
 
   styles;
+
+  @HostListener('document:click', ['$event'])
+    clickout(event) {
+        if (!this.editorEl.nativeElement.contains(event.target)) {
+            if(this.headlineElement.value == '') {
+              this.editor.value('Headline');
+              this.customText = false;
+            }
+        }
+    }
 
   constructor(
     private elementService: ElementService,

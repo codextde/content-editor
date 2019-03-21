@@ -1,4 +1,4 @@
-import { Component, ElementRef, forwardRef, OnInit, ViewChild, Renderer2 } from '@angular/core';
+import { Component, ElementRef, forwardRef, OnInit, ViewChild, Renderer2, HostListener } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import '@progress/kendo-ui';
 import { IElement } from 'src/models/element.model';
@@ -41,6 +41,16 @@ export class TextElementComponent implements OnInit, ControlValueAccessor {
 
   topKey;
   leftKey;
+
+  @HostListener('document:click', ['$event'])
+    clickout(event) {
+        if (!this.editorEl.nativeElement.contains(event.target)) {
+            if(this.textElement.value == '') {
+              this.editor.value('Please enter your Text here');
+              this.customText = false;
+            }
+        }
+    }
 
   constructor(
     private elementService: ElementService,
