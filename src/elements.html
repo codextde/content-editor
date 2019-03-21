@@ -6,27 +6,62 @@
   <title>eAssessment Content Editor</title>
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="eassessment-content-editor.css"></head>
+  <link rel="stylesheet" href="eassessment-content-editor.css">
+</head>
 
 
 <body>
-  <eassessment-content-editor designer-data="asdsasddas"></eassessment-content-editor>
+  <eassessment-content-editor></eassessment-content-editor>
 
   <script type="text/javascript" src="./eassessment-content-editor.js"></script>
   <script>
-    /**
-     * Here you can interact with custome element using pure javascript
-     * You can Listen to built-in events as well as custome events
-     */
     const el = document.querySelector('eassessment-content-editor');
-    el.addEventListener('likeNotify', e => {
-      console.log('Like Cliked');
+
+    const designerSampleDataTwo = {"Type":"content-editor","Items":[{"Type":"text","Content":"This is a Textbox","ContentItemProperties":[]},{"Type":"text","Content":"This is a Textbox with Padding","ContentItemProperties":[{"ContentItemPropertyType":"padding","Value":"{\"name\":\"padding\",\"paddingLeft.px\":10,\"paddingTop.px\":10,\"paddingRight.px\":10,\"paddingBottom.px\":10}"}]}],"ContentItemProperties":[{"ContentItemPropertyType":"background","Value":"{\"name\":\"background\",\"background-color\":\"#7cbece\"}"},{"ContentItemPropertyType":"css","Value":"{\"name\":\"css\",\"value\":\"\"}"},{"ContentItemPropertyType":"direction","Value":"{\"name\":\"direction\",\"value\":\"\"}"}]};
+    
+    
+    const designerSampleData = {
+      "Items": [{
+        "Id": 137,
+        "Type": "text",
+        "Content": "Test",
+        "DisplayOrder": 0,
+        "ContentItemProperties": [{
+          "Value": "{\"name\":\"padding\",\"paddingLeft.px\":10,\"paddingTop.px\":10,\"paddingRight.px\":10,\"paddingBottom.px\":10}",
+          "ContentItemPropertyType": "padding"
+        }]
+      }],
+      "Id": 135,
+      "Type": "content-editor",
+      "Content": "",
+      "DisplayOrder": 3,
+      "ContentItemProperties": [{
+          "Value": "{\"name\":\"padding\",\"paddingLeft.px\":10,\"paddingTop.px\":10,\"paddingRight.px\":10,\"paddingBottom.px\":10}",
+          "ContentItemPropertyType": "padding"
+        },
+        {
+          "Value": "{\"name\":\"background\", \"background-color\": \"#fff\"}",
+          "ContentItemPropertyType": "background"
+        },
+        {
+          "Value": "{\"name\":\"css\", \"value\": \".test{}\"}",
+          "ContentItemPropertyType": "css"
+        },
+        {
+          "Value": "{\"name\":\"direction\", \"value\": \"ltr\"}",
+          "ContentItemPropertyType": "direction"
+        }
+
+      ]
+    };
+
+    // Set Sample Designer Data
+    el.setAttribute("designer-data", designerSampleData);
+    // Sample Data Change
+    el.addEventListener('designerDataChange', data => {
+      console.log('Designer Data', data);
     });
-    el.addEventListener('shareNotify', e => {
-      console.log('Share Cliked');
-    });
-    el.addEventListener('commentNotify', e => {
-      console.log('Comment Cliked');
-    });
+
   </script>
+
 </html>

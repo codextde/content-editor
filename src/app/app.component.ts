@@ -20,16 +20,29 @@ import { ModalComponent } from 'src/modules/modal/modal.component';
 export class AppComponent implements OnInit {
   @ViewChild('modalRoot') modalRoot: ModalComponent;
 
-  @Input() designerData: string;
-  @Output() dataChange = new EventEmitter<string>();
-  @Output() phoneNumberChanged: EventEmitter<string[]>;
+  // Designer Data Input
+  @Input()
+  set designerData(designerData: string) {
+    if (designerData) {
+      try {
+        designerData = JSON.parse(designerData);
+      } catch {
+        console.error('no valid json Data');
+        this.dataLoaded = false;
+        return;
+      }
+      
+      this.dataService.convertToContenteditor(designerData);
+      this.dataLoaded = true;
+    }
+    
+  }
+  // get designerData(): string { return this._designerData; }
 
 
-  @Output() likeNotify = new EventEmitter<boolean>();
-  @Output() shareNotify = new EventEmitter<boolean>();
-  @Output() commentNotify = new EventEmitter<boolean>();
+  @Output() designerDataChange = new EventEmitter<string>();
 
-
+  dataLoaded: boolean = false;
   tab: string = 'elements';
 
   // Icons
@@ -60,9 +73,10 @@ export class AppComponent implements OnInit {
   // Keyboard Listener for Save Feature
   @HostListener('window:keydown', ['$event'])
   keyEvent(event: KeyboardEvent) {
-    if (event.ctrlKey && event.key == 's') {
+    if ((event.ctrlKey || event.code == 'MetaLeft') && event.key == 's') {
       event.preventDefault();
-      this.save();
+      // this.save();
+      this.eventsService.publish('designer-data-change');
     }
   }
 
@@ -77,22 +91,28 @@ export class AppComponent implements OnInit {
     private fontService: FontService,
     private eventsService: EventsService
   ) {
-    this.phoneNumberChanged = new EventEmitter<string[]>();
   }
 
   ngOnInit() {
     
-    this.loadBodyProperties();
+    
 
     this.checkDrag();
     this.eventsService.subscribe('property-change', () => {
       this.checkDrag();
     });
+
+    this.eventsService.subscribe('designer-data-change', () => {
+      const designerData = this.dataService.convertToDesigner();
+      this.designerDataChange.emit(JSON.stringify(designerData));
+    });
+
+    this.eventsService.subscribe('body-properties-change', () => {
+      console.log('body-properties-change', this.dataService.contentEditorProperties)
+      this.loadBodyProperties();
+    });
   }
 
-  ngAfterViewInit() {
-    console.log('designerData', this.designerData);
-  }
 
   checkDrag() {
     this.dataService.contentEditorElements.forEach((element: IElement) => {
@@ -106,9 +126,6 @@ export class AppComponent implements OnInit {
     });
   }
 
-  bla() {
-    console.log('bla');
-  }
 
   drop(event: CdkDragDrop < string[] > , prevent ? ) {
     if (event.previousContainer === event.container) {
@@ -124,17 +141,11 @@ export class AppComponent implements OnInit {
       const currentObject = this.dataService.contentEditorElements[event.currentIndex];
       console.log(this.dataService.contentEditorElements);
       this.dataService.contentEditorElements[event.currentIndex] = HelperService.clearObject(currentObject);
+
     }
+    this.eventsService.publish('designer-data-change');
   }
 
-  eventTest() {
-    console.log('eventTest')
-    this.dataChange.emit('dasdsadsa');
-    this.phoneNumberChanged.emit(['saddsaas']);
-    this.likeNotify.emit(true);
-    this.shareNotify.emit(true);
-    this.commentNotify.emit(true);
-  }
   
   cssCodeChange() {
     this.helper.applyStyle(this.bodyProperties.css);

@@ -10,6 +10,7 @@ import { IElement } from 'src/models/element.model';
 import { ElementService } from './element.service';
 import { IContentItem } from 'src/models/contentItem.model';
 import { IContentItemProperty } from 'src/models/contentItemProperty.model';
+import { EventsService } from './event.service';
 
 
 @Injectable({
@@ -63,19 +64,23 @@ export class DataService {
   };
 
   constructor(
-    private elementService: ElementService
+    private elementService: ElementService,
+    private eventsService: EventsService
   ) {
     // @Todo Remove and load from the Designer. The Designer need to Inject the Data to the iFrame
-    window['contentEditorData'] = this.designerData;
+    // window['contentEditorData'] = this.designerData;
 
-    this.convertToContenteditor();
+    // this.convertToContenteditor();
   }
 
-  convertToContenteditor() {
-    const designerData = JSON.parse(localStorage.getItem('content')) || window['contentEditorData'];
+  async convertToContenteditor(designerData) {
+    console.log(designerData);
+    this.contentEditorProperties = [];
+    this.contentEditorElements = [];
+    // designerData = JSON.parse(designerData); // localStorage.getItem('content'))
     // Load Content Editor Body Styles
     for (const property of designerData.ContentItemProperties) {
-      this.contentEditorProperties.push(JSON.parse(property.Value));
+      await this.contentEditorProperties.push(JSON.parse(property.Value));
     }
 
     // Load Elements
@@ -130,6 +135,8 @@ export class DataService {
       this.contentEditorElements.push(convertedElement);
 
     }
+
+    this.eventsService.publish('body-properties-change');
 
   }
 

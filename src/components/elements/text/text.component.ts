@@ -7,7 +7,6 @@ import { EventsService } from 'src/services/event.service';
 import { faArrowsAlt } from '@fortawesome/free-solid-svg-icons';
 import { HelperService } from 'src/services/helper.service';
 import { AngularDraggableDirective } from 'angular2-draggable';
-import { Renderer3 } from '@angular/core/src/render3/interfaces/renderer';
 
 declare var kendo: any;
 
@@ -49,21 +48,26 @@ export class TextElementComponent implements OnInit, ControlValueAccessor {
     private renderer: Renderer2
     ) {
     this.eventsService.subscribe('property-change', () => {
-      this.styles = this.elementService.loadStyleProperties(this.textElement.properties);
+      console.log(this.textElement)
+      if (this.textElement) {
+        this.styles = this.elementService.loadStyleProperties(this.textElement.properties);
 
-      if (this.draggable) {
-        this.draggable.resetPosition();
-      }
-      if (this.position && this.position.position == 'absolute') {
-        this.getPositionKeys();
-      }
-      if (this.position && this.position.position == 'unset') {
-        if (this.draggable) {
+      
+        if (this.draggable ) {
+          console.log('asd',  this.draggable)
           this.draggable.resetPosition();
-          setTimeout(() => {
-            const dragElement = this.dragElement.nativeElement;
-            this.movingOffset = {x: dragElement.offsetLeft, y: dragElement.offsetTop};
-          }, 10);
+        }
+        if (this.position && this.position.position == 'absolute') {
+          this.getPositionKeys();
+        }
+        if (this.position && this.position.position == 'unset') {
+          if (this.draggable) {
+            this.draggable.resetPosition();
+            setTimeout(() => {
+              const dragElement = this.dragElement.nativeElement;
+              this.movingOffset = {x: dragElement.offsetLeft, y: dragElement.offsetTop};
+            }, 10);
+          }
         }
       }
     });

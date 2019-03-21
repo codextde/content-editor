@@ -1,3 +1,19 @@
+.no-data {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #eaeaea;
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  font-size: 34px;
+  text-transform: uppercase;
+  color: #565656;
+  span {
+    text-align: center;
+
+  }
+}
 .section-preview {
     height: 100%;
     position: absolute;

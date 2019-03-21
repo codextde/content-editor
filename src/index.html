@@ -10,6 +10,55 @@
 
 <body>
   <eassessment-content-editor></eassessment-content-editor>
+  <script>
+      const el = document.querySelector('eassessment-content-editor');
+  
+      const designerSampleDataTwo = {"Type":"content-editor","Items":[{"Type":"text","Content":"This is a Textbox","ContentItemProperties":[]},{"Type":"text","Content":"This is a Textbox with Padding","ContentItemProperties":[{"ContentItemPropertyType":"padding","Value":"{\"name\":\"padding\",\"paddingLeft.px\":10,\"paddingTop.px\":10,\"paddingRight.px\":10,\"paddingBottom.px\":10}"}]}],"ContentItemProperties":[{"ContentItemPropertyType":"background","Value":"{\"name\":\"background\",\"background-color\":\"#7cbece\"}"},{"ContentItemPropertyType":"css","Value":"{\"name\":\"css\",\"value\":\"\"}"},{"ContentItemPropertyType":"direction","Value":"{\"name\":\"direction\",\"value\":\"\"}"}]};
+      
+      
+      const designerSampleData = {
+        "Items": [{
+          "Id": 137,
+          "Type": "text",
+          "Content": "Test",
+          "DisplayOrder": 0,
+          "ContentItemProperties": [{
+            "Value": "{\"name\":\"padding\",\"paddingLeft.px\":10,\"paddingTop.px\":10,\"paddingRight.px\":10,\"paddingBottom.px\":10}",
+            "ContentItemPropertyType": "padding"
+          }]
+        }],
+        "Id": 135,
+        "Type": "content-editor",
+        "Content": "",
+        "DisplayOrder": 3,
+        "ContentItemProperties": [{
+            "Value": "{\"name\":\"padding\",\"paddingLeft.px\":10,\"paddingTop.px\":10,\"paddingRight.px\":10,\"paddingBottom.px\":10}",
+            "ContentItemPropertyType": "padding"
+          },
+          {
+            "Value": "{\"name\":\"background\", \"background-color\": \"#fff\"}",
+            "ContentItemPropertyType": "background"
+          },
+          {
+            "Value": "{\"name\":\"css\", \"value\": \".test{}\"}",
+            "ContentItemPropertyType": "css"
+          },
+          {
+            "Value": "{\"name\":\"direction\", \"value\": \"ltr\"}",
+            "ContentItemPropertyType": "direction"
+          }
+  
+        ]
+      };
+  
+      // Set Sample Designer Data
+      el.setAttribute("designer-data", designerSampleData);
+      // Sample Data Change
+      el.addEventListener('designerDataChange', data => {
+        console.log('Designer Data', data);
+      });
+  
+    </script>
 </body>
 
 </html>
