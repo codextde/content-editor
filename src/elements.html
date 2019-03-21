@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <title>eAssessment Content Editor</title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="eassessment-content-editor.css"></head>
+
+
+<body>
+  <eassessment-content-editor designer-data="asdsasddas"></eassessment-content-editor>
+
+  <script type="text/javascript" src="./eassessment-content-editor.js"></script>
+  <script>
+    /**
+     * Here you can interact with custome element using pure javascript
+     * You can Listen to built-in events as well as custome events
+     */
+    const el = document.querySelector('eassessment-content-editor');
+    el.addEventListener('likeNotify', e => {
+      console.log('Like Cliked');
+    });
+    el.addEventListener('shareNotify', e => {
+      console.log('Share Cliked');
+    });
+    el.addEventListener('commentNotify', e => {
+      console.log('Comment Cliked');
+    });
+  </script>
+</html>

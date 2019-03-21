@@ -176,6 +176,7 @@ export class DataService {
 
     localStorage.setItem('content', JSON.stringify(designerData));
     console.log('designerData', designerData);
+    
     return designerData;
   }
 }
