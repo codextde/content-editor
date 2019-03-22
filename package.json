@@ -6,8 +6,8 @@
     "start": "ng serve",
     "build": "ng build",
     "build-prod": "ng build --prod --aot --buildOptimizer",
-    "bundle-report": "ng build --prod --stats-json; webpack-bundle-analyzer dist/stats.json",
-    "eassessment-build": "npx ng build --prod --output-hashing=none; node angular-elements-build.js",
+    "bundle-report": "ng build --prod --stats-json && webpack-bundle-analyzer dist/stats.json",
+    "eassessment-build": "npx ng build --prod --output-hashing=none && node angular-elements-build.js",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e"
