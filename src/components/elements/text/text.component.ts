@@ -42,6 +42,7 @@ export class TextElementComponent implements OnInit, ControlValueAccessor {
   topKey;
   leftKey;
 
+
   @HostListener('document:click', ['$event'])
     clickout(event) {
         if (!this.editorEl.nativeElement.contains(event.target)) {
