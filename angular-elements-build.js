@@ -11,7 +11,7 @@ var rimraf = require("rimraf");
   ];
   // Delete Folder Elements
   await rimraf('elements', async function () { 
-    await console.log("Folder deleted");
+    return await console.log("Folder deleted");
   });
   // Create Folder Elements
   await fs.ensureDir('elements');
