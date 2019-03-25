@@ -47,7 +47,7 @@ export class TextElementComponent implements OnInit, ControlValueAccessor {
     clickout(event) {
         if (!this.editorEl.nativeElement.contains(event.target)) {
             if(this.textElement.value == '') {
-              this.editor.value('Please enter your Text here');
+              this.editor.value('Please enter your text here');
               this.customText = false;
             }
         }
@@ -117,7 +117,7 @@ export class TextElementComponent implements OnInit, ControlValueAccessor {
 
       if (this.editor) {
         if (this.textElement.value == '') {
-          this.editor.value('Please enter your Text here');
+          this.editor.value('Please enter your text here');
         } else {
           this.customText = true;
           this.editor.value(this.textElement.value);
