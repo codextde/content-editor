@@ -89,7 +89,7 @@ export class ModalComponent implements OnInit, AfterViewChecked {
   }
 
   center() {
-    if (this.modalRoot.nativeElement) {
+    if (this.modalRoot && this.modalRoot.nativeElement) {
       let elementWidth = this.modalRoot.nativeElement.offsetWidth;
       let elementHeight = this.modalRoot.nativeElement.offsetHeight;
       if (elementWidth === 0 && elementHeight === 0) {

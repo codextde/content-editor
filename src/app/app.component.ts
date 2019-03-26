@@ -70,6 +70,7 @@ export class AppComponent implements OnInit {
 
   public passagePlayerWrapper: boolean = false;
 
+
   // Keyboard Listener for Save Feature
   @HostListener('window:keydown', ['$event'])
   keyEvent(event: KeyboardEvent) {
@@ -95,8 +96,7 @@ export class AppComponent implements OnInit {
 
   ngOnInit() {
     
-    
-
+  
     this.checkDrag();
     this.eventsService.subscribe('property-change', () => {
       this.checkDrag();
