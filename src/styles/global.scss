@@ -1,51 +1,63 @@
-@import '~bootstrap/scss/bootstrap-reboot';
-@import '~bootstrap/scss/bootstrap-grid';
-@import '~bootstrap/scss/button-group';
-@import '~bootstrap/scss/buttons';
-@import '~bootstrap/scss/dropdown';
-
-
-
-body {
+eassessment-content-editor {
+  @import '~bootstrap/scss/bootstrap-reboot';
+  @import '~bootstrap/scss/bootstrap-grid';
+  @import '~bootstrap/scss/dropdown';
   font-family: "Open Sans", "Helvetica Neue", Arial, sans-serif;
   line-height: 1.4;
   color: #000;
+
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    margin: 0;
+  }
+
+  p {
+    margin-bottom: 0;
+  }
+
+  .flex-end {
+    display: flex;
+    justify-content: flex-end;
+  }
+
+
+  color-picker {
+
+    .color-picker {
+      border-radius: 4px;
+      border: 1px solid #d1d1d1;
+      box-shadow: 0 14px 28px rgba(0, 0, 0, 0.1), 0 10px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .arrow {
+      display: none;
+
+    }
+  }
+
+
+  .clearfix {
+    &::after {
+      content: "";
+      clear: both;
+      display: table;
+    }
+  }
+  
+  
 }
 
-h1, h2, h3, h4, h5, h6 {
-  margin: 0;
-}
 
-p {
-  margin-bottom: 0;
-}
-
-.flex-end {
-  display: flex;
-  justify-content: flex-end;
-}
-
-
+// Drag Elements are in the Global Styles because of cdk
 .cdk-drag-placeholder {
   background: #c4c9cc;
   padding: 10px 15px;
   text-indent: -9999px;
-}
-
-
-
-color-picker {
-
-  .color-picker {
-    border-radius: 4px;
-    border: 1px solid #d1d1d1;
-    box-shadow: 0 14px 28px rgba(0, 0, 0, 0.1), 0 10px 10px rgba(0, 0, 0, 0.1);
-  }
-
-  .arrow {
-    display: none;
-
-  }
 }
 
 .tooltip {
@@ -61,7 +73,6 @@ color-picker {
   line-height: 1.5;
 }
 
-// Drag Elements are in the Global Styles because of cdk
 .cdk-drop-list-dragging {
   .drag-element-toolbar {
     display: none;
@@ -76,9 +87,7 @@ color-picker {
   }
 
 }
-
 .drag-element {
-
   &.cdk-drag-preview,
   &.cdk-drag-placeholder {
     .drag-element-toolbar {
@@ -138,12 +147,12 @@ color-picker {
 }
 
 
-.k-state-active{
+.k-state-active {
   &:focus {
     box-shadow: 0 0 0 1px #ddd;
     outline: none;
   }
-  
+
 }
 
 /*
@@ -152,24 +161,14 @@ color-picker {
 }*/
 
 .k-window.k-editor-widget {
-  min-width: 500px!important;
-}
-
-
-.clearfix {
-  &::after {
-    content: "";
-    clear: both;
-    display: table;
-  }
+  min-width: 500px !important;
 }
 
 
 
 
 
-
-.element-item {
+.eco-element-item {
   background: white;
   color: #2f2e50;
 
@@ -210,7 +209,7 @@ color-picker {
 }
 
 
-.element-item-placeholder {
+.eco-element-item-placeholder {
   background: #333;
   min-width: 80px;
   min-height: 80px;

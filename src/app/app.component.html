@@ -12,19 +12,19 @@
               [cdkDropListData]="elements.elements"
               [cdkDropListConnectedTo]="[activeElementsList]"   
               (cdkDropListDropped)="drop($event)">
-        <div class="element-item" *ngFor="let element of elements.elements" cdkDrag>
-          <div class="element-item-placeholder" *cdkDragPlaceholder></div>
+        <div class="eco-element-item" *ngFor="let element of elements.elements" cdkDrag>
+          <div class="eco-element-item-placeholder" *cdkDragPlaceholder></div>
           <fa-icon [icon]="element.icon"></fa-icon>
           <span class="title">{{element.title}}</span>
         </div>
       </div>
     
       <div class="body-settings">
-          <div class="element-item" (click)="passagePlayerWrapper = !passagePlayerWrapper">
+          <div class="eco-element-item" (click)="passagePlayerWrapper = !passagePlayerWrapper">
               <fa-icon [icon]="passagePlayerWrapper ? faToggleOn: faToggleOff"></fa-icon>
               <span class="title">PlayerView</span>
             </div>
-          <div class="element-item" (click)="bodySettingsModal.show()">
+          <div class="eco-element-item" (click)="bodySettingsModal.show()">
               <fa-icon [icon]="faDesktop"></fa-icon>
               <span class="title">Body</span>
             </div>

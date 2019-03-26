@@ -68,7 +68,7 @@ export class AppComponent implements OnInit {
     direction: ''
   };
 
-  public passagePlayerWrapper: boolean = true;
+  public passagePlayerWrapper: boolean = false;
 
   // Keyboard Listener for Save Feature
   @HostListener('window:keydown', ['$event'])

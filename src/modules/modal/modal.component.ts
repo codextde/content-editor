@@ -89,23 +89,24 @@ export class ModalComponent implements OnInit, AfterViewChecked {
   }
 
   center() {
-    let elementWidth = this.modalRoot.nativeElement.offsetWidth;
-    let elementHeight = this.modalRoot.nativeElement.offsetHeight;
-
-    if (elementWidth === 0 && elementHeight === 0) {
-      this.modalRoot.nativeElement.style.visibility = 'hidden';
-      this.modalRoot.nativeElement.style.display = 'block';
-      elementWidth = this.modalRoot.nativeElement.offsetWidth;
-      elementHeight = this.modalRoot.nativeElement.offsetHeight;
-      this.modalRoot.nativeElement.style.display = 'none';
-      this.modalRoot.nativeElement.style.visibility = 'visible';
+    if (this.modalRoot.nativeElement) {
+      let elementWidth = this.modalRoot.nativeElement.offsetWidth;
+      let elementHeight = this.modalRoot.nativeElement.offsetHeight;
+      if (elementWidth === 0 && elementHeight === 0) {
+        this.modalRoot.nativeElement.style.visibility = 'hidden';
+        this.modalRoot.nativeElement.style.display = 'block';
+        elementWidth = this.modalRoot.nativeElement.offsetWidth;
+        elementHeight = this.modalRoot.nativeElement.offsetHeight;
+        this.modalRoot.nativeElement.style.display = 'none';
+        this.modalRoot.nativeElement.style.visibility = 'visible';
+      }
+  
+      const x = Math.max((window.innerWidth - elementWidth) / 2, 0);
+      const y = Math.max((window.innerHeight - elementHeight) / 2, 0);
+  
+      this.modalRoot.nativeElement.style.left = x + 'px';
+      this.modalRoot.nativeElement.style.top = y + 'px';
     }
-
-    const x = Math.max((window.innerWidth - elementWidth) / 2, 0);
-    const y = Math.max((window.innerHeight - elementHeight) / 2, 0);
-
-    this.modalRoot.nativeElement.style.left = x + 'px';
-    this.modalRoot.nativeElement.style.top = y + 'px';
   }
 
   initDrag(event: MouseEvent | TouchEvent) {
