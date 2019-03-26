@@ -19,8 +19,8 @@
   outline: none;
   background-color: #fefefe;
   padding: 0;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 11px 20px 0 rgba(0, 0, 0, 0.19);
-  border-radius: 5px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.12), 0 11px 20px 0 rgba(0, 0, 0, 0.19);
+  border: 1px solid #a2a2a2;
 }
 
 .ui-modal-header {
@@ -39,7 +39,7 @@
 .ui-modal-body {
   position: relative;
   max-height: calc(100vh - 200px);
-  overflow-y: auto;
+  // overflow-y: auto;
 }
 
 .ui-modal-footer {
