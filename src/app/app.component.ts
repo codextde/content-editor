@@ -37,9 +37,7 @@ export class AppComponent implements OnInit {
     }
     
   }
-  // get designerData(): string { return this._designerData; }
-
-
+  @Input() locationUrl: string;
   @Output() designerDataChange = new EventEmitter<string>();
 
   dataLoaded: boolean = false;
@@ -95,8 +93,10 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit() {
-    
-  
+    // Set Location URL for Fonts
+    this.fontService.loadFonts(this.locationUrl);
+
+
     this.checkDrag();
     this.eventsService.subscribe('property-change', () => {
       this.checkDrag();
@@ -108,7 +108,6 @@ export class AppComponent implements OnInit {
     });
 
     this.eventsService.subscribe('body-properties-change', () => {
-      console.log('body-properties-change', this.dataService.contentEditorProperties)
       this.loadBodyProperties();
     });
   }
