@@ -1,20 +1,19 @@
+import { DragDropModule } from '@angular/cdk/drag-drop';
 import { APP_BASE_HREF, CommonModule } from '@angular/common';
-import { NgModule, Injector, DoBootstrap } from '@angular/core';
+import { DoBootstrap, Injector, NgModule } from '@angular/core';
+import { createCustomElement } from '@angular/elements';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { IonicModule } from '@ionic/angular';
-import { AppComponent } from './app.component';
-import { createCustomElement } from '@angular/elements';
-import { ModalModule } from 'src/modules/modal';
-import { DropdownModule } from 'ngx-dropdown';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { DragDropModule } from '@angular/cdk/drag-drop';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { RouterModule } from '@angular/router';
+import { IonicModule } from '@ionic/angular';
+import { DropdownModule } from 'ngx-dropdown';
 import { ElementsModule } from 'src/components/elements/elements.module';
-import { PropertiesComponentModule } from 'src/components/properties/properties.module';
 import { GeneralModule } from 'src/components/general/general.module';
+import { PropertiesComponentModule } from 'src/components/properties/properties.module';
 import { DirectivesModule } from 'src/directives/directives.module';
+import { ModalModule } from 'src/modules/modal';
+import { AppComponent } from './app.component';
 
 @NgModule({
   declarations: [

@@ -11,15 +11,14 @@ let loadPromise: Promise<void>;
 export class MonacoService {
 
 
-
   constructor() {
   }
 
-  loadMonaco(): Promise<void> {
+  loadMonaco(locationUrl?: string): Promise<void> {
     if (!loadedMonaco) {
       loadedMonaco = true;
       loadPromise = new Promise<void>((resolve: any) => {
-        const baseUrl = Location.joinWithSlash(window.location.pathname, '/assets');
+        const baseUrl = locationUrl ? Location.joinWithSlash(locationUrl, '/assets') : Location.joinWithSlash(window.location.pathname, '/assets');
         if (typeof((<any>window).monaco) === 'object') {
           resolve((<any>window).monaco);
           return;

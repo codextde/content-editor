@@ -11,6 +11,7 @@ import { FontService } from 'src/services/font.service';
 import { EventsService } from 'src/services/event.service';
 import { IElement } from 'src/models/element.model';
 import { ModalComponent } from 'src/modules/modal/modal.component';
+import { MonacoService } from 'src/services/monaco.service';
 
 @Component({
   selector: 'main-frame',
@@ -88,13 +89,15 @@ export class AppComponent implements OnInit {
     private cdr: ChangeDetectorRef,
     private toastCtrl: ToastController,
     private fontService: FontService,
-    private eventsService: EventsService
+    private eventsService: EventsService,
+    private monacoService: MonacoService
   ) {
   }
 
   ngOnInit() {
     // Set Location URL for Fonts
     this.fontService.loadFonts(this.locationUrl);
+    this.monacoService.loadMonaco(this.locationUrl);
 
 
     this.checkDrag();
