@@ -8,6 +8,7 @@ const ensureDir = promisify(fs.ensureDir);
 const remove = promisify(fs.remove);
 const copyFileSync = promisify(fs.copyFileSync);
 const rename = promisify(fs.rename);
+const ncpPromise = promisify(ncp);
 
 
 (async function build() {
@@ -26,7 +27,7 @@ const rename = promisify(fs.rename);
 
     console.log('2. Copy Files from dist to elements');
     // Copy Files from dist to elements
-    await ncp('dist/', 'elements/');
+    await ncpPromise('dist/', 'elements/');
 
     console.log('3. Conact Files for Angular Elements');
     // Conact Files for Angular Elements
