@@ -2,6 +2,12 @@ const fs = require('fs-extra');
 const concat = require('concat');
 var ncp = require('ncp').ncp;
 var rimraf = require("rimraf");
+const {promisify} = require("util");
+
+const ensureDir = promisify(fs.ensureDir);
+const remove = promisify(fs.remove);
+const copyFileSync = promisify(fs.copyFileSync);
+const rename = promisify(fs.rename);
 
 
 (async function build() {
@@ -16,7 +22,7 @@ var rimraf = require("rimraf");
 
     console.log('1. Create Folder Elements');
     // Create Folder Elements
-    await fs.ensureDir('elements');
+    await ensureDir('elements');
 
     console.log('2. Copy Files from dist to elements');
     // Copy Files from dist to elements
@@ -30,15 +36,15 @@ var rimraf = require("rimraf");
     // CleanUp Old Files
     for (let file of files) {
       file = file.replace('dist', 'elements');
-      await fs.remove(file);
+      await remove(file);
     }
 
     console.log('Rename Style File');
     // Rename Style File
-    fs.rename('elements/styles.css', 'elements/eassessment-content-editor.css');
+    rename('elements/styles.css', 'elements/eassessment-content-editor.css');
 
     console.log('Copy Demo HTML File');
     // Copy Demo HTML File
-    fs.copyFileSync('src/elements.html', 'elements/index.html');
+    copyFileSync('src/elements.html', 'elements/index.html');
   });
 })();
