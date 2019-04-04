@@ -8,64 +8,133 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   <style>
-    body, html {
+    body,
+    html {
       margin: 0;
       padding: 0;
     }
+
   </style>
 </head>
 
 <body style="height: 100vh; ">
-  <eassessment-content-editor location-url="http://localhost:51547/e-assessment/pirls-ft/passage/../../bundles/layouteditor/"></eassessment-content-editor>
+  <eassessment-content-editor
+    location-url="">
+  </eassessment-content-editor>
   <script>
-      const el = document.querySelector('eassessment-content-editor');
-  
-      const designerSampleDataTwo = {"Type":"content-editor","Items":[{"Type":"text","Content":"This is a Textbox","ContentItemProperties":[]},{"Type":"text","Content":"This is a Textbox with Padding","ContentItemProperties":[{"ContentItemPropertyType":"padding","Value":"{\"name\":\"padding\",\"paddingLeft.px\":10,\"paddingTop.px\":10,\"paddingRight.px\":10,\"paddingBottom.px\":10}"}]}],"ContentItemProperties":[{"ContentItemPropertyType":"background","Value":"{\"name\":\"background\",\"background-color\":\"#7cbece\"}"},{"ContentItemPropertyType":"css","Value":"{\"name\":\"css\",\"value\":\"\"}"},{"ContentItemPropertyType":"direction","Value":"{\"name\":\"direction\",\"value\":\"\"}"}]};
-      
-      
-      const designerSampleData = {
-        "Items": [{
-          "Id": 137,
-          "Type": "text",
-          "Content": "Test",
-          "DisplayOrder": 0,
-          "ContentItemProperties": [{
-            "Value": "{\"name\":\"padding\",\"paddingLeft.px\":10,\"paddingTop.px\":10,\"paddingRight.px\":10,\"paddingBottom.px\":10}",
-            "ContentItemPropertyType": "padding"
-          }]
-        }],
-        "Id": 135,
-        "Type": "content-editor",
-        "Content": "",
-        "DisplayOrder": 3,
+    const el = document.querySelector('eassessment-content-editor');
+
+    const designerSampleDataTwo = {
+      "Type": "content-editor",
+      "Items": [{
+        "Type": "text",
+        "Content": "This is a Textbox",
+        "ContentItemProperties": []
+      }, {
+        "Type": "text",
+        "Content": "This is a Textbox with Padding",
         "ContentItemProperties": [{
-            "Value": "{\"name\":\"padding\",\"paddingLeft.px\":10,\"paddingTop.px\":10,\"paddingRight.px\":10,\"paddingBottom.px\":10}",
-            "ContentItemPropertyType": "padding"
-          },
-          {
-            "Value": "{\"name\":\"background\", \"background-color\": \"#fff\"}",
-            "ContentItemPropertyType": "background"
-          },
-          {
-            "Value": "{\"name\":\"css\", \"value\": \".test{}\"}",
-            "ContentItemPropertyType": "css"
-          },
-          {
-            "Value": "{\"name\":\"direction\", \"value\": \"ltr\"}",
-            "ContentItemPropertyType": "direction"
-          }
-  
-        ]
-      };
-  
-      // Set Sample Designer Data
-      el.setAttribute("designer-data", JSON.stringify(designerSampleData));
-      // Sample Data Change
-      el.addEventListener('designerDataChange', data => {
-        console.log('Designer Data', data);
-      });
-  
-    </script>
+          "ContentItemPropertyType": "padding",
+          "Value": "{\"name\":\"padding\",\"paddingLeft.px\":10,\"paddingTop.px\":10,\"paddingRight.px\":10,\"paddingBottom.px\":10}"
+        }]
+      }],
+      "ContentItemProperties": [{
+        "ContentItemPropertyType": "background",
+        "Value": "{\"name\":\"background\",\"background-color\":\"#7cbece\"}"
+      }, {
+        "ContentItemPropertyType": "css",
+        "Value": "{\"name\":\"css\",\"value\":\"\"}"
+      }, {
+        "ContentItemPropertyType": "direction",
+        "Value": "{\"name\":\"direction\",\"value\":\"\"}"
+      }]
+    };
+
+
+    const designerSampleData = {
+      "Items": [{
+        "Items": null,
+        "Selected": false,
+        "Quantity": null,
+        "Disabled": null,
+        "ResponseType": 0,
+        "Template": 0,
+        "Children": [],
+        "ResponseContent": null,
+        "Settings": {},
+        "ContentAll": null,
+        "isNew": false,
+        "Cells": [],
+        "ContentItemDisplaySettings": [],
+        "Positions": null,
+        "Id": 135,
+        "Type": "headline",
+        "Width": null,
+        "TextTypeId": null,
+        "ScoringType": 0,
+        "TitleLeft": "",
+        "TitleTop": "",
+        "TitleRight": "",
+        "TitleBottom": "",
+        "Content": "sadsadassad",
+        "Align": null,
+        "Inline": false,
+        "DisplayOrder": 1,
+        "OriginId": null,
+        "IsEditable": true,
+        "IsNotAdministered": false,
+        "AdditionalPropertyValues": [],
+        "OwnerIsDeleted": false,
+        "IsDeleted": false,
+        "_cid": 0,
+        "RefItemUnitId": 21,
+        "ContentItemProperties": []
+      }],
+      "Selected": false,
+      "Quantity": null,
+      "Disabled": null,
+      "ResponseType": 0,
+      "Template": 0,
+      "Children": [],
+      "ResponseContent": null,
+      "Settings": {},
+      "ContentAll": null,
+      "isNew": false,
+      "Cells": [],
+      "ContentItemDisplaySettings": [],
+      "Positions": null,
+      "Id": 134,
+      "Type": "content-editor",
+      "Width": null,
+      "TextTypeId": null,
+      "ScoringType": 0,
+      "TitleLeft": "",
+      "TitleTop": "",
+      "TitleRight": "",
+      "TitleBottom": "",
+      "Content": "",
+      "Align": null,
+      "Inline": false,
+      "DisplayOrder": 1,
+      "OriginId": null,
+      "IsEditable": true,
+      "IsNotAdministered": false,
+      "AdditionalPropertyValues": [],
+      "OwnerIsDeleted": false,
+      "IsDeleted": false,
+      "_cid": 0,
+      "RefItemUnitId": 21,
+      "ContentItemProperties": []
+    };
+
+    // Set Sample Designer Data
+    el.setAttribute("designer-data", JSON.stringify(designerSampleData));
+    // Sample Data Change
+    el.addEventListener('designerDataChange', data => {
+      console.log('Designer Data', data);
+    });
+
+  </script>
 </body>
 
 </html>

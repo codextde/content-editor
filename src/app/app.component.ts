@@ -27,21 +27,18 @@ export class AppComponent implements OnInit {
     if (designerData) {
       try {
         designerData = JSON.parse(designerData);
+        this.dataService.convertToContenteditor(designerData);
+        // this.dataLoaded = true;
       } catch {
         console.error('no valid json Data');
-        this.dataLoaded = false;
-        return;
+        // this.dataLoaded = true;
       }
-      
-      this.dataService.convertToContenteditor(designerData);
-      this.dataLoaded = true;
     }
-    
   }
   @Input() locationUrl: string;
   @Output() designerDataChange = new EventEmitter<string>();
 
-  dataLoaded: boolean = false;
+  dataLoaded: boolean = true;
   tab: string = 'elements';
 
   // Icons
@@ -141,7 +138,6 @@ export class AppComponent implements OnInit {
       // currentObject.id = this.helper.uuidv4();
 
       const currentObject = this.dataService.contentEditorElements[event.currentIndex];
-      console.log(this.dataService.contentEditorElements);
       this.dataService.contentEditorElements[event.currentIndex] = HelperService.clearObject(currentObject);
 
     }
@@ -176,7 +172,6 @@ export class AppComponent implements OnInit {
     }
     if (this.propertiesActive) {
       this.activeElement = element;
-      console.log(this.activeElement);
     }
   }
 
@@ -208,7 +203,6 @@ export class AppComponent implements OnInit {
     this.cdr.detectChanges();
     localStorage.removeItem('content');
     // this.save();
-    console.log(this.bodyProperties);
   }
 
   async import() {

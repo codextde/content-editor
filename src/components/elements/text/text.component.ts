@@ -65,7 +65,6 @@ export class TextElementComponent implements OnInit, ControlValueAccessor {
 
       
         if (this.draggable ) {
-          console.log('asd',  this.draggable)
           this.draggable.resetPosition();
         }
         if (this.position && this.position.position == 'absolute') {

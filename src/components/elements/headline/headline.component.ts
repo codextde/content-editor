@@ -116,7 +116,7 @@ export class HeadlineElementComponent implements OnInit, ControlValueAccessor {
           element.style.display = "none";
         });
         
-      }, 1)
+      }, 0)
     });
   }
 

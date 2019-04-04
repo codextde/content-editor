@@ -51,6 +51,9 @@ export class AppModule implements DoBootstrap {
   }
   ngDoBootstrap() {
     const eassessmentContentEditor = createCustomElement(AppComponent, { injector: this.injector });
-    customElements.define('eassessment-content-editor', eassessmentContentEditor);
+    if (!customElements.get('eassessment-content-editor')) {
+      customElements.define('eassessment-content-editor', eassessmentContentEditor);
+    }
+    
   }
 }
