@@ -70,7 +70,6 @@ export class HeadlineElementComponent implements OnInit, ControlValueAccessor {
           this.customText = true;
           this.editor.value(this.headlineElement.value);
         }
-        
       }
 
       // this.headlineElement.value = this.headlineProperty.text;
@@ -103,7 +102,7 @@ export class HeadlineElementComponent implements OnInit, ControlValueAccessor {
 
     this.editor.toolbar.window.setOptions({animation: null});
     this.editor.toolbar.window.setOptions({height: 0, minHeight: 0, minWidth: 0, maxWidth: 0, maxHeight: 0});
-    
+
     this.renderer.listen(this.editorEl.nativeElement, 'click', () => {
       if (!this.customText) {
         this.editor.value('');

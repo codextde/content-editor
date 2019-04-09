@@ -51,9 +51,7 @@ import {DomSanitizer} from '@angular/platform-browser';
 })
 export class AppModule implements DoBootstrap {
 
-  constructor(private injector: Injector, public  matIconRegistry: MatIconRegistry, public domSanitizer: DomSanitizer) {
-    matIconRegistry.addSvgIcon('aspect-ratio', domSanitizer.bypassSecurityTrustResourceUrl('/assets/icons/material.io/baseline-aspect_ratio-24px.svg'));
-  }
+  constructor(private injector: Injector) {}
 
   ngDoBootstrap() {
     const eassessmentContentEditor = createCustomElement(AppComponent, { injector: this.injector });

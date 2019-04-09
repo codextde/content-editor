@@ -12,6 +12,8 @@ import { EventsService } from 'src/services/event.service';
 import { IElement } from 'src/models/element.model';
 import { ModalComponent } from 'src/modules/modal/modal.component';
 import { MonacoService } from 'src/services/monaco.service';
+import { MatIconRegistry } from '@angular/material/icon';
+import { DomSanitizer } from '@angular/platform-browser';
 
 @Component({
   selector: 'main-frame',
@@ -87,7 +89,9 @@ export class AppComponent implements OnInit {
     private toastCtrl: ToastController,
     private fontService: FontService,
     private eventsService: EventsService,
-    private monacoService: MonacoService
+    private monacoService: MonacoService,
+    public  matIconRegistry: MatIconRegistry,
+    public domSanitizer: DomSanitizer
   ) {
   }
 
@@ -95,7 +99,7 @@ export class AppComponent implements OnInit {
     // Set Location URL for Fonts
     this.fontService.loadFonts(this.locationUrl);
     this.monacoService.loadMonaco(this.locationUrl);
-
+    this.matIconRegistry.addSvgIcon('aspect-ratio', this.domSanitizer.bypassSecurityTrustResourceUrl((this.locationUrl || '') + '/assets/icons/material.io/baseline-aspect_ratio-24px.svg'));
 
     this.checkDrag();
     this.eventsService.subscribe('property-change', () => {
