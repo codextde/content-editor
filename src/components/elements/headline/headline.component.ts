@@ -31,7 +31,7 @@ export class HeadlineElementComponent implements OnInit, ControlValueAccessor {
   @HostListener('document:click', ['$event'])
     clickout(event) {
         if (!this.editorEl.nativeElement.contains(event.target)) {
-            if(this.headlineElement.value == '') {
+            if (this.headlineElement.value == '') {
               this.editor.value('Headline');
               this.customText = false;
             }
@@ -64,7 +64,7 @@ export class HeadlineElementComponent implements OnInit, ControlValueAccessor {
 
 
       if (this.editor) {
-        if(this.headlineElement.value == '') {
+        if (this.headlineElement.value == '') {
           this.editor.value('Headline');
         } else {
           this.customText = true;
@@ -90,6 +90,7 @@ export class HeadlineElementComponent implements OnInit, ControlValueAccessor {
 
   ngOnInit() {
     // Removed Kendo from the Heading Element
+    // tslint:disable-next-line:no-unused-expression
     <kendo.ui.Editor>kendo.jQuery(this.editorEl.nativeElement).kendoEditor({
       tools: [],
       pasteCleanup: {
@@ -100,25 +101,18 @@ export class HeadlineElementComponent implements OnInit, ControlValueAccessor {
     });
     this.editor = kendo.jQuery(this.editorEl.nativeElement).data('kendoEditor');
 
-    this.renderer.listen(this.editorEl.nativeElement, 'click', ()=> {
-      if(!this.customText) {
+    this.editor.toolbar.window.setOptions({animation: null});
+    this.editor.toolbar.window.setOptions({height: 0, minHeight: 0, minWidth: 0, maxWidth: 0, maxHeight: 0});
+    
+    this.renderer.listen(this.editorEl.nativeElement, 'click', () => {
+      if (!this.customText) {
         this.editor.value('');
         this.customText = true;
       }
-      
     });
 
-    // Improve Logic to Remove Toolbar
-    this.renderer.listen(this.editorEl.nativeElement, 'mousedown', ()=> {
-      setTimeout(()=> {
-        let editorToolbar = document.querySelectorAll('.k-widget');
-        editorToolbar.forEach(element => {
-          element.style.display = "none";
-        });
-        
-      }, 0)
-    });
   }
+
 
 
 }
