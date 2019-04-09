@@ -1,14 +1,15 @@
+@import './defaults';
+
 eassessment-content-editor {
+
   @import '~bootstrap/scss/bootstrap-reboot';
   @import '~bootstrap/scss/bootstrap-grid';
   @import '~bootstrap/scss/dropdown';
   @import '~bootstrap/scss/button-group';
   @import '~bootstrap/scss/buttons';
 
-  font-family: "Open Sans", "Helvetica Neue", Arial, sans-serif;
-  font-size: 14px;
-  line-height: 1.4;
-  color: #000;
+
+  @extend %default-font;
 
 
   h1,
@@ -19,15 +20,21 @@ eassessment-content-editor {
   h6 {
     margin: 0;
   }
-
   p {
     margin-bottom: 0;
+    padding-bottom: 0;
+    @extend %default-font;
   }
+  strong {
+    font-weight: bold;
+  }
+
 
   .flex-end {
     display: flex;
     justify-content: flex-end;
   }
+
 
 
   color-picker {

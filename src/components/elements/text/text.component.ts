@@ -46,7 +46,7 @@ export class TextElementComponent implements OnInit, ControlValueAccessor {
   @HostListener('document:click', ['$event'])
     clickout(event) {
         if (!this.editorEl.nativeElement.contains(event.target)) {
-            if(this.textElement.value == '') {
+            if (this.textElement.value == '') {
               this.editor.value('Please enter your text here');
               this.customText = false;
             }
@@ -59,11 +59,9 @@ export class TextElementComponent implements OnInit, ControlValueAccessor {
     private renderer: Renderer2
     ) {
     this.eventsService.subscribe('property-change', () => {
-      console.log(this.textElement)
       if (this.textElement) {
         this.styles = this.elementService.loadStyleProperties(this.textElement.properties);
 
-      
         if (this.draggable ) {
           this.draggable.resetPosition();
         }

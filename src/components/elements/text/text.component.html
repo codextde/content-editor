@@ -23,9 +23,9 @@
 
     <span 
     class="initial-letter" 
-    *ngIf="initialLetter"
+    *ngIf="initialLetter?.letter"
     [style.fontSize.px]="initialLetter?.size"
-    [style.lineHeight.px]="initialLetter?.size - 5"
+    [style.lineHeight.px]="initialLetter?.size"
     [style.color]="initialLetter?.color">{{initialLetter.letter}}</span>
     <div 
         class="text-content" 
