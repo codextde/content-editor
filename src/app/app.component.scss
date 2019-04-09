@@ -40,6 +40,8 @@
 
   .drop-area {
     min-height: 300px;
+    display: block;
+    border: 1px solid #b2b2b2;
   }
 
   @import './passage-player-wrapper.scss';
@@ -61,18 +63,6 @@
     display: flex;
   }
 }
-
-.body-settings {
-  width: 100%;
-  display: flex;
-  justify-content: flex-end;
-
-  .element-item {
-    cursor: pointer;
-  }
-}
-
-
 
 
 /*.section-settings-footer {

@@ -19,19 +19,21 @@
         </div>
       </div>
     
-      <div class="body-settings">
+      <div class="eco-element-item body-settings-item" (click)="bodySettingsModal.show()">
+        <mat-icon svgIcon="aspect-ratio"></mat-icon>
+        <span class="title">Body</span>
+      </div>
+      
+      <div class="">
           <!--<div class="eco-element-item" (click)="passagePlayerWrapper = !passagePlayerWrapper">
               <fa-icon [icon]="passagePlayerWrapper ? faToggleOn: faToggleOff"></fa-icon>
               <span class="title">PlayerView</span>
             </div>-->
-          <div class="eco-element-item" (click)="bodySettingsModal.show()">
-              <fa-icon [icon]="faDesktop"></fa-icon>
-              <span class="title">Body</span>
-            </div>
+          
       </div>
     </div>
     
-    <app-modal #bodySettingsModal [modalTitle]="'Body Settings'" [width]="410" [maximizable]="false" [backdrop]="false" >
+    <app-modal #bodySettingsModal [modalTitle]="'Body'" [width]="410" [maximizable]="false" [backdrop]="false" >
         <ng-container class="app-modal-body">
             <app-property-background [(ngModel)]="bodyProperties.background" (ngModelChange)="setBodyProperties()"></app-property-background>
             <app-property-padding [(ngModel)]="bodyProperties.padding" (ngModelChange)="setBodyProperties()"></app-property-padding>
@@ -40,7 +42,7 @@
         </ng-container>
       </app-modal>
     
-    <app-modal #modalRoot [modalTitle]="(activeElement.title || '') + ' Settings'" [width]="410" [maximizable]="false" [backdrop]="false" >
+    <app-modal #modalRoot [modalTitle]="activeElement.title || ''" [width]="410" [maximizable]="false" [backdrop]="false" >
       <ng-container class="app-modal-body">
           <app-properties *ngIf="propertiesActive" [element]="activeElement" (onClose)="propertiesActive = false"></app-properties>
       </ng-container>

@@ -1,5 +1,5 @@
 import { animate, style, transition, trigger } from '@angular/animations';
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output, ViewChild, ElementRef, AfterViewInit } from '@angular/core';
 import { faArrowDown } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
@@ -25,17 +25,27 @@ import { faArrowDown } from '@fortawesome/free-solid-svg-icons';
     )*/
   ]
 })
-export class PropertiesComponent implements OnInit {
+export class PropertiesComponent implements OnInit, AfterViewInit {
   // Icons
   faArrowDown = faArrowDown;
 
   @Input() element: any;
   @Output() onClose = new EventEmitter();
 
+  @ViewChild('property') property: ElementRef;
+
 
   constructor() { }
 
   ngOnInit() {
+  }
+
+  ngAfterViewInit() {
+    // Open First Item in Property Panel
+    setTimeout(() => {
+      const card = this.property.nativeElement.children[0];
+      card.querySelector('.card-title').click();
+    }, 1);
   }
 
   close() {

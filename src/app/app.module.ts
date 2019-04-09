@@ -14,6 +14,9 @@ import { PropertiesComponentModule } from 'src/components/properties/properties.
 import { DirectivesModule } from 'src/directives/directives.module';
 import { ModalModule } from 'src/modules/modal';
 import { AppComponent } from './app.component';
+import {MatIconRegistry, MatIconModule} from '@angular/material/icon';
+import {DomSanitizer} from '@angular/platform-browser';
+
 
 @NgModule({
   declarations: [
@@ -24,6 +27,7 @@ import { AppComponent } from './app.component';
   ],
   imports: [
     ModalModule,
+    MatIconModule,
     DropdownModule,
     CommonModule,
     FormsModule,
@@ -46,14 +50,15 @@ import { AppComponent } from './app.component';
   ]
 })
 export class AppModule implements DoBootstrap {
-  constructor(private injector: Injector) {
-    
+
+  constructor(private injector: Injector, public  matIconRegistry: MatIconRegistry, public domSanitizer: DomSanitizer) {
+    matIconRegistry.addSvgIcon('aspect-ratio', domSanitizer.bypassSecurityTrustResourceUrl('/assets/icons/material.io/baseline-aspect_ratio-24px.svg'));
   }
+
   ngDoBootstrap() {
     const eassessmentContentEditor = createCustomElement(AppComponent, { injector: this.injector });
     if (!customElements.get('eassessment-content-editor')) {
       customElements.define('eassessment-content-editor', eassessmentContentEditor);
     }
-    
   }
 }

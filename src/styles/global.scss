@@ -173,6 +173,14 @@ eassessment-content-editor {
 
 
 .eco-element-item {
+
+  &.body-settings-item {
+    cursor: pointer;
+    border-radius: 50%;
+    background: #2f2e50;
+    color: #fff;
+  }
+  
   background: white;
   color: #2f2e50;
 
@@ -198,6 +206,11 @@ eassessment-content-editor {
   justify-content: center;
   flex-direction: column;
   font-size: 2.5rem;
+
+  mat-icon {
+    width: 45px;
+    height: auto;
+  }
 
   &:hover {
     box-shadow: 0 6px 10px rgba(0, 0, 0, 0.35);

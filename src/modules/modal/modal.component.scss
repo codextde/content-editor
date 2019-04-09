@@ -20,7 +20,7 @@
   background-color: #fefefe;
   padding: 0;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.12), 0 11px 20px 0 rgba(0, 0, 0, 0.19);
-  border: 1px solid #a2a2a2;
+  border: 3px solid #2f2e50;
 }
 
 .ui-modal-header {
@@ -57,6 +57,9 @@
 
 .ui-modal-title {
   font-size: 18px;
+  font-weight: bold;
+    text-transform: uppercase;
+    color: #2f2e50;
 }
 
 .ui-controlbar {
