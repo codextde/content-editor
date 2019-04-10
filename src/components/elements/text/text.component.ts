@@ -167,6 +167,9 @@ export class TextElementComponent implements OnInit, ControlValueAccessor {
       change: (a) => this.change(this)
     });
     this.editor = kendo.jQuery(this.editorEl.nativeElement).data('kendoEditor');
+    console.log(this.editor.toolbar.window);
+    this.editor.toolbar.window.wrapper[0].classList.add('ece');
+
 
     this.renderer.listen(this.editorEl.nativeElement, 'click', () => {
       if (!this.customText) {

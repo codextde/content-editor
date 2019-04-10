@@ -20,11 +20,13 @@ eassessment-content-editor {
   h6 {
     margin: 0;
   }
+
   p {
     margin-bottom: 0;
     padding-bottom: 0;
     @extend %default-font;
   }
+
   strong {
     font-weight: bold;
   }
@@ -59,12 +61,27 @@ eassessment-content-editor {
       display: table;
     }
   }
-  
-  
+
+
+}
+
+// Content Editor Styles
+.ece {
+  &.k-widget.k-editor-widget {
+    width: auto !important;
+    height: 46px;
+
+    .k-editor-toolbar {
+      li {
+        display: inline-block;
+      }
+    }
+  }
+
 }
 
 .hide {
-  display: none;
+  display: none !important;
 }
 
 // Drag Elements are in the Global Styles because of cdk
@@ -103,7 +120,9 @@ eassessment-content-editor {
   }
 
 }
+
 .drag-element {
+
   &.cdk-drag-preview,
   &.cdk-drag-placeholder {
     .drag-element-toolbar {
@@ -176,15 +195,6 @@ eassessment-content-editor {
   /* height: 70px; */
 }
 
-/*
-.k-editor-widget{
-  min-width: 100%!important;
-}*/
-
-.k-window.k-editor-widget {
-  min-width: 500px !important;
-}
-
 
 
 
@@ -197,7 +207,7 @@ eassessment-content-editor {
     background: #2f2e50;
     color: #fff;
   }
-  
+
   background: white;
   color: #2f2e50;
 
