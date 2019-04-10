@@ -18,6 +18,7 @@ import { EventsService } from './event.service';
 })
 export class DataService {
 
+
   bodyPropertiesTypes = ['css', 'background', 'direction', 'padding'];
 
   contentEditorProperties: any = [];

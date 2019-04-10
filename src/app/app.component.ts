@@ -96,10 +96,11 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit() {
+    HelperService.locationUrl = this.locationUrl;
     // Set Location URL for Fonts
     this.fontService.loadFonts(this.locationUrl);
     this.monacoService.loadMonaco(this.locationUrl);
-    this.matIconRegistry.addSvgIcon('aspect-ratio', this.domSanitizer.bypassSecurityTrustResourceUrl((this.locationUrl || '') + '/assets/icons/material.io/baseline-aspect_ratio-24px.svg'));
+    this.matIconRegistry.addSvgIcon('aspect-ratio', this.domSanitizer.bypassSecurityTrustResourceUrl(HelperService.locationUrl + 'assets/icons/material.io/baseline-aspect_ratio-24px.svg'));
 
     this.checkDrag();
     this.eventsService.subscribe('property-change', () => {

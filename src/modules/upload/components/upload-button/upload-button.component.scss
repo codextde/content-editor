@@ -5,6 +5,18 @@
   flex-direction: column;
 }
 
+.imageUpload {
+  .k-filebrowser .k-tile strong {
+    float: unset;
+    width: auto;
+  }
+  .k-i-close{
+    border: none;
+    background: transparent;
+    padding: 0;
+  }
+}
+
 .btn-group {
   margin-right: 10px;
 }
@@ -13,10 +25,10 @@
   padding: 10px 0;
 
   .file-list-item {
-      &:first-of-type {
-          margin: 0;
-      }
-      
+    &:first-of-type {
+      margin: 0;
+    }
+
     border: 1px solid rgba(208, 208, 208, 0.4);
     margin: 15px 0 0 0;
     padding: 15px;

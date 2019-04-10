@@ -82,7 +82,6 @@ export class UploadButtonComponent implements OnInit, ControlValueAccessor {
       },
       change: (e: any) => {
         this.selectedImagePath = `${this.helperService.basePath}designer/~/Content/UserFiles/Upload/${this.helperService.studyName}/${e.sender.path()}${e.selected.name}`;
-        
       }
     }
 

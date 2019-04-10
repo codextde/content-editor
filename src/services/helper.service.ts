@@ -6,10 +6,21 @@ declare var document: any;
   providedIn: 'root'
 })
 export class HelperService {
+  static _locationUrl: string;
+
 
   styleElement: any;
   basePath: string;
   studyName: string;
+
+
+  public static get locationUrl(): string {
+    return this._locationUrl;
+  }
+
+  public static set locationUrl(locationUrl: string) {
+    locationUrl ? this._locationUrl = locationUrl : this._locationUrl = './';
+  }
 
   public static clearObject(object) {
     return JSON.parse(JSON.stringify(object));
