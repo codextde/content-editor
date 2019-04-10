@@ -6,7 +6,6 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { IonicModule } from '@ionic/angular';
 import { DropdownModule } from 'ngx-dropdown';
 import { ElementsModule } from 'src/components/elements/elements.module';
 import { GeneralModule } from 'src/components/general/general.module';
@@ -39,7 +38,6 @@ import {DomSanitizer} from '@angular/platform-browser';
     GeneralModule,
     DirectivesModule,
     BrowserModule,
-    IonicModule.forRoot(),
     BrowserAnimationsModule
   ],
   providers: [

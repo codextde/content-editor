@@ -1,7 +1,6 @@
 import { CdkDragDrop, copyArrayItem, moveItemInArray } from '@angular/cdk/drag-drop';
 import { ChangeDetectorRef, Component, HostListener, OnInit, ViewChild, Output, EventEmitter, Input, ViewEncapsulation } from '@angular/core';
 import { faArrowsAlt, faCogs, faHandPointer, faTrash, faDesktop, faToggleOn, faToggleOff } from '@fortawesome/free-solid-svg-icons';
-import { AlertController, ToastController } from '@ionic/angular';
 import { DataService } from 'src/services/data.service';
 import { ElementService } from 'src/services/element.service';
 import { ElementsService } from 'src/services/elements.service';
@@ -84,9 +83,7 @@ export class AppComponent implements OnInit {
     public dataService: DataService,
     public elements: ElementsService,
     private elementService: ElementService,
-    private alertCtrl: AlertController,
     private cdr: ChangeDetectorRef,
-    private toastCtrl: ToastController,
     private fontService: FontService,
     private eventsService: EventsService,
     private monacoService: MonacoService,
@@ -191,9 +188,6 @@ export class AppComponent implements OnInit {
 
   async save() {
     const designerData = await this.dataService.convertToDesigner();
-    
-    const toast = await this.toastCtrl.create({message: 'Saved', duration: 2000});
-    toast.present();
   }
 
   clear() {
@@ -212,7 +206,8 @@ export class AppComponent implements OnInit {
 
   async import() {
     // TODO Add Import Feature
-    const alert = await this.alertCtrl.create({
+    const alertCtrl: any = {};
+    const alert = await alertCtrl.create({
       header: 'Import',
       subHeader: 'Paste the Json String',
       inputs: [{
@@ -239,8 +234,9 @@ export class AppComponent implements OnInit {
 
   async export () {
     // TODO Add Export Feature
+    const alertCtrl: any = {};
     const config = ''; // JSON.stringify(this.dataService.editorOptions);
-    const alert = await this.alertCtrl.create({
+    const alert = await alertCtrl.create({
       header: 'Export',
       subHeader: 'Copy the Json String',
       inputs: [{

@@ -1,6 +1,5 @@
 import { Component, forwardRef, OnInit, ViewChild } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
-import { ToastController } from '@ionic/angular';
 import { forkJoin } from 'rxjs';
 import { HelperService } from 'src/services/helper.service';
 import { UploadService } from '../../services/upload.service';
@@ -33,16 +32,15 @@ export class UploadButtonComponent implements OnInit, ControlValueAccessor {
 
   constructor(
     public uploadService: UploadService,
-    private toastCtrl: ToastController,
     private helperService: HelperService) {
-      
+
     }
 
   fixImageThumbs() {
-      setTimeout(()=> {
-        document.querySelector('div.imageUpload ul').scroll(100, 100)
-        document.querySelector('div.imageUpload ul').scroll(0,0)
-      }, 100)
+      setTimeout(() => {
+        document.querySelector('div.imageUpload ul').scroll(100, 100);
+        document.querySelector('div.imageUpload ul').scroll(0, 0);
+      }, 100);
   }
 
   writeValue(value: any): void {
@@ -83,7 +81,7 @@ export class UploadButtonComponent implements OnInit, ControlValueAccessor {
       change: (e: any) => {
         this.selectedImagePath = `${this.helperService.basePath}designer/~/Content/UserFiles/Upload/${this.helperService.studyName}/${e.sender.path()}${e.selected.name}`;
       }
-    }
+    };
 
     kendo.jQuery(this.imageUpload.nativeElement).kendoImageBrowser(kendoImageBrowserConfig);
 
@@ -134,14 +132,16 @@ export class UploadButtonComponent implements OnInit, ControlValueAccessor {
       this.uploadSuccessful = true;
       this.uploading = false;
       this.progress = 0;
-      const toast = await this.toastCtrl.create({
+      const toastCtrl: any = {};
+      const toast = await toastCtrl.create({
         message: 'Upload Successful',
         duration: 3000
       });
       toast.present();
     }, async (error) => {
       this.progress = 0;
-      const toast = await this.toastCtrl.create({
+      const toastCtrl: any = {};
+      const toast = await toastCtrl.create({
         message: 'Upload failed',
         duration: 3000
       });
