@@ -99,9 +99,13 @@ export class HeadlineElementComponent implements OnInit, ControlValueAccessor {
       change: (a) => this.change(this)
     });
     this.editor = kendo.jQuery(this.editorEl.nativeElement).data('kendoEditor');
+    console.log(this.editor.toolbar.window);
 
     this.editor.toolbar.window.setOptions({animation: null});
-    this.editor.toolbar.window.setOptions({height: 0, minHeight: 0, minWidth: 0, maxWidth: 0, maxHeight: 0});
+    // this.editor.toolbar.window.setOptions({height: 0, minHeight: 0, minWidth: 0, maxWidth: 0, maxHeight: 0});
+    // this.editor.toolbar.window.setOptions({position: 0});
+    this.editor.toolbar.window.element.addClass('hide');
+    this.editor.toolbar.window.wrapper[0].classList = [];
 
     this.renderer.listen(this.editorEl.nativeElement, 'click', () => {
       if (!this.customText) {
