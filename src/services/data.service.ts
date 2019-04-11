@@ -20,6 +20,7 @@ export class DataService {
   bodyPropertiesTypes = ['css', 'background', 'direction', 'padding'];
   contentEditorProperties: any[] = [];
   contentEditorElements: any[] = [];
+  originalDesignerData: any;
 
   contentEditorContentItem: any = {};
 
@@ -71,6 +72,7 @@ export class DataService {
 
   async convertToContentEditor(designerData) {
     console.log('designerData', designerData);
+    this.originalDesignerData = JSON.parse(JSON.stringify(designerData));
     this.contentEditorProperties = [];
     this.contentEditorElements = [];
     // designerData = JSON.parse(designerData); // localStorage.getItem('content'))
@@ -212,6 +214,18 @@ export class DataService {
       designerData.Items.push(contentItem);
     });
 
+    if (this.originalDesignerData && this.originalDesignerData.Items) {
+      for (const element of this.originalDesignerData.Items) {
+        if (!designerData.Items.some(item => item.Id == element.Id)) {
+          const contentItem: IContentItem = {
+            ...element,
+            IsDeleted: true
+          };
+
+          designerData.Items.push(contentItem);
+        }
+      }
+    }
     // localStorage.setItem('content', JSON.stringify(designerData));
     console.log(designerData);
     return designerData;

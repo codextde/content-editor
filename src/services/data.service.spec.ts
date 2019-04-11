@@ -22,7 +22,7 @@ describe('DataService', () => {
       Cells: [],
       ContentItemDisplaySettings: [],
       Positions: null,
-      Id: 5922,
+      Id: 4,
       Type: 'headline',
       Width: null,
       TextTypeId: null,
@@ -59,7 +59,7 @@ describe('DataService', () => {
       Cells: [],
       ContentItemDisplaySettings: [],
       Positions: null,
-      Id: 5923,
+      Id: 5,
       Type: 'text',
       Width: null,
       TextTypeId: null,
@@ -145,7 +145,9 @@ describe('DataService', () => {
     // We should have only 2 elements in our editor
     expect(dataService.contentEditorElements.length).toBe(2);
     expect(dataService.contentEditorElements.find(element => element.component == 'headline')).not.toBeUndefined();
+    expect(dataService.contentEditorElements.find(element => element.component == 'headline').Id).toBe(4);
     expect(dataService.contentEditorElements.find(element => element.component == 'text')).not.toBeUndefined();
+    expect(dataService.contentEditorElements.find(element => element.component == 'text').Id).toBe(5);
     expect(dataService.contentEditorElements.find(element => element.component == 'html')).toBeUndefined();
   });
 
@@ -162,16 +164,29 @@ describe('DataService', () => {
     expect(dataService.contentEditorElements.find(element => element.component == 'html')).not.toBeUndefined();
 
     // Then back to designer
-    const designerData = dataService.convertToDesigner();
+    let designerData = dataService.convertToDesigner();
 
     // Item ID should be the same
     expect(designerData.Id).toBe(3);
 
-    // We should have only 2 elements in our editor
+    // We should have only 3 elements in our editor
     expect(designerData.Items.length).toBe(3);
     expect(designerData.Items.find(element => element.Type == 'headline')).not.toBeUndefined();
+    expect(designerData.Items.find(element => element.Type == 'headline').Id).toBe(4);
     expect(designerData.Items.find(element => element.Type == 'text')).not.toBeUndefined();
+    expect(designerData.Items.find(element => element.Type == 'text').Id).toBe(5);
     expect(designerData.Items.find(element => element.Type == 'html')).not.toBeUndefined();
     expect(designerData.Items.find(element => element.Type == 'css')).toBeUndefined();
+
+    // Lets delete the headline
+    const headlineToDelete = dataService.contentEditorElements.find(element => element.component == 'headline');
+    const indexOfHeadline = dataService.contentEditorElements.indexOf(headlineToDelete);
+    dataService.contentEditorElements.splice(indexOfHeadline, 1);
+
+    designerData = dataService.convertToDesigner();
+    console.log(JSON.stringify(designerData));
+    expect(designerData.Items.length).toBe(3);
+    expect(designerData.Items.find(element => element.Type == 'headline')).not.toBeUndefined();
+    expect(designerData.Items.find(element => element.Type == 'headline').IsDeleted).toBeTruthy();
   });
 });
