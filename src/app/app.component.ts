@@ -28,7 +28,7 @@ export class AppComponent implements OnInit {
     if (designerData) {
       try {
         designerData = JSON.parse(designerData);
-        this.dataService.convertToContenteditor(designerData);
+        this.dataService.convertToContentEditor(designerData);
         // this.dataLoaded = true;
       } catch {
         console.error('no valid json Data');
