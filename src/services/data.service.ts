@@ -1,62 +1,59 @@
-import { Injectable } from '@angular/core';
-import { ClearfixElementConfig } from 'src/components/elements/clearfix/clearfix.config';
-import { DividerElementConfig } from 'src/components/elements/divider/divider.config';
-import { HeadlineElementConfig } from 'src/components/elements/headline/headline.config';
-import { HtmlElementConfig } from 'src/components/elements/html/html.config';
-import { ImageElementConfig } from 'src/components/elements/image/image.config';
-import { TextElementConfig } from 'src/components/elements/text/text.config';
-import { VideoElementConfig } from 'src/components/elements/video/video.config';
-import { IContentItem } from 'src/models/contentItem.model';
-import { IContentItemProperty } from 'src/models/contentItemProperty.model';
-import { IElement } from 'src/models/element.model';
-import { ElementService } from './element.service';
-import { EventsService } from './event.service';
+import {Injectable} from '@angular/core';
+import {ClearfixElementConfig} from 'src/components/elements/clearfix/clearfix.config';
+import {DividerElementConfig} from 'src/components/elements/divider/divider.config';
+import {HeadlineElementConfig} from 'src/components/elements/headline/headline.config';
+import {HtmlElementConfig} from 'src/components/elements/html/html.config';
+import {ImageElementConfig} from 'src/components/elements/image/image.config';
+import {TextElementConfig} from 'src/components/elements/text/text.config';
+import {VideoElementConfig} from 'src/components/elements/video/video.config';
+import {IContentItem} from 'src/models/contentItem.model';
+import {IContentItemProperty} from 'src/models/contentItemProperty.model';
+import {IElement} from 'src/models/element.model';
+import {ElementService} from './element.service';
+import {EventsService} from './event.service';
 
 
 @Injectable({
   providedIn: 'root'
 })
 export class DataService {
-
-
   bodyPropertiesTypes = ['css', 'background', 'direction', 'padding'];
-
-  contentEditorProperties: any = [];
-  contentEditorElements: any = [];
+  contentEditorProperties: any[] = [];
+  contentEditorElements: any[] = [];
 
   contentEditorContentItem: any = {};
 
   // tslint:disable:quotemark
   designerData: any = {
-    "Items": [{
-      "Id": 137,
-      "Type": "text",
-      "Content": "Test",
-      "DisplayOrder": 0,
-      "ContentItemProperties": [{
-        "Value": "{\"name\":\"padding\",\"paddingLeft.px\":10,\"paddingTop.px\":10,\"paddingRight.px\":10,\"paddingBottom.px\":10}",
-        "ContentItemPropertyType": "padding"
+    'Items': [{
+      'Id': 137,
+      'Type': 'text',
+      'Content': 'Test',
+      'DisplayOrder': 0,
+      'ContentItemProperties': [{
+        'Value': '{"name":"padding","paddingLeft.px":10,"paddingTop.px":10,"paddingRight.px":10,"paddingBottom.px":10}',
+        'ContentItemPropertyType': 'padding'
       }]
     }],
-    "Id": 135,
-    "Type": "content-editor",
-    "Content": "",
-    "DisplayOrder": 3,
-    "ContentItemProperties": [{
-        "Value": "{\"name\":\"padding\",\"paddingLeft.px\":10,\"paddingTop.px\":10,\"paddingRight.px\":10,\"paddingBottom.px\":10}",
-        "ContentItemPropertyType": "padding"
+    'Id': 135,
+    'Type': 'content-editor',
+    'Content': '',
+    'DisplayOrder': 3,
+    'ContentItemProperties': [{
+      'Value': '{"name":"padding","paddingLeft.px":10,"paddingTop.px":10,"paddingRight.px":10,"paddingBottom.px":10}',
+      'ContentItemPropertyType': 'padding'
+    },
+      {
+        'Value': '{"name":"background", "background-color": "#fff"}',
+        'ContentItemPropertyType': 'background'
       },
       {
-        "Value": "{\"name\":\"background\", \"background-color\": \"#fff\"}",
-        "ContentItemPropertyType": "background"
+        'Value': '{"name":"css", "value": ".test{}"}',
+        'ContentItemPropertyType': 'css'
       },
       {
-        "Value": "{\"name\":\"css\", \"value\": \".test{}\"}",
-        "ContentItemPropertyType": "css"
-      },
-      {
-        "Value": "{\"name\":\"direction\", \"value\": \"ltr\"}",
-        "ContentItemPropertyType": "direction"
+        'Value': '{"name":"direction", "value": "ltr"}',
+        'ContentItemPropertyType': 'direction'
       }
 
     ]
@@ -69,10 +66,10 @@ export class DataService {
     // @Todo Remove and load from the Designer. The Designer need to Inject the Data to the iFrame
     // window['contentEditorData'] = this.designerData;
 
-    // this.convertToContenteditor();
+    // this.convertToContentEditor();
   }
 
-  async convertToContenteditor(designerData) {
+  async convertToContentEditor(designerData) {
     console.log('designerData', designerData);
     this.contentEditorProperties = [];
     this.contentEditorElements = [];
@@ -149,10 +146,9 @@ export class DataService {
 
     }
 
-    console.log('this.contentEditorElements', this.contentEditorElements)
+    console.log('this.contentEditorElements', this.contentEditorElements);
 
     this.eventsService.publish('body-properties-change');
-
   }
 
   convertToDesigner() {
@@ -168,7 +164,6 @@ export class DataService {
     designerData.Id = this.contentEditorContentItem.Id;
     designerData.IsDeleted = this.contentEditorContentItem.IsDeleted;
     designerData.RefItemUnitId = this.contentEditorContentItem.RefItemUnitId;
-    
 
     // Load Content Item Content Editor Properties
     this.contentEditorProperties.forEach((property: any) => {
@@ -188,7 +183,7 @@ export class DataService {
     // Add Content Items to Content Editor Element // TODO Update element Interface
     this.contentEditorElements.forEach((element: any) => {
       console.log('element', element);
-      let contentItem: IContentItem = {
+      const contentItem: IContentItem = {
         Type: element.component,
         Content: element.value,
         ContentItemProperties: [],
@@ -200,7 +195,7 @@ export class DataService {
       contentItem.RefItemUnitId = element.RefItemUnitId;
 
       // contentItem = {...contentItem, ...element};
-      
+
       element.properties.forEach((property: any) => {
         const contentItemProperty: IContentItemProperty = {
           Id: 0,

@@ -1,15 +1,14 @@
 const fs = require('fs-extra');
 const concat = require('concat');
 var ncp = require('ncp').ncp;
-var rimraf = require("rimraf");
-const {promisify} = require("util");
+var rimraf = require('rimraf');
+const {promisify} = require('util');
 
 const ensureDir = promisify(fs.ensureDir);
 const remove = promisify(fs.remove);
 const copyFileSync = promisify(fs.copyFileSync);
 const rename = promisify(fs.rename);
 const ncpPromise = promisify(ncp);
-
 
 (async function build() {
   const files = [
@@ -19,8 +18,7 @@ const ncpPromise = promisify(ncp);
     './dist/main.js'
   ];
   // Delete Folder Elements
-  rimraf('elements', async () => { 
-
+  rimraf('elements', async () => {
     console.log('1. Create Folder Elements');
     // Create Folder Elements
     await ensureDir('elements');
@@ -29,7 +27,7 @@ const ncpPromise = promisify(ncp);
     // Copy Files from dist to elements
     await ncpPromise('dist/', 'elements/');
 
-    console.log('3. Conact Files for Angular Elements');
+    console.log('3. Concat Files for Angular Elements');
     // Conact Files for Angular Elements
     await concat(files, 'elements/eassessment-content-editor.js');
 
