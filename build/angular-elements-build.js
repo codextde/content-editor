@@ -2,6 +2,7 @@ const fs = require('fs-extra');
 const concat = require('concat');
 var ncp = require('ncp').ncp;
 var rimraf = require('rimraf');
+const stripDebug = require('strip-debug');
 const {promisify} = require('util');
 
 const ensureDir = promisify(fs.ensureDir);
@@ -37,6 +38,18 @@ const ncpPromise = promisify(ncp);
       file = file.replace('dist', 'elements');
       await remove(file);
     }
+
+    console.log('Remove Console Log');
+    // Remove Console Log
+    fs.readFile('elements/eassessment-content-editor.js', (err, data) => {
+      if (err) throw err;
+      let newData = stripDebug(data.toString()).toString();
+      fs.writeFile('elements/eassessment-content-editor.js', newData, (err)  => {
+        if (err) throw err;
+        console.log("The file was saved!");
+      });
+    });
+    
 
     console.log('Rename Style File');
     // Rename Style File

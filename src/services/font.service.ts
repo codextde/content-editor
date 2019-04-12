@@ -23,7 +23,7 @@ export class FontService {
 
   constructor() {}
 
-  loadFonts(locationUrl ? : string) {
+  loadFonts(locationUrl?: string) {
     let webFontsLoader = [];
     let urls = [];
     this.fonts.forEach((font) => {
@@ -31,7 +31,7 @@ export class FontService {
       let url = font.url;
       if (locationUrl) {
         url = locationUrl + font.url;
-      }
+      };
 
       urls.push(url);
     })

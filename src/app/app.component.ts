@@ -13,6 +13,7 @@ import { ModalComponent } from 'src/modules/modal/modal.component';
 import { MonacoService } from 'src/services/monaco.service';
 import { MatIconRegistry } from '@angular/material/icon';
 import { DomSanitizer } from '@angular/platform-browser';
+import { LoaderService } from 'src/services/loader.service';
 
 @Component({
   selector: 'main-frame',
@@ -36,7 +37,7 @@ export class AppComponent implements OnInit {
       }
     }
   }
-  @Input() locationUrl: string;
+ 
   @Output() designerDataChange = new EventEmitter<string>();
 
   dataLoaded: boolean = true;
@@ -90,14 +91,15 @@ export class AppComponent implements OnInit {
     public  matIconRegistry: MatIconRegistry,
     public domSanitizer: DomSanitizer
   ) {
+    
   }
 
   ngOnInit() {
-    HelperService.locationUrl = this.locationUrl;
+    
     // Set Location URL for Fonts
-    this.fontService.loadFonts(this.locationUrl);
-    this.monacoService.loadMonaco(this.locationUrl);
-    this.matIconRegistry.addSvgIcon('aspect-ratio', this.domSanitizer.bypassSecurityTrustResourceUrl(HelperService.locationUrl + 'assets/icons/material.io/baseline-aspect_ratio-24px.svg'));
+    this.fontService.loadFonts(LoaderService.locationUrl);
+    this.monacoService.loadMonaco(LoaderService.locationUrl);
+    this.matIconRegistry.addSvgIcon('aspect-ratio', this.domSanitizer.bypassSecurityTrustResourceUrl(LoaderService.locationUrl + 'assets/icons/material.io/baseline-aspect_ratio-24px.svg'));
 
     this.checkDrag();
     this.eventsService.subscribe('property-change', () => {

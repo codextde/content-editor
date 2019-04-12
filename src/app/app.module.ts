@@ -1,6 +1,6 @@
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { APP_BASE_HREF, CommonModule } from '@angular/common';
-import { DoBootstrap, Injector, NgModule } from '@angular/core';
+import { DoBootstrap, Injector, NgModule, APP_INITIALIZER } from '@angular/core';
 import { createCustomElement } from '@angular/elements';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
@@ -15,7 +15,11 @@ import { ModalModule } from 'src/modules/modal';
 import { AppComponent } from './app.component';
 import {MatIconRegistry, MatIconModule} from '@angular/material/icon';
 import {DomSanitizer} from '@angular/platform-browser';
+import { LoaderService } from 'src/services/loader.service';
 
+export function staticProviderFactory(provider: LoaderService) {
+  return () => provider.getLocationUrl();
+}
 
 @NgModule({
   declarations: [
@@ -44,7 +48,8 @@ import {DomSanitizer} from '@angular/platform-browser';
     {
       provide: APP_BASE_HREF,
       useValue: window.location.pathname || '/'
-    }
+    },
+    { provide: APP_INITIALIZER, useFactory: staticProviderFactory, deps: [LoaderService], multi: true }
   ]
 })
 export class AppModule implements DoBootstrap {
