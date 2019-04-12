@@ -26,3 +26,14 @@ build:
   tags:
     - docker
   script: node_modules/.bin/ng build --prod
+
+build-elements:
+  image: trion/ng-cli:${CLI_VERSION}
+  stage: build
+  tags:
+    - docker
+  script: npm run eassessment-build
+  artifacts:
+    paths:
+      - elements/
+    expire_in: 1 week
