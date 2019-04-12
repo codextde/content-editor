@@ -24,42 +24,6 @@ export class DataService {
 
   contentEditorContentItem: any = {};
 
-  // tslint:disable:quotemark
-  designerData: any = {
-    'Items': [{
-      'Id': 137,
-      'Type': 'text',
-      'Content': 'Test',
-      'DisplayOrder': 0,
-      'ContentItemProperties': [{
-        'Value': '{"name":"padding","paddingLeft.px":10,"paddingTop.px":10,"paddingRight.px":10,"paddingBottom.px":10}',
-        'ContentItemPropertyType': 'padding'
-      }]
-    }],
-    'Id': 135,
-    'Type': 'content-editor',
-    'Content': '',
-    'DisplayOrder': 3,
-    'ContentItemProperties': [{
-      'Value': '{"name":"padding","paddingLeft.px":10,"paddingTop.px":10,"paddingRight.px":10,"paddingBottom.px":10}',
-      'ContentItemPropertyType': 'padding'
-    },
-      {
-        'Value': '{"name":"background", "background-color": "#fff"}',
-        'ContentItemPropertyType': 'background'
-      },
-      {
-        'Value': '{"name":"css", "value": ".test{}"}',
-        'ContentItemPropertyType': 'css'
-      },
-      {
-        'Value': '{"name":"direction", "value": "ltr"}',
-        'ContentItemPropertyType': 'direction'
-      }
-
-    ]
-  };
-
   constructor(
     private elementService: ElementService,
     private eventsService: EventsService
