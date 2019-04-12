@@ -1,12 +1,10 @@
 import { Component, ElementRef, forwardRef, OnInit, Renderer2, ViewChild, HostListener } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
-import { IHeadlineProperty } from 'src/components/properties/models/headline.model';
 import { IElement } from 'src/models/element.model';
 import { ElementService } from 'src/services/element.service';
 import { EventsService } from 'src/services/event.service';
-declare var kendo: any;
 declare var document: any;
-/// <reference path="kendo.all.d.ts" />
+declare var kendo: any;
 
 @Component({
   selector: 'app-element-headline',
@@ -90,7 +88,7 @@ export class HeadlineElementComponent implements OnInit, ControlValueAccessor {
   ngOnInit() {
     // Removed Kendo from the Heading Element
     // tslint:disable-next-line:no-unused-expression
-    <kendo.ui.Editor>kendo.jQuery(this.editorEl.nativeElement).kendoEditor({
+    <any>kendo.jQuery(this.editorEl.nativeElement).kendoEditor({
       tools: [],
       pasteCleanup: {
           all: true

@@ -1,6 +1,5 @@
 import { Component, ElementRef, forwardRef, OnInit, ViewChild, Renderer2, HostListener } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
-import '@progress/kendo-ui';
 import { IElement } from 'src/models/element.model';
 import { ElementService } from 'src/services/element.service';
 import { EventsService } from 'src/services/event.service';

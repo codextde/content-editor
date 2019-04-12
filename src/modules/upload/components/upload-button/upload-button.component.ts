@@ -61,7 +61,7 @@ export class UploadButtonComponent implements OnInit, ControlValueAccessor {
 
   ngOnInit() {
     const imageBrowserPath = '../../' + this.helperService.studyName + '/ImageBrowser/';
-    const kendoImageBrowserConfig: kendo.ui.EditorImageBrowser | kendo.ui.EditorOptions = {
+    const kendoImageBrowserConfig: /* kendo.ui.EditorImageBrowser | kendo.ui.EditorOptions */ any = {
       transport: {
         read: {
           url: imageBrowserPath + 'Read'
