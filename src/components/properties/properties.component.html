@@ -13,7 +13,7 @@
   </div>-->
 
 
-  <div  *ngFor="let property of element.properties">
+  <div  *ngFor="let property of _element.properties">
       <app-property-general *ngIf="property.name == 'general'" [(ngModel)]="property"></app-property-general>
       <app-property-padding *ngIf="property.name == 'padding'" [(ngModel)]="property"></app-property-padding>
       <app-property-html *ngIf="property.name == 'html'" [(ngModel)]="property"></app-property-html>
