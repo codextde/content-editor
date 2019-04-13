@@ -200,7 +200,7 @@ eassessment-content-editor {
 
 
 .eco-element-item {
-
+  @extend %default-font;
   &.body-settings-item {
     cursor: pointer;
     border-radius: 50%;
@@ -254,9 +254,10 @@ eassessment-content-editor {
 
 
 .eco-element-item-placeholder {
+  
   background: #333;
-  min-width: 80px;
-  min-height: 80px;
+  min-width: 50px;
+  min-height: 50px;
   border-radius: 6px;
   margin-right: 10px;
 }

@@ -36,6 +36,7 @@ export class HeadlineElementComponent implements OnInit, ControlValueAccessor {
         }
     }
 
+
   constructor(
     private elementService: ElementService,
     private eventsService: EventsService,
@@ -92,6 +93,11 @@ export class HeadlineElementComponent implements OnInit, ControlValueAccessor {
       tools: [],
       pasteCleanup: {
           all: true
+      },
+      execute: (value) => {
+        if (value.name == 'insertparagraph') {
+          value.preventDefault();
+        }
       },
       keyup: (a) => this.change(this),
       change: (a) => this.change(this)
