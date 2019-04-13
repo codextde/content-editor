@@ -35,7 +35,7 @@
         <fa-icon [icon]="faInfoCircle"></fa-icon>
       </div>
       <div class="col flex-end">
-          <app-toggle [(ngModel)]="center" (ngModelChange)="changeCenter()"></app-toggle>
+          <app-toggle [disabled]="general[width] ? false : true" [(ngModel)]="center" (ngModelChange)="changeCenter()"></app-toggle>
       </div>
     </div>
     <!--<div class="row">

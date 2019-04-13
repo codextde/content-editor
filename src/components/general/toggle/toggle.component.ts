@@ -1,4 +1,4 @@
-import { Component, forwardRef } from '@angular/core';
+import { Component, forwardRef, Input } from '@angular/core';
 import { NG_VALUE_ACCESSOR } from '@angular/forms';
 
 @Component({
@@ -12,6 +12,7 @@ import { NG_VALUE_ACCESSOR } from '@angular/forms';
   }]
 })
 export class ToggleComponent {
+  @Input('disabled') disabled: boolean = false;
 
   value;
   className;
