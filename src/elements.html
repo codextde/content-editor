@@ -6,53 +6,132 @@
   <title>eAssessment Content Editor</title>
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="eassessment-content-editor.css">
+
+
+  <script src="https://code.jquery.com/jquery-3.4.0.min.js"
+    integrity="sha256-BJeo0qm959uMBGb65z40ejJYGSgR7REI4+CW1fNKwOg=" crossorigin="anonymous"></script>
+  <script type="text/javascript" src="http://kendo.cdn.telerik.com/2019.1.220/js/kendo.all.min.js"></script>
+  <link rel="stylesheet" href="http://kendo.cdn.telerik.com/2019.1.220/styles/kendo.common.min.css">
+
+
+
+  <style>
+    body,
+    html {
+      margin: 0;
+      padding: 0;
+    }
+
+  </style>
 </head>
 
-
-<body>
-  <eassessment-content-editor></eassessment-content-editor>
-
-  <script type="text/javascript" src="./eassessment-content-editor.js"></script>
+<body style="height: 100vh; ">
+  <eassessment-content-editor>
+  </eassessment-content-editor>
   <script>
     const el = document.querySelector('eassessment-content-editor');
 
-    const designerSampleDataTwo = {"Type":"content-editor","Items":[{"Type":"text","Content":"This is a Textbox","ContentItemProperties":[]},{"Type":"text","Content":"This is a Textbox with Padding","ContentItemProperties":[{"ContentItemPropertyType":"padding","Value":"{\"name\":\"padding\",\"paddingLeft.px\":10,\"paddingTop.px\":10,\"paddingRight.px\":10,\"paddingBottom.px\":10}"}]}],"ContentItemProperties":[{"ContentItemPropertyType":"background","Value":"{\"name\":\"background\",\"background-color\":\"#7cbece\"}"},{"ContentItemPropertyType":"css","Value":"{\"name\":\"css\",\"value\":\"\"}"},{"ContentItemPropertyType":"direction","Value":"{\"name\":\"direction\",\"value\":\"\"}"}]};
-    
-    
-    const designerSampleData = {
+    const designerSampleDataTwo = {
+      "Type": "content-editor",
       "Items": [{
-        "Id": 137,
         "Type": "text",
-        "Content": "Test",
-        "DisplayOrder": 0,
+        "Content": "This is a Textbox",
+        "ContentItemProperties": []
+      }, {
+        "Type": "text",
+        "Content": "This is a Textbox with Padding",
         "ContentItemProperties": [{
-          "Value": "{\"name\":\"padding\",\"paddingLeft.px\":10,\"paddingTop.px\":10,\"paddingRight.px\":10,\"paddingBottom.px\":10}",
-          "ContentItemPropertyType": "padding"
+          "ContentItemPropertyType": "padding",
+          "Value": "{\"name\":\"padding\",\"paddingLeft.px\":10,\"paddingTop.px\":10,\"paddingRight.px\":10,\"paddingBottom.px\":10}"
         }]
       }],
-      "Id": 135,
-      "Type": "content-editor",
-      "Content": "",
-      "DisplayOrder": 3,
       "ContentItemProperties": [{
-          "Value": "{\"name\":\"padding\",\"paddingLeft.px\":10,\"paddingTop.px\":10,\"paddingRight.px\":10,\"paddingBottom.px\":10}",
-          "ContentItemPropertyType": "padding"
-        },
-        {
-          "Value": "{\"name\":\"background\", \"background-color\": \"#fff\"}",
-          "ContentItemPropertyType": "background"
-        },
-        {
-          "Value": "{\"name\":\"css\", \"value\": \".test{}\"}",
-          "ContentItemPropertyType": "css"
-        },
-        {
-          "Value": "{\"name\":\"direction\", \"value\": \"ltr\"}",
-          "ContentItemPropertyType": "direction"
-        }
+        "ContentItemPropertyType": "background",
+        "Value": "{\"name\":\"background\",\"background-color\":\"#7cbece\"}"
+      }, {
+        "ContentItemPropertyType": "css",
+        "Value": "{\"name\":\"css\",\"value\":\"\"}"
+      }, {
+        "ContentItemPropertyType": "direction",
+        "Value": "{\"name\":\"direction\",\"value\":\"\"}"
+      }]
+    };
 
-      ]
+
+    const designerSampleData = {
+      "Items": [{
+        "Items": null,
+        "Selected": false,
+        "Quantity": null,
+        "Disabled": null,
+        "ResponseType": 0,
+        "Template": 0,
+        "Children": [],
+        "ResponseContent": null,
+        "Settings": {},
+        "ContentAll": null,
+        "isNew": false,
+        "Cells": [],
+        "ContentItemDisplaySettings": [],
+        "Positions": null,
+        "Id": 135,
+        "Type": "headline",
+        "Width": null,
+        "TextTypeId": null,
+        "ScoringType": 0,
+        "TitleLeft": "",
+        "TitleTop": "",
+        "TitleRight": "",
+        "TitleBottom": "",
+        "Content": "sadsadassad",
+        "Align": null,
+        "Inline": false,
+        "DisplayOrder": 1,
+        "OriginId": null,
+        "IsEditable": true,
+        "IsNotAdministered": false,
+        "AdditionalPropertyValues": [],
+        "OwnerIsDeleted": false,
+        "IsDeleted": false,
+        "_cid": 0,
+        "RefItemUnitId": 21,
+        "ContentItemProperties": []
+      }],
+      "Selected": false,
+      "Quantity": null,
+      "Disabled": null,
+      "ResponseType": 0,
+      "Template": 0,
+      "Children": [],
+      "ResponseContent": null,
+      "Settings": {},
+      "ContentAll": null,
+      "isNew": false,
+      "Cells": [],
+      "ContentItemDisplaySettings": [],
+      "Positions": null,
+      "Id": 134,
+      "Type": "content-editor",
+      "Width": null,
+      "TextTypeId": null,
+      "ScoringType": 0,
+      "TitleLeft": "",
+      "TitleTop": "",
+      "TitleRight": "",
+      "TitleBottom": "",
+      "Content": "",
+      "Align": null,
+      "Inline": false,
+      "DisplayOrder": 1,
+      "OriginId": null,
+      "IsEditable": true,
+      "IsNotAdministered": false,
+      "AdditionalPropertyValues": [],
+      "OwnerIsDeleted": false,
+      "IsDeleted": false,
+      "_cid": 0,
+      "RefItemUnitId": 21,
+      "ContentItemProperties": []
     };
 
     // Set Sample Designer Data
@@ -63,5 +142,6 @@
     });
 
   </script>
+</body>
 
 </html>
