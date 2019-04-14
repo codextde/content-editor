@@ -37,6 +37,22 @@ eassessment-content-editor {
     justify-content: flex-end;
   }
 
+  .text-content {
+    p, span, h1, h2, h3, h4, h5 {
+      font-family: unset;
+      font-size: unset;
+      line-height: unset;
+      color: unset;
+      font-weight: unset;
+    }
+  }
+
+  .preventUserSelect {
+    * {
+      user-select: none;
+    }
+  }
+
 
 
   color-picker {
