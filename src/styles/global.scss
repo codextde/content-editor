@@ -100,9 +100,15 @@ eassessment-content-editor {
       }
     }
   }
-
+  .k-colorpicker .k-tool-icon::before {
+    margin: auto 7px;
+  }
   .k-colorpicker .k-tool-icon {
-    width: 60px;
+    width: 45px;
+  }
+  .k-colorpicker .k-tool-icon .k-selected-color {
+    margin: 0 0 7px;
+    left: 8px;
   }
 
 }
