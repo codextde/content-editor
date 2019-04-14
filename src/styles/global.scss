@@ -38,7 +38,14 @@ eassessment-content-editor {
   }
 
   .text-content {
-    p, span, h1, h2, h3, h4, h5 {
+
+    p,
+    span,
+    h1,
+    h2,
+    h3,
+    h4,
+    h5 {
       font-family: unset;
       font-size: unset;
       line-height: unset;
@@ -92,6 +99,10 @@ eassessment-content-editor {
         display: inline-block;
       }
     }
+  }
+
+  .k-colorpicker .k-tool-icon {
+    width: 60px;
   }
 
 }
@@ -217,6 +228,7 @@ eassessment-content-editor {
 
 .eco-element-item {
   @extend %default-font;
+
   &.body-settings-item {
     cursor: pointer;
     border-radius: 50%;
@@ -270,7 +282,7 @@ eassessment-content-editor {
 
 
 .eco-element-item-placeholder {
-  
+
   background: #333;
   min-width: 50px;
   min-height: 50px;
