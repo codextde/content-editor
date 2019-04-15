@@ -75,7 +75,7 @@ export class AppComponent implements OnInit {
     if ((event.ctrlKey || event.code == 'MetaLeft') && event.key == 's') {
       event.preventDefault();
       // this.save();
-      this.eventsService.publish('designer-data-change');
+      // this.eventsService.publish('designer-data-change');
     }
   }
 
@@ -104,6 +104,7 @@ export class AppComponent implements OnInit {
     this.checkDrag();
     this.eventsService.subscribe('property-change', () => {
       this.checkDrag();
+      this.save();
     });
 
     this.eventsService.subscribe('designer-data-change', () => {
@@ -116,6 +117,10 @@ export class AppComponent implements OnInit {
     });
   }
 
+
+  save() {
+    this.eventsService.publish('designer-data-change');
+  }
 
   checkDrag() {
     this.dataService.contentEditorElements.forEach((element: IElement) => {
@@ -187,10 +192,6 @@ export class AppComponent implements OnInit {
     this.save();
   }
 
-
-  async save() {
-    const designerData = await this.dataService.convertToDesigner();
-  }
 
   clear() {
     this.dataService.contentEditorElements = [];

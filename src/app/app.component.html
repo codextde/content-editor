@@ -72,13 +72,13 @@
             <div class="drag-element" [tooltip]="elementBar" [tooltipClick]="true" *ngFor="let element of dataService.contentEditorElements"
               cdkDrag>
     
-              <app-element-text *ngIf="element.component == 'text'" (click)="openProperties(element)" [(ngModel)]="element"></app-element-text>
-              <app-element-html *ngIf="element.component == 'html'" (click)="openProperties(element)" [(ngModel)]="element"></app-element-html>
-              <app-element-headline *ngIf="element.component == 'headline'" (click)="openProperties(element)" [(ngModel)]="element"></app-element-headline>
-              <app-element-video *ngIf="element.component == 'video'" (click)="openProperties(element)" [(ngModel)]="element"></app-element-video>
-              <app-element-image *ngIf="element.component == 'image'" (click)="openProperties(element)" [(ngModel)]="element"></app-element-image>
-              <app-element-clearfix *ngIf="element.component == 'clearfix'" (click)="openProperties(element)"></app-element-clearfix>
-              <app-element-divider *ngIf="element.component == 'divider'" (click)="openProperties(element)" [(ngModel)]="element"></app-element-divider>
+              <app-element-text *ngIf="element.component == 'text'" (click)="openProperties(element)" [(ngModel)]="element" (ngModelChange)="save()"></app-element-text>
+              <app-element-html *ngIf="element.component == 'html'" (click)="openProperties(element)" [(ngModel)]="element" (ngModelChange)="save()"></app-element-html>
+              <app-element-headline *ngIf="element.component == 'headline'" (click)="openProperties(element)" [(ngModel)]="element" (ngModelChange)="save()"></app-element-headline>
+              <app-element-video *ngIf="element.component == 'video'" (click)="openProperties(element)" [(ngModel)]="element" (ngModelChange)="save()"></app-element-video>
+              <app-element-image *ngIf="element.component == 'image'" (click)="openProperties(element)" [(ngModel)]="element" (ngModelChange)="save()"></app-element-image>
+              <app-element-clearfix *ngIf="element.component == 'clearfix'" (click)="openProperties(element)" (ngModelChange)="save()"></app-element-clearfix>
+              <app-element-divider *ngIf="element.component == 'divider'" (click)="openProperties(element)" [(ngModel)]="element" (ngModelChange)="save()"></app-element-divider>
     
               <app-tooltip class="drag-element-toolbar" #elementBar direction="ltr">
                 <div class="drag-element-component item">
