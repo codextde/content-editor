@@ -122,6 +122,15 @@ eassessment-content-editor {
   background: transparent;
   padding: 0;
 }
+.k-filebrowser .k-breadcrumbs-wrap .k-icon {
+  position: absolute!important;
+  margin: -7px!important;
+  padding: 0!important;
+}
+
+.k-filebrowser .k-breadcrumbs-wrap .k-link {
+  padding: 0 14px;
+}
 
 .hide {
   display: none !important;
