@@ -113,16 +113,14 @@ eassessment-content-editor {
 
 }
 
-.imageUpload {
-  .k-filebrowser .k-tile strong {
-    float: unset;
-    width: auto;
-  }
-  .k-i-close{
-    border: none;
-    background: transparent;
-    padding: 0;
-  }
+.k-filebrowser .k-tile strong {
+  float: unset!important;
+  width: auto!important;
+}
+.k-i-close{
+  border: none;
+  background: transparent;
+  padding: 0;
 }
 
 .hide {
