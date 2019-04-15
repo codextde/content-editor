@@ -1,4 +1,9 @@
 .stepper {
+    input[type=number]::-webkit-inner-spin-button, 
+    input[type=number]::-webkit-outer-spin-button { 
+      -webkit-appearance: none; 
+      margin: 0; 
+    }
 
     background-color: #FFF;
     border: 1px solid #DEE1E2;
