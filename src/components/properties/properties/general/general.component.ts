@@ -52,6 +52,12 @@ export class GeneralPropertyComponent implements ControlValueAccessor {
     this.eventsService.publish('property-change');
   }
 
+  updateCenter() {
+    if (!this.general[this.width]) {
+      this.center = false;
+    }
+  }
+
   loadCenter() {
     if (this.general.margin == '0 auto') {
       this.center = true;
