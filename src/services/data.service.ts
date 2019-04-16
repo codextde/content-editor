@@ -28,6 +28,7 @@ export class DataService {
     private elementService: ElementService,
     private eventsService: EventsService
   ) {
+    console.log(ImageElementConfig.config)
     // @Todo Remove and load from the Designer. The Designer need to Inject the Data to the iFrame
     // window['contentEditorData'] = this.designerData;
 
@@ -87,6 +88,8 @@ export class DataService {
 
       // Load Properties
       for (const property of element.ContentItemProperties) {
+        property.ContentItemPropertyType = property.ContentItemPropertyType || this.getContentItemPropertyNamebyId(property.ContentItemPropertyTypeId);
+
         // Find Property from Element
         let foundProperty = convertedElement.properties.find((data) => {
           return data.name == property.ContentItemPropertyType;
@@ -109,7 +112,6 @@ export class DataService {
       }
 
       this.contentEditorElements.push(convertedElement);
-
     }
 
     console.log('this.contentEditorElements', this.contentEditorElements);
@@ -195,6 +197,48 @@ export class DataService {
     return designerData;
   }
 
+  getContentItemPropertyNamebyId(id) {
+    // TODO Convert to Enum
+    if (id == 1) {
+      return 'background';
+    }
+    if (id == 2) {
+      return 'border';
+    }
+    if (id == 3) {
+      return  'css';
+    }
+    if (id == 4) {
+      return 'divider';
+    }
+    if (id == 5) {
+      return 'general';
+    }
+    if (id == 6) {
+      return 'headline';
+    }
+    if (id == 7) {
+      return 'html';
+    }
+    if (id == 8) {
+      return 'image';
+    }
+    if (id == 9) {
+      return 'initialLetter';
+    }
+    if (id == 10) {
+      return  'margin';
+    }
+    if (id == 11) {
+      return 'padding';
+    }
+    if (id == 12) {
+      return  'position';
+    }
+    if (id == 13) {
+      return 'text';
+    }
+  }
 
   getContentItemPropertyTypeId(name) {
     // TODO Convert to Enum
