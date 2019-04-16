@@ -152,6 +152,20 @@ describe('DataService', () => {
   });
 
   it('should convert from designer to content editor', async () => {
+    // First convert few items
+    await dataService.convertToContentEditor(testDataFromDesigner);
+
+    // Amount of items should be not zero
+    expect(dataService.contentEditorElements.length).toBe(2);
+
+    // Convert empty data
+    await dataService.convertToContentEditor([]);
+
+    // No items should be there
+    expect(dataService.contentEditorElements.length).toBe(0);
+  });
+
+  it('should convert from designer to content editor', async () => {
     // First convert
     await dataService.convertToContentEditor(testDataFromDesigner);
 

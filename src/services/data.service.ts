@@ -50,74 +50,78 @@ export class DataService {
     };
 
 
-    for (const property of designerData.ContentItemProperties) {
-      await this.contentEditorProperties.push(JSON.parse(property.Value));
+    if (designerData.ContentItemProperties) {
+      for (const property of designerData.ContentItemProperties) {
+        await this.contentEditorProperties.push(JSON.parse(property.Value));
+      }
     }
 
     // Load Elements
-    for (const element of designerData.Items) {
-      console.log(element);
-      let convertedElement: IElement;
+    if (designerData.Items) {
+      for (const element of designerData.Items) {
+        console.log(element);
+        let convertedElement: IElement;
 
-      if (element.Type == 'text') {
-        convertedElement = TextElementConfig.newElement();
-      }
-      if (element.Type == 'video') {
-        convertedElement = VideoElementConfig.newElement();
-      }
-      if (element.Type == 'image') {
-        convertedElement = ImageElementConfig.newElement();
-      }
-      if (element.Type == 'html') {
-        convertedElement = HtmlElementConfig.newElement();
-      }
-      if (element.Type == 'headline') {
-        convertedElement = HeadlineElementConfig.newElement();
-      }
-      if (element.Type == 'divider') {
-        convertedElement = DividerElementConfig.newElement();
-      }
-      if (element.Type == 'clearfix') {
-        convertedElement = ClearfixElementConfig.newElement();
-      }
-
-      convertedElement = {...convertedElement, ...element};
-
-      // Set Value of Element
-      convertedElement.value = element.Content;
-
-      // Load Properties
-      for (const property of element.ContentItemProperties) {
-
-        property.ContentItemPropertyType = property.ContentItemPropertyType || this.getContentItemPropertyNamebyId(property.ContentItemPropertyTypeId);
-
-        // Find Property from Element
-        let foundProperty = convertedElement.properties.find((data) => {
-          return data.name == property.ContentItemPropertyType;
-        });
-
-        // Merge Designer Property with Element Property
-        if (typeof foundProperty === 'object') {
-          const propertyValue = JSON.parse(property.Value);
-          const idData = {
-            ContentItemId: property.ContentItemId || 0,
-            Id: property.Id || 0
-          };
-          foundProperty = {
-            ...foundProperty,
-            ...propertyValue,
-            ...idData
-          };
+        if (element.Type == 'text') {
+          convertedElement = TextElementConfig.newElement();
         }
-        const propertyIndex = convertedElement.properties.findIndex((data) => {
-          return data.name == property.ContentItemPropertyType;
-        });
+        if (element.Type == 'video') {
+          convertedElement = VideoElementConfig.newElement();
+        }
+        if (element.Type == 'image') {
+          convertedElement = ImageElementConfig.newElement();
+        }
+        if (element.Type == 'html') {
+          convertedElement = HtmlElementConfig.newElement();
+        }
+        if (element.Type == 'headline') {
+          convertedElement = HeadlineElementConfig.newElement();
+        }
+        if (element.Type == 'divider') {
+          convertedElement = DividerElementConfig.newElement();
+        }
+        if (element.Type == 'clearfix') {
+          convertedElement = ClearfixElementConfig.newElement();
+        }
 
-        // Set new Property to the Element
-        convertedElement.properties[propertyIndex] = foundProperty;
+        convertedElement = {...convertedElement, ...element};
+
+        // Set Value of Element
+        convertedElement.value = element.Content;
+
+        // Load Properties
+        for (const property of element.ContentItemProperties) {
+
+          property.ContentItemPropertyType = property.ContentItemPropertyType || this.getContentItemPropertyNamebyId(property.ContentItemPropertyTypeId);
+
+          // Find Property from Element
+          let foundProperty = convertedElement.properties.find((data) => {
+            return data.name == property.ContentItemPropertyType;
+          });
+
+          // Merge Designer Property with Element Property
+          if (typeof foundProperty === 'object') {
+            const propertyValue = JSON.parse(property.Value);
+            const idData = {
+              ContentItemId: property.ContentItemId || 0,
+              Id: property.Id || 0
+            };
+            foundProperty = {
+              ...foundProperty,
+              ...propertyValue,
+              ...idData
+            };
+          }
+          const propertyIndex = convertedElement.properties.findIndex((data) => {
+            return data.name == property.ContentItemPropertyType;
+          });
+
+          // Set new Property to the Element
+          convertedElement.properties[propertyIndex] = foundProperty;
+        }
+
+        this.contentEditorElements.push(convertedElement);
       }
-
-      this.contentEditorElements.push(convertedElement);
     }
 
     console.log('this.contentEditorElements', this.contentEditorElements);
