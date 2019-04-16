@@ -216,7 +216,7 @@ describe('DataService', () => {
     expect(headlineItem.IsDeleted).toBeFalsy();
 
     // Check if headline is centered and not floated and that the ID is the same as on import
-    const headlineGeneralProperty = headlineItem.ContentItemProperties.find(element => element.Value == 'general');
+    const headlineGeneralProperty = headlineItem.ContentItemProperties.find(element => element.Value.includes('general'));
     expect(headlineGeneralProperty).not.toBeUndefined();
     expect(headlineGeneralProperty.Id).toBe(233);
     expect(headlineGeneralProperty.Value).not.toBeUndefined();
