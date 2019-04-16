@@ -136,7 +136,8 @@ export class DataService {
       Id: 0,
       Type: 'content-editor',
       Items: [],
-      ContentItemProperties: []
+      ContentItemProperties: [],
+      Align: 'Left'
     };
 
     designerData.Id = this.contentEditorContentItem.Id;
@@ -164,7 +165,8 @@ export class DataService {
         Type: element.component,
         Content: element.value,
         ContentItemProperties: [],
-        IsDeleted: false
+        IsDeleted: false,
+        Align: 'Left'
       };
 
       contentItem.Id = element.Id;
