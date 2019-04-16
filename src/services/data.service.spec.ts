@@ -43,7 +43,23 @@ describe('DataService', () => {
       IsDeleted: false,
       _cid: 0,
       RefItemUnitId: 333,
-      ContentItemProperties: []
+      ContentItemProperties: [
+        {
+          Id: 233,
+          ContentItemId: 5908,
+          ContentItemPropertyTypeId: 5,
+          Value: '{"name":"general","float":"none"}',
+          IsDeleted: false,
+          ContentItemPropertyType: null
+        },
+        {
+          ContentItemId: 5908,
+          ContentItemPropertyTypeId: 13,
+          Value: '{"name":"text","textAlign":"center","fontSize.px":33}',
+          IsDeleted: false,
+          ContentItemPropertyType: null
+        }
+      ]
     }, {
       Items: null,
       Selected: false,
@@ -144,11 +160,16 @@ describe('DataService', () => {
 
     // We should have only 2 elements in our editor
     expect(dataService.contentEditorElements.length).toBe(2);
-    expect(dataService.contentEditorElements.find(element => element.component == 'headline')).not.toBeUndefined();
-    expect(dataService.contentEditorElements.find(element => element.component == 'headline').Id).toBe(4);
+    const headline = dataService.contentEditorElements.find(element => element.component == 'headline');
+    expect(headline).not.toBeUndefined();
+    expect(headline.Id).toBe(4);
     expect(dataService.contentEditorElements.find(element => element.component == 'text')).not.toBeUndefined();
     expect(dataService.contentEditorElements.find(element => element.component == 'text').Id).toBe(5);
     expect(dataService.contentEditorElements.find(element => element.component == 'html')).toBeUndefined();
+
+    // Check if headline is centered and not floated
+    expect(headline.properties.find(element => element.name == 'general')).not.toBeUndefined();
+    expect(headline.properties.find(element => element.name == 'general').float).toBe('none');
   });
 
   it('should convert from content editor to designer', async () => {
@@ -178,15 +199,28 @@ describe('DataService', () => {
     expect(designerData.Items.find(element => element.Type == 'html')).not.toBeUndefined();
     expect(designerData.Items.find(element => element.Type == 'css')).toBeUndefined();
 
-    // Lets delete the headline
-    const headlineToDelete = dataService.contentEditorElements.find(element => element.component == 'headline');
-    const indexOfHeadline = dataService.contentEditorElements.indexOf(headlineToDelete);
-    dataService.contentEditorElements.splice(indexOfHeadline, 1);
+    // Lets delete the text
+    const textToDelete = dataService.contentEditorElements.find(element => element.component == 'text');
+    const indexOfText = dataService.contentEditorElements.indexOf(textToDelete);
+    dataService.contentEditorElements.splice(indexOfText, 1);
 
     designerData = dataService.convertToDesigner();
-    console.log(JSON.stringify(designerData));
     expect(designerData.Items.length).toBe(3);
-    expect(designerData.Items.find(element => element.Type == 'headline')).not.toBeUndefined();
-    expect(designerData.Items.find(element => element.Type == 'headline').IsDeleted).toBeTruthy();
+
+    const textItem = designerData.Items.find(element => element.Type == 'text');
+    expect(textItem).not.toBeUndefined();
+    expect(textItem.IsDeleted).toBeTruthy();
+
+    const headlineItem = designerData.Items.find(element => element.Type == 'headline');
+    expect(headlineItem).not.toBeUndefined();
+    expect(headlineItem.IsDeleted).toBeFalsy();
+
+    // Check if headline is centered and not floated and that the ID is the same as on import
+    const headlineGeneralProperty = headlineItem.ContentItemProperties.find(element => element.Value == 'general');
+    expect(headlineGeneralProperty).not.toBeUndefined();
+    expect(headlineGeneralProperty.Id).toBe(233);
+    expect(headlineGeneralProperty.Value).not.toBeUndefined();
+    const headlineGeneralPropertyValue = JSON.parse(headlineGeneralProperty.Value);
+    expect(headlineGeneralPropertyValue.float).toBe('none');
   });
 });
