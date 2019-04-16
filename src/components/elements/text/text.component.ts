@@ -61,27 +61,27 @@ export class TextElementComponent implements OnInit, ControlValueAccessor {
       if (this.textElement) {
         this.styles = this.elementService.loadStyleProperties(this.textElement.properties);
 
-        if (this.draggable ) {
+        if (this.draggable && this.draggable.ngDraggable) {
+          console.log(this.draggable)
           this.draggable.resetPosition();
         }
         if (this.position && this.position.position == 'absolute') {
           this.getPositionKeys();
         }
         if (this.position && this.position.position == 'unset') {
-          if (this.draggable) {
+          if (this.draggable  && this.draggable.ngDraggable) {
             this.draggable.resetPosition();
-            setTimeout(() => {
-              const dragElement = this.dragElement.nativeElement;
-              this.movingOffset = {x: dragElement.offsetLeft, y: dragElement.offsetTop};
-            }, 10);
           }
+          setTimeout(() => {
+            const dragElement = this.dragElement.nativeElement;
+            this.movingOffset = {x: dragElement.offsetLeft, y: dragElement.offsetTop};
+          }, 1);
         }
       }
     });
   }
   getPositionKeys() {
     for (const key of Object.keys(this.position)) {
-      console.log(key);
       if (key.startsWith('top')) {
         this.topKey = key;
       }
@@ -162,11 +162,21 @@ export class TextElementComponent implements OnInit, ControlValueAccessor {
       pasteCleanup: {
         all: true
       },
+      select: (a) => {
+        let selection = this.editor.getSelection();
+        
+        console.log(selection.focusNode.parentElement.style.color);
+        const color = selection.focusNode.parentElement.style.color;
+
+        if(color) {
+          this.editor.toolbar.tools.foreColor.update('#000');
+        }
+        
+      },
       keyup: (a) => this.change(this),
       change: (a) => this.change(this)
     });
     this.editor = kendo.jQuery(this.editorEl.nativeElement).data('kendoEditor');
-    console.log(this.editor.toolbar.window);
     this.editor.toolbar.window.wrapper[0].classList.add('ece');
 
 
