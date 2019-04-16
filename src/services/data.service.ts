@@ -88,6 +88,7 @@ export class DataService {
 
       // Load Properties
       for (const property of element.ContentItemProperties) {
+
         property.ContentItemPropertyType = property.ContentItemPropertyType || this.getContentItemPropertyNamebyId(property.ContentItemPropertyTypeId);
 
         // Find Property from Element
@@ -98,9 +99,14 @@ export class DataService {
         // Merge Designer Property with Element Property
         if (typeof foundProperty === 'object') {
           const propertyValue = JSON.parse(property.Value);
+          const idData = {
+            ContentItemId: property.ContentItemId || 0,
+            Id: property.Id || 0
+          };
           foundProperty = {
             ...foundProperty,
-            ...propertyValue
+            ...propertyValue,
+            ...idData
           };
         }
         const propertyIndex = convertedElement.properties.findIndex((data) => {
@@ -136,8 +142,8 @@ export class DataService {
     // Load Content Item Content Editor Properties
     this.contentEditorProperties.forEach((property: any) => {
       const contentItemProperty: IContentItemProperty = {
-        Id: 0,
-        ContentItemId: 0,
+        Id: property.Id || 0,
+        ContentItemId: property.ContentItemId || 0,
         ContentItemPropertyType: property.name,
         Value: JSON.stringify(property),
         ContentItemPropertyTypeId: this.getContentItemPropertyTypeId(property.name)
@@ -150,7 +156,6 @@ export class DataService {
 
     // Add Content Items to Content Editor Element // TODO Update element Interface
     this.contentEditorElements.forEach((element: any) => {
-      console.log('element', element);
       const contentItem: IContentItem = {
         Type: element.component,
         Content: element.value,
@@ -166,8 +171,8 @@ export class DataService {
 
       element.properties.forEach((property: any) => {
         const contentItemProperty: IContentItemProperty = {
-          Id: 0,
-          ContentItemId: 0,
+          Id: property.Id,
+          ContentItemId: property.ContentItemId,
           ContentItemPropertyType: property.name,
           Value: JSON.stringify(property),
           ContentItemPropertyTypeId: this.getContentItemPropertyTypeId(property.name)
