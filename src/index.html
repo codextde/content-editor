@@ -31,33 +31,6 @@
   <script>
     const el = document.querySelector('eassessment-content-editor');
 
-    const designerSampleDataTwo = {
-      "Type": "content-editor",
-      "Items": [{
-        "Type": "text",
-        "Content": "This is a Textbox",
-        "ContentItemProperties": []
-      }, {
-        "Type": "text",
-        "Content": "This is a Textbox with Padding",
-        "ContentItemProperties": [{
-          "ContentItemPropertyType": "padding",
-          "Value": "{\"name\":\"padding\",\"paddingLeft.px\":10,\"paddingTop.px\":10,\"paddingRight.px\":10,\"paddingBottom.px\":10}"
-        }]
-      }],
-      "ContentItemProperties": [{
-        "ContentItemPropertyType": "background",
-        "Value": "{\"name\":\"background\",\"background-color\":\"#7cbece\"}"
-      }, {
-        "ContentItemPropertyType": "css",
-        "Value": "{\"name\":\"css\",\"value\":\"\"}"
-      }, {
-        "ContentItemPropertyType": "direction",
-        "Value": "{\"name\":\"direction\",\"value\":\"\"}"
-      }]
-    };
-
-
     const designerSampleData = {
       "Items": [{
         "Items": null,
@@ -74,7 +47,7 @@
         "Cells": [],
         "ContentItemDisplaySettings": [],
         "Positions": null,
-        "Id": 135,
+        "Id": 203,
         "Type": "headline",
         "Width": null,
         "TextTypeId": null,
@@ -83,7 +56,7 @@
         "TitleTop": "",
         "TitleRight": "",
         "TitleBottom": "",
-        "Content": "sadsadassad",
+        "Content": "Headline 1",
         "Align": null,
         "Inline": false,
         "DisplayOrder": 1,
@@ -94,7 +67,44 @@
         "OwnerIsDeleted": false,
         "IsDeleted": false,
         "_cid": 0,
-        "RefItemUnitId": 21,
+        "RefItemUnitId": 34,
+        "ContentItemProperties": []
+      }, {
+        "Items": null,
+        "Selected": false,
+        "Quantity": null,
+        "Disabled": null,
+        "ResponseType": 0,
+        "Template": 0,
+        "Children": [],
+        "ResponseContent": null,
+        "Settings": {},
+        "ContentAll": null,
+        "isNew": false,
+        "Cells": [],
+        "ContentItemDisplaySettings": [],
+        "Positions": null,
+        "Id": 204,
+        "Type": "headline",
+        "Width": null,
+        "TextTypeId": null,
+        "ScoringType": 0,
+        "TitleLeft": "",
+        "TitleTop": "",
+        "TitleRight": "",
+        "TitleBottom": "",
+        "Content": "Headline 2",
+        "Align": null,
+        "Inline": false,
+        "DisplayOrder": 2,
+        "OriginId": null,
+        "IsEditable": true,
+        "IsNotAdministered": false,
+        "AdditionalPropertyValues": [],
+        "OwnerIsDeleted": false,
+        "IsDeleted": false,
+        "_cid": 0,
+        "RefItemUnitId": 34,
         "ContentItemProperties": []
       }],
       "Selected": false,
@@ -110,7 +120,7 @@
       "Cells": [],
       "ContentItemDisplaySettings": [],
       "Positions": null,
-      "Id": 134,
+      "Id": 202,
       "Type": "content-editor",
       "Width": null,
       "TextTypeId": null,
@@ -130,7 +140,7 @@
       "OwnerIsDeleted": false,
       "IsDeleted": false,
       "_cid": 0,
-      "RefItemUnitId": 21,
+      "RefItemUnitId": 34,
       "ContentItemProperties": []
     };
 
@@ -138,7 +148,7 @@
     el.setAttribute("designer-data", JSON.stringify(designerSampleData));
     // Sample Data Change
     el.addEventListener('designerDataChange', data => {
-      console.log('Designer Data', data);
+      console.log('Designer Data', JSON.parse(data.detail));
     });
 
   </script>

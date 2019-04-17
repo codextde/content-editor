@@ -137,7 +137,7 @@ export class AppComponent implements OnInit {
   }
 
 
-  drop(event: CdkDragDrop < string[] > , prevent ? ) {
+  drop(event: CdkDragDrop <string[]>) {
     if (event.previousContainer === event.container) {
       moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
     } else {
@@ -152,8 +152,13 @@ export class AppComponent implements OnInit {
       this.dataService.contentEditorElements[event.currentIndex] = HelperService.clearObject(currentObject);
 
     }
+
+    for (let [index, element] of this.dataService.contentEditorElements.entries()) {
+      element.DisplayOrder = index + 1;
+    }
     this.eventsService.publish('designer-data-change');
   }
+
 
   
   cssCodeChange() {

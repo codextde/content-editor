@@ -36,7 +36,6 @@ export class DataService {
   }
 
   async convertToContentEditor(designerData) {
-    console.log('designerData', designerData);
     this.originalDesignerData = JSON.parse(JSON.stringify(designerData));
     this.contentEditorProperties = [];
     this.contentEditorElements = [];
@@ -52,14 +51,17 @@ export class DataService {
 
     if (designerData.ContentItemProperties) {
       for (const property of designerData.ContentItemProperties) {
-        await this.contentEditorProperties.push(JSON.parse(property.Value));
+        let foundProperty = this.setProperty(property);
+        await this.contentEditorProperties.push(foundProperty);
       }
     }
 
     // Load Elements
     if (designerData.Items) {
       for (const element of designerData.Items) {
-        console.log(element);
+        if (element.IsDeleted) {
+          return;
+        }
         let convertedElement: IElement;
 
         if (element.Type == 'text') {
@@ -92,30 +94,12 @@ export class DataService {
         // Load Properties
         for (const property of element.ContentItemProperties) {
 
-          property.ContentItemPropertyType = property.ContentItemPropertyType || this.getContentItemPropertyNamebyId(property.ContentItemPropertyTypeId);
-
-          // Find Property from Element
-          let foundProperty = convertedElement.properties.find((data) => {
-            return data.name == property.ContentItemPropertyType;
-          });
-
-          // Merge Designer Property with Element Property
-          if (typeof foundProperty === 'object') {
-            const propertyValue = JSON.parse(property.Value);
-            const idData = {
-              ContentItemId: property.ContentItemId || 0,
-              Id: property.Id || 0
-            };
-            foundProperty = {
-              ...foundProperty,
-              ...propertyValue,
-              ...idData
-            };
-          }
+          let foundProperty = this.setProperty(property, convertedElement.properties);
+          
           const propertyIndex = convertedElement.properties.findIndex((data) => {
             return data.name == property.ContentItemPropertyType;
           });
-
+          
           // Set new Property to the Element
           convertedElement.properties[propertyIndex] = foundProperty;
         }
@@ -127,6 +111,38 @@ export class DataService {
     console.log('this.contentEditorElements', this.contentEditorElements);
 
     this.eventsService.publish('body-properties-change');
+  }
+
+  setProperty(property, properties?) {
+    property.ContentItemPropertyType = property.ContentItemPropertyType || this.getContentItemPropertyNamebyId(property.ContentItemPropertyTypeId);
+    let foundProperty = {};
+
+    
+    // Find Property from Element
+    if(properties) {
+      foundProperty = properties.find((data) => {
+        return data.name == property.ContentItemPropertyType;
+      });
+    }
+    
+
+    // Merge Designer Property with Element Property
+    if (typeof foundProperty === 'object') {
+      const propertyValue = JSON.parse(property.Value);
+      const idData = {
+        ContentItemId: property.ContentItemId || 0,
+        Id: property.Id || 0
+      };
+      foundProperty = {
+        ...foundProperty,
+        ...propertyValue,
+        ...idData
+      };
+
+      
+    }
+    return foundProperty;
+          
   }
 
   convertToDesigner() {
@@ -170,6 +186,7 @@ export class DataService {
       contentItem.Id = element.Id;
       contentItem.IsDeleted = element.IsDeleted;
       contentItem.RefItemUnitId = element.RefItemUnitId;
+      contentItem.DisplayOrder = element.DisplayOrder;
 
       // contentItem = {...contentItem, ...element};
 
