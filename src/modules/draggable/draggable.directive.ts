@@ -97,11 +97,23 @@ export class DraggableDirective implements OnChanges, OnDestroy {
   }
 
   onDrag(pageX: number, pageY: number) {
+
     if (this.isDragging) {
       const deltaX = pageX - this.lastPageX;
       const deltaY = pageY - this.lastPageY;
       const leftPos = parseFloat(this.element.nativeElement.style.left);
       const topPos = parseFloat(this.element.nativeElement.style.top);
+
+
+      if (leftPos < 0) {
+        this.element.nativeElement.style.left = 1 + 'px';
+        return;
+      }
+
+      if (topPos < 0) {
+        this.element.nativeElement.style.top = 1 + 'px';
+        return;
+      }
 
       this.element.nativeElement.style.left = leftPos + deltaX + 'px';
       this.element.nativeElement.style.top = topPos + deltaY + 'px';
