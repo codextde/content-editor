@@ -192,6 +192,7 @@ export class AppComponent implements OnInit {
   }
 
   delete(element) {
+    this.modalRoot.hide();
     this.propertiesActive = false;
     this.activeElement = {};
     this.dataService.contentEditorElements = this.dataService.contentEditorElements.filter((el) => el !== element);
