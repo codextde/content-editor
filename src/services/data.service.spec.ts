@@ -213,10 +213,6 @@ describe('DataService', () => {
     expect(designerData.Items.find(element => element.Type == 'html')).not.toBeUndefined();
     expect(designerData.Items.find(element => element.Type == 'css')).toBeUndefined();
 
-    for (const obj of designerData.Items) {
-      expect(obj.Align).not.toBeNull();
-    }
-
     // Lets delete the text
     const textToDelete = dataService.contentEditorElements.find(element => element.component == 'text');
     const indexOfText = dataService.contentEditorElements.indexOf(textToDelete);
