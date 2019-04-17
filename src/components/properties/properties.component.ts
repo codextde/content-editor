@@ -38,7 +38,9 @@ export class PropertiesComponent {
     // Open First Item in Property Panel
     setTimeout(() => {
       const card = this.property.nativeElement.children[0];
-      card.querySelector('.card-title').click();
+      if (card) {
+        card.querySelector('.card-title').click();
+      }
     });
   }
 

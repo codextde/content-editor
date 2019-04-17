@@ -124,13 +124,15 @@ export class AppComponent implements OnInit {
 
   checkDrag() {
     this.dataService.contentEditorElements.forEach((element: IElement) => {
-      element.properties.forEach((property) =>  {
-        if (property.name == 'position' && property.position == 'absolute') {
-          element.disableDrag = true;
-        } else if (property.name == 'position') {
-          element.disableDrag = false;
-        }
-      });
+      if (element.properties) {
+        element.properties.forEach((property) =>  {
+          if (property.name == 'position' && property.position == 'absolute') {
+            element.disableDrag = true;
+          } else if (property.name == 'position') {
+            element.disableDrag = false;
+          }
+        });
+      }
     });
   }
 

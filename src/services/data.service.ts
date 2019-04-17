@@ -173,19 +173,22 @@ export class DataService {
 
       // contentItem = {...contentItem, ...element};
 
-      element.properties.forEach((property: any) => {
-        const contentItemProperty: IContentItemProperty = {
-          Id: property.Id,
-          ContentItemId: property.ContentItemId,
-          ContentItemPropertyType: property.name,
-          Value: JSON.stringify(property),
-          ContentItemPropertyTypeId: this.getContentItemPropertyTypeId(property.name)
-        };
-        // Add Property only if values are in the Object
-        if (Object.keys(property).length > 1) {
-          contentItem.ContentItemProperties.push(contentItemProperty);
-        }
-      });
+      if(element.properties) {
+        element.properties.forEach((property: any) => {
+          const contentItemProperty: IContentItemProperty = {
+            Id: property.Id,
+            ContentItemId: property.ContentItemId,
+            ContentItemPropertyType: property.name,
+            Value: JSON.stringify(property),
+            ContentItemPropertyTypeId: this.getContentItemPropertyTypeId(property.name)
+          };
+          // Add Property only if values are in the Object
+          if (Object.keys(property).length > 1) {
+            contentItem.ContentItemProperties.push(contentItemProperty);
+          }
+        });
+      }
+      
       designerData.Items.push(contentItem);
     });
 
