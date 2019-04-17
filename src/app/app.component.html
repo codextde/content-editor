@@ -66,7 +66,7 @@
       <div [class.passage-wrapper]="passagePlayerWrapper">
         <div [class.passage-header]="passagePlayerWrapper"></div>
         <div [class.passage-container]="passagePlayerWrapper" >
-          <div [class.passage-content]="passagePlayerWrapper" class="drop-area" cdkDropList #activeElementsList="cdkDropList" [cdkDropListData]="dataService.contentEditorElements"
+          <div [class.passage-content]="passagePlayerWrapper" class="drop-area clearfix" cdkDropList #activeElementsList="cdkDropList" [cdkDropListData]="dataService.contentEditorElements"
             (cdkDropListDropped)="drop($event)" [ngStyle]="bodyProperties.styles" [dir]="bodyProperties.direction">
     
             <div class="drag-element" [tooltip]="elementBar" [tooltipClick]="true" *ngFor="let element of dataService.contentEditorElements"
