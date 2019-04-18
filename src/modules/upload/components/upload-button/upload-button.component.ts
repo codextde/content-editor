@@ -4,6 +4,7 @@ import { forkJoin } from 'rxjs';
 import { HelperService } from 'src/services/helper.service';
 import { UploadService } from '../../services/upload.service';
 declare var kendo: any;
+// import '@progress/kendo-ui';  
 
 @Component({
   selector: 'upload-button',
@@ -26,6 +27,7 @@ export class UploadButtonComponent implements OnInit, ControlValueAccessor {
   showCancelButton = true;
   uploading = false;
   uploadSuccessful = false;
+  imageBrowser: any;
 
   selectedImagePath: string = '';
 
@@ -36,12 +38,6 @@ export class UploadButtonComponent implements OnInit, ControlValueAccessor {
 
     }
 
-  fixImageThumbs() {
-      setTimeout(() => {
-        document.querySelector('div.imageUpload ul').scroll(100, 100);
-        document.querySelector('div.imageUpload ul').scroll(0, 0);
-      }, 100);
-  }
 
   writeValue(value: any): void {
     if (value) {
@@ -61,7 +57,7 @@ export class UploadButtonComponent implements OnInit, ControlValueAccessor {
 
   ngOnInit() {
     const imageBrowserPath = '../../' + this.helperService.studyName + '/ImageBrowser/';
-    const kendoImageBrowserConfig: /* kendo.ui.EditorImageBrowser | kendo.ui.EditorOptions */ any = {
+    const kendoImageBrowserConfig: /*kendo.ui.EditorImageBrowser | kendo.ui.EditorOptions*/ any = {
       transport: {
         read: {
           url: imageBrowserPath + 'Read'
@@ -78,13 +74,35 @@ export class UploadButtonComponent implements OnInit, ControlValueAccessor {
         uploadUrl: imageBrowserPath + 'Upload',
         imageUrl: '~/Content/UserFiles/Upload/{0}'
       },
+      execute: (e: any) => {
+        console.log('execute', e);
+        this.refreshData();
+      },
       change: (e: any) => {
+        console.log('change', e);
         this.selectedImagePath = `${this.helperService.basePath}designer/~/Content/UserFiles/Upload/${this.helperService.studyName}/${e.sender.path()}${e.selected.name}`;
+      },
+      error: (e: any) => {
+        console.log('error', e)
       }
+
     };
 
-    kendo.jQuery(this.imageUpload.nativeElement).kendoImageBrowser(kendoImageBrowserConfig);
+    const imageBrowserElement = kendo.jQuery(this.imageUpload.nativeElement).kendoImageBrowser(kendoImageBrowserConfig);
+    this.imageBrowser = imageBrowserElement.data('kendoImageBrowser');
+    
+    this.imageBrowser.dataSource.bind('requestEnd', (req) => {
+      if(req.type != 'read') {
+        this.refreshData();
+      }
+    });
 
+  }
+
+  refreshData() {
+    if (this.imageBrowser) {
+      this.imageBrowser.dataSource.read();
+    }
   }
 
   insert() {
