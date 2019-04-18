@@ -104,8 +104,8 @@ export class ModalComponent implements OnInit, AfterViewChecked {
       const x = Math.max((window.innerWidth - elementWidth) / 2, 0);
       const y = Math.max((window.innerHeight - elementHeight) / 2, 0);
   
-      this.modalRoot.nativeElement.style.left = x < 0 ? 1 : x + 'px';
-      this.modalRoot.nativeElement.style.top = y - 150 + 'px';
+      this.modalRoot.nativeElement.style.left = x + 'px';
+      this.modalRoot.nativeElement.style.top = y < 88 ? 60 : x - 160 + 'px';
     }
   }
 
