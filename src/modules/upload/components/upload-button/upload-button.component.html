@@ -22,7 +22,7 @@
         Files</button>
       <button [disabled]="!canBeClosed || files.size == 0" type="button" class="btn btn-sm btn-secondary" (click)="upload()">{{primaryButtonText}}</button>
     </div>-->
-    <div class="footer">
+    <div class="upload-footer">
       <button class="btn btn-sm btn-secondary" (click)="modalRoot.hide()">Cancel</button>
       <button type="button" class="btn btn-sm btn-secondary" style="float: right;" (click)="insert();modalRoot.hide()">Insert</button>
     </div>
