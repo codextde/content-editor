@@ -28,7 +28,9 @@ export class HtmlElementComponent implements ControlValueAccessor {
     ) {
     this.eventsService.subscribe('property-change', () => {
       this.styles = this.elementService.loadStyleProperties(this.htmlElement.properties);
+
       this.htmlElement.value = this.htmlProperty.value;
+      this.change();
     });
   }
 
@@ -57,7 +59,7 @@ export class HtmlElementComponent implements ControlValueAccessor {
   /** NgModel End */
   onChange: any = () => {};
 
-  change(ev) {
+  change(ev?) {
     this.onChange(this.htmlElement);
   }
 }
