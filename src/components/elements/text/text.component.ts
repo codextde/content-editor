@@ -62,12 +62,16 @@ export class TextElementComponent implements OnInit, ControlValueAccessor {
         this.styles = this.elementService.loadStyleProperties(this.textElement.properties);
 
         if (this.draggable && this.draggable.ngDraggable) {
-          console.log(this.draggable)
           this.draggable.resetPosition();
         }
+
         if (this.position && this.position.position == 'absolute') {
           this.getPositionKeys();
+          let rect = this.dragElement.nativeElement;
+          this.setPositionDragElement(rect.offsetTop, rect.offsetLeft, true);
         }
+
+
         if (this.position && this.position.position == 'unset') {
           if (this.draggable  && this.draggable.ngDraggable) {
             this.draggable.resetPosition();
@@ -80,7 +84,9 @@ export class TextElementComponent implements OnInit, ControlValueAccessor {
       }
     });
   }
-  getPositionKeys() {
+
+  
+   getPositionKeys() {
     for (const key of Object.keys(this.position)) {
       if (key.startsWith('top')) {
         this.topKey = key;
@@ -103,6 +109,7 @@ export class TextElementComponent implements OnInit, ControlValueAccessor {
         });
       }
       if (!this.position) {
+
         this.position = this.textElement.properties.find((property) => {
           return property.name == 'position';
         });
@@ -199,10 +206,18 @@ export class TextElementComponent implements OnInit, ControlValueAccessor {
     this.preventUserSelect = false;
   }
 
+  
   onMoving(ev) {
+    this.setPositionDragElement(+ev.y, +ev.x);
+  }
+
+  setPositionDragElement(top: number, left: number, setMovingOffset: boolean = false) {
+    if (setMovingOffset) {
+      this.movingOffset = { x: left, y: top };
+    }
     if (this.position && this.position.position != 'unset') {
-      this.position[this.topKey] = +ev.y;
-      this.position[this.leftKey] = +ev.x;
+      this.position[this.topKey] =  top;
+      this.position[this.leftKey] = left;
     }
     this.styles = this.elementService.loadStyleProperties(this.textElement.properties);
     this.onChange(this.textElement);

@@ -1,5 +1,6 @@
 import { Component, ElementRef, EventEmitter, Input, Output, ViewChild } from '@angular/core';
 import { faArrowDown } from '@fortawesome/free-solid-svg-icons';
+import { EventsService } from 'src/services/event.service';
 
 @Component({
   selector: 'app-properties',
@@ -40,7 +41,10 @@ export class PropertiesComponent {
       const card = this.property.nativeElement.children[0];
       if (card) {
         card.querySelector('.card-title').click();
-      }
+        setTimeout(()=> {
+          this.eventsService.publish('modal:resize');
+        }, 1);
+      };
     });
   }
 
@@ -49,7 +53,9 @@ export class PropertiesComponent {
   @ViewChild('property') property: ElementRef;
 
 
-  constructor() { }
+  constructor(
+    private eventsService: EventsService
+  ) { }
 
   close() {
     this.onClose.emit();

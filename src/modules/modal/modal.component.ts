@@ -3,6 +3,7 @@ import {
   HostListener, HostBinding, EventEmitter
 } from '@angular/core';
 import {ResizableEvent} from '../resizable';
+import { EventsService } from 'src/services/event.service';
 
 @Component({
   selector: 'app-modal',
@@ -40,7 +41,12 @@ export class ModalComponent implements OnInit, AfterViewChecked {
   preMaximizePageY: number;
   dragEventTarget: MouseEvent | TouchEvent;
 
-  constructor(private element: ElementRef) {}
+  constructor(
+    private element: ElementRef,
+    private eventsService: EventsService
+    ) {
+    
+  }
 
   ngOnInit() {
     if (!this.zIndex) {
@@ -48,6 +54,10 @@ export class ModalComponent implements OnInit, AfterViewChecked {
       this.zIndex = this.zIndex || 1100;
     }
     this.contentzIndex = this.zIndex + 1;
+    this.eventsService.subscribe('modal:resize', () => {
+      console.log('resize');
+      this.center(true);
+    })
   }
 
   ngAfterViewChecked() {
@@ -88,7 +98,7 @@ export class ModalComponent implements OnInit, AfterViewChecked {
     this.focusLastModal();
   }
 
-  center() {
+  center(force: boolean = false) {
     if (this.modalRoot && this.modalRoot.nativeElement) {
       let elementWidth = this.modalRoot.nativeElement.offsetWidth;
       let elementHeight = this.modalRoot.nativeElement.offsetHeight;
@@ -105,7 +115,7 @@ export class ModalComponent implements OnInit, AfterViewChecked {
       const y = Math.max((window.innerHeight - elementHeight) / 2, 0);
   
       this.modalRoot.nativeElement.style.left = x + 'px';
-      this.modalRoot.nativeElement.style.top = y < 88 ? 60 : x - 160 + 'px';
+      this.modalRoot.nativeElement.style.top = y + 'px';
     }
   }
 

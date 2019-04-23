@@ -222,7 +222,6 @@ export class DataService {
       }
     }
     // localStorage.setItem('content', JSON.stringify(designerData));
-    console.log(designerData);
     return designerData;
   }
 
