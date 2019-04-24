@@ -28,7 +28,7 @@ export class DataService {
     private elementService: ElementService,
     private eventsService: EventsService
   ) {
-    console.log(ImageElementConfig.config)
+    console.log(ImageElementConfig.config);
     // @Todo Remove and load from the Designer. The Designer need to Inject the Data to the iFrame
     // window['contentEditorData'] = this.designerData;
 
@@ -58,7 +58,7 @@ export class DataService {
 
     // Load Elements
     if (designerData.Items) {
-      for (const element of designerData.Items) {
+      for (const element of designerData.Items.sort((a, b) => a.DisplayOrder - b.DisplayOrder)) {
         if (element.IsDeleted) {
           return;
         }
@@ -95,11 +95,11 @@ export class DataService {
         for (const property of element.ContentItemProperties) {
 
           let foundProperty = this.setProperty(property, convertedElement.properties);
-          
+
           const propertyIndex = convertedElement.properties.findIndex((data) => {
             return data.name == property.ContentItemPropertyType;
           });
-          
+
           // Set new Property to the Element
           convertedElement.properties[propertyIndex] = foundProperty;
         }
@@ -117,14 +117,14 @@ export class DataService {
     property.ContentItemPropertyType = property.ContentItemPropertyType || this.getContentItemPropertyNamebyId(property.ContentItemPropertyTypeId);
     let foundProperty = {};
 
-    
+
     // Find Property from Element
-    if(properties) {
+    if (properties) {
       foundProperty = properties.find((data) => {
         return data.name == property.ContentItemPropertyType;
       });
     }
-    
+
 
     // Merge Designer Property with Element Property
     if (typeof foundProperty === 'object') {
@@ -139,10 +139,10 @@ export class DataService {
         ...idData
       };
 
-      
+
     }
     return foundProperty;
-          
+
   }
 
   convertToDesigner() {
@@ -190,7 +190,7 @@ export class DataService {
 
       // contentItem = {...contentItem, ...element};
 
-      if(element.properties) {
+      if (element.properties) {
         element.properties.forEach((property: any) => {
           const contentItemProperty: IContentItemProperty = {
             Id: property.Id,
@@ -205,7 +205,7 @@ export class DataService {
           }
         });
       }
-      
+
       designerData.Items.push(contentItem);
     });
 
@@ -234,7 +234,7 @@ export class DataService {
       return 'border';
     }
     if (id == 3) {
-      return  'css';
+      return 'css';
     }
     if (id == 4) {
       return 'divider';
@@ -255,13 +255,13 @@ export class DataService {
       return 'initialLetter';
     }
     if (id == 10) {
-      return  'margin';
+      return 'margin';
     }
     if (id == 11) {
       return 'padding';
     }
     if (id == 12) {
-      return  'position';
+      return 'position';
     }
     if (id == 13) {
       return 'text';
