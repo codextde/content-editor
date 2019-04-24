@@ -86,23 +86,28 @@ export class DataService {
           convertedElement = ClearfixElementConfig.newElement();
         }
 
+        
         convertedElement = {...convertedElement, ...element};
 
         // Set Value of Element
         convertedElement.value = element.Content;
 
+        
+
         // Load Properties
-        for (const property of element.ContentItemProperties) {
+        if (element.ContentItemProperties) {
+          for (const property of element.ContentItemProperties) {
 
-          let foundProperty = this.setProperty(property, convertedElement.properties);
-
-          const propertyIndex = convertedElement.properties.findIndex((data) => {
-            return data.name == property.ContentItemPropertyType;
-          });
-
-          // Set new Property to the Element
-          convertedElement.properties[propertyIndex] = foundProperty;
-        }
+            let foundProperty = this.setProperty(property, convertedElement.properties);
+  
+            const propertyIndex = convertedElement.properties.findIndex((data) => {
+              return data.name == property.ContentItemPropertyType;
+            });
+  
+            // Set new Property to the Element
+            convertedElement.properties[propertyIndex] = foundProperty;
+          }
+        } 
 
         this.contentEditorElements.push(convertedElement);
       }

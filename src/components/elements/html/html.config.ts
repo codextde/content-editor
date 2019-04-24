@@ -10,12 +10,12 @@ export class HtmlElementConfig {
     properties: [
       {
         name: 'html',
-        value: '<div>Example DIV</div>'
+        value: ''
       }, {
         name: 'padding'
       }
     ],
-    value: ''
+    value: '<div>Example DIV</div>'
   };
 
   public static newElement(): IElement {
