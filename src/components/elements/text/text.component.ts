@@ -171,14 +171,15 @@ export class TextElementComponent implements OnInit, ControlValueAccessor {
         all: true
       },
       select: (a) => {
+        // TODO EDP-915 Set the Color to the Font Color / Back Color Kendo Tool
+        /*
         const selection = this.editor.getSelection();
-
         console.log(selection.focusNode.parentElement.style.color);
         const color = selection.focusNode.parentElement.style.color;
 
         if (color) {
           this.editor.toolbar.tools.foreColor.update('#000');
-        }
+        } */
 
       },
       keyup: (a) => this.change(this),
