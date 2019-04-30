@@ -28,6 +28,7 @@ export class TextElementComponent implements OnInit, ControlValueAccessor {
   @ViewChild('dragElement') dragElement: ElementRef;
   @ViewChild('editor') editorEl: ElementRef;
   @ViewChild('draggable') draggable: AngularDraggableDirective;
+  @ViewChild('initialLetterEl') initialLetterEl: ElementRef;
 
   editor;
   textElement: IElement;
@@ -40,6 +41,8 @@ export class TextElementComponent implements OnInit, ControlValueAccessor {
 
   topKey;
   leftKey;
+
+  initialLetterPadding: number;
 
 
   @HostListener('document:click', ['$event'])
@@ -60,6 +63,15 @@ export class TextElementComponent implements OnInit, ControlValueAccessor {
     this.eventsService.subscribe('property-change', () => {
       if (this.textElement) {
         this.styles = this.elementService.loadStyleProperties(this.textElement.properties);
+
+        if (this.initialLetter) {
+          // Wait until ngIf is rendered
+          setTimeout(() => {
+            this.initialLetterPadding = this.initialLetterEl.nativeElement.offsetWidth + 6; // (6) Margin of Initial Letter + 1
+          }, 1);
+        } else {
+          this.initialLetterPadding = 0;
+        }
 
         if (this.draggable && this.draggable.ngDraggable) {
           this.draggable.resetPosition();

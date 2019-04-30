@@ -23,12 +23,14 @@
     <style [ngStyle]="styles" ></style>
 
     <span 
+    #initialLetterEl
     class="initial-letter" 
     *ngIf="initialLetter?.letter"
     [style.fontSize.px]="initialLetter?.size"
     [style.lineHeight.px]="initialLetter?.size"
     [style.color]="initialLetter?.color">{{initialLetter.letter}}</span>
     <div 
+        [ngStyle]="{ 'paddingLeft.px': initialLetterPadding }"
         class="text-content" 
         #editor 
         spellcheck="false" 

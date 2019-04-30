@@ -5,7 +5,7 @@
         Letter
       </div>
       <div class="col flex-end">
-        <input type="text" maxlength="1" [(ngModel)]="initialLetter.letter">
+        <input type="text" maxlength="1" [(ngModel)]="initialLetter.letter" (ngModelChange)="change()">
       </div>
     </div>
     <div class="row">
