@@ -37,7 +37,7 @@ export class AppComponent implements OnInit {
       }
     }
   }
- 
+
   @Output() designerDataChange = new EventEmitter<string>();
 
   dataLoaded: boolean = true;
@@ -91,11 +91,11 @@ export class AppComponent implements OnInit {
     public  matIconRegistry: MatIconRegistry,
     public domSanitizer: DomSanitizer
   ) {
-    
+
   }
 
   ngOnInit() {
-    
+
     // Set Location URL for Fonts
     this.fontService.loadFonts(LoaderService.locationUrl);
     this.monacoService.loadMonaco(LoaderService.locationUrl);
@@ -153,14 +153,14 @@ export class AppComponent implements OnInit {
 
     }
 
-    for (let [index, element] of this.dataService.contentEditorElements.entries()) {
+    for (const [index, element] of this.dataService.contentEditorElements.entries()) {
       element.DisplayOrder = index + 1;
     }
     this.eventsService.publish('designer-data-change');
   }
 
 
-  
+
   cssCodeChange() {
     this.helper.applyStyle(this.bodyProperties.css);
   }

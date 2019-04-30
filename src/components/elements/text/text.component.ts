@@ -67,8 +67,9 @@ export class TextElementComponent implements OnInit, ControlValueAccessor {
 
         if (this.position && this.position.position == 'absolute') {
           this.getPositionKeys();
-          let rect = this.dragElement.nativeElement;
-          this.setPositionDragElement(rect.offsetTop, rect.offsetLeft, true);
+          const rect = this.dragElement.nativeElement;
+          const position =  { top: this.position[this.topKey] || rect.offsetTop, left: this.position[this.leftKey] ||  rect.offsetLeft };
+          this.setPositionDragElement(position.top, position.left, true);
         }
 
 
@@ -85,7 +86,7 @@ export class TextElementComponent implements OnInit, ControlValueAccessor {
     });
   }
 
-  
+
    getPositionKeys() {
     for (const key of Object.keys(this.position)) {
       if (key.startsWith('top')) {
@@ -170,15 +171,15 @@ export class TextElementComponent implements OnInit, ControlValueAccessor {
         all: true
       },
       select: (a) => {
-        let selection = this.editor.getSelection();
-        
+        const selection = this.editor.getSelection();
+
         console.log(selection.focusNode.parentElement.style.color);
         const color = selection.focusNode.parentElement.style.color;
 
-        if(color) {
+        if (color) {
           this.editor.toolbar.tools.foreColor.update('#000');
         }
-        
+
       },
       keyup: (a) => this.change(this),
       change: (a) => this.change(this)
@@ -206,7 +207,7 @@ export class TextElementComponent implements OnInit, ControlValueAccessor {
     this.preventUserSelect = false;
   }
 
-  
+
   onMoving(ev) {
     this.setPositionDragElement(+ev.y, +ev.x);
   }
