@@ -285,7 +285,7 @@ export class AppComponent implements OnInit {
       this.loadDirection();
     }
 
-    // Improve Set Body Properties Function // Move to Service
+    // TODO Improve Set Body Properties Function // Move to Service
     setBodyProperties() {
       const properties = this.dataService.contentEditorProperties;
 

@@ -32,6 +32,8 @@ export class TextElementComponent implements OnInit, ControlValueAccessor {
 
   editor;
   textElement: IElement;
+  foregroundColorpicker;
+  backgroundColorpicker;
 
   styles;
 
@@ -58,7 +60,8 @@ export class TextElementComponent implements OnInit, ControlValueAccessor {
   constructor(
     private elementService: ElementService,
     private eventsService: EventsService,
-    private renderer: Renderer2
+    private renderer: Renderer2,
+    private helper: HelperService
     ) {
     this.eventsService.subscribe('property-change', () => {
       if (this.textElement) {
@@ -183,15 +186,20 @@ export class TextElementComponent implements OnInit, ControlValueAccessor {
         all: true
       },
       select: (a) => {
-        // TODO EDP-915 Set the Color to the Font Color / Back Color Kendo Tool
-        /*
         const selection = this.editor.getSelection();
-        console.log(selection.focusNode.parentElement.style.color);
-        const color = selection.focusNode.parentElement.style.color;
+        let foregroundColor = selection.focusNode.parentElement.style.color;
+        if (foregroundColor == '') {
+          foregroundColor = 'rgb(0,0,0)';
+        }
+        const hexForegroundColor = this.helper.rgbStringToHex(foregroundColor);
+        this.foregroundColorpicker.value(hexForegroundColor);
 
-        if (color) {
-          this.editor.toolbar.tools.foreColor.update('#000');
-        } */
+        let backgroundColor = selection.focusNode.parentElement.style.backgroundColor;
+        if (backgroundColor == '') {
+          backgroundColor = 'rgb(255,255,255)';
+        }
+        const hexBackgroundColor = this.helper.rgbStringToHex(backgroundColor);
+        this.backgroundColorpicker.value(hexBackgroundColor);
 
       },
       keyup: (a) => this.change(this),
@@ -200,6 +208,8 @@ export class TextElementComponent implements OnInit, ControlValueAccessor {
     this.editor = kendo.jQuery(this.editorEl.nativeElement).data('kendoEditor');
     this.editor.toolbar.window.wrapper[0].classList.add('ece');
 
+    this.foregroundColorpicker = kendo.jQuery('.k-i-foreground-color').data('kendoColorPicker');
+    this.backgroundColorpicker = kendo.jQuery('.k-i-paint').data('kendoColorPicker');
 
     this.renderer.listen(this.editorEl.nativeElement, 'click', () => {
       if (!this.customText) {
@@ -208,6 +218,7 @@ export class TextElementComponent implements OnInit, ControlValueAccessor {
       }
     });
   }
+
 
 
 
