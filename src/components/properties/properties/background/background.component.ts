@@ -1,4 +1,4 @@
-import { Component, forwardRef, Input } from '@angular/core';
+import { Component, forwardRef } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { EventsService } from 'src/services/event.service';
 import { HelperService } from 'src/services/helper.service';
@@ -15,8 +15,6 @@ import { IBackgroundProperty } from '../../models/background.model';
   }]
 })
 export class BackgroundPropertyComponent implements ControlValueAccessor {
-
-  @Input() isCollapsed = true;
 
   background: IBackgroundProperty = {};
   backgroundImageUrl: string;

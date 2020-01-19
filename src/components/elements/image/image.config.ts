@@ -1,6 +1,5 @@
 import { faImage } from '@fortawesome/free-solid-svg-icons';
 import { IElement } from 'src/models/element.model';
-import { LoaderService } from 'src/services/loader.service';
 import { ElementCreator } from '../element.creator';
 
 export class ImageElementConfig {
@@ -10,7 +9,7 @@ export class ImageElementConfig {
     title: 'Image',
     properties: [{
       name: 'image',
-      src: LoaderService.locationUrl + 'assets/img/image-placeholder.png'
+      src: './assets/img/image-placeholder.png'
     }, {
       name: 'general'
     }, {

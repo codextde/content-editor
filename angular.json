@@ -15,14 +15,8 @@
       },
       "architect": {
         "build": {
-          "builder": "@angular-builders/custom-webpack:browser",
+          "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "customWebpackConfig": {
-              "path": "./extra-webpack.config.js",
-              "mergeStrategies": {
-                "externals": "replace"
-              }
-            },
             "outputPath": "dist",
             "index": "src/index.html",
             "main": "src/main.ts",
@@ -35,26 +29,22 @@
                 "input": "./node_modules/npm-font-open-sans/fonts",
                 "output": "assets/fonts/open-sans"
               },
-              {
-                "glob": "**/*",
-                "input": "./node_modules/monaco-editor/min",
-                "output": "./assets/monaco/"
-              }
+              { "glob": "**/*", "input": "./node_modules/monaco-editor/min", "output": "./assets/monaco/" }
             ],
             "styles": [
               "node_modules/@progress/kendo-theme-default/dist/all.css",
               "src/styles/global.scss"
             ],
-            "scripts": [{
-              "input": "node_modules/document-register-element/build/document-register-element.js"
-            }]
+            "scripts": []
           },
           "configurations": {
             "production": {
-              "fileReplacements": [{
-                "replace": "src/environments/environment.ts",
-                "with": "src/environments/environment.prod.ts"
-              }],
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.prod.ts"
+                }
+              ],
               "optimization": true,
               "outputHashing": "all",
               "sourceMap": false,
@@ -64,11 +54,13 @@
               "extractLicenses": true,
               "vendorChunk": false,
               "buildOptimizer": true,
-              "budgets": [{
-                "type": "initial",
-                "maximumWarning": "2mb",
-                "maximumError": "5mb"
-              }]
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                }
+              ]
             }
           }
         },
@@ -98,11 +90,7 @@
             "karmaConfig": "src/karma.conf.js",
             "assets": [
               "src/assets",
-              {
-                "glob": "**/*",
-                "input": "./node_modules/ngx-monaco-editor/assets/monaco",
-                "output": "./assets/monaco/"
-              }
+              { "glob": "**/*", "input": "./node_modules/ngx-monaco-editor/assets/monaco", "output": "./assets/monaco/" }
             ],
             "styles": [
               "node_modules/@progress/kendo-theme-default/dist/all.css",

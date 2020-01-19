@@ -1,5 +1,5 @@
-<div class="properties" #property>
-  <!--<div class="header"> [@fadeInAnimation]
+<div class="properties" [@fadeInAnimation]>
+  <div class="header">
     <div class="row">
       <div class="title col">
         {{ element.title || ''}} Settings 
@@ -10,10 +10,10 @@
         </button>
       </div>
     </div>
-  </div>-->
+  </div>
 
 
-  <div  *ngFor="let property of _element.properties">
+  <div *ngFor="let property of element.properties">
       <app-property-general *ngIf="property.name == 'general'" [(ngModel)]="property"></app-property-general>
       <app-property-padding *ngIf="property.name == 'padding'" [(ngModel)]="property"></app-property-padding>
       <app-property-html *ngIf="property.name == 'html'" [(ngModel)]="property"></app-property-html>

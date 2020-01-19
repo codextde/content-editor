@@ -1,13 +1,13 @@
-import { Component, ElementRef, EventEmitter, Input, Output, ViewChild } from '@angular/core';
+import { animate, style, transition, trigger } from '@angular/animations';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { faArrowDown } from '@fortawesome/free-solid-svg-icons';
-import { EventsService } from 'src/services/event.service';
 
 @Component({
   selector: 'app-properties',
   templateUrl: './properties.component.html',
   styleUrls: ['./properties.component.scss'],
   animations: [
-    /*trigger(
+    trigger(
       'fadeInAnimation',
       [
         transition(
@@ -22,40 +22,21 @@ import { EventsService } from 'src/services/event.service';
             animate('500ms  ease-in-out', style({ opacity: 0, transform: 'scale(0.6) translateY(+70px) translateX(0)'}))
           ]
         )]
-    )*/
+    )
   ]
 })
-export class PropertiesComponent {
+export class PropertiesComponent implements OnInit {
   // Icons
   faArrowDown = faArrowDown;
 
-  _element: any;
-
-  @Input()
-  set element(element: any) {
-    this._element = element;
-    console.log('elementChange')
-
-    // Open First Item in Property Panel
-    setTimeout(() => {
-      const card = this.property.nativeElement.children[0];
-      if (card) {
-        card.querySelector('.card-title').click();
-        setTimeout(()=> {
-          this.eventsService.publish('modal:resize');
-        }, 1);
-      };
-    });
-  }
-
-
+  @Input() element: any;
   @Output() onClose = new EventEmitter();
-  @ViewChild('property') property: ElementRef;
 
 
-  constructor(
-    private eventsService: EventsService
-  ) { }
+  constructor() { }
+
+  ngOnInit() {
+  }
 
   close() {
     this.onClose.emit();

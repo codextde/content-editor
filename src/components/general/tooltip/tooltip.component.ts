@@ -1,4 +1,4 @@
-import { AfterViewInit, ChangeDetectorRef, Component, DoCheck, ElementRef, Input, HostListener } from '@angular/core';
+import { AfterViewInit, ChangeDetectorRef, Component, DoCheck, ElementRef, Input } from '@angular/core';
 import { Subscription } from 'rxjs';
 
 @Component({
@@ -25,10 +25,8 @@ export class TooltipComponent  implements AfterViewInit, DoCheck {
     @Input()
     animation: boolean = true;
 
-    @HostListener('window:scroll', ['$event']) // for window scroll events
-    onScroll(event) {
-      this.updatePosition();
-    }
+    
+
 
     // -------------------------------------------------------------------------
     // Properties
@@ -78,16 +76,15 @@ export class TooltipComponent  implements AfterViewInit, DoCheck {
         if (!this.hostElement) {
             return;
         }
-        const firstDiv: HTMLElement = this.hostElement.querySelectorAll('div')[0];
-        let rect: any = firstDiv;
+        let rect: any = this.hostElement.querySelectorAll('div')[0];
         if (rect) {
             rect = rect.getBoundingClientRect();
         } else {
             rect = this.hostElement.getBoundingClientRect();
         }
-        this.top = rect.bottom;
-        this.left = rect.left;
-
+        // const p = this.positionElements(this.hostElement, this.element.nativeElement.children[0], this.placement);
+        this.top = rect.top;
+        this.left =  rect.width + rect.left;
         this.isIn = true;
         if (this.animation) {
             this.isFade = true;

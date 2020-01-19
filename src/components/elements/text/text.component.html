@@ -20,17 +20,14 @@
         <fa-icon [icon]="faArrowsAlt"></fa-icon>
     </div>
 
-    <style [ngStyle]="styles" ></style>
 
     <span 
-    #initialLetterEl
     class="initial-letter" 
-    *ngIf="initialLetter?.letter"
+    *ngIf="initialLetter"
     [style.fontSize.px]="initialLetter?.size"
-    [style.lineHeight.px]="initialLetter?.size"
+    [style.lineHeight.px]="initialLetter?.size - 5"
     [style.color]="initialLetter?.color">{{initialLetter.letter}}</span>
     <div 
-        [ngStyle]="{ 'paddingLeft.px': initialLetterPadding }"
         class="text-content" 
         #editor 
         spellcheck="false" 

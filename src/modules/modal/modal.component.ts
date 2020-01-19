@@ -1,9 +1,16 @@
 import {
-  Component, ElementRef, ViewChild, Input, Output, OnInit, AfterViewChecked,
-  HostListener, HostBinding, EventEmitter
+  Component,
+  ElementRef,
+  ViewChild,
+  Input,
+  Output,
+  OnInit,
+  AfterViewChecked,
+  HostListener,
+  HostBinding,
+  EventEmitter
 } from '@angular/core';
-import {ResizableEvent} from '../resizable';
-import { EventsService } from 'src/services/event.service';
+import { ResizableEvent } from '../resizable';
 
 @Component({
   selector: 'app-modal',
@@ -11,7 +18,6 @@ import { EventsService } from 'src/services/event.service';
   styleUrls: ['modal.component.scss']
 })
 export class ModalComponent implements OnInit, AfterViewChecked {
-
   @Input() modalTitle: string;
   @Input() width: any;
   @Input() zIndex: number = 9999;
@@ -23,10 +29,10 @@ export class ModalComponent implements OnInit, AfterViewChecked {
 
   @Output() close: EventEmitter<boolean> = new EventEmitter();
 
-  @ViewChild('modalRoot') modalRoot: ElementRef;
-  @ViewChild('modalBody') modalBody: ElementRef;
-  @ViewChild('modalHeader') modalHeader: ElementRef;
-  @ViewChild('modalFooter') modalFooter: ElementRef;
+  @ViewChild('modalRoot', { static: false }) modalRoot: ElementRef;
+  @ViewChild('modalBody', { static: false }) modalBody: ElementRef;
+  @ViewChild('modalHeader', { static: false }) modalHeader: ElementRef;
+  @ViewChild('modalFooter', { static: false }) modalFooter: ElementRef;
 
   @HostBinding('class.app-modal') cssClass = true;
 
@@ -41,12 +47,7 @@ export class ModalComponent implements OnInit, AfterViewChecked {
   preMaximizePageY: number;
   dragEventTarget: MouseEvent | TouchEvent;
 
-  constructor(
-    private element: ElementRef,
-    private eventsService: EventsService
-    ) {
-    
-  }
+  constructor(private element: ElementRef) {}
 
   ngOnInit() {
     if (!this.zIndex) {
@@ -54,10 +55,6 @@ export class ModalComponent implements OnInit, AfterViewChecked {
       this.zIndex = this.zIndex || 1100;
     }
     this.contentzIndex = this.zIndex + 1;
-    this.eventsService.subscribe('modal:resize', () => {
-      console.log('resize');
-      this.center(true);
-    })
   }
 
   ngAfterViewChecked() {
@@ -93,30 +90,28 @@ export class ModalComponent implements OnInit, AfterViewChecked {
 
   hide(): void {
     this.visible = false;
-    this.dragEventTarget = null; 
     this.close.emit(true);
     this.focusLastModal();
   }
 
-  center(force: boolean = false) {
-    if (this.modalRoot && this.modalRoot.nativeElement) {
-      let elementWidth = this.modalRoot.nativeElement.offsetWidth;
-      let elementHeight = this.modalRoot.nativeElement.offsetHeight;
-      if (elementWidth === 0 && elementHeight === 0) {
-        this.modalRoot.nativeElement.style.visibility = 'hidden';
-        this.modalRoot.nativeElement.style.display = 'block';
-        elementWidth = this.modalRoot.nativeElement.offsetWidth;
-        elementHeight = this.modalRoot.nativeElement.offsetHeight;
-        this.modalRoot.nativeElement.style.display = 'none';
-        this.modalRoot.nativeElement.style.visibility = 'visible';
-      }
-  
-      const x = Math.max((window.innerWidth - elementWidth) / 2, 0);
-      const y = Math.max((window.innerHeight - elementHeight) / 2, 0);
-  
-      this.modalRoot.nativeElement.style.left = x + 'px';
-      this.modalRoot.nativeElement.style.top = y + 'px';
+  center() {
+    let elementWidth = this.modalRoot.nativeElement.offsetWidth;
+    let elementHeight = this.modalRoot.nativeElement.offsetHeight;
+
+    if (elementWidth === 0 && elementHeight === 0) {
+      this.modalRoot.nativeElement.style.visibility = 'hidden';
+      this.modalRoot.nativeElement.style.display = 'block';
+      elementWidth = this.modalRoot.nativeElement.offsetWidth;
+      elementHeight = this.modalRoot.nativeElement.offsetHeight;
+      this.modalRoot.nativeElement.style.display = 'none';
+      this.modalRoot.nativeElement.style.visibility = 'visible';
     }
+
+    const x = Math.max((window.innerWidth - elementWidth) / 2, 0);
+    const y = Math.max((window.innerHeight - elementHeight) / 2, 0);
+
+    this.modalRoot.nativeElement.style.left = x + 'px';
+    this.modalRoot.nativeElement.style.top = y + 'px';
   }
 
   initDrag(event: MouseEvent | TouchEvent) {
@@ -132,8 +127,11 @@ export class ModalComponent implements OnInit, AfterViewChecked {
   }
 
   calcBodyHeight() {
-    const diffHeight = this.modalHeader.nativeElement.offsetHeight + this.modalFooter.nativeElement.offsetHeight;
-    const contentHeight = this.modalRoot.nativeElement.offsetHeight - diffHeight;
+    const diffHeight =
+      this.modalHeader.nativeElement.offsetHeight +
+      this.modalFooter.nativeElement.offsetHeight;
+    const contentHeight =
+      this.modalRoot.nativeElement.offsetHeight - diffHeight;
     this.modalBody.nativeElement.style.height = contentHeight + 'px';
     this.modalBody.nativeElement.style.maxHeight = 'none';
   }
@@ -141,7 +139,7 @@ export class ModalComponent implements OnInit, AfterViewChecked {
   getMaxModalIndex() {
     let zIndex = 0;
     const modals = document.querySelectorAll('.ui-modal');
-    [].forEach.call(modals, function (modal) {
+    [].forEach.call(modals, function(modal) {
       const indexCurrent = parseInt(modal.style.zIndex, 10);
       if (indexCurrent > zIndex) {
         zIndex = indexCurrent;
@@ -158,13 +156,12 @@ export class ModalComponent implements OnInit, AfterViewChecked {
   }
 
   findAncestor(el, cls) {
-    while ((el = el.parentElement) && !el.classList.contains(cls)) {
-    }
+    while ((el = el.parentElement) && !el.classList.contains(cls)) {}
     return el;
   }
 
   onCloseIcon(event: Event) {
-    // event.stopPropagation();
+    event.stopPropagation();
   }
 
   toggleMaximize(event) {
@@ -187,21 +184,26 @@ export class ModalComponent implements OnInit, AfterViewChecked {
     this.modalRoot.nativeElement.style.left = '0px';
     this.modalRoot.nativeElement.style.width = '100vw';
     this.modalRoot.nativeElement.style.height = '100vh';
-    const diffHeight = this.modalHeader.nativeElement.offsetHeight + this.modalFooter.nativeElement.offsetHeight;
-    this.modalBody.nativeElement.style.height = 'calc(100vh - ' + diffHeight + 'px)';
+    const diffHeight =
+      this.modalHeader.nativeElement.offsetHeight +
+      this.modalFooter.nativeElement.offsetHeight;
+    this.modalBody.nativeElement.style.height =
+      'calc(100vh - ' + diffHeight + 'px)';
     this.modalBody.nativeElement.style.maxHeight = 'none';
 
     this.maximized = true;
   }
 
   revertMaximize() {
-      this.modalRoot.nativeElement.style.top = this.preMaximizePageX + 'px';
-      this.modalRoot.nativeElement.style.left = this.preMaximizePageY + 'px';
-      this.modalRoot.nativeElement.style.width = this.preMaximizeRootWidth + 'px';
-      this.modalRoot.nativeElement.style.height = this.preMaximizeRootHeight + 'px';
-      this.modalBody.nativeElement.style.height = this.preMaximizeBodyHeight + 'px';
+    this.modalRoot.nativeElement.style.top = this.preMaximizePageX + 'px';
+    this.modalRoot.nativeElement.style.left = this.preMaximizePageY + 'px';
+    this.modalRoot.nativeElement.style.width = this.preMaximizeRootWidth + 'px';
+    this.modalRoot.nativeElement.style.height =
+      this.preMaximizeRootHeight + 'px';
+    this.modalBody.nativeElement.style.height =
+      this.preMaximizeBodyHeight + 'px';
 
-      this.maximized = false;
+    this.maximized = false;
   }
 
   moveOnTop() {
@@ -212,5 +214,4 @@ export class ModalComponent implements OnInit, AfterViewChecked {
       }
     }
   }
-
 }

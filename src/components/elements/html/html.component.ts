@@ -10,9 +10,9 @@ declare var kendo: any;
   templateUrl: './html.component.html',
   styleUrls: ['./html.component.scss'],
   providers: [{
-    provide: NG_VALUE_ACCESSOR,
-    useExisting: forwardRef(() => HtmlElementComponent),
-    multi: true
+       provide: NG_VALUE_ACCESSOR,
+       useExisting: forwardRef(() => HtmlElementComponent),
+       multi: true
   }]
 })
 export class HtmlElementComponent implements ControlValueAccessor {
@@ -25,13 +25,10 @@ export class HtmlElementComponent implements ControlValueAccessor {
   constructor(
     private elementService: ElementService,
     private eventsService: EventsService
-  ) {
+    ) {
     this.eventsService.subscribe('property-change', () => {
       this.styles = this.elementService.loadStyleProperties(this.htmlElement.properties);
-
       this.htmlElement.value = this.htmlProperty.value;
-
-      this.change();
     });
   }
 
@@ -40,7 +37,6 @@ export class HtmlElementComponent implements ControlValueAccessor {
   writeValue(value: any): void {
     if (value) {
       this.htmlElement = value;
-
       this.styles = this.elementService.loadStyleProperties(this.htmlElement.properties);
 
       if (!this.htmlProperty) {
@@ -49,9 +45,7 @@ export class HtmlElementComponent implements ControlValueAccessor {
         });
       }
 
-      if (this.htmlElement.value) {
-        this.htmlProperty.value = this.htmlElement.value;
-      }
+      this.htmlElement.value = this.htmlProperty.value;
 
     }
   }
@@ -63,7 +57,7 @@ export class HtmlElementComponent implements ControlValueAccessor {
   /** NgModel End */
   onChange: any = () => {};
 
-  change(ev?) {
+  change(ev) {
     this.onChange(this.htmlElement);
   }
 }

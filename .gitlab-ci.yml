@@ -1,5 +1,4 @@
-variables:
-  CLI_VERSION: 7.3.7
+image: node:latest
 
 cache:
   key: ${CI_COMMIT_REF_SLUG}
@@ -14,26 +13,13 @@ before_script:
   - npm install --silent
 
 test:
-  image: trion/ng-cli-karma:${CLI_VERSION}
   stage: test
-  tags:
-    - docker
   script: node_modules/.bin/ng test --watch=false
 
-build:
-  image: trion/ng-cli:${CLI_VERSION}
-  stage: build
-  tags:
-    - docker
-  script: node_modules/.bin/ng build --prod
+e2e:
+  stage: test
+  script: node_modules/.bin/ng e2e
 
-build-elements:
-  image: trion/ng-cli:${CLI_VERSION}
+build:
   stage: build
-  tags:
-    - docker
-  script: npm run eassessment-build
-  artifacts:
-    paths:
-      - elements/
-    expire_in: 1 week
+  script: node_modules/.bin/ng build --prod

@@ -11,7 +11,6 @@ export class HelperService {
   basePath: string;
   studyName: string;
 
-
   public static clearObject(object) {
     return JSON.parse(JSON.stringify(object));
   }
@@ -25,7 +24,6 @@ export class HelperService {
   }
 
   constructor() {
-
     this.basePath = this.getBasePath();
     this.studyName = this.getCookie('X-IEA-Study');
   }
@@ -43,7 +41,7 @@ export class HelperService {
     this.styleElement = document.createElement('style');
     this.styleElement.type = 'text/css';
     this.styleElement.appendChild(document.createTextNode(css));
-    document.head.appendChild(this.styleElement);
+      document.head.appendChild(this.styleElement);
 
   }
 
@@ -54,40 +52,26 @@ export class HelperService {
     let url = '';
 
     if (virtualDir && virtualDir.length > 0) {
-      url += '/' + virtualDir;
+        url += '/' + virtualDir;
     }
 
     if (study && study.length > 0) {
-      url += '/' + study;
+        url += '/' + study;
     }
 
     return `${url}/`;
   }
 
-  rgbArrayToHex = rgb => `#${rgb.map(v => v.toString(16).padStart(2, '0')).join('')}`;
-
-  
-  rgbStringToArray = rgb => rgb.match(/^rgb\((\d+),\s*(\d+),\s*(\d+)\)$/).splice(1, 3)
-    .map(v => Number(v));
-
-  rgbStringToHex = rgb => this.rgbArrayToHex(this.rgbStringToArray(rgb));
-
-  rgbToHex = (r, g, b) => '#' + [r, g, b].map(x => {
-    const hex = x.toString(16)
-    return hex.length === 1 ? '0' + hex : hex
-  }).join('')
-
   uuidv4() {
     return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, (c) => {
-      const r = Math.random() * 16 | 0,
-        v = c == 'x' ? r : (r & 0x3 | 0x8);
+      const r = Math.random() * 16 | 0, v = c == 'x' ? r : (r & 0x3 | 0x8);
       return v.toString(16);
     });
   }
 
   validURL(str) {
     const regex = /(http|https):\/\/(\w+:{0,1}\w*)?(\S+)(:[0-9]+)?(\/|\/([\w#!:.?+=&%!\-\/]))?/;
-    if (!regex.test(str)) {
+    if (!regex .test(str)) {
       return false;
     } else {
       return true;
@@ -99,7 +83,7 @@ export class HelperService {
     const value = '; ' + document.cookie;
     const parts = value.split('; ' + name + '=');
     if (parts.length === 2) {
-      return parts.pop().split(';').shift();
+        return parts.pop().split(';').shift();
     }
     return '';
   }

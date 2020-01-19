@@ -25,7 +25,7 @@
         Width (px)
       </div>
       <div class="col flex-end">
-        <app-stepper [(ngModel)]="general[width]" (ngModelChange)="change(); updateCenter()"></app-stepper>
+        <app-stepper [(ngModel)]="general[width]" (ngModelChange)="change()"></app-stepper>
         <app-px-percentage-switch [(ngModel)]="widthUnit" (ngModelChange)="changeWidthUnit()"></app-px-percentage-switch>
       </div>
     </div>
@@ -35,7 +35,7 @@
         <fa-icon [icon]="faInfoCircle"></fa-icon>
       </div>
       <div class="col flex-end">
-          <app-toggle [disabled]="general[width] ? false : true" [(ngModel)]="center" (ngModelChange)="changeCenter()"></app-toggle>
+          <app-toggle [(ngModel)]="center" (ngModelChange)="changeCenter()"></app-toggle>
       </div>
     </div>
     <!--<div class="row">

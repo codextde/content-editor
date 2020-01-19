@@ -1,7 +1,6 @@
 import { Component, forwardRef } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { IInitialLetterProperty } from '../../models/initial-letter.model';
-import { EventsService } from 'src/services/event.service';
 
 @Component({
   selector: 'app-property-initial-letter',
@@ -16,12 +15,6 @@ import { EventsService } from 'src/services/event.service';
 export class InitialLetterPropertyComponent implements ControlValueAccessor {
 
   initialLetter: IInitialLetterProperty = {};
-
-  constructor (
-    private eventsService: EventsService
-  ) {
-
-  }
 
 
   /** NgModel Start */
@@ -49,10 +42,6 @@ export class InitialLetterPropertyComponent implements ControlValueAccessor {
 
 
   onTouched = () => {};
-
-  change() {
-    this.eventsService.publish('property-change');
-  }
 
 
 }

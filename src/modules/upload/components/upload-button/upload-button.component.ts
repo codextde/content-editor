@@ -1,25 +1,27 @@
 import { Component, forwardRef, OnInit, ViewChild } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
+import { ToastController } from '@ionic/angular';
 import { forkJoin } from 'rxjs';
 import { HelperService } from 'src/services/helper.service';
 import { UploadService } from '../../services/upload.service';
 declare var kendo: any;
-// import '@progress/kendo-ui';  
 
 @Component({
   selector: 'upload-button',
   templateUrl: './upload-button.component.html',
   styleUrls: ['./upload-button.component.scss'],
-  providers: [{
-    provide: NG_VALUE_ACCESSOR,
-    useExisting: forwardRef(() => UploadButtonComponent),
-    multi: true
-  }]
+  providers: [
+    {
+      provide: NG_VALUE_ACCESSOR,
+      useExisting: forwardRef(() => UploadButtonComponent),
+      multi: true
+    }
+  ]
 })
 export class UploadButtonComponent implements OnInit, ControlValueAccessor {
-  @ViewChild('file') file;
-  @ViewChild('imageUpload') imageUpload;
-  public files: Set < File > = new Set();
+  @ViewChild('file', { static: true }) file;
+  @ViewChild('imageUpload', { static: true }) imageUpload;
+  public files: Set<File> = new Set();
 
   progress;
   canBeClosed = true;
@@ -27,17 +29,21 @@ export class UploadButtonComponent implements OnInit, ControlValueAccessor {
   showCancelButton = true;
   uploading = false;
   uploadSuccessful = false;
-  imageBrowser: any;
 
   selectedImagePath: string = '';
 
-
   constructor(
     public uploadService: UploadService,
-    private helperService: HelperService) {
+    private toastCtrl: ToastController,
+    private helperService: HelperService
+  ) {}
 
-    }
-
+  fixImageThumbs() {
+    setTimeout(() => {
+      document.querySelector('div.imageUpload ul').scroll(100, 100);
+      document.querySelector('div.imageUpload ul').scroll(0, 0);
+    }, 100);
+  }
 
   writeValue(value: any): void {
     if (value) {
@@ -54,10 +60,12 @@ export class UploadButtonComponent implements OnInit, ControlValueAccessor {
 
   onChange: any = () => {};
 
-
   ngOnInit() {
-    const imageBrowserPath = '../../' + this.helperService.studyName + '/ImageBrowser/';
-    const kendoImageBrowserConfig: /*kendo.ui.EditorImageBrowser | kendo.ui.EditorOptions*/ any = {
+    const imageBrowserPath =
+      '../../' + this.helperService.studyName + '/ImageBrowser/';
+    const kendoImageBrowserConfig:
+      | kendo.ui.EditorImageBrowser
+      | kendo.ui.EditorOptions = {
       transport: {
         read: {
           url: imageBrowserPath + 'Read'
@@ -74,35 +82,18 @@ export class UploadButtonComponent implements OnInit, ControlValueAccessor {
         uploadUrl: imageBrowserPath + 'Upload',
         imageUrl: '~/Content/UserFiles/Upload/{0}'
       },
-      execute: (e: any) => {
-        console.log('execute', e);
-        this.refreshData();
-      },
       change: (e: any) => {
-        console.log('change', e);
-        this.selectedImagePath = `${this.helperService.basePath}designer/~/Content/UserFiles/Upload/${this.helperService.studyName}/${e.sender.path()}${e.selected.name}`;
-      },
-      error: (e: any) => {
-        console.log('error', e)
+        this.selectedImagePath = `${
+          this.helperService.basePath
+        }designer/~/Content/UserFiles/Upload/${
+          this.helperService.studyName
+        }/${e.sender.path()}${e.selected.name}`;
       }
-
     };
 
-    const imageBrowserElement = kendo.jQuery(this.imageUpload.nativeElement).kendoImageBrowser(kendoImageBrowserConfig);
-    this.imageBrowser = imageBrowserElement.data('kendoImageBrowser');
-    
-    this.imageBrowser.dataSource.bind('requestEnd', (req) => {
-      if(req.type != 'read') {
-        this.refreshData();
-      }
-    });
-
-  }
-
-  refreshData() {
-    if (this.imageBrowser) {
-      this.imageBrowser.dataSource.read();
-    }
+    kendo
+      .jQuery(this.imageUpload.nativeElement)
+      .kendoImageBrowser(kendoImageBrowserConfig);
   }
 
   insert() {
@@ -115,7 +106,7 @@ export class UploadButtonComponent implements OnInit, ControlValueAccessor {
 
   onFilesAdded() {
     const files: {
-      [key: string]: File
+      [key: string]: File;
     } = this.file.nativeElement.files;
     for (const key in files) {
       if (!isNaN(parseInt(key))) {
@@ -124,12 +115,9 @@ export class UploadButtonComponent implements OnInit, ControlValueAccessor {
     }
   }
 
-
-
   upload() {
     // if everything was uploaded already, just close the dialog
     if (this.uploadSuccessful) {
-
     }
     this.uploading = true;
 
@@ -145,29 +133,27 @@ export class UploadButtonComponent implements OnInit, ControlValueAccessor {
     this.showCancelButton = false;
 
     // When all progress-observables are completed...
-    forkJoin(allProgressObservables).subscribe(async end => {
-
-      this.uploadSuccessful = true;
-      this.uploading = false;
-      this.progress = 0;
-      const toastCtrl: any = {};
-      const toast = await toastCtrl.create({
-        message: 'Upload Successful',
-        duration: 3000
-      });
-      toast.present();
-    }, async (error) => {
-      this.progress = 0;
-      const toastCtrl: any = {};
-      const toast = await toastCtrl.create({
-        message: 'Upload failed',
-        duration: 3000
-      });
-      toast.present();
-      this.uploadSuccessful = false;
-      this.uploading = false;
-    });
-
+    forkJoin(allProgressObservables).subscribe(
+      async end => {
+        this.uploadSuccessful = true;
+        this.uploading = false;
+        this.progress = 0;
+        const toast = await this.toastCtrl.create({
+          message: 'Upload Successful',
+          duration: 3000
+        });
+        toast.present();
+      },
+      async error => {
+        this.progress = 0;
+        const toast = await this.toastCtrl.create({
+          message: 'Upload failed',
+          duration: 3000
+        });
+        toast.present();
+        this.uploadSuccessful = false;
+        this.uploading = false;
+      }
+    );
   }
-
 }

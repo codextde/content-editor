@@ -1,4 +1,10 @@
-import { Component, forwardRef, ViewChild, ElementRef, OnInit } from '@angular/core';
+import {
+  Component,
+  forwardRef,
+  ViewChild,
+  ElementRef,
+  OnInit
+} from '@angular/core';
 import { NG_VALUE_ACCESSOR, ControlValueAccessor } from '@angular/forms';
 import { MonacoService } from 'src/services/monaco.service';
 
@@ -6,15 +12,22 @@ import { MonacoService } from 'src/services/monaco.service';
   selector: 'app-property-javascript',
   templateUrl: './javascript.component.html',
   styleUrls: ['./javascript.component.scss'],
-  providers: [{
-       provide: NG_VALUE_ACCESSOR,
-       useExisting: forwardRef(() => JavascriptPropertyComponent),
-       multi: true
-  }]
+  providers: [
+    {
+      provide: NG_VALUE_ACCESSOR,
+      useExisting: forwardRef(() => JavascriptPropertyComponent),
+      multi: true
+    }
+  ]
 })
-export class JavascriptPropertyComponent  implements OnInit, ControlValueAccessor {
-  @ViewChild('editorElm') editorElm: ElementRef;
-  javascriptOptions = {theme: 'vs-dark', language: 'javascript', value: 'function x() {\n  console.log("Hello world!");\n}'};
+export class JavascriptPropertyComponent
+  implements OnInit, ControlValueAccessor {
+  @ViewChild('editorElm', { static: true }) editorElm: ElementRef;
+  javascriptOptions = {
+    theme: 'vs-dark',
+    language: 'javascript',
+    value: 'function x() {\n  console.log("Hello world!");\n}'
+  };
 
   /** NgModel Start */
   writeValue(value: any): void {
@@ -31,20 +44,18 @@ export class JavascriptPropertyComponent  implements OnInit, ControlValueAccesso
     this.onTouched = fn;
   }
 
-  setDisabledState(isDisabled: boolean): void {
-
-  }
+  setDisabledState(isDisabled: boolean): void {}
   /** NgModel End */
 
-  constructor(
-    private monacoService: MonacoService
-  ) {}
-
+  constructor(private monacoService: MonacoService) {}
 
   ngOnInit() {
     this.monacoService.loadMonaco().then((monaco: any) => {
-      const editor = monaco.editor.create(this.editorElm.nativeElement, this.javascriptOptions);
-      editor.onDidChangeModelContent((e) => {
+      const editor = monaco.editor.create(
+        this.editorElm.nativeElement,
+        this.javascriptOptions
+      );
+      editor.onDidChangeModelContent(e => {
         this.onChange(editor.getValue());
       });
     });
@@ -52,6 +63,4 @@ export class JavascriptPropertyComponent  implements OnInit, ControlValueAccesso
 
   onChange: any = () => {};
   onTouched = () => {};
-
-
 }

@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import * as WebFont from 'webfontloader';
-import { DataService } from './data.service';
 
 @Injectable({
   providedIn: 'root'
@@ -21,19 +20,12 @@ export class FontService {
     url: './assets/fonts/sample/sample.css'
   }];
 
-  constructor() {}
-
-  loadFonts(locationUrl?: string) {
+  constructor() {
     let webFontsLoader = [];
     let urls = [];
     this.fonts.forEach((font) => {
       webFontsLoader.push(font.fontFamily);
-      let url = font.url;
-      if (locationUrl) {
-        url = locationUrl + font.url;
-      };
-
-      urls.push(url);
+      urls.push(font.url);
     })
     // Load Fonts
     WebFont.load({
