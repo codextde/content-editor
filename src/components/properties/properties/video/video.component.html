@@ -1,9 +1,7 @@
 <app-card class="property" cardTitle="Video">
   <div class="property-content">
     <div class="row">
-      <div class="col title">
-        Source (URL)
-      </div>
+      <div class="col title">Source (URL)</div>
       <div class="col flex-end">
         <input [(ngModel)]="video.src" (ngModelChange)="change()" />
       </div>
@@ -11,12 +9,11 @@
 
     <div class="row" *ngFor="let videoOption of videoOptions">
       <div class="col title">
-        {{videoOption.title}}
+        {{ videoOption.title }}
       </div>
       <div class="col flex-end">
-        <app-toggle [(ngModel)]="video[videoOption.option]" ></app-toggle>
+        <app-toggle [(ngModel)]="video[videoOption.option]"></app-toggle>
       </div>
     </div>
-
   </div>
 </app-card>

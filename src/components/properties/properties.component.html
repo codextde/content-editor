@@ -1,9 +1,7 @@
 <div class="properties" [@fadeInAnimation]>
   <div class="header">
     <div class="row">
-      <div class="title col">
-        {{ element.title || ''}} Settings 
-      </div>
+      <div class="title col">{{ element.title || '' }} Settings</div>
       <div class="actions col flex-end">
         <button (click)="close()">
           <fa-icon [icon]="faArrowDown"></fa-icon>
@@ -12,21 +10,50 @@
     </div>
   </div>
 
-
-  <div *ngFor="let property of element.properties">
-      <app-property-general *ngIf="property.name == 'general'" [(ngModel)]="property"></app-property-general>
-      <app-property-padding *ngIf="property.name == 'padding'" [(ngModel)]="property"></app-property-padding>
-      <app-property-html *ngIf="property.name == 'html'" [(ngModel)]="property"></app-property-html>
-      <app-property-text *ngIf="property.name == 'text'" [(ngModel)]="property"></app-property-text>
-      <app-property-video *ngIf="property.name == 'video'" [(ngModel)]="property"></app-property-video>
-      <app-property-image *ngIf="property.name == 'image'" [(ngModel)]="property"></app-property-image>
-      <app-property-background *ngIf="property.name == 'background'" [(ngModel)]="property"></app-property-background>
-      <app-property-divider *ngIf="property.name == 'divider'" [(ngModel)]="property"></app-property-divider>
-      <app-property-headline *ngIf="property.name == 'headline'" [(ngModel)]="property"></app-property-headline>
-      <app-property-initial-letter *ngIf="property.name == 'initialLetter'" [(ngModel)]="property"></app-property-initial-letter>
-      <app-property-position *ngIf="property.name == 'position'" [(ngModel)]="property"></app-property-position>
+  <div *ngFor="let property of element.properties; let i = index">
+    <app-property-general
+      *ngIf="property.name == 'general'"
+      [(ngModel)]="element.properties[i]"
+    ></app-property-general>
+    <app-property-padding
+      *ngIf="property.name == 'padding'"
+      [(ngModel)]="element.properties[i]"
+    ></app-property-padding>
+    <app-property-html
+      *ngIf="property.name == 'html'"
+      [(ngModel)]="element.properties[i]"
+    ></app-property-html>
+    <app-property-text
+      *ngIf="property.name == 'text'"
+      [(ngModel)]="element.properties[i]"
+    ></app-property-text>
+    <app-property-video
+      *ngIf="property.name == 'video'"
+      [(ngModel)]="element.properties[i]"
+    ></app-property-video>
+    <app-property-image
+      *ngIf="property.name == 'image'"
+      [(ngModel)]="element.properties[i]"
+    ></app-property-image>
+    <app-property-background
+      *ngIf="property.name == 'background'"
+      [(ngModel)]="element.properties[i]"
+    ></app-property-background>
+    <app-property-divider
+      *ngIf="property.name == 'divider'"
+      [(ngModel)]="element.properties[i]"
+    ></app-property-divider>
+    <app-property-headline
+      *ngIf="property.name == 'headline'"
+      [(ngModel)]="element.properties[i]"
+    ></app-property-headline>
+    <app-property-initial-letter
+      *ngIf="property.name == 'initialLetter'"
+      [(ngModel)]="element.properties[i]"
+    ></app-property-initial-letter>
+    <app-property-position
+      *ngIf="property.name == 'position'"
+      [(ngModel)]="element.properties[i]"
+    ></app-property-position>
   </div>
-  
-  
-  
 </div>

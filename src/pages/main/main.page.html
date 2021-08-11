@@ -12,33 +12,33 @@
       class="drag-element"
       [tooltip]="elementBar"
       [tooltipClick]="true"
-      *ngFor="let element of dataService.contentEditorElements"
+      *ngFor="let element of dataService.contentEditorElements; let i = index"
       cdkDrag
     >
       <app-element-text
         *ngIf="element.component == 'text'"
         (click)="openProperties(element)"
-        [(ngModel)]="element"
+        [(ngModel)]="dataService.contentEditorElements[i]"
       ></app-element-text>
       <app-element-html
         *ngIf="element.component == 'html'"
         (click)="openProperties(element)"
-        [(ngModel)]="element"
+        [(ngModel)]="dataService.contentEditorElements[i]"
       ></app-element-html>
       <app-element-headline
         *ngIf="element.component == 'headline'"
         (click)="openProperties(element)"
-        [(ngModel)]="element"
+        [(ngModel)]="dataService.contentEditorElements[i]"
       ></app-element-headline>
       <app-element-video
         *ngIf="element.component == 'video'"
         (click)="openProperties(element)"
-        [(ngModel)]="element"
+        [(ngModel)]="dataService.contentEditorElements[i]"
       ></app-element-video>
       <app-element-image
         *ngIf="element.component == 'image'"
         (click)="openProperties(element)"
-        [(ngModel)]="element"
+        [(ngModel)]="dataService.contentEditorElements[i]"
       ></app-element-image>
       <app-element-clearfix
         *ngIf="element.component == 'clearfix'"
@@ -47,7 +47,7 @@
       <app-element-divider
         *ngIf="element.component == 'divider'"
         (click)="openProperties(element)"
-        [(ngModel)]="element"
+        [(ngModel)]="dataService.contentEditorElements[i]"
       ></app-element-divider>
 
       <app-tooltip class="drag-element-toolbar" #elementBar direction="ltr">

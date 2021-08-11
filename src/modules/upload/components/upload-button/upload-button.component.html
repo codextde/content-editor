@@ -1,9 +1,18 @@
-<button class="btn btn-sm btn-secondary btn-block" (click)="modalRoot.show(); fixImageThumbs()">Browse</button>
+<button
+  class="btn btn-sm btn-secondary btn-block"
+  (click)="modalRoot.show(); fixImageThumbs()"
+>
+  Browse
+</button>
 
-<app-modal #modalRoot [modalTitle]="'Insert Image'" [width]="700" [maximizable]="true">
+<app-modal
+  #modalRoot
+  [modalTitle]="'Insert Image'"
+  [width]="700"
+  [maximizable]="true"
+>
   <ng-container class="app-modal-body">
-
-      <div class="imageUpload" #imageUpload></div>
+    <div class="imageUpload" #imageUpload></div>
 
     <!--<div class="file-list">
       <div class="file-list-item" *ngFor="let file of files">
@@ -22,7 +31,16 @@
         Files</button>
       <button [disabled]="!canBeClosed || files.size == 0" type="button" class="btn btn-sm btn-secondary" (click)="upload()">{{primaryButtonText}}</button>
     </div>-->
-    <button class="btn btn-sm btn-secondary" (click)="modalRoot.hide()">Cancel</button>
-    <button type="button" class="btn btn-sm btn-secondary" style="float: right;" (click)="insert();modalRoot.hide()">Insert</button>
+    <button class="btn btn-sm btn-secondary" (click)="modalRoot.hide()">
+      Cancel
+    </button>
+    <button
+      type="button"
+      class="btn btn-sm btn-secondary"
+      style="float: right"
+      (click)="insert(); modalRoot.hide()"
+    >
+      Insert
+    </button>
   </ng-container>
 </app-modal>

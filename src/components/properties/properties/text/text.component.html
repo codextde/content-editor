@@ -1,15 +1,23 @@
 <app-card class="property" cardTitle="Text">
   <div class="property-content">
     <div class="row">
-      <div class="col title">
-        Weight
-      </div>
+      <div class="col title">Weight</div>
       <div class="col flex-end">
         <div class="btn-group" role="group">
-          <button type="button" class="btn btn-sm btn-secondary" (click)="textWeight('bold')" [class.active]="text.fontWeight == 'bold'">
+          <button
+            type="button"
+            class="btn btn-sm btn-secondary"
+            (click)="textWeight('bold')"
+            [class.active]="text.fontWeight == 'bold'"
+          >
             <fa-icon [icon]="faBold"></fa-icon>
           </button>
-          <button type="button" class="btn btn-sm btn-secondary" (click)="textWeight('normal')" [class.active]="text.fontWeight == 'normal'">
+          <button
+            type="button"
+            class="btn btn-sm btn-secondary"
+            (click)="textWeight('normal')"
+            [class.active]="text.fontWeight == 'normal'"
+          >
             Normal
           </button>
         </div>
@@ -17,83 +25,119 @@
     </div>
 
     <div class="row">
-      <div class="col title">
-        Text Align
-      </div>
+      <div class="col title">Text Align</div>
       <div class="col flex-end">
         <div class="btn-group" role="group">
-          <button type="button" class="btn btn-sm btn-secondary" (click)="textAlign('left')" [class.active]="text.textAlign == 'left'">
+          <button
+            type="button"
+            class="btn btn-sm btn-secondary"
+            (click)="textAlign('left')"
+            [class.active]="text.textAlign == 'left'"
+          >
             <fa-icon [icon]="faAlignLeft"></fa-icon>
           </button>
-          <button type="button" class="btn btn-sm btn-secondary" (click)="textAlign('center')" [class.active]="text.textAlign == 'center'">
+          <button
+            type="button"
+            class="btn btn-sm btn-secondary"
+            (click)="textAlign('center')"
+            [class.active]="text.textAlign == 'center'"
+          >
             <fa-icon [icon]="faAlignCenter"></fa-icon>
           </button>
-          <button type="button" class="btn btn-sm btn-secondary" (click)="textAlign('right')" [class.active]="text.textAlign == 'right'">
+          <button
+            type="button"
+            class="btn btn-sm btn-secondary"
+            (click)="textAlign('right')"
+            [class.active]="text.textAlign == 'right'"
+          >
             <fa-icon [icon]="faAlignRight"></fa-icon>
           </button>
         </div>
-
       </div>
     </div>
 
     <div class="row">
-      <div class="col title">
-        Font Family
-      </div>
+      <div class="col title">Font Family</div>
       <div class="col flex-end">
         <div class="dropdown" dropdown>
           <button class="btn btn-secondary btn-sm" dropdown-open>
-            <span [style.fontFamily]="fontFamily?.fontFamily">{{ fontFamily?.displayName || 'Select' }}</span>
+            <span [style.fontFamily]="fontFamily?.fontFamily">{{
+              fontFamily?.displayName || 'Select'
+            }}</span>
           </button>
           <div class="dropdown-menu">
-            <a class="dropdown-item" (click)="selectFont({displayName: '', fontFamily: ''})">Select</a>
-            <a *ngFor="let font of fontService.fonts" class="dropdown-item" (click)="selectFont(font)" [style.fontFamily]="font.fontFamily">{{font.displayName}}</a>
+            <a
+              class="dropdown-item"
+              (click)="selectFont({ displayName: '', fontFamily: '' })"
+              >Select</a
+            >
+            <a
+              *ngFor="let font of fontService.fonts"
+              class="dropdown-item"
+              (click)="selectFont(font)"
+              [style.fontFamily]="font.fontFamily"
+              >{{ font.displayName }}</a
+            >
           </div>
         </div>
       </div>
     </div>
 
     <div class="row">
-      <div class="col title">
-        Color
-      </div>
+      <div class="col title">Color</div>
       <div class="col flex-end">
-        <input [(colorPicker)]="text.color" cpPosition="left" cpOutputFormat="auto" cpAlphaChannel="enabled"
-              [style.background]="text.color" (colorPickerChange)="change()" />
+        <input
+          [(colorPicker)]="text.color"
+          cpPosition="left"
+          cpOutputFormat="auto"
+          cpAlphaChannel="enabled"
+          [style.background]="text.color"
+          (colorPickerChange)="change()"
+        />
       </div>
     </div>
 
     <div class="row size">
-      <div class="col title">
-        Size (px)
-      </div>
+      <div class="col title">Size (px)</div>
       <div class="col flex-end">
-          <app-stepper [(ngModel)]="text['fontSize.px']" (ngModelChange)="change()"></app-stepper>
+        <app-stepper
+          [(ngModel)]="text['fontSize.px']"
+          (ngModelChange)="change()"
+        ></app-stepper>
       </div>
     </div>
 
     <div class="row">
-      <div class="col title">
-        Line Height
-      </div>
+      <div class="col title">Line Height</div>
       <div class="col flex-end">
-          <!--<app-stepper [(ngModel)]="text.lineHeight"></app-stepper>-->
+        <!--<app-stepper [(ngModel)]="text.lineHeight"></app-stepper>-->
 
-          <div class="dropdown" dropdown>
-              <input class="btn btn-secondary btn-sm" [(ngModel)]="text['lineHeight']" dropdown-open (ngModelChange)="change()">
-              <div class="dropdown-menu">
-                <a *ngFor="let lineHeight of lineHeights" class="dropdown-item" (click)="selectLineHeight(lineHeight)">{{lineHeight}}</a>
-              </div>
-            </div>
+        <div class="dropdown" dropdown>
+          <input
+            class="btn btn-secondary btn-sm"
+            [(ngModel)]="text['lineHeight']"
+            dropdown-open
+            (ngModelChange)="change()"
+          />
+          <div class="dropdown-menu">
+            <a
+              *ngFor="let lineHeight of lineHeights"
+              class="dropdown-item"
+              (click)="selectLineHeight(lineHeight)"
+              >{{ lineHeight }}</a
+            >
+          </div>
+        </div>
       </div>
     </div>
     <div class="row">
-        <div class="col title">
-          Text Indent
-        </div>
-        <div class="col flex-end">
-            <app-stepper [(ngModel)]="text['textIndent.px']" (ngModelChange)="change()"></app-stepper>
-        </div>
+      <div class="col title">Text Indent</div>
+      <div class="col flex-end">
+        <app-stepper
+          [(ngModel)]="text['textIndent.px']"
+          (ngModelChange)="change()"
+        ></app-stepper>
       </div>
+    </div>
   </div>
 </app-card>

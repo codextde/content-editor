@@ -1,6 +1,20 @@
-import { CdkDragDrop, copyArrayItem, moveItemInArray } from '@angular/cdk/drag-drop';
-import { ChangeDetectorRef, Component, HostListener, OnInit } from '@angular/core';
-import { faArrowsAlt, faCogs, faHandPointer, faTrash } from '@fortawesome/free-solid-svg-icons';
+import {
+  CdkDragDrop,
+  copyArrayItem,
+  moveItemInArray,
+} from '@angular/cdk/drag-drop';
+import {
+  ChangeDetectorRef,
+  Component,
+  HostListener,
+  OnInit,
+} from '@angular/core';
+import {
+  faArrowsAlt,
+  faCogs,
+  faHandPointer,
+  faTrash,
+} from '@fortawesome/free-solid-svg-icons';
 import { AlertController, ToastController } from '@ionic/angular';
 import { DataService } from 'src/services/data.service';
 import { ElementService } from 'src/services/element.service';
@@ -11,14 +25,12 @@ import { FontService } from 'src/services/font.service';
 import { EventsService } from 'src/services/event.service';
 import { IElement } from 'src/models/element.model';
 
-
 @Component({
   selector: 'app-main',
   templateUrl: './main.page.html',
-  styleUrls: ['./main.page.scss']
+  styleUrls: ['./main.page.scss'],
 })
 export class MainPage implements OnInit {
-
   tab: string = 'elements';
 
   // Icons
@@ -38,7 +50,7 @@ export class MainPage implements OnInit {
     background: {},
     padding: {},
     css: '',
-    direction: ''
+    direction: '',
   };
 
   // Keyboard Listener for Save Feature
@@ -73,34 +85,42 @@ export class MainPage implements OnInit {
 
   checkDrag() {
     this.dataService.contentEditorElements.forEach((element: IElement) => {
-      element.properties.forEach((property) =>  {
+      element.properties.forEach((property) => {
         if (property.name == 'position' && property.position == 'absolute') {
           element.disableDrag = true;
         } else if (property.name == 'position') {
           element.disableDrag = false;
         }
       });
-    })
+    });
   }
 
-  drop(event: CdkDragDrop < string[] > , prevent ? ) {
+  drop(event: CdkDragDrop<string[]>, prevent?) {
     if (event.previousContainer === event.container) {
-      moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
-    } else {
-      copyArrayItem(event.previousContainer.data,
+      moveItemInArray(
         event.container.data,
         event.previousIndex,
-        event.currentIndex);
+        event.currentIndex
+      );
+    } else {
+      copyArrayItem(
+        event.previousContainer.data,
+        event.container.data,
+        event.previousIndex,
+        event.currentIndex
+      );
 
       // currentObject.id = this.helper.uuidv4();
 
-      const currentObject = this.dataService.contentEditorElements[event.currentIndex];
+      const currentObject =
+        this.dataService.contentEditorElements[event.currentIndex];
       console.log(this.dataService.contentEditorElements);
-      this.dataService.contentEditorElements[event.currentIndex] = HelperService.clearObject(currentObject);
+      this.dataService.contentEditorElements[event.currentIndex] =
+        HelperService.clearObject(currentObject);
     }
   }
 
-  cssCodeChange() {
+  cssCodeChange(ev?) {
     this.helper.applyStyle(this.bodyProperties.css);
   }
 
@@ -132,15 +152,18 @@ export class MainPage implements OnInit {
   delete(element) {
     this.propertiesActive = false;
     this.activeElement = {};
-    this.dataService.contentEditorElements = this.dataService.contentEditorElements.filter((el) => el !== element);
+    this.dataService.contentEditorElements =
+      this.dataService.contentEditorElements.filter((el) => el !== element);
 
     this.save();
   }
 
-
   async save() {
     await this.dataService.convertToDesigner();
-    const toast = await this.toastCtrl.create({message: 'Saved', duration: 2000});
+    const toast = await this.toastCtrl.create({
+      message: 'Saved',
+      duration: 2000,
+    });
     toast.present();
   }
 
@@ -151,7 +174,7 @@ export class MainPage implements OnInit {
       background: {},
       padding: {},
       css: '',
-      direction: ''
+      direction: '',
     };
     this.cdr.detectChanges();
     localStorage.removeItem('content');
@@ -164,90 +187,105 @@ export class MainPage implements OnInit {
     const alert = await this.alertCtrl.create({
       header: 'Import',
       subHeader: 'Paste the Json String',
-      inputs: [{
-        name: 'value',
-        type: 'text',
-        placeholder: '{}'
-      }],
-      buttons: [{
-        text: 'Cancel',
-        role: 'cancel',
-        cssClass: 'secondary'
-      }, {
-        text: 'Import',
-        handler: (data) => {
-          if (data && data.value) {
-            // this.dataService.editorOptions = JSON.parse(data.value);
-          }
-        }
-      }]
+      inputs: [
+        {
+          name: 'value',
+          type: 'text',
+          placeholder: '{}',
+        },
+      ],
+      buttons: [
+        {
+          text: 'Cancel',
+          role: 'cancel',
+          cssClass: 'secondary',
+        },
+        {
+          text: 'Import',
+          handler: (data) => {
+            if (data && data.value) {
+              // this.dataService.editorOptions = JSON.parse(data.value);
+            }
+          },
+        },
+      ],
     });
 
     await alert.present();
   }
 
-  async export () {
+  async export() {
     // TODO Add Export Feature
     const config = ''; // JSON.stringify(this.dataService.editorOptions);
     const alert = await this.alertCtrl.create({
       header: 'Export',
       subHeader: 'Copy the Json String',
-      inputs: [{
-        name: 'value',
-        type: 'text',
-        placeholder: '{}',
-        value: config
-      }],
-      buttons: [{
-        text: 'Ok',
-        handler: () => {}
-      }]
+      inputs: [
+        {
+          name: 'value',
+          type: 'text',
+          placeholder: '{}',
+          value: config,
+        },
+      ],
+      buttons: [
+        {
+          text: 'Ok',
+          handler: () => {},
+        },
+      ],
     });
 
     await alert.present();
   }
 
+  // Improve Load Body Properties Function // Move to Service
+  async loadBodyProperties() {
+    const properties = this.dataService.contentEditorProperties;
 
-    // Improve Load Body Properties Function // Move to Service
-    async loadBodyProperties() {
-      const properties = this.dataService.contentEditorProperties;
+    this.dataService.bodyPropertiesTypes.forEach((propertyName) => {
+      const index = this.dataService.contentEditorProperties.findIndex(
+        (data) => data.name == propertyName
+      );
+      if (index == -1) {
+        return;
+      }
+      if (typeof properties[index].value !== 'undefined') {
+        this.bodyProperties[propertyName] = properties[index].value;
+      } else {
+        this.bodyProperties[propertyName] = properties[index];
+      }
+    });
 
-      this.dataService.bodyPropertiesTypes.forEach((propertyName) => {
-        const index = this.dataService.contentEditorProperties.findIndex((data) => data.name == propertyName);
-        if (index == -1) { return; }
-        if (typeof properties[index].value !== 'undefined') {
-          this.bodyProperties[propertyName] = properties[index].value;
-        } else {
-          this.bodyProperties[propertyName] = properties[index];
-        }
-      });
+    this.bodyProperties.styles = this.elementService.loadStyleProperties(
+      this.dataService.contentEditorProperties
+    );
+    this.cssCodeChange();
+    this.loadDirection();
+  }
 
-      this.bodyProperties.styles = this.elementService.loadStyleProperties(this.dataService.contentEditorProperties);
-      this.cssCodeChange();
-      this.loadDirection();
-    }
+  // Improve Set Body Properties Function // Move to Service
+  setBodyProperties() {
+    const properties = this.dataService.contentEditorProperties;
 
-    // Improve Set Body Properties Function // Move to Service
-    setBodyProperties() {
-      const properties = this.dataService.contentEditorProperties;
+    this.dataService.bodyPropertiesTypes.forEach((propertyName) => {
+      let index = properties.findIndex((data) => data.name == propertyName);
+      if (index == -1) {
+        properties.push({ name: propertyName });
+      }
+      index = properties.findIndex((data) => data.name == propertyName);
+      if (typeof properties[index].value !== 'undefined') {
+        properties[index].value = this.bodyProperties[propertyName];
+      } else {
+        properties[index] = {
+          name: propertyName,
+          ...this.bodyProperties[propertyName],
+        };
+      }
+    });
 
-      this.dataService.bodyPropertiesTypes.forEach((propertyName) => {
-        let index = properties.findIndex((data) => data.name == propertyName);
-        if (index == -1) {
-          properties.push({name: propertyName});
-        }
-        index = properties.findIndex((data) => data.name == propertyName);
-        if (typeof properties[index].value !== 'undefined') {
-          properties[index].value = this.bodyProperties[propertyName];
-        } else {
-          properties[index] = {name: propertyName, ...this.bodyProperties[propertyName]};
-        }
-      });
-
-      this.bodyProperties.styles = this.elementService.loadStyleProperties(this.dataService.contentEditorProperties);
-
-
-    }
-
-
+    this.bodyProperties.styles = this.elementService.loadStyleProperties(
+      this.dataService.contentEditorProperties
+    );
+  }
 }
