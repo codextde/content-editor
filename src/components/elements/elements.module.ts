@@ -24,21 +24,18 @@ const elements = [
 
 
 @NgModule({
-  declarations: [
-    ...elements
-  ],
-  entryComponents: [
-    ...elements
-  ],
-  exports: [
-    ...elements
-  ],
-  imports: [
-    FontAwesomeModule,
-    PipesModule,
-    CommonModule,
-    DirectivesModule,
-    AngularDraggableModule
-  ]
+    declarations: [
+        ...elements
+    ],
+    exports: [
+        ...elements
+    ],
+    imports: [
+        FontAwesomeModule,
+        PipesModule,
+        CommonModule,
+        DirectivesModule,
+        AngularDraggableModule
+    ]
 })
 export class ElementsModule { }

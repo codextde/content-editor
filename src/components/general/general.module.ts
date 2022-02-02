@@ -21,19 +21,16 @@ const properties = [
 
 
 @NgModule({
-  declarations: [
-    ...properties
-  ],
-  entryComponents: [
-    ...properties
-  ],
-  exports: [
-    ...properties
-  ],
-  imports: [
-    CommonModule,
-    FormsModule,
-    FontAwesomeModule
-  ]
+    declarations: [
+        ...properties
+    ],
+    exports: [
+        ...properties
+    ],
+    imports: [
+        CommonModule,
+        FormsModule,
+        FontAwesomeModule
+    ]
 })
 export class GeneralModule { }
