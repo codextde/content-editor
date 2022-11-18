@@ -1,44 +1,71 @@
-<app-card class="property" cardTitle="General">
-
-  <div class="property-content">
-    <div class="row">
-      <div class="col title" [tooltip]="'Add a Clearfix after this Element, if you want to stop floating in the Content.'">
-        Float
-        <fa-icon [icon]="faInfoCircle"></fa-icon>
-      </div>
-      <div class="col flex-end">
-        <div class="btn-group" role="group">
-          <button type="button" class="btn btn-sm btn-secondary" (click)="float('left')" [class.active]="general.float == 'left'">
-            Left
-          </button>
-          <button type="button" class="btn btn-sm btn-secondary" (click)="float('none')" [class.active]="general.float == 'none'">
-            None
-          </button>
-          <button type="button" class="btn btn-sm btn-secondary" (click)="float('right')" [class.active]="general.float == 'right'">
-            Right
-          </button>
+<app-card
+    class="property"
+    cardTitle="General">
+    <div class="property-content">
+        <div class="row">
+            <div
+                class="col title"
+                [tooltip]="
+                    'Add a Clearfix after this Element, if you want to stop floating in the Content.'
+                ">
+                Float
+                <fa-icon [icon]="faInfoCircle"></fa-icon>
+            </div>
+            <div class="col flex-end">
+                <div
+                    class="btn-group"
+                    role="group">
+                    <button
+                        type="button"
+                        class="btn btn-sm btn-secondary"
+                        (click)="float('left')"
+                        [class.active]="general.float == 'left'">
+                        Left
+                    </button>
+                    <button
+                        type="button"
+                        class="btn btn-sm btn-secondary"
+                        (click)="float('none')"
+                        [class.active]="general.float == 'none'">
+                        None
+                    </button>
+                    <button
+                        type="button"
+                        class="btn btn-sm btn-secondary"
+                        (click)="float('right')"
+                        [class.active]="general.float == 'right'">
+                        Right
+                    </button>
+                </div>
+            </div>
         </div>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col title">
-        Width (px)
-      </div>
-      <div class="col flex-end">
-        <app-stepper [(ngModel)]="general[width]" (ngModelChange)="change()"></app-stepper>
-        <app-px-percentage-switch [(ngModel)]="widthUnit" (ngModelChange)="changeWidthUnit()"></app-px-percentage-switch>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col title" [tooltip]="'Add a Width to Center'">
-        Center
-        <fa-icon [icon]="faInfoCircle"></fa-icon>
-      </div>
-      <div class="col flex-end">
-          <app-toggle [(ngModel)]="center" (ngModelChange)="changeCenter()"></app-toggle>
-      </div>
-    </div>
-    <!--<div class="row">
+        <div class="row">
+            <div class="col title">Width (px)</div>
+            <div class="col flex-end">
+                <app-stepper
+                    [(ngModel)]="general[width]"
+                    (ngModelChange)="change()"></app-stepper>
+                <app-px-percentage-switch
+                    [(ngModel)]="widthUnit"
+                    (ngModelChange)="
+                        changeWidthUnit()
+                    "></app-px-percentage-switch>
+            </div>
+        </div>
+        <div class="row">
+            <div
+                class="col title"
+                [tooltip]="'Add a Width to Center'">
+                Center
+                <fa-icon [icon]="faInfoCircle"></fa-icon>
+            </div>
+            <div class="col flex-end">
+                <app-toggle
+                    [(ngModel)]="center"
+                    (ngModelChange)="changeCenter()"></app-toggle>
+            </div>
+        </div>
+        <!--<div class="row">
       <div class="col title">
         zIndex
       </div>
@@ -46,25 +73,34 @@
         <app-stepper [(ngModel)]="general.zIndex"></app-stepper>
       </div>
     </div>-->
-    <div class="row">
-      <div class="col title" [tooltip]="'Edit the Styles in the Body CSS Editor.'">
-        CSS Class
-        <fa-icon [icon]="faInfoCircle"></fa-icon>
-      </div>
-      <div class="col flex-end">
-        <input [(ngModel)]="general['cssClasses']" (ngModelChange)="change()">
-      </div>
-    </div>
+        <div class="row">
+            <div
+                class="col title"
+                [tooltip]="'Edit the Styles in the Body CSS Editor.'">
+                CSS Class
+                <fa-icon [icon]="faInfoCircle"></fa-icon>
+            </div>
+            <div class="col flex-end">
+                <input
+                    [(ngModel)]="general['cssClasses']"
+                    (ngModelChange)="change()" />
+            </div>
+        </div>
 
-    <div class="row">
-      <div class="col title" [tooltip]="'Syntax: h-offset v-offset blur spread color\r\nSample: 0 0 10px 10px #fff'">
-        Box Shadow
-        <fa-icon [icon]="faInfoCircle"></fa-icon>
-      </div>
-      <div class="col flex-end">
-        <input [(ngModel)]="general['boxShadow']" (ngModelChange)="change()">
-      </div>
+        <div class="row">
+            <div
+                class="col title"
+                [tooltip]="
+                    'Syntax: h-offset v-offset blur spread color\r\nSample: 0 0 10px 10px #fff'
+                ">
+                Box Shadow
+                <fa-icon [icon]="faInfoCircle"></fa-icon>
+            </div>
+            <div class="col flex-end">
+                <input
+                    [(ngModel)]="general['boxShadow']"
+                    (ngModelChange)="change()" />
+            </div>
+        </div>
     </div>
-  </div>
 </app-card>
-

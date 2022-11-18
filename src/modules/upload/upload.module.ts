@@ -6,23 +6,10 @@ import { UploadService } from './services/upload.service';
 import { HttpClientModule } from '@angular/common/http';
 import { GeneralModule } from 'src/components/general/general.module';
 
-
-
 @NgModule({
-  imports: [
-    CommonModule,
-    ModalModule,
-    HttpClientModule,
-    GeneralModule
-  ],
-  declarations: [
-    UploadButtonComponent
-  ],
-  exports: [
-    UploadButtonComponent
-  ],
-  providers: [
-    UploadService
-  ]
+    imports: [CommonModule, ModalModule, HttpClientModule, GeneralModule],
+    declarations: [UploadButtonComponent],
+    exports: [UploadButtonComponent],
+    providers: [UploadService],
 })
 export class UploadModule {}

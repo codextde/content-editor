@@ -1,14 +1,14 @@
 <div
-  [ngClass]="styles?.cssClasses"
-  [ngStyle]="styles"
- 
-  >
-  <!--*replaceTag="headline?.tag"-->
-  <h1 #editor  
-      [class.k-widget]="false"
-      [class.k-editor]="false"
-      [class.k-editor-inline]="false"
-      [class.k-state-active]="false" 
-      [style.fontWeight]="styles?.fontWeight"
-      >{{headlineElement?.value}}</h1>
+    [ngClass]="styles?.cssClasses"
+    [ngStyle]="styles">
+    <!--*replaceTag="headline?.tag"-->
+    <h1
+        #editor
+        [class.k-widget]="false"
+        [class.k-editor]="false"
+        [class.k-editor-inline]="false"
+        [class.k-state-active]="false"
+        [style.fontWeight]="styles?.fontWeight">
+        {{ headlineElement?.value }}
+    </h1>
 </div>

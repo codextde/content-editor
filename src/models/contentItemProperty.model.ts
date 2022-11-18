@@ -1,4 +1,4 @@
 export interface IContentItemProperty {
-  ContentItemPropertyType?: string;
-  Value?: string;
+    ContentItemPropertyType?: string;
+    Value?: string;
 }

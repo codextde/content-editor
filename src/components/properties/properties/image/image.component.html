@@ -1,7 +1,11 @@
-<app-card class="property" cardTitle="Image">
-  <div class="property-content">
-    <upload-button [(ngModel)]="img.src" (ngModelChange)="change()"></upload-button>
-    <!--<div class="row">
+<app-card
+    class="property"
+    cardTitle="Image">
+    <div class="property-content">
+        <upload-button
+            [(ngModel)]="img.src"
+            (ngModelChange)="change()"></upload-button>
+        <!--<div class="row">
       <div class="col title">
         Source (URL)
       </div>
@@ -9,7 +13,5 @@
         <input [(ngModel)]="img.src" (ngModelChange)="change()" />
       </div>
     </div>-->
-
-
-  </div>
+    </div>
 </app-card>

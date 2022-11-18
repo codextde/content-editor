@@ -7,24 +7,19 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
 @NgModule({
-  declarations: [
-    AppComponent
-
-  ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    IonicModule.forRoot(),
-    BrowserAnimationsModule
-  ],
-  providers: [
-    {
-      provide: APP_BASE_HREF,
-      useValue: window.location.pathname || '/'
-    }
-  ],
-  bootstrap: [
-    AppComponent
-  ]
+    declarations: [AppComponent],
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        IonicModule.forRoot(),
+        BrowserAnimationsModule,
+    ],
+    providers: [
+        {
+            provide: APP_BASE_HREF,
+            useValue: window.location.pathname || '/',
+        },
+    ],
+    bootstrap: [AppComponent],
 })
 export class AppModule {}

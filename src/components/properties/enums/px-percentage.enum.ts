@@ -1,4 +1,4 @@
 export enum PxPercentage {
-  px,
-  percentage
+    px,
+    percentage,
 }

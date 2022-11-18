@@ -1,41 +1,62 @@
-<app-card class="property" cardTitle="Position">
-
-  <div class="property-content">
-    <div class="row">
-      <div class="col title" [tooltip]="'Add a Clearfix after this Element, if you want to stop floating in the Content.'">
-          Position
-        <fa-icon [icon]="faInfoCircle"></fa-icon>
-      </div>
-      <div class="col flex-end">
-        <div class="btn-group" role="group">
-          <button type="button" class="btn btn-sm btn-secondary" (click)="changePosition('unset')"
-            [class.active]="position.position == 'unset'">
-            Unset
-          </button>
-          <button type="button" class="btn btn-sm btn-secondary" (click)="changePosition('absolute')"
-            [class.active]="position.position == 'absolute'">
-            Absolute
-          </button>
+<app-card
+    class="property"
+    cardTitle="Position">
+    <div class="property-content">
+        <div class="row">
+            <div
+                class="col title"
+                [tooltip]="
+                    'Add a Clearfix after this Element, if you want to stop floating in the Content.'
+                ">
+                Position
+                <fa-icon [icon]="faInfoCircle"></fa-icon>
+            </div>
+            <div class="col flex-end">
+                <div
+                    class="btn-group"
+                    role="group">
+                    <button
+                        type="button"
+                        class="btn btn-sm btn-secondary"
+                        (click)="changePosition('unset')"
+                        [class.active]="position.position == 'unset'">
+                        Unset
+                    </button>
+                    <button
+                        type="button"
+                        class="btn btn-sm btn-secondary"
+                        (click)="changePosition('absolute')"
+                        [class.active]="position.position == 'absolute'">
+                        Absolute
+                    </button>
+                </div>
+            </div>
         </div>
-      </div>
+        <div class="row">
+            <div class="col title">Top</div>
+            <div class="col flex-end">
+                <app-stepper
+                    [(ngModel)]="position[positionTop]"
+                    (ngModelChange)="change()"></app-stepper>
+                <app-px-percentage-switch
+                    [(ngModel)]="positionTopUnit"
+                    (ngModelChange)="
+                        changePositionUnit('top')
+                    "></app-px-percentage-switch>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col title">Left</div>
+            <div class="col flex-end">
+                <app-stepper
+                    [(ngModel)]="position[positionLeft]"
+                    (ngModelChange)="change()"></app-stepper>
+                <app-px-percentage-switch
+                    [(ngModel)]="positionLeftUnit"
+                    (ngModelChange)="
+                        changePositionUnit('left')
+                    "></app-px-percentage-switch>
+            </div>
+        </div>
     </div>
-    <div class="row">
-      <div class="col title">
-        Top
-      </div>
-      <div class="col flex-end">
-        <app-stepper [(ngModel)]="position[positionTop]" (ngModelChange)="change()"></app-stepper>
-        <app-px-percentage-switch [(ngModel)]="positionTopUnit" (ngModelChange)="changePositionUnit('top')"></app-px-percentage-switch>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col title">
-        Left
-      </div>
-      <div class="col flex-end">
-        <app-stepper [(ngModel)]="position[positionLeft]" (ngModelChange)="change()"></app-stepper>
-        <app-px-percentage-switch [(ngModel)]="positionLeftUnit" (ngModelChange)="changePositionUnit('left')"></app-px-percentage-switch>
-      </div>
-    </div>
-  </div>
 </app-card>

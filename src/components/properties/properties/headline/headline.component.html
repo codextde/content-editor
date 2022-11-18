@@ -1,14 +1,15 @@
-<app-card class="property" cardTitle="Headline">
-  <div class="property-content">
-    <div class="row">
-      <div class="col title">
-        Text
-      </div>
-      <div class="col flex-end">
-        <textarea [(ngModel)]="headline.text" (ngModelChange)="change()" autosize></textarea>
-      </div>
+<app-card
+    class="property"
+    cardTitle="Headline">
+    <div class="property-content">
+        <div class="row">
+            <div class="col title">Text</div>
+            <div class="col flex-end">
+                <textarea
+                    [(ngModel)]="headline.text"
+                    (ngModelChange)="change()"
+                    autosize></textarea>
+            </div>
+        </div>
     </div>
-
-
-  </div>
 </app-card>

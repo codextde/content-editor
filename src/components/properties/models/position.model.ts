@@ -4,5 +4,3 @@ export class IPositionProperty {
     'top.px'?: number;
     'left.px'?: number;
 }
-
-

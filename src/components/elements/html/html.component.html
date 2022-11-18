@@ -1,3 +1,5 @@
-<div [ngStyle]="styles" [ngClass]="styles?.cssClasses">
+<div
+    [ngStyle]="styles"
+    [ngClass]="styles?.cssClasses">
     <div [innerHtml]="htmlElement?.value | sanitizeHtml"></div>
 </div>

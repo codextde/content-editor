@@ -1,29 +1,32 @@
-<app-card class="property" cardTitle="Initial Letter">
-  <div class="property-content">
-    <div class="row">
-      <div class="col title">
-        Letter
-      </div>
-      <div class="col flex-end">
-        <input type="text" maxlength="1" [(ngModel)]="initialLetter.letter">
-      </div>
+<app-card
+    class="property"
+    cardTitle="Initial Letter">
+    <div class="property-content">
+        <div class="row">
+            <div class="col title">Letter</div>
+            <div class="col flex-end">
+                <input
+                    type="text"
+                    maxlength="1"
+                    [(ngModel)]="initialLetter.letter" />
+            </div>
+        </div>
+        <div class="row">
+            <div class="col title">Color</div>
+            <div class="col flex-end">
+                <input
+                    [(colorPicker)]="initialLetter.color"
+                    cpPosition="left"
+                    cpOutputFormat="hex"
+                    cpAlphaChannel="disabled"
+                    [style.background]="initialLetter.color" />
+            </div>
+        </div>
+        <div class="row size">
+            <div class="col title">Size (px)</div>
+            <div class="col flex-end">
+                <app-stepper [(ngModel)]="initialLetter.size"></app-stepper>
+            </div>
+        </div>
     </div>
-    <div class="row">
-      <div class="col title">
-        Color
-      </div>
-      <div class="col flex-end">
-        <input [(colorPicker)]="initialLetter.color" cpPosition="left" cpOutputFormat="hex" cpAlphaChannel="disabled"
-          [style.background]="initialLetter.color" />
-      </div>
-    </div>
-    <div class="row size">
-      <div class="col title">
-        Size (px)
-      </div>
-      <div class="col flex-end">
-        <app-stepper [(ngModel)]="initialLetter.size"></app-stepper>
-      </div>
-    </div>
-  </div>
 </app-card>

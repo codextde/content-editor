@@ -11,28 +11,27 @@ import { DirectivesModule } from 'src/directives/directives.module';
 import { MainPage } from './main.page';
 import { DropdownModule } from 'ngx-dropdown';
 
-
 const routes: Routes = [
-  {
-    path: '',
-    component: MainPage
-  }
+    {
+        path: '',
+        component: MainPage,
+    },
 ];
 
 @NgModule({
-  imports: [
-    DropdownModule,
-    CommonModule,
-    FormsModule,
-    DragDropModule,
-    FontAwesomeModule,
-    RouterModule.forChild(routes),
-    ElementsModule,
-    PropertiesComponentModule,
-    ReactiveFormsModule,
-    GeneralModule,
-    DirectivesModule
-  ],
-  declarations: [MainPage]
+    imports: [
+        DropdownModule,
+        CommonModule,
+        FormsModule,
+        DragDropModule,
+        FontAwesomeModule,
+        RouterModule.forChild(routes),
+        ElementsModule,
+        PropertiesComponentModule,
+        ReactiveFormsModule,
+        GeneralModule,
+        DirectivesModule,
+    ],
+    declarations: [MainPage],
 })
 export class MainPageModule {}

@@ -1,11 +1,18 @@
-import { ComponentFactoryResolver, ComponentRef, Directive, HostListener, Input, ViewContainerRef, ElementRef } from '@angular/core';
+import {
+    ComponentFactoryResolver,
+    ComponentRef,
+    Directive,
+    HostListener,
+    Input,
+    ViewContainerRef,
+    ElementRef,
+} from '@angular/core';
 import { TooltipComponent } from 'src/components/general/tooltip/tooltip.component';
 
 @Directive({
-  selector: '[tooltip]'
+    selector: '[tooltip]',
 })
 export class TooltipDirective {
-
     // -------------------------------------------------------------------------
     // Properties
     // -------------------------------------------------------------------------
@@ -17,17 +24,18 @@ export class TooltipDirective {
     // Constructor
     // -------------------------------------------------------------------------
 
-    constructor(private viewContainerRef: ViewContainerRef,
-                private resolver: ComponentFactoryResolver,
-                private elementRef: ElementRef) {
-    }
+    constructor(
+        private viewContainerRef: ViewContainerRef,
+        private resolver: ComponentFactoryResolver,
+        private elementRef: ElementRef
+    ) {}
 
     // -------------------------------------------------------------------------
     // Inputs / Outputs
     // -------------------------------------------------------------------------
 
     @Input('tooltip')
-    content: string|TooltipComponent;
+    content: string | TooltipComponent;
 
     @Input()
     tooltipDisabled: boolean;
@@ -36,11 +44,10 @@ export class TooltipDirective {
     tooltipAnimation: boolean = true;
 
     @Input()
-    tooltipPlacement: 'top'|'bottom'|'left'|'right' = 'bottom';
+    tooltipPlacement: 'top' | 'bottom' | 'left' | 'right' = 'bottom';
 
     @Input()
     tooltipClick: boolean = false;
-
 
     // -------------------------------------------------------------------------
     // Public Methods
@@ -86,7 +93,6 @@ export class TooltipDirective {
         }
     }
 
-
     show() {
         if (this.tooltipDisabled || this.visible) {
             return;
@@ -94,13 +100,15 @@ export class TooltipDirective {
 
         this.visible = true;
         if (typeof this.content === 'string') {
-            const factory = this.resolver.resolveComponentFactory(TooltipComponent);
+            const factory =
+                this.resolver.resolveComponentFactory(TooltipComponent);
             if (!this.visible) {
                 return;
             }
 
             this.tooltip = this.viewContainerRef.createComponent(factory);
-            this.tooltip.instance.hostElement = this.viewContainerRef.element.nativeElement;
+            this.tooltip.instance.hostElement =
+                this.viewContainerRef.element.nativeElement;
             this.tooltip.instance.content = this.content as string;
             this.tooltip.instance.placement = this.tooltipPlacement;
             this.tooltip.instance.animation = this.tooltipAnimation;

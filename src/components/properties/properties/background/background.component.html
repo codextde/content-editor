@@ -1,65 +1,65 @@
-<app-card class="property" cardTitle="Background">
-
-  <div class="property-content">
-    <div class="row">
-      <div class="col title">
-        Color
-      </div>
-      <div class="col flex-end">
-        <input [(colorPicker)]="background['background-color']" cpPosition="left" cpOutputFormat="auto" cpAlphaChannel="enabled"
-          [style.background]="background['background-color']" (colorPickerChange)="change()"/>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col title">
-        Image (URL)
-      </div>
-      <div class="col flex-end">
-        <input [(ngModel)]="backgroundImageUrl" (ngModelChange)="changeBackground()" />
-      </div>
-    </div>
-    <div class="row">
-      <div class="col title">
-        - Repeat
-      </div>
-      <div class="col flex-end">
-        <select [(ngModel)]="background['background-repeat']"  (ngModelChange)="change()">
-          <option value='no-repeat'>No-repeat</option>
-          <option value='repeat'>Repeat</option>
-        </select>
-
-      </div>
-    </div>
-
-    <div class="row">
-      <div class="col title">
-        - Size
-      </div>
-      <div class="col flex-end">
-        <select [(ngModel)]="background['background-size']"  (ngModelChange)="change()"> 
-          <option [ngValue]="'unset'">Unset</option>
-          <option [ngValue]="'auto'">Auto</option>
-          <option [ngValue]="'cover'">Cover</option>
-          <option [ngValue]="'contain'">Contain</option>
-        </select>
-
-      </div>
-    </div>
-
-    <div class="row">
-        <div class="col title">
-          - Position
+<app-card
+    class="property"
+    cardTitle="Background">
+    <div class="property-content">
+        <div class="row">
+            <div class="col title">Color</div>
+            <div class="col flex-end">
+                <input
+                    [(colorPicker)]="background['background-color']"
+                    cpPosition="left"
+                    cpOutputFormat="auto"
+                    cpAlphaChannel="enabled"
+                    [style.background]="background['background-color']"
+                    (colorPickerChange)="change()" />
+            </div>
         </div>
-        <div class="col flex-end">
-          <select [(ngModel)]="background['background-position']"  (ngModelChange)="change()"> 
-            <option [ngValue]="'unset'">Unset</option>
-            <option [ngValue]="'top'">Top</option>
-            <option [ngValue]="'center'">Center</option>
-            <option [ngValue]="'bottom'">Bottom</option>
-          </select>
-  
+        <div class="row">
+            <div class="col title">Image (URL)</div>
+            <div class="col flex-end">
+                <input
+                    [(ngModel)]="backgroundImageUrl"
+                    (ngModelChange)="changeBackground()" />
+            </div>
         </div>
-      </div>
+        <div class="row">
+            <div class="col title">- Repeat</div>
+            <div class="col flex-end">
+                <select
+                    [(ngModel)]="background['background-repeat']"
+                    (ngModelChange)="change()">
+                    <option value="no-repeat">No-repeat</option>
+                    <option value="repeat">Repeat</option>
+                </select>
+            </div>
+        </div>
 
-  </div>
+        <div class="row">
+            <div class="col title">- Size</div>
+            <div class="col flex-end">
+                <select
+                    [(ngModel)]="background['background-size']"
+                    (ngModelChange)="change()">
+                    <option [ngValue]="'unset'">Unset</option>
+                    <option [ngValue]="'auto'">Auto</option>
+                    <option [ngValue]="'cover'">Cover</option>
+                    <option [ngValue]="'contain'">Contain</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col title">- Position</div>
+            <div class="col flex-end">
+                <select
+                    [(ngModel)]="background['background-position']"
+                    (ngModelChange)="change()">
+                    <option [ngValue]="'unset'">Unset</option>
+                    <option [ngValue]="'top'">Top</option>
+                    <option [ngValue]="'center'">Center</option>
+                    <option [ngValue]="'bottom'">Bottom</option>
+                </select>
+            </div>
+        </div>
+    </div>
 </app-card>

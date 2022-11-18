@@ -1,4 +1,10 @@
 <div class="toggle">
-	<input class="toggle-input" type="checkbox" [(ngModel)]="value">
-	<button class="toggle-btn {{className}}" [ngClass]="{'toggle-btn-on': value, 'toggle-btn-off': !value}" (click)="changeValue()"></button>
+    <input
+        class="toggle-input"
+        type="checkbox"
+        [(ngModel)]="value" />
+    <button
+        class="toggle-btn {{ className }}"
+        [ngClass]="{ 'toggle-btn-on': value, 'toggle-btn-off': !value }"
+        (click)="changeValue()"></button>
 </div>

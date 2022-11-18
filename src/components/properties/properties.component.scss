@@ -1,66 +1,60 @@
 .properties {
-
-  position: absolute;
-  right: 0;
-  top: 150px;
-  bottom: 0;
-  width: 410px;
-  height: calc(100% - 150px);
-  overflow: auto;
-  background-color: #F9F9F9;
-  border-left: 1px solid #c7c7c7;
-  box-shadow: 0 -2px 33px rgba(0, 0, 0, 0.2);
-  z-index: 100;
-
-  .header {
-    
-    position: sticky;
+    position: absolute;
+    right: 0;
+    top: 150px;
+    bottom: 0;
+    width: 410px;
+    height: calc(100% - 150px);
+    overflow: auto;
+    background-color: #f9f9f9;
+    border-left: 1px solid #c7c7c7;
+    box-shadow: 0 -2px 33px rgba(0, 0, 0, 0.2);
     z-index: 100;
-    top: 0;
-    width: 100%;
-    
-    background: #fff;
-    padding: 0 15px;
 
-    border-bottom: 1px solid rgba(0, 0, 0, 0.125);
+    .header {
+        position: sticky;
+        z-index: 100;
+        top: 0;
+        width: 100%;
 
-    .title {
-      font-size: 12px;
-      font-weight: 600;
-      line-height: 45px;
-      text-transform: uppercase;
-      color: #505659;
-    }
-
-    .actions {
-      display: flex;
-
-      button {
-        cursor: pointer;
+        background: #fff;
         padding: 0 15px;
-        background: white;
-        color: #666f74;
-        text-align: center;
-        border: none;
-        border-left: 1px solid #e0e0e0;
-        border-right: 1px solid #e0e0e0;
 
-        &:hover {
-          background: rgba(0, 0, 0, 0.1);
+        border-bottom: 1px solid rgba(0, 0, 0, 0.125);
+
+        .title {
+            font-size: 12px;
+            font-weight: 600;
+            line-height: 45px;
+            text-transform: uppercase;
+            color: #505659;
         }
 
-        &:focus {
-          outline: none;
-        }
+        .actions {
+            display: flex;
 
-        &:active {
-          background: rgba(0, 0, 0, 0.2);
-        }
-      }
+            button {
+                cursor: pointer;
+                padding: 0 15px;
+                background: white;
+                color: #666f74;
+                text-align: center;
+                border: none;
+                border-left: 1px solid #e0e0e0;
+                border-right: 1px solid #e0e0e0;
 
+                &:hover {
+                    background: rgba(0, 0, 0, 0.1);
+                }
+
+                &:focus {
+                    outline: none;
+                }
+
+                &:active {
+                    background: rgba(0, 0, 0, 0.2);
+                }
+            }
+        }
     }
-  }
-
-
-
 }

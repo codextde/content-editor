@@ -1,25 +1,26 @@
-<app-card class="property" cardTitle="Divider">
-  <div class="property-content">
+<app-card
+    class="property"
+    cardTitle="Divider">
+    <div class="property-content">
+        <div class="row">
+            <div class="col title">Color</div>
+            <div class="col flex-end">
+                <input
+                    [(colorPicker)]="divider.color"
+                    cpPosition="left"
+                    cpOutputFormat="hex"
+                    cpAlphaChannel="disabled"
+                    [style.background]="divider.color" />
+            </div>
+        </div>
 
-
-
-    <div class="row">
-      <div class="col title">
-        Color
-      </div>
-      <div class="col flex-end">
-        <input [(colorPicker)]="divider.color" cpPosition="left" cpOutputFormat="hex" cpAlphaChannel="disabled"
-          [style.background]="divider.color" />
-      </div>
+        <div class="row size">
+            <div class="col title">Size</div>
+            <div class="col flex-end">
+                <app-stepper
+                    [(ngModel)]="divider.size"
+                    (ngModelChange)="change()"></app-stepper>
+            </div>
+        </div>
     </div>
-
-    <div class="row size">
-      <div class="col title">
-        Size
-      </div>
-      <div class="col flex-end">
-          <app-stepper [(ngModel)]="divider.size" (ngModelChange)="change()"></app-stepper>
-      </div>
-    </div>
-  </div>
 </app-card>

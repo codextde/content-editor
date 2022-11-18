@@ -1,41 +1,41 @@
 .wrapper {
-  &:hover {
-    .drag-handle {
-      display: block;
+    &:hover {
+        .drag-handle {
+            display: block;
+        }
     }
-  }
 }
 
 .drag-handle {
-  display: none;
-  position: absolute;
-  top: 0;
-  right: 0;
-  background: rgba(0, 0, 0, 0.32);
-  color: #fff;
-  z-index: 8;
-  text-align: center;
-  cursor: move;
-  border-bottom-left-radius: 5px;
-  padding: 3px;
+    display: none;
+    position: absolute;
+    top: 0;
+    right: 0;
+    background: rgba(0, 0, 0, 0.32);
+    color: #fff;
+    z-index: 8;
+    text-align: center;
+    cursor: move;
+    border-bottom-left-radius: 5px;
+    padding: 3px;
 }
 
 .preventUserSelect {
-  * {
-    user-select: none;
-  }
+    * {
+        user-select: none;
+    }
 }
 
 .initial-letter {
-  float: left;
-  font-size: 40px;
-  margin: 0 5px 0 0;
+    float: left;
+    font-size: 40px;
+    margin: 0 5px 0 0;
 }
 
 .text-content {
-  float: none !important;
+    float: none !important;
 }
 
 div {
-  transform: none !important;
+    transform: none !important;
 }

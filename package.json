@@ -10,7 +10,8 @@
     "app-build": "ng build --configuration production --aot --buildOptimizer",
     "test": "ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e"
+    "e2e": "ng e2e",
+    "format:write": "prettier --write \"src/**/*{.ts,.json,.css,.scss,.html}\""
   },
   "private": true,
   "dependencies": {
@@ -47,6 +48,12 @@
     "zone.js": "~0.12.0"
   },
   "devDependencies": {
+    "prettier": "^2.7.1",
+    "prettier-eslint": "^15.0.1",
+    "prettier-plugin-tailwindcss": "^0.1.13",
+    "eslint": "^8.26.0",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-plugin-prettier": "^4.2.1",
     "@angular-devkit/architect": "^0.1500.0",
     "@angular-devkit/build-angular": "^15.0.0",
     "@angular-devkit/core": "^15.0.0",

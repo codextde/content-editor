@@ -1,8 +1,13 @@
-
-<div [ngClass]="styles?.cssClasses" [ngStyle]="styles">
-  <video [controls]="videoProperty?.controls" [autoplay]="videoProperty?.autoplay" [loop]="videoProperty?.loop" [muted]="videoProperty?.muted">
-    <source [src]="videoElement?.value" type="video/mp4">
-  </video>
-
+<div
+    [ngClass]="styles?.cssClasses"
+    [ngStyle]="styles">
+    <video
+        [controls]="videoProperty?.controls"
+        [autoplay]="videoProperty?.autoplay"
+        [loop]="videoProperty?.loop"
+        [muted]="videoProperty?.muted">
+        <source
+            [src]="videoElement?.value"
+            type="video/mp4" />
+    </video>
 </div>
-  

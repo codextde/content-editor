@@ -4,45 +4,41 @@ import { IImageProperty } from '../../models/image.model';
 import { EventsService } from 'src/services/event.service';
 
 @Component({
-  selector: 'app-property-image',
-  templateUrl: './image.component.html',
-  styleUrls: ['./image.component.scss'],
-  providers: [{
-    provide: NG_VALUE_ACCESSOR,
-    useExisting: forwardRef(() => ImagePropertyComponent),
-    multi: true
-  }]
+    selector: 'app-property-image',
+    templateUrl: './image.component.html',
+    styleUrls: ['./image.component.scss'],
+    providers: [
+        {
+            provide: NG_VALUE_ACCESSOR,
+            useExisting: forwardRef(() => ImagePropertyComponent),
+            multi: true,
+        },
+    ],
 })
 export class ImagePropertyComponent implements ControlValueAccessor {
+    img: IImageProperty = {
+        src: '',
+    };
 
-  img: IImageProperty = {
-    src: ''
-  };
+    constructor(private eventsService: EventsService) {}
 
-  constructor(
-    private eventsService: EventsService
-  ) {}
-
-
-  /** NgModel Start */
-  writeValue(value: any): void {
-    if (value) {
-      this.img = value;
+    /** NgModel Start */
+    writeValue(value: any): void {
+        if (value) {
+            this.img = value;
+        }
     }
-  }
 
-  registerOnChange(fn: (value: any) => void): void {
-    this.onChange = fn;
-  }
+    registerOnChange(fn: (value: any) => void): void {
+        this.onChange = fn;
+    }
 
-  registerOnTouched(fn: () => void): void {}
-  /** NgModel End */
+    registerOnTouched(fn: () => void): void {}
+    /** NgModel End */
 
-  onChange: any = () => {};
+    onChange: any = () => {};
 
-  change() {
-    this.eventsService.publish('property-change');
-  }
-
-
+    change() {
+        this.eventsService.publish('property-change');
+    }
 }

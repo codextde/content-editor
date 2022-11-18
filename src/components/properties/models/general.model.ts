@@ -9,4 +9,3 @@ export class IGeneralProperty {
     'boxShadow'?: string;
     'margin'?: string;
 }
-

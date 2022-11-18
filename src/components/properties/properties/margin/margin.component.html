@@ -1,37 +1,30 @@
-<app-card class="property" cardTitle="Margin">
-  <div class="property-content">
-    <div class="row">
-      <div class="col title">
-        Left
-      </div>
-      <div class="col flex-end slider">
-        <app-stepper [(ngModel)]="padding.left"></app-stepper>
-
-      </div>
+<app-card
+    class="property"
+    cardTitle="Margin">
+    <div class="property-content">
+        <div class="row">
+            <div class="col title">Left</div>
+            <div class="col flex-end slider">
+                <app-stepper [(ngModel)]="padding.left"></app-stepper>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col title">Top</div>
+            <div class="col flex-end slider">
+                <app-stepper [(ngModel)]="padding.top"></app-stepper>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col title">Right</div>
+            <div class="col flex-end slider">
+                <app-stepper [(ngModel)]="padding.right"></app-stepper>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col title">Bottom</div>
+            <div class="col flex-end slider">
+                <app-stepper [(ngModel)]="padding.bottom"></app-stepper>
+            </div>
+        </div>
     </div>
-    <div class="row">
-      <div class="col title">
-        Top
-      </div>
-      <div class="col flex-end slider">
-        <app-stepper [(ngModel)]="padding.top"></app-stepper>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col title">
-        Right
-      </div>
-      <div class="col flex-end slider">
-        <app-stepper [(ngModel)]="padding.right"></app-stepper>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col title">
-        Bottom
-      </div>
-      <div class="col flex-end slider">
-        <app-stepper [(ngModel)]="padding.bottom"></app-stepper>
-      </div>
-    </div>
-  </div>
 </app-card>

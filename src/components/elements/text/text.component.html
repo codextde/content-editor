@@ -1,4 +1,4 @@
-<div 
+<div
     #dragElement
     [style.float]="styles?.float"
     #draggable="ngDraggable"
@@ -9,34 +9,35 @@
     (movingOffset)="onMoving($event)"
     [style.zIndex]="position?.position == 'absolute' ? 1000 : ''"
     [style.position]="position?.position"
-    [ngStyle]="styles" 
+    [ngStyle]="styles"
     [ngClass]="styles?.cssClasses"
     [handle]="dragHandle"
     [preventDefaultEvent]="true"
     [class.preventUserSelect]="preventUserSelect"
-    class="wrapper"
->     
-    <div [hidden]="position?.position != 'absolute'" #dragHandle class="drag-handle">
+    class="wrapper">
+    <div
+        [hidden]="position?.position != 'absolute'"
+        #dragHandle
+        class="drag-handle">
         <fa-icon [icon]="faArrowsAlt"></fa-icon>
     </div>
 
-
-    <span 
-    class="initial-letter" 
-    *ngIf="initialLetter"
-    [style.fontSize.px]="initialLetter?.size"
-    [style.lineHeight.px]="initialLetter?.size - 5"
-    [style.color]="initialLetter?.color">{{initialLetter.letter}}</span>
-    <div 
-        class="text-content" 
-        #editor 
-        spellcheck="false" 
-        autocorrect="off" 
+    <span
+        class="initial-letter"
+        *ngIf="initialLetter"
+        [style.fontSize.px]="initialLetter?.size"
+        [style.lineHeight.px]="initialLetter?.size - 5"
+        [style.color]="initialLetter?.color"
+        >{{ initialLetter.letter }}</span
+    >
+    <div
+        class="text-content"
+        #editor
+        spellcheck="false"
+        autocorrect="off"
         autocapitalize="off"
         [class.k-widget]="false"
         [class.k-editor]="false"
         [class.k-editor-inline]="false"
-        [class.k-state-active]="false"
-    ></div>
-
+        [class.k-state-active]="false"></div>
 </div>

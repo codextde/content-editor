@@ -19,23 +19,18 @@ const elements = [
     HtmlElementComponent,
     ImageElementComponent,
     ClearfixElementComponent,
-    DividerElementComponent
+    DividerElementComponent,
 ];
 
-
 @NgModule({
-    declarations: [
-        ...elements
-    ],
-    exports: [
-        ...elements
-    ],
+    declarations: [...elements],
+    exports: [...elements],
     imports: [
         FontAwesomeModule,
         PipesModule,
         CommonModule,
         DirectivesModule,
-        AngularDraggableModule
-    ]
+        AngularDraggableModule,
+    ],
 })
-export class ElementsModule { }
+export class ElementsModule {}

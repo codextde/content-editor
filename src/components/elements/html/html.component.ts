@@ -6,58 +6,63 @@ import { EventsService } from 'src/services/event.service';
 declare var kendo: any;
 
 @Component({
-  selector: 'app-element-html',
-  templateUrl: './html.component.html',
-  styleUrls: ['./html.component.scss'],
-  providers: [{
-       provide: NG_VALUE_ACCESSOR,
-       useExisting: forwardRef(() => HtmlElementComponent),
-       multi: true
-  }]
+    selector: 'app-element-html',
+    templateUrl: './html.component.html',
+    styleUrls: ['./html.component.scss'],
+    providers: [
+        {
+            provide: NG_VALUE_ACCESSOR,
+            useExisting: forwardRef(() => HtmlElementComponent),
+            multi: true,
+        },
+    ],
 })
 export class HtmlElementComponent implements ControlValueAccessor {
+    htmlElement: IElement;
+    htmlProperty;
 
-  htmlElement: IElement;
-  htmlProperty;
+    styles;
 
-  styles;
-
-  constructor(
-    private elementService: ElementService,
-    private eventsService: EventsService
+    constructor(
+        private elementService: ElementService,
+        private eventsService: EventsService
     ) {
-    this.eventsService.subscribe('property-change', () => {
-      this.styles = this.elementService.loadStyleProperties(this.htmlElement.properties);
-      this.htmlElement.value = this.htmlProperty.value;
-    });
-  }
-
-
-  /** NgModel Start */
-  writeValue(value: any): void {
-    if (value) {
-      this.htmlElement = value;
-      this.styles = this.elementService.loadStyleProperties(this.htmlElement.properties);
-
-      if (!this.htmlProperty) {
-        this.htmlProperty = this.htmlElement.properties.find((property) => {
-          return property.name == 'html';
+        this.eventsService.subscribe('property-change', () => {
+            this.styles = this.elementService.loadStyleProperties(
+                this.htmlElement.properties
+            );
+            this.htmlElement.value = this.htmlProperty.value;
         });
-      }
-
-      this.htmlElement.value = this.htmlProperty.value;
-
     }
-  }
 
-  registerOnChange(fn: (value: any) => void): void {
-    this.onChange = fn;
-  }
-  registerOnTouched(fn: () => void): void {}
-  /** NgModel End */
-  onChange: any = () => {};
+    /** NgModel Start */
+    writeValue(value: any): void {
+        if (value) {
+            this.htmlElement = value;
+            this.styles = this.elementService.loadStyleProperties(
+                this.htmlElement.properties
+            );
 
-  change(ev) {
-    this.onChange(this.htmlElement);
-  }
+            if (!this.htmlProperty) {
+                this.htmlProperty = this.htmlElement.properties.find(
+                    property => {
+                        return property.name == 'html';
+                    }
+                );
+            }
+
+            this.htmlElement.value = this.htmlProperty.value;
+        }
+    }
+
+    registerOnChange(fn: (value: any) => void): void {
+        this.onChange = fn;
+    }
+    registerOnTouched(fn: () => void): void {}
+    /** NgModel End */
+    onChange: any = () => {};
+
+    change(ev) {
+        this.onChange(this.htmlElement);
+    }
 }

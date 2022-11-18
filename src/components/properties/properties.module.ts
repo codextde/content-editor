@@ -8,50 +8,62 @@ import { TextareaAutosizeModule } from 'ngx-textarea-autosize';
 import { DirectivesModule } from 'src/directives/directives.module';
 import { PipesModule } from 'src/pipes/pipes.module';
 import { GeneralModule } from '../general/general.module';
-import { BackgroundPropertyComponent, BorderPropertyComponent, CssPropertyComponent, DividerPropertyComponent, GeneralPropertyComponent, HeadlinePropertyComponent, HtmlPropertyComponent, ImagePropertyComponent, InitialLetterPropertyComponent, JavascriptPropertyComponent, MarginPropertyComponent, PaddingPropertyComponent, PositionPropertyComponent, SwitchPropertyComponent, TextPropertyComponent, VideoPropertyComponent } from './properties';
+import {
+    BackgroundPropertyComponent,
+    BorderPropertyComponent,
+    CssPropertyComponent,
+    DividerPropertyComponent,
+    GeneralPropertyComponent,
+    HeadlinePropertyComponent,
+    HtmlPropertyComponent,
+    ImagePropertyComponent,
+    InitialLetterPropertyComponent,
+    JavascriptPropertyComponent,
+    MarginPropertyComponent,
+    PaddingPropertyComponent,
+    PositionPropertyComponent,
+    SwitchPropertyComponent,
+    TextPropertyComponent,
+    VideoPropertyComponent,
+} from './properties';
 import { PropertiesComponent } from './properties.component';
 import { UploadModule } from 'src/modules/upload/upload.module';
 
-
 const properties = [
-  PropertiesComponent,
-  PaddingPropertyComponent,
-  MarginPropertyComponent,
-  HtmlPropertyComponent,
-  CssPropertyComponent,
-  JavascriptPropertyComponent,
-  BackgroundPropertyComponent,
-  TextPropertyComponent,
-  ImagePropertyComponent,
-  GeneralPropertyComponent,
-  BorderPropertyComponent,
-  SwitchPropertyComponent,
-  VideoPropertyComponent,
-  DividerPropertyComponent,
-  HeadlinePropertyComponent,
-  InitialLetterPropertyComponent,
-  PositionPropertyComponent
+    PropertiesComponent,
+    PaddingPropertyComponent,
+    MarginPropertyComponent,
+    HtmlPropertyComponent,
+    CssPropertyComponent,
+    JavascriptPropertyComponent,
+    BackgroundPropertyComponent,
+    TextPropertyComponent,
+    ImagePropertyComponent,
+    GeneralPropertyComponent,
+    BorderPropertyComponent,
+    SwitchPropertyComponent,
+    VideoPropertyComponent,
+    DividerPropertyComponent,
+    HeadlinePropertyComponent,
+    InitialLetterPropertyComponent,
+    PositionPropertyComponent,
 ];
 
 @NgModule({
-  declarations: [
-    ...properties
-  ],
-  exports: [
-    ...properties
-  ],
-  imports: [
-    TextareaAutosizeModule,
-    DropdownModule,
-    ColorPickerModule,
-    CommonModule,
-    FontAwesomeModule,
-    ReactiveFormsModule,
-    FormsModule,
-    GeneralModule,
-    DirectivesModule,
-    PipesModule,
-    UploadModule
-  ]
+    declarations: [...properties],
+    exports: [...properties],
+    imports: [
+        TextareaAutosizeModule,
+        DropdownModule,
+        ColorPickerModule,
+        CommonModule,
+        FontAwesomeModule,
+        ReactiveFormsModule,
+        FormsModule,
+        GeneralModule,
+        DirectivesModule,
+        PipesModule,
+        UploadModule,
+    ],
 })
-export class PropertiesComponentModule { }
+export class PropertiesComponentModule {}

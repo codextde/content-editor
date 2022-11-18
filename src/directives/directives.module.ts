@@ -3,18 +3,9 @@ import { NgModule } from '@angular/core';
 import { TooltipDirective } from './tooltip.directive';
 import { ReplaceTagDirective } from './replace-tag.directive';
 
-
 @NgModule({
-  declarations: [
-    TooltipDirective,
-    ReplaceTagDirective
-  ],
-  exports: [
-    TooltipDirective,
-    ReplaceTagDirective
-  ],
-  imports: [
-    CommonModule
-  ]
+    declarations: [TooltipDirective, ReplaceTagDirective],
+    exports: [TooltipDirective, ReplaceTagDirective],
+    imports: [CommonModule],
 })
-export class DirectivesModule { }
+export class DirectivesModule {}

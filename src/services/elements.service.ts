@@ -7,22 +7,19 @@ import { ImageElementConfig } from 'src/components/elements/image/image.config';
 import { ClearfixElementConfig } from 'src/components/elements/clearfix/clearfix.config';
 import { DividerElementConfig } from 'src/components/elements/divider/divider.config';
 
-
-
 @Injectable({
-  providedIn: 'root'
+    providedIn: 'root',
 })
 export class ElementsService {
+    elements = [];
 
-  elements = [];
-
-  constructor() {
-    this.elements.push(HeadlineElementConfig.config);
-    this.elements.push(TextElementConfig.config);
-    this.elements.push(HtmlElementConfig.config);
-    this.elements.push(VideoElementConfig.config);
-    this.elements.push(ImageElementConfig.config);
-    this.elements.push(ClearfixElementConfig.config);
-    this.elements.push(DividerElementConfig.config);
-  }
+    constructor() {
+        this.elements.push(HeadlineElementConfig.config);
+        this.elements.push(TextElementConfig.config);
+        this.elements.push(HtmlElementConfig.config);
+        this.elements.push(VideoElementConfig.config);
+        this.elements.push(ImageElementConfig.config);
+        this.elements.push(ClearfixElementConfig.config);
+        this.elements.push(DividerElementConfig.config);
+    }
 }
