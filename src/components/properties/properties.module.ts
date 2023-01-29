@@ -5,8 +5,8 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { ColorPickerModule } from 'ngx-color-picker';
 import { DropdownModule } from 'ngx-dropdown';
 import { TextareaAutosizeModule } from 'ngx-textarea-autosize';
-import { DirectivesModule } from 'src/directives/directives.module';
-import { PipesModule } from 'src/pipes/pipes.module';
+import { DirectivesModule } from 'directives/directives.module';
+import { PipesModule } from 'pipes/pipes.module';
 import { GeneralModule } from '../general/general.module';
 import {
     BackgroundPropertyComponent,
@@ -27,7 +27,7 @@ import {
     VideoPropertyComponent,
 } from './properties';
 import { PropertiesComponent } from './properties.component';
-import { UploadModule } from 'src/modules/upload/upload.module';
+import { UploadModule } from 'modules/upload/upload.module';
 
 const properties = [
     PropertiesComponent,

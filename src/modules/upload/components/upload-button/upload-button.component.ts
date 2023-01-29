@@ -2,7 +2,7 @@ import { Component, forwardRef, OnInit, ViewChild } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { ToastController } from '@ionic/angular';
 import { forkJoin } from 'rxjs';
-import { HelperService } from 'src/services/helper.service';
+import { HelperService } from 'services/helper.service';
 import { UploadService } from '../../services/upload.service';
 declare var kendo: any;
 

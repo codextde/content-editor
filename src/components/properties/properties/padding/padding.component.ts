@@ -1,6 +1,6 @@
 import { Component, forwardRef } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
-import { EventsService } from 'src/services/event.service';
+import { EventsService } from 'services/event.service';
 import { IPaddingProperty } from '../../models/padding.model';
 
 @Component({

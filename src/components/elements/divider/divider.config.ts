@@ -1,5 +1,5 @@
 import { faEquals } from '@fortawesome/free-solid-svg-icons';
-import { IElement } from 'src/models/element.model';
+import { IElement } from 'models/element.model';
 import { ElementCreator } from '../element.creator';
 
 export class DividerElementConfig {

@@ -6,7 +6,7 @@ import {
     OnInit,
 } from '@angular/core';
 import { NG_VALUE_ACCESSOR, ControlValueAccessor } from '@angular/forms';
-import { MonacoService } from 'src/services/monaco.service';
+import { MonacoService } from 'services/monaco.service';
 
 @Component({
     selector: 'app-property-javascript',

@@ -8,11 +8,11 @@ import {
 } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import '@progress/kendo-ui';
-import { IElement } from 'src/models/element.model';
-import { ElementService } from 'src/services/element.service';
-import { EventsService } from 'src/services/event.service';
+import { IElement } from 'models/element.model';
+import { ElementService } from 'services/element.service';
+import { EventsService } from 'services/event.service';
 import { faArrowsAlt } from '@fortawesome/free-solid-svg-icons';
-import { HelperService } from 'src/services/helper.service';
+import { HelperService } from 'services/helper.service';
 import { AngularDraggableDirective } from 'angular2-draggable';
 
 declare var kendo: any;

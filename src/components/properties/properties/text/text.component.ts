@@ -6,10 +6,9 @@ import {
     faAlignRight,
     faBold,
 } from '@fortawesome/free-solid-svg-icons';
+import { EventsService } from 'services/event.service';
+import { FontService } from 'services/font.service';
 import { ITextProperty } from '../../models/text.model';
-import { EventsService } from 'src/services/event.service';
-import * as WebFont from 'webfontloader';
-import { FontService } from 'src/services/font.service';
 
 @Component({
     selector: 'app-property-text',

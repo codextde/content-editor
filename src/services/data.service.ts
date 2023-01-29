@@ -1,15 +1,15 @@
 import { Injectable } from '@angular/core';
-import { ClearfixElementConfig } from 'src/components/elements/clearfix/clearfix.config';
-import { DividerElementConfig } from 'src/components/elements/divider/divider.config';
-import { HeadlineElementConfig } from 'src/components/elements/headline/headline.config';
-import { HtmlElementConfig } from 'src/components/elements/html/html.config';
-import { ImageElementConfig } from 'src/components/elements/image/image.config';
-import { TextElementConfig } from 'src/components/elements/text/text.config';
-import { VideoElementConfig } from 'src/components/elements/video/video.config';
-import { IElement } from 'src/models/element.model';
+import { ClearfixElementConfig } from 'components/elements/clearfix/clearfix.config';
+import { DividerElementConfig } from 'components/elements/divider/divider.config';
+import { HeadlineElementConfig } from 'components/elements/headline/headline.config';
+import { HtmlElementConfig } from 'components/elements/html/html.config';
+import { ImageElementConfig } from 'components/elements/image/image.config';
+import { TextElementConfig } from 'components/elements/text/text.config';
+import { VideoElementConfig } from 'components/elements/video/video.config';
+import { IContentItem } from 'models/contentItem.model';
+import { IContentItemProperty } from 'models/contentItemProperty.model';
+import { IElement } from 'models/element.model';
 import { ElementService } from './element.service';
-import { IContentItem } from 'src/models/contentItem.model';
-import { IContentItemProperty } from 'src/models/contentItemProperty.model';
 
 @Injectable({
     providedIn: 'root',

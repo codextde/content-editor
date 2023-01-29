@@ -1,9 +1,9 @@
 import { Component, forwardRef } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
-import { ElementService } from 'src/services/element.service';
-import { EventsService } from 'src/services/event.service';
-import { IDividerProperty } from 'src/components/properties/models/divider.model';
-import { IElement } from 'src/models/element.model';
+import { ElementService } from 'services/element.service';
+import { EventsService } from 'services/event.service';
+import { IDividerProperty } from 'components/properties/models/divider.model';
+import { IElement } from 'models/element.model';
 
 @Component({
     selector: 'app-element-divider',

@@ -4,7 +4,7 @@ import { UploadButtonComponent } from './components/upload-button/upload-button.
 import { ModalModule } from '../modal';
 import { UploadService } from './services/upload.service';
 import { HttpClientModule } from '@angular/common/http';
-import { GeneralModule } from 'src/components/general/general.module';
+import { GeneralModule } from 'components/general/general.module';
 
 @NgModule({
     imports: [CommonModule, ModalModule, HttpClientModule, GeneralModule],

@@ -7,7 +7,7 @@ import {
     ViewContainerRef,
     ElementRef,
 } from '@angular/core';
-import { TooltipComponent } from 'src/components/general/tooltip/tooltip.component';
+import { TooltipComponent } from 'components/general/tooltip/tooltip.component';
 
 @Directive({
     selector: '[tooltip]',

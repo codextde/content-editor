@@ -4,13 +4,13 @@ import { VideoElementComponent } from './video/video.component';
 import { TextElementComponent } from './text/text.component';
 import { HeadlineElementComponent } from './headline/headline.component';
 import { HtmlElementComponent } from './html/html.component';
-import { PipesModule } from 'src/pipes/pipes.module';
 import { ImageElementComponent } from './image/image.component';
 import { ClearfixElementComponent } from './clearfix/clearfix.component';
-import { DirectivesModule } from 'src/directives/directives.module';
 import { DividerElementComponent } from './divider/divider.component';
 import { AngularDraggableModule } from 'angular2-draggable';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { DirectivesModule } from 'directives/directives.module';
+import { PipesModule } from 'pipes/pipes.module';
 
 const elements = [
     VideoElementComponent,

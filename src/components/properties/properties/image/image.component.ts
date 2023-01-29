@@ -1,7 +1,7 @@
 import { Component, forwardRef } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
+import { EventsService } from 'services/event.service';
 import { IImageProperty } from '../../models/image.model';
-import { EventsService } from 'src/services/event.service';
 
 @Component({
     selector: 'app-property-image',

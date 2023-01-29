@@ -28,7 +28,7 @@ export class DraggableDirective implements OnChanges, OnDestroy {
     private globalListeners = new Map<
         string,
         {
-            handler: (event: Event) => void;
+            handler: (event: any) => void;
             options?: AddEventListenerOptions | boolean;
         }
     >();
@@ -57,13 +57,13 @@ export class DraggableDirective implements OnChanges, OnDestroy {
         }
     }
 
-    onMousemove(event: MouseEvent | TouchEvent): void {
+    onMousemove(event: MouseEvent | TouchEvent): any {
         const evt = this.getEvent(event);
         this.onDrag(evt.pageX, evt.pageY);
         this.dragMove.emit(event);
     }
 
-    onMouseup(event: MouseEvent | TouchEvent): void {
+    onMouseup(event: MouseEvent | TouchEvent): any {
         this.endDrag();
         this.removeEventListener();
         this.dragEnd.emit(event);

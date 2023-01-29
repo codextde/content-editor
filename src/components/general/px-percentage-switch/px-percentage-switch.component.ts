@@ -1,7 +1,7 @@
 import { Component, forwardRef } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { faMinus, faPlus } from '@fortawesome/free-solid-svg-icons';
-import { PxPercentage } from 'src/components/properties/enums/px-percentage.enum';
+import { PxPercentage } from 'components/properties/enums/px-percentage.enum';
 
 @Component({
     selector: 'app-px-percentage-switch',

@@ -16,14 +16,14 @@ import {
     faTrash,
 } from '@fortawesome/free-solid-svg-icons';
 import { AlertController, ToastController } from '@ionic/angular';
-import { DataService } from 'src/services/data.service';
-import { ElementService } from 'src/services/element.service';
-import { ElementsService } from 'src/services/elements.service';
-import { HelperService } from 'src/services/helper.service';
-import { IBodyProperties } from 'src/models/bodyProperties.model';
-import { FontService } from 'src/services/font.service';
-import { EventsService } from 'src/services/event.service';
-import { IElement } from 'src/models/element.model';
+import { IBodyProperties } from 'models/bodyProperties.model';
+import { IElement } from 'models/element.model';
+import { DataService } from 'services/data.service';
+import { ElementService } from 'services/element.service';
+import { ElementsService } from 'services/elements.service';
+import { EventsService } from 'services/event.service';
+import { FontService } from 'services/font.service';
+import { HelperService } from 'services/helper.service';
 
 @Component({
     selector: 'app-main',

@@ -1,11 +1,11 @@
 import { Injectable } from '@angular/core';
-import { HeadlineElementConfig } from 'src/components/elements/headline/headline.config';
-import { HtmlElementConfig } from 'src/components/elements/html/html.config';
-import { TextElementConfig } from 'src/components/elements/text/text.config';
-import { VideoElementConfig } from 'src/components/elements/video/video.config';
-import { ImageElementConfig } from 'src/components/elements/image/image.config';
-import { ClearfixElementConfig } from 'src/components/elements/clearfix/clearfix.config';
-import { DividerElementConfig } from 'src/components/elements/divider/divider.config';
+import { ClearfixElementConfig } from 'components/elements/clearfix/clearfix.config';
+import { DividerElementConfig } from 'components/elements/divider/divider.config';
+import { HeadlineElementConfig } from 'components/elements/headline/headline.config';
+import { HtmlElementConfig } from 'components/elements/html/html.config';
+import { ImageElementConfig } from 'components/elements/image/image.config';
+import { TextElementConfig } from 'components/elements/text/text.config';
+import { VideoElementConfig } from 'components/elements/video/video.config';
 
 @Injectable({
     providedIn: 'root',

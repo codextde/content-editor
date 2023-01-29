@@ -1,7 +1,7 @@
 import { Component, forwardRef } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { faInfoCircle } from '@fortawesome/free-solid-svg-icons';
-import { EventsService } from 'src/services/event.service';
+import { EventsService } from 'services/event.service';
 
 @Component({
     selector: 'app-property-general',

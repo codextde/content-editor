@@ -7,8 +7,8 @@ import {
     AfterViewInit,
 } from '@angular/core';
 import { NG_VALUE_ACCESSOR, ControlValueAccessor } from '@angular/forms';
-import { MonacoService } from 'src/services/monaco.service';
-import { EventsService } from 'src/services/event.service';
+import { MonacoService } from 'services/monaco.service';
+import { EventsService } from 'services/event.service';
 
 @Component({
     selector: 'app-property-css',

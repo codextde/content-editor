@@ -86,7 +86,9 @@ export class ResizableDirective implements OnDestroy, AfterViewInit {
                 fromEvent(document, 'touchend')
             );
             this.subscription = mouseup.subscribe(
-                (ev: MouseEvent | TouchEvent) => this.onMouseup()
+                (ev: any) => {
+                     this.onMouseup();
+                }
             );
 
             const mouseMoveSub = merge(
@@ -94,7 +96,7 @@ export class ResizableDirective implements OnDestroy, AfterViewInit {
                 fromEvent(document, 'touchmove')
             )
                 .pipe(takeUntil(mouseup))
-                .subscribe((e: MouseEvent | TouchEvent) =>
+                .subscribe((e: any) =>
                     this.move(e, width, height, screenX, screenY)
                 );
 
@@ -134,7 +136,6 @@ export class ResizableDirective implements OnDestroy, AfterViewInit {
     private destroySubscription() {
         if (this.subscription) {
             this.subscription.unsubscribe();
-            this.subscription = undefined;
         }
     }
 
