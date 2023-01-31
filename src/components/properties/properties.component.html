@@ -37,6 +37,9 @@
         <app-property-divider
             *ngIf="property.name == 'divider'"
             [(ngModel)]="element.properties[i]"></app-property-divider>
+        <app-property-button
+            *ngIf="property.name == 'button'"
+            [(ngModel)]="element.properties[i]"></app-property-button>
         <app-property-headline
             *ngIf="property.name == 'headline'"
             [(ngModel)]="element.properties[i]"></app-property-headline>

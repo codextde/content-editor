@@ -1,32 +1,6 @@
-@import 'bootstrap/scss/bootstrap-reboot';
-@import 'bootstrap/scss/bootstrap-grid';
-@import 'bootstrap/scss/button-group';
-@import 'bootstrap/scss/buttons';
-@import 'bootstrap/scss/dropdown';
-
-body {
-    font-family: 'Open Sans', 'Helvetica Neue', Arial, sans-serif;
-    line-height: 1.4;
-    color: #000;
-}
-
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-    margin: 0;
-}
-
-p {
-    margin-bottom: 0;
-}
-
-.flex-end {
-    display: flex;
-    justify-content: flex-end;
-}
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
 .cdk-drag-placeholder {
     background: #c4c9cc;
@@ -126,29 +100,5 @@ color-picker {
         .drag-element-component {
             background: rgba(0, 0, 0, 0.2);
         }
-    }
-}
-
-.k-state-active {
-    &:focus {
-        box-shadow: 0 0 0 1px #ddd;
-        outline: none;
-    }
-}
-
-/*
-.k-editor-widget{
-  min-width: 100%!important;
-}*/
-
-.k-window.k-editor-widget {
-    min-width: 500px !important;
-}
-
-.clearfix {
-    &::after {
-        content: '';
-        clear: both;
-        display: table;
     }
 }
