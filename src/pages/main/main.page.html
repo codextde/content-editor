@@ -40,10 +40,6 @@
                 *ngIf="element.component == 'divider'"
                 (click)="openProperties(element)"
                 [(ngModel)]="dataService.contentEditorElements[i]"></app-element-divider>
-            <app-element-button
-                *ngIf="element.component == 'button'"
-                (click)="openProperties(element)"
-                [(ngModel)]="dataService.contentEditorElements[i]"></app-element-button>
 
             <app-tooltip
                 class="drag-element-toolbar"
@@ -131,7 +127,6 @@
                 <app-property-css
                     [(ngModel)]="bodyProperties.css"
                     (ngModelChange)="cssCodeChange($event); setBodyProperties()"></app-property-css>
-                <app-property-javascript></app-property-javascript>
             </div>
 
             <div class="section-settings-footer btn-group">

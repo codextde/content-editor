@@ -6,7 +6,6 @@ import { HeadlineElementComponent } from './headline/headline.component';
 import { HtmlElementComponent } from './html/html.component';
 import { ImageElementComponent } from './image/image.component';
 import { ClearfixElementComponent } from './clearfix/clearfix.component';
-import { ButtonElementComponent } from './button/button.component';
 import { DividerElementComponent } from './divider/divider.component';
 import { AngularDraggableModule } from 'angular2-draggable';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
@@ -21,7 +20,6 @@ const elements = [
     ImageElementComponent,
     ClearfixElementComponent,
     DividerElementComponent,
-    ButtonElementComponent,
 ];
 
 @NgModule({

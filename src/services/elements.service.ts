@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import { ButtonElementConfig } from 'components/elements/button/button.config';
 import { ClearfixElementConfig } from 'components/elements/clearfix/clearfix.config';
 import { DividerElementConfig } from 'components/elements/divider/divider.config';
 import { HeadlineElementConfig } from 'components/elements/headline/headline.config';
@@ -22,6 +21,5 @@ export class ElementsService {
         this.elements.push(ImageElementConfig.config);
         this.elements.push(ClearfixElementConfig.config);
         this.elements.push(DividerElementConfig.config);
-        this.elements.push(ButtonElementConfig.config);
     }
 }
